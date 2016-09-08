@@ -368,7 +368,7 @@ div, a {
 }
 #section_geodata > .title {
     display: table-row;
-    height: 0;
+    height: 1px;
 }
 #section_geodata > .table-row__spacer:nth-of-type(1) {
     display: table-row;
@@ -376,7 +376,7 @@ div, a {
 }
 #section_geodata > .intro {
     display: table-row;
-    height: 0;
+    height: 1px;
 }
 #section_geodata > .table-row__spacer:nth-of-type(2) {
     display: table-row;
@@ -385,7 +385,7 @@ div, a {
 #section_geodata > .container {
     width: 100%;
     display: table-row;
-    height: auto;
+    height: 100%;
 }
 /* geodata select */
 #section_geodata > .container > .select {
@@ -485,6 +485,7 @@ div, a {
 }
 #section_geodata > .container > .map > .map__expand > i {
     margin-left: -2px;
+    font-size: 24px;
 }
 #section_geodata > .container > .map > .map__expand:hover {
     cursor: pointer;
