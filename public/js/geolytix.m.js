@@ -43,60 +43,6 @@ section_intro.find('.img__preload').attr('src', '/public/images/intro_naeblys.jp
 
 
 
-// READER
-var reader = $('#reader'),
-    reader__bottom = reader.find('.bottom').first(),
-    reader__content = reader__bottom.find('.content').first(),
-    reader__pdf = reader.find('.top > .pdf'),
-    reader__blog = reader.find('.top > .blog'),
-    footer = $('#footer__menu');
-
-footer.find('.privacy_policy').first().click(function () {
-    var t = document.querySelector('#template__privacy_policy');
-    document.querySelector('#reader > .bottom > .content').appendChild(document.importNode(t.content, true));
-    reader__pdf.attr('href', 'https://docs.google.com/document/d/1ZyhEzxi0MCsMK3HnR6fGpBhNm725916AxmElkOsHFIY');
-    reader__pdf.show();
-    reader.show();
-    reader__bottom.animate({scrollTop: 0});
-});
-
-footer.find('.terms_conditions').first().click(function(){
-    var t = document.querySelector('#template__terms_conditions');
-    document.querySelector('#reader > .bottom > .content').appendChild(document.importNode(t.content, true));
-    reader__pdf.attr('href','https://docs.google.com/document/d/1MteGDtrZx2TWXcuKqTzEMPRGmtlvEzF0g9Vy9r5H_vs');
-    reader__pdf.show();
-    reader.show();
-    reader__bottom.animate({ scrollTop: 0 });
-});
-
-reader.find('.top > .logo').click(function(){
-    reader.hide();
-    reader__content.empty();
-    reader__pdf.hide();
-    reader__blog.hide();
-});
-
-reader.find('.top > .close').click(function(){
-    reader.hide();
-    reader__content.empty();
-    reader__pdf.hide();
-    reader__blog.hide();
-});
-
-
-
-// BLOG
-var section_blog = $('#section_blog');
-section_blog.find('.card').click(function(){
-    var t = $(this).html();
-    reader__content.html(t);
-    reader__blog.attr('href',$(this).attr('href'));
-    reader__blog.show();
-    reader.show();
-});
-
-
-
 //scroll container
 var scrolly,
     currentClientCard = 'boots',

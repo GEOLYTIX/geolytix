@@ -4,12 +4,12 @@ var body__inner = $('.body__inner'),
     section_geodata = $('#section_geodata'),
     section_blog = $('#section_blog'),
     section_team = $('#section_team'),
-    section_contact = $('#section_contact'),
-    footer = $('#footer__menu');
+    section_contact = $('#section_contact');
 
 
 
 //menu button scrolls
+
 $('.header__menu > .home').click(function (e) {
     e.preventDefault();
     body__inner.animate({ scrollTop: 0 });
@@ -128,60 +128,8 @@ section_clients.find('.strip > .logo').click(function(){
 
 
 
-//___READER
-
-var reader = $('#reader'),
-    reader__content = reader.find('.bottom > .content'),
-    reader__pdf = reader.find('.top > .pdf'),
-    reader__blog = reader.find('.top > .blog');
-
-footer.find('.privacy_policy').first().click(function(){
-    var t = document.querySelector('#template__privacy_policy');
-    document.querySelector('#reader > .bottom > .content').appendChild(document.importNode(t.content, true));
-    reader__pdf.attr('href','https://docs.google.com/document/d/1ZyhEzxi0MCsMK3HnR6fGpBhNm725916AxmElkOsHFIY');
-    reader__pdf.show();
-    reader.show();
-    reader__content.animate({ scrollTop: 0 });
-});
-
-footer.find('.terms_conditions').first().click(function(){
-    var t = document.querySelector('#template__terms_conditions');
-    document.querySelector('#reader > .bottom > .content').appendChild(document.importNode(t.content, true));
-    reader__pdf.attr('href','https://docs.google.com/document/d/1MteGDtrZx2TWXcuKqTzEMPRGmtlvEzF0g9Vy9r5H_vs');
-    reader__pdf.show();
-    reader.show();
-    reader__content.animate({ scrollTop: 0 });
-});
-
-reader.find('.top > .logo').click(function(){
-    reader.hide();
-    reader__content.empty();
-    reader__pdf.hide();
-    reader__blog.hide();
-});
-
-reader.find('.top > .close').click(function(){
-    reader.hide();
-    reader__content.empty();
-    reader__pdf.hide();
-    reader__blog.hide();
-});
-
-
-
-//___BLOG
-
-section_blog.find('.blog__box').click(function(){
-    var t = $(this).html();
-    reader__content.html(t);
-    reader__blog.attr('href',$(this).attr('href'));
-    reader__blog.show();
-    reader.show();
-});
-
-
-
 //___CONTACTS
+
 var contact__input_from_disclaimer = $('.contact__input_from_disclaimer');
 section_contact.find('.contact__input_from').first().bind({
     mouseenter: function () {
@@ -218,21 +166,24 @@ section_contact.find('.contact__form_to').first().bind({
             mailfrom = $('.contact__input_from').val(),
             contact__form_to = $('.contact__form_to');
         contact__form_to.css('color', 'black');
-        $.ajax({
-            url: '/geolytix/default/contact',
-            data: {
-                content: content,
-                mailfrom: mailfrom
-            },
-            success: function (response) {
-                if (response == 'True') {
-                    contact__form_to.css('color', 'green');
-                } else {
-                    alert('Oops. Something went wrong with the mail delivery.');
+        if (content == "") {
+            alert('Oops. Empty message body');
+        } else {
+            $.ajax({
+                url: '/contact',
+                data: {
+                    content: content,
+                    mailfrom: mailfrom
+                },
+                success: function (response) {
+                    if (response.ok) {
+                        contact__form_to.css('color', 'green');
+                    } else {
+                        alert('Oops. Something went wrong with the mail delivery.');
+                    }
                 }
-
-            }
-        });
+            });
+        }
     }
 });
 
@@ -292,7 +243,7 @@ function geodata__retail_points() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'retailpoints',
         format: 'image/png',
         transparent: true,
@@ -308,14 +259,14 @@ function geodata__retail_places() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'retailplaces_point',
         format: 'image/png',
         transparent: true,
         styles: 'retailplaces_point',
         maxZoom: 12
     }).addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'retailplaces_outline',
         format: 'image/png',
         transparent: true,
@@ -323,7 +274,7 @@ function geodata__retail_places() {
         minZoom: 13,
         maxZoom: 15
     }).addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'retailplaces_shopping',
         format: 'image/png',
         transparent: true,
@@ -331,7 +282,7 @@ function geodata__retail_places() {
         minZoom: 14,
         maxZoom: 17
     }).addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'retailplaces_build',
         format: 'image/png',
         transparent: true,
@@ -339,7 +290,7 @@ function geodata__retail_places() {
         minZoom: 14,
         maxZoom: 17
     }).addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'retailplaces_pitch',
         format: 'image/png',
         transparent: true,
@@ -357,7 +308,7 @@ function geodata__seamless_locales() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    new L.NonTiledLayer.WMS("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         opacity: 1.0,
         layers: 'seamless_locales',
         format: 'image/png',
@@ -375,7 +326,7 @@ function geodata__town_suburbs() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    new L.NonTiledLayer.WMS("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         opacity: 1.0,
         layers: 'townsuburb_suburb',
         format: 'image/png',
@@ -393,7 +344,7 @@ function geodata__postal_geom() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'postal_district',
         format: 'image/png',
         transparent: true,
@@ -401,7 +352,7 @@ function geodata__postal_geom() {
         minZoom: 14,
         maxZoom: 14
     }).addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'postal_sector',
         format: 'image/png',
         transparent: true,
@@ -409,7 +360,7 @@ function geodata__postal_geom() {
         minZoom: 15,
         maxZoom: 15
     }).addTo(map_geodata);
-    new L.NonTiledLayer.WMS("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         opacity: 1.0,
         layers: 'postal_area',
         format: 'image/png',
@@ -419,7 +370,7 @@ function geodata__postal_geom() {
         styles: 'postal_area',
         maxZoom: 14
     }).addTo(map_geodata);
-    new L.NonTiledLayer.WMS("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         opacity: 1.0,
         layers: 'postal_district',
         format: 'image/png',
@@ -430,14 +381,14 @@ function geodata__postal_geom() {
         minZoom: 15,
         maxZoom: 15
     }).addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'postal_code',
         format: 'image/png',
         transparent: true,
         styles: 'postal_code',
         minZoom: 17
     }).addTo(map_geodata);
-    new L.NonTiledLayer.WMS("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         opacity: 1.0,
         layers: 'postal_sector',
         format: 'image/png',
@@ -456,19 +407,19 @@ function geodata__public_transport() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'transport_bus',
         format: 'image/png',
         transparent: true,
         styles: 'transport_bus'
     }).addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'transport_rail',
         format: 'image/png',
         transparent: true,
         styles: 'transport_rail'
     }).addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'transport_tube',
         format: 'image/png',
         transparent: true,
@@ -484,7 +435,7 @@ function geodata__road_network() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'osm_roads',
         format: 'image/png',
         transparent: true,
@@ -500,21 +451,21 @@ function geodata__uk_admin() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'admin_uk_oa',
         format: 'image/png',
         transparent: true,
         styles: 'admin_uk_oa',
         minZoom: 15
     }).addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'admin_uk_soa',
         format: 'image/png',
         transparent: true,
         styles: 'admin_uk_soa',
         minZoom: 14
     }).addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'admin_uk_msoa',
         format: 'image/png',
         transparent: true,
@@ -522,7 +473,7 @@ function geodata__uk_admin() {
         minZoom: 13,
         maxZoom: 15
     }).addTo(map_geodata);
-    new L.NonTiledLayer.WMS("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         opacity: 1.0,
         layers: 'admin_uk_lad',
         format: 'image/png',
@@ -542,7 +493,7 @@ function geodata__education() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'university_building',
         format: 'image/png',
         transparent: true,
@@ -558,7 +509,7 @@ function geodata__poi() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    L.tileLayer.wms("https://maps.geolytix.net/geoserver/geolytix/wms", {
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'poi',
         format: 'image/png',
         transparent: true,

@@ -385,13 +385,6 @@ div, td {
 #section_blog > .container > .scroll__container {
     width: 260%;
 }
-#section_blog > .container > .scroll__container > .card {
-    position: relative;
-    display: inline-block;
-    margin-right: 20px;
-    width: calc(33% - 20px);
-    height: 500px;
-}
 #section_blog > .container > .scroll__container > .card > .img__blog {
     width: 100%;
     height: 30%;
@@ -418,6 +411,13 @@ div, td {
     padding-left: 5px;
     margin-top: 10px;
 }
+#section_blog > .container > .scroll__container > .card {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+    width: calc(33% - 20px);
+    height: 500px;
+}
 #section_blog > .container > .scroll__container > .card:after {
     position: absolute;
     display: block;
@@ -430,13 +430,6 @@ div, td {
     background: -ms-linear-gradient(top, rgba(246, 246, 246, 0) 0%, rgba(237, 237, 237, 0) 0%, rgba(255, 255, 255, 1) 100%);
     background: linear-gradient(to bottom, rgba(246, 246, 246, 0) 0%, rgba(237, 237, 237, 0) 0%, rgba(255, 255, 255, 1) 100%);
     content: '';
-}
-#section_blog > .container > .scroll__container > .card:after {
-    position: absolute;
-    display: block;
-    width: 100%;
-    height: 50%;
-    top: 50%;
 }
 #section_blog > .container > .scroll__container > .card > .content > :first-child {
     /*margin-top: 10px;*/
@@ -575,6 +568,9 @@ div, td {
     background-color: #222;
     padding-top: 30px;
 }
+.privacy_policy, .terms_conditions {
+    display: block;
+}
 #footer__menu .ul_grid {
     position: relative;
 	margin: 0;
@@ -607,121 +603,4 @@ div, td {
 #footer__menu .social_media__icons > a:hover {
     cursor: pointer;
     color: #00ff00;
-}
-
-
-
-/* READER */
-
-#reader {
-    display: none;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: #fff;
-    z-index: 10001;
-}
-#reader > .top {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #fff;
-    z-index: 9999;
-    padding-top: 3px;
-}
-#reader > .top > .logo {
-    float: left;
-    margin-left: 5px;
-    font-family: ffmark_black, "sans-serif";
-    font-size: 40px;
-}
-#reader > .top > .blog {
-    display: none;
-    float: right;
-    margin-right: 20px;
-    font-size: 40px;
-}
-#reader > .top > .pdf {
-    display: none;
-    float: right;
-    margin-right: 20px;
-    font-size: 40px;
-}
-#reader > .top > .close {
-    float: right;
-    margin-right: 5px;
-    font-size: 40px;
-}
-#reader > .bottom {
-    position: absolute;
-    top: 70px;
-    height: 100%;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-}
-#reader > .bottom > .content {
-    padding: 0 5px 100px 5px;
-}
-#reader > .bottom > .content table {
-    width: 100%;
-}
-#reader > .bottom > .content table,
-#reader > .bottom > .content table p {
-    font-size: 18px;
-}
-#reader > .bottom > .content table .title {
-    font-family: ffmark_bold, "sans-serif";
-    font-size: 30px;
-}
-#reader > .bottom > .content table .header {
-    font-family: ffmark_bold, "sans-serif";
-    font-size: 18px;
-}
-#reader > .bottom > .content table {
-    border: none;
-    border-spacing: 0;
-}
-#reader > .bottom > .content table td {
-    padding: 10px;
-    vertical-align: top;
-}
-#reader > .bottom > .content table tr td:first-child {
-    padding-left: 0;
-}
-#reader > .bottom > .content table tr td:last-child {
-    padding-right: 0;
-}
-#reader > .bottom > .content table .underline td {
-    border-bottom: 1px solid #000;
-}
-#reader > .bottom > .content .title {
-    font-family: ffmark_bold, "sans-serif";
-}
-#reader > .bottom > .content .quote {
-    font-family: ffmark_italic, "sans-serif";
-}
-#reader > .bottom > .content .sign {
-    font-family: ffmark_bold, "sans-serif";
-    font-size: 20px;
-    margin-top: 10px;
-    text-align: right;
-}
-#reader > .bottom > .content .img__blog {
-    width: 100%;
-    height: 300px;
-    margin-bottom: 30px;
-    background-position: center center;
-}
-#reader > .bottom > .content p {
-    /*text-align: justify;*/
-}
-#reader > .bottom > .content a {
-    font-family: ffmark_bold, "sans-serif";
-}
-#reader > .bottom > .content img {
-    width: 100%;
 }
