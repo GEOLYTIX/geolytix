@@ -355,13 +355,13 @@ div, td {
     background-image: url(/public/images/geodata/road_network.jpg);
 }
 #section_geodata > .container > .scroll__container > .uk_admin > .img {
-    background-image: url(/public/static/images/geodata/uk_admin.jpg);
+    background-image: url(/public/images/geodata/uk_admin.jpg);
 }
 #section_geodata > .container > .scroll__container > .education > .img {
-    background-image: url(/public/static/images/geodata/education.jpg);
+    background-image: url(/public/images/geodata/education.jpg);
 }
 #section_geodata > .container > .scroll__container > .poi > .img {
-    background-image: url(/public/static/images/geodata/poi.jpg);
+    background-image: url(/public/images/geodata/poi.jpg);
 }
 
 
@@ -383,7 +383,7 @@ div, td {
     padding-left: 5px;
 }
 #section_blog > .container > .scroll__container {
-    width: 260%;
+    width: 270%;
 }
 #section_blog > .container > .scroll__container > .card > .img__blog {
     width: 100%;
