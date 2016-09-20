@@ -21,6 +21,11 @@ app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
 app.use('/public', express.static(path.join(__dirname + '/public')));
 
+app.get('/robots.txt', function (req, res) {
+  res.type('text/plain');
+  res.send('User-agent: *\n');
+});
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler

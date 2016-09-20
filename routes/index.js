@@ -16,11 +16,6 @@ router.get('/map', function(req, res) {
   res.render('map');
 });
 
-router.get('/robots.txt', function (req, res) {
-  res.type('text/plain');
-  res.send('User-agent: *\n');
-});
-
 router.get('/contact', function (req, res) {
 
   var mailOptions = {
