@@ -274,5 +274,5 @@ switch (true) {
         geodata__poi();
         break;
     default:
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
+        L.tileLayer('https://osm.geolytix.net/osm_tiles/{z}/{x}/{y}.png').addTo(map_geodata);
 }
