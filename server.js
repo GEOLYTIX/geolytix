@@ -1,10 +1,11 @@
+var port = process.env.PORT || 3000;
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var routes = require('./routes/index');
+var routes = require('./' + 'router');
 
 var app = express();
 
@@ -46,4 +47,5 @@ app.use(function (err, req, res) {
     });
 });
 
-module.exports = app;
+app.listen(port);
+console.log('The magic happens on port ' + port);

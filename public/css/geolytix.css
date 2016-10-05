@@ -54,7 +54,7 @@ p {
     margin: 0;
 }
 .section {
-    width: calc(100% - 5px);
+    width: 100%;
 }
 .section > .title {
     margin-bottom: 30px;
@@ -254,7 +254,7 @@ div, a {
     font-size: 80%;
 }
 #section_services .ul_grid > li {
-    width: 25%;
+    width: 24%;
 }
 #section_services .ul_grid > li > .li_card {
     height: 300px;
@@ -669,7 +669,7 @@ div, a {
     text-align: center;
 }
 #section_team .ul_grid > li {
-    width: 25%;
+    width: 24%;
 }
 #section_team .ul_grid > li > .li_card {
     height: 330px;
@@ -738,7 +738,7 @@ div, a {
     height: 100px;
 }
 #section_awards > .strip:nth-of-type(2) > a {
-    width: 25%;
+    width: 24%;
 }
 #section_awards > .strip:nth-of-type(2) > a:nth-of-type(1):hover {
     cursor: default;
@@ -762,54 +762,9 @@ div, a {
     height: 350px;
 }
 #section_contact > .container > #map_contact {
-    width: 70%;
+    width: 100%;
     height: 100%;
     float: right;
-}
-#section_contact > .container > .contact__form {
-    width: 30%;
-    height: 100%;
-    float: left;
-    position: relative;
-}
-#section_contact > .container > .contact__form > .contact__form_to {
-    width: 100%;
-    font-family: ffmark_bold, "sans-serif";
-    font-size: 20px;
-    padding-bottom: 3px;
-    border-bottom: 3px solid #000;
-}
-#section_contact > .container > .contact__form > .contact__input {
-    width: 100%;
-    height: calc(100% - 80px);
-    margin-top: 10px;
-    border: none;
-    border-bottom: 1px solid #000;
-    font-family: Courier, "serif";
-    font-size: 20px;
-
-}
-#section_contact > .container > .contact__form > .contact__input_from {
-    width: calc(100% - 40px);
-    margin-top: 10px;
-    border: none;
-    font-size: 20px;
-}
-#section_contact > .container > .contact__form > .contact__input_from_disclaimer,
-#section_contact > .container > .contact__form > .contact__send_disclaimer {
-    display: none;
-    position: absolute;
-    padding: 5px;
-    width: calc(100% - 10px);
-    line-height: 1.5em;
-    font-size: 15px;
-    text-shadow: 1px 1px 1px #aaa;
-    background-color: #000;
-    color: #fff;
-    z-index: 1001;
-}
-#section_contact .icon-reply {
-    font-size: 20px;
 }
 
 
@@ -827,7 +782,7 @@ div, a {
     margin: -10px;
 }
 #footer__menu > .ul_grid > li {
-    width: 25%;
+    width: 24%;
     padding-bottom: 20px;
     text-align: center;
 }
