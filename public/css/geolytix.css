@@ -550,17 +550,6 @@ div, a {
     display: none;
 }
 
-/* geodata spacer */
-#spacer_geodata > .link__text {
-    margin: 50px 0 0 40%;
-    border-left: 10px solid #fff;
-    height: 300px;
-}
-#spacer_geodata > .link__text:hover {
-    cursor: pointer;
-    border-left: 10px solid #000;
-}
-
 
 
 /* BLOG */
