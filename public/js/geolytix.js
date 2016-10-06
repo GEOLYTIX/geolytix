@@ -2,13 +2,12 @@ var body__inner = $('.body__inner'),
     section_services = $('#section_services'),
     section_clients = $('#section_clients'),
     section_geodata = $('#section_geodata'),
-    section_blog = $('#section_blog'),
     section_team = $('#section_team'),
     section_contact = $('#section_contact');
 
 
 
-//menu button scrolls
+//MENU buttons control
 
 $('.header__menu > .home').click(function (e) {
     e.preventDefault();
@@ -23,9 +22,6 @@ $('.header__menu > .clients').click(function () {
 $('.header__menu > .geodata').click(function () {
     body__inner.animate({ scrollTop: body__inner.scrollTop() + section_geodata.offset().top - 70 });
 });
-$('.header__menu > .blog').click(function () {
-    body__inner.animate({ scrollTop: body__inner.scrollTop() + section_blog.offset().top - 70 });
-});
 $('.header__menu > .team').click(function () {
     body__inner.animate({ scrollTop: body__inner.scrollTop() + section_team.offset().top - 70 });
 });
@@ -35,7 +31,7 @@ $('.scroll__contact').click(function () {
 
 
 
-//___GRIDS
+//GRIDS
 
 var section_services__expanded_card,
     section_services__cards = section_services.find('.ul_grid .li_card'),
@@ -98,7 +94,7 @@ $(window).resize(function () {
 
 
 
-//___CLIENTS
+//CLIENTS
 
 var clients_container = section_clients.find('.container').first();
 section_clients.find('.strip > .logo').click(function(){
@@ -128,67 +124,7 @@ section_clients.find('.strip > .logo').click(function(){
 
 
 
-//___CONTACTS
-
-var contact__input_from_disclaimer = $('.contact__input_from_disclaimer');
-section_contact.find('.contact__input_from').first().bind({
-    mouseenter: function () {
-        contact__input_from_disclaimer.show();
-    },
-    mouseleave: function () {
-        contact__input_from_disclaimer.hide();
-    },
-    click: function () {
-        $(this).unbind("mouseenter mouseleave");
-    },
-    blur: function () {
-        contact__input_from_disclaimer.hide();
-        $(this).bind({
-            mouseenter: function () {
-                contact__input_from_disclaimer.show();
-            },
-            mouseleave: function () {
-                contact__input_from_disclaimer.hide();
-            }
-        })
-    }
-});
-var contact__send_disclaimer = $('.contact__send_disclaimer');
-section_contact.find('.contact__form_to').first().bind({
-    mouseenter: function () {
-        contact__send_disclaimer.show();
-    },
-    mouseleave: function () {
-        contact__send_disclaimer.hide();
-    },
-    click: function () {
-        var content = $('.contact__input').val(),
-            mailfrom = $('.contact__input_from').val(),
-            contact__form_to = $('.contact__form_to');
-        contact__form_to.css('color', 'black');
-        if (content == "") {
-            alert('Oops. Empty message body');
-        } else {
-            $.ajax({
-                url: '/contact',
-                data: {
-                    content: content,
-                    mailfrom: mailfrom
-                },
-                success: function (response) {
-                    if (response.ok) {
-                        contact__form_to.css('color', 'green');
-                    } else {
-                        alert('Oops. Something went wrong with the mail delivery.');
-                    }
-                }
-            });
-        }
-    }
-});
-
-
-//contact map
+//Contact Map
 var map_contact = L.map('map_contact', {scrollWheelZoom: false}).setView([51.52733,-0.11525], 13)
     .addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
 new L.Marker([51.52733,-0.11525], {
@@ -201,7 +137,7 @@ new L.Marker([51.52733,-0.11525], {
 
 
 
-//___GEODATA
+//GEODATA
 
 var map_container = section_geodata.find('.container > .map').first(),
     map_expand = map_container.find('.map__expand').first(),

@@ -200,12 +200,14 @@ div, a {
     font-family: ffmark_black, "sans-serif";
     font-size: 60px;
 }
-.header__menu > div:not(.home) {
+.header__menu > div:not(.home),
+.header__menu > a:not(.home){
     float: right;
     margin-left: 14px;
     padding: 7px 0 7px 0;
 }
-.header__menu > div:not(.home):hover {
+.header__menu > div:not(.home):hover,
+.header__menu > a:not(.home):hover{
     border-bottom: 10px solid #000;
 }
 
