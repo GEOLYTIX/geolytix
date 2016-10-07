@@ -8,19 +8,29 @@ var body__inner = $('.body__inner'),
 //MENU buttons control
 var subString = window.location.search.substring(1);
 if (subString == 'services') {
-    body__inner.animate({ scrollTop: body__inner.scrollTop() + section_services.offset().top - 70 });
+    setTimeout(function () {
+        body__inner.animate({scrollTop: body__inner.scrollTop() + section_services.offset().top - 70});
+    }, 100);
 }
 if (subString == 'clients') {
-    body__inner.animate({ scrollTop: body__inner.scrollTop() + section_clients.offset().top - 70 });
+    setTimeout(function () {
+        body__inner.animate({scrollTop: body__inner.scrollTop() + section_clients.offset().top - 70});
+    }, 100);
 }
 if (subString == 'geodata') {
-    body__inner.animate({ scrollTop: body__inner.scrollTop() + section_geodata.offset().top - 70 });
+    setTimeout(function () {
+        body__inner.animate({scrollTop: body__inner.scrollTop() + section_geodata.offset().top - 70});
+    }, 100);
 }
 if (subString == 'team') {
-    body__inner.animate({ scrollTop: body__inner.scrollTop() + section_team.offset().top - 70 });
+    setTimeout(function () {
+        body__inner.animate({scrollTop: body__inner.scrollTop() + section_team.offset().top - 70});
+    }, 100);
 }
 if (subString == 'contact') {
-    body__inner.animate({ scrollTop: body__inner.scrollTop() + section_contact.offset().top - 70 });
+    setTimeout(function () {
+        body__inner.animate({scrollTop: body__inner.scrollTop() + section_contact.offset().top - 70});
+    }, 100);
 }
 
 $('.header__menu > .home').click(function (e) {
