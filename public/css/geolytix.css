@@ -1,3 +1,11 @@
+.scrollbar-measure {
+    width: 100px;
+    height: 100px;
+    overflow: scroll;
+    position: absolute;
+    top: -9999px;
+}
+
 /* FONTS */
 
 @font-face {
@@ -38,7 +46,7 @@ body {
 }
 .body__inner {
     height: 100%;
-    margin: 0 -20px 0 0;
+    margin-right: -20px;
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -204,7 +212,7 @@ div, a {
 .header__menu > div:not(.home),
 .header__menu > a:not(.home){
     float: right;
-    margin-left: 40px;
+    margin-left: 35px;
     padding: 7px 0 7px 0;
 }
 .header__menu > div:not(.home):hover,

@@ -1,3 +1,13 @@
+//set scrollbar margin
+var scrollDiv = document.createElement("div");
+scrollDiv.className = "scrollbar-measure";
+document.body.appendChild(scrollDiv);
+var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
+//console.warn(scrollbarWidth); // Mac:  15
+document.body.removeChild(scrollDiv);
+var body__inner = document.querySelector(".body__inner");
+body__inner.style.marginRight = "-" + scrollbarWidth + "px";
+
 var body__inner = $('.body__inner'),
     section_services = $('#section_services'),
     section_clients = $('#section_clients'),
