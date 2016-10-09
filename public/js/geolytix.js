@@ -105,6 +105,7 @@ section_team__cards.click(function () {
         section_team__expanded_card.addClass('li_expanded').height($(this).height() + content.height() + 50);
         content.css('opacity', 0).animate({opacity: 1});
         li_expander.css('visibility', 'visible');
+        body__inner.animate({ scrollTop: body__inner.scrollTop() + section_team__expanded_card.offset().top - 70 });
     }
 });
 
