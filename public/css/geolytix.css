@@ -565,7 +565,7 @@ div, a {
 }
 #spacer_blog > .link__text:hover {
     cursor: pointer;
-    border-top: 10px solid red;
+    border-top: 10px solid #079e00;
 }
 
 
