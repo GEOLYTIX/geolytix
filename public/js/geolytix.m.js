@@ -75,3 +75,25 @@ scrollContainerClientLogo.on('scrollstop', $.debounce(250, function () {
 section_services.find('.scroll__x').first().on('scrollstop', $.debounce(250, function () {
     console.log(section_services.find('.scroll__x').first().scrollLeft());
 }));
+
+var subString = window.location.search.substring(1);
+if (subString == 'services') {
+    setTimeout(function () {
+        body__inner.animate({scrollTop: $('#section_services').offset().top});
+    }, 100);
+}
+if (subString == 'clients') {
+    setTimeout(function () {
+        body__inner.animate({scrollTop: $('#section_clients').offset().top});
+    }, 100);
+}
+if (subString == 'geodata') {
+    setTimeout(function () {
+        body__inner.animate({scrollTop: $('#section_geodata').offset().top});
+    }, 100);
+}
+if (subString == 'team') {
+    setTimeout(function () {
+        body__inner.animate({scrollTop: $('#section_team').offset().top});
+    }, 100);
+}
