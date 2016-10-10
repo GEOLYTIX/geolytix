@@ -3,7 +3,6 @@ var scrollDiv = document.createElement("div");
 scrollDiv.className = "scrollbar-measure";
 document.body.appendChild(scrollDiv);
 var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-//console.warn(scrollbarWidth); // Mac:  15
 document.body.removeChild(scrollDiv);
 var body__inner = document.querySelector(".body__inner");
 body__inner.style.marginRight = "-" + scrollbarWidth + "px";
@@ -91,7 +90,11 @@ section_services__cards.click(function () {
 
 section_services.find('.network_strategy').first().trigger('click');
 
-section_team__cards.click(function () {
+section_team__cards.click(expandTeamCard);
+
+section_team.find('.blair').first().trigger('click',[true]);
+
+function expandTeamCard(e, trigger) {
     if (section_team__expanded_card) {section_team__expanded_card.removeAttr('style')}
     section_team__expanded_card = $(this).parent('li');
     var content = section_team__expanded_card.find('.li_card__content'),
@@ -105,11 +108,11 @@ section_team__cards.click(function () {
         section_team__expanded_card.addClass('li_expanded').height($(this).height() + content.height() + 50);
         content.css('opacity', 0).animate({opacity: 1});
         li_expander.css('visibility', 'visible');
-        body__inner.animate({ scrollTop: body__inner.scrollTop() + section_team__expanded_card.offset().top - 70 });
+        if (trigger != true) {
+            body__inner.animate({ scrollTop: body__inner.scrollTop() + section_team__expanded_card.offset().top - 70 });
+        }
     }
-});
-
-section_team.find('.blair').first().trigger('click');
+}
 
 function changeExpandedCardsHeight() {
     if (section_services__expanded_card) {
