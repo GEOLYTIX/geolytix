@@ -364,16 +364,13 @@ div, a {
     width: 120px;
     height: 300px;
 }
-#spacer_clients > .link__text:hover {
-    cursor: pointer;
-    border-right: 10px solid #000;
-}
 
 
 
 /* GEODATA */
 
 #section_geodata {
+    margin-top: 200px;
     display: table;
     height: calc(100% - 95px);
 }
