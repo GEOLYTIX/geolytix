@@ -21,8 +21,9 @@ $(window).resize(function () {
 // CONTACT SCROLL
 var body__inner = $('.inner').first();
 $('.scroll__contact').click(function () {
-    body__inner.animate({ scrollTop: body__inner.scrollTop() + footer.offset().top - 70 });
+    body__inner.animate({ scrollTop: body__inner.scrollTop() + $('#footer__menu').offset().top - 70 });
 });
+
 
 
 
