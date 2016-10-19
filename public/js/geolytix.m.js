@@ -26,7 +26,6 @@ $('.scroll__contact').click(function () {
 
 
 
-
 // preload images
 var section_intro = $('#section_intro');
 section_intro.find('.img__preload').attr('src', '/public/images/intro_naeblys.jpg').load(function () {
