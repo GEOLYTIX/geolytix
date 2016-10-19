@@ -163,7 +163,7 @@ section_clients.find('.strip > .logo').click(function(){
 
 
 //Contact Map
-var map_contact = L.map('map_contact', {scrollWheelZoom: false}).setView([51.52733,-0.11525], 13)
+var map_contact = L.map('map_contact', {scrollWheelZoom: false}).setView([51.52733,-0.11525], 14)
     .addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
 new L.Marker([51.52733,-0.11525], {
                 icon: L.icon({
