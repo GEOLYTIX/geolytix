@@ -1,3 +1,4 @@
+// kerst comment
 //set scrollbar margin
 var scrollDiv = document.createElement("div");
 scrollDiv.className = "scrollbar-measure";
