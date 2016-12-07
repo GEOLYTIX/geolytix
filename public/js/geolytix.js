@@ -1,4 +1,3 @@
-// kerst comment
 //set scrollbar margin
 var scrollDiv = document.createElement("div");
 scrollDiv.className = "scrollbar-measure";
@@ -494,13 +493,49 @@ function geodata__poi() {
     section_geodata.find('.container > .content > .poi').first().show();
 }
 
-function geodata__media_comms() {
+function geodata__media_com() {
     section_geodata.find('.container > .map').first().show();
     map_geodata.eachLayer(function (layer) {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
     section_geodata.find('.container > .content > .media_comms').first().show();
+}
+
+function geodata__residential() {
+    section_geodata.find('.container > .map').first().show();
+    map_geodata.eachLayer(function (layer) {
+        map_geodata.removeLayer(layer);
+    });
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
+    section_geodata.find('.container > .content > .work_places').first().show();
+}
+
+function geodata__physical() {
+    section_geodata.find('.container > .map').first().show();
+    map_geodata.eachLayer(function (layer) {
+        map_geodata.removeLayer(layer);
+    });
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
+    section_geodata.find('.container > .content > .work_places').first().show();
+}
+
+function geodata__property() {
+    section_geodata.find('.container > .map').first().show();
+    map_geodata.eachLayer(function (layer) {
+        map_geodata.removeLayer(layer);
+    });
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
+    section_geodata.find('.container > .content > .work_places').first().show();
+}
+
+function geodata__work_places() {
+    section_geodata.find('.container > .map').first().show();
+    map_geodata.eachLayer(function (layer) {
+        map_geodata.removeLayer(layer);
+    });
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
+    section_geodata.find('.container > .content > .work_places').first().show();
 }
 
 //set default
@@ -539,6 +574,21 @@ section_geodata.find('.container > .select > .select__inner > div').click(functi
             break;
         case $(this).hasClass('education'):
             geodata__education();
+            break;
+        case $(this).hasClass('work_places'):
+            geodata__work_places();
+            break;
+        case $(this).hasClass('residential'):
+            geodata__residential();
+            break;
+        case $(this).hasClass('media_com'):
+            geodata__media_com();
+            break;
+        case $(this).hasClass('physical'):
+            geodata__physical();
+            break;
+        case $(this).hasClass('property'):
+            geodata__property();
             break;
         case $(this).hasClass('poi'):
             geodata__poi();
