@@ -213,6 +213,11 @@ div, a {
 
 .header__menu > .nav_bar > div:hover,
 .header__menu > .nav_bar > a:hover{
+    border-bottom: 10px solid #fff;
+}
+
+.header__menu.smaller.main > .nav_bar > div:hover,
+.header__menu.smaller.main > .nav_bar > a:hover{
     border-bottom: 10px solid #000;
 }
 
