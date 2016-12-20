@@ -647,17 +647,7 @@ div, a {
 
 
 
-/* blog spacer */
-#spacer_blog > .link__text {
-    margin: 50px 0 0 40%;
-    border-top: 10px solid #fff;
-    height: 300px;
-}
 
-#spacer_blog > .link__text:hover {
-    cursor: pointer;
-    border-top: 10px solid #079e00;
-}
 
 
 
@@ -732,7 +722,17 @@ div, a {
     background-image: url(/public/images/team/simon_.jpg);
 }
 
+#section_team .alana > .li_card__img {
+    background-image: url(/public/images/team/alana_.jpg);
+}
 
+#section_team .martin > .li_card__img {
+    background-image: url(/public/images/team/martin_.jpg);
+}
+
+#section_team .kerst > .li_card__img {
+    background-image: url(/public/images/team/kerst_.jpg);
+}
 
 /* AWARDS */
 
