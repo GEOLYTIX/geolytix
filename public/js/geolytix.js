@@ -1,14 +1,41 @@
-//set scrollbar margin
-var scrollDiv = document.createElement("div");
-scrollDiv.className = "scrollbar-measure";
-document.body.appendChild(scrollDiv);
-var scrollbarWidth = scrollDiv.offsetWidth - scrollDiv.clientWidth;
-document.body.removeChild(scrollDiv);
-var body__inner = document.querySelector(".body__inner");
-body__inner.style.marginRight = "-" + scrollbarWidth + "px";
+window.onload = init();
 
-var body__inner = $('.body__inner'),
-    section_services = $('#section_services'),
+function init() {
+    window.addEventListener('scroll', function(){
+        var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+            //header = document.querySelector('.header__menu');
+            header = $('.header__menu');
+        if (distanceY > 300) {
+            //classie.add(header,"smaller");
+            header.addClass('smaller');
+        } else {
+            // if (classie.has(header, "smaller")) {
+            //     classie.remove(header, "smaller");
+            // }
+            if (header.hasClass('smaller')) {
+                header.removeClass('smaller');
+            }
+        }
+        if (distanceY > $('.img__cover').height()) {
+            //classie.add(header,"smaller");
+            header.addClass('main');
+        } else {
+            // if (classie.has(header, "smaller")) {
+            //     classie.remove(header, "smaller");
+            // }
+            if (header.hasClass('main')) {
+                header.removeClass('main');
+            }
+        }
+    });
+}
+
+
+
+
+
+
+var section_services = $('#section_services'),
     section_clients = $('#section_clients'),
     section_geodata = $('#section_geodata'),
     section_team = $('#section_team'),

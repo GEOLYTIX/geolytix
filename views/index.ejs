@@ -3,10 +3,12 @@
 
 <head>
     <title>GEOLYTIX</title>
+
     <meta name="description"
           content="Experts in providing data and services for location, demographic, customer and market analysis for retailers and investors in the UK, Europe and America."/>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <script type="text/javascript">
         if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)) {
             if (Number(RegExp.$1) <= 7) {
@@ -17,9 +19,10 @@
             window.location = "/mobile";
         }
     </script>
+
     <script src="/public/js/jquery.js"></script>
-    <script src="/public/js/bigtext.js"></script>
     <script src="/public/js/webfontloader.js"></script>
+
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -39,12 +42,10 @@
             custom: {
                 families: ['ffmark_black', 'ffmark_thin', 'ffmark', 'ffmark_bold', 'ffmark_italic'],
                 urls: ['/public/css/fontello_embedded.css']
-            },
-            active: function () {
-                $('.bigtext').bigtext();
             }
         });
     </script>
+
     <link rel="stylesheet" href="/public/css/leaflet.css"/>
     <link rel="stylesheet" href="/public/css/geolytix.css"/>
 </head>
@@ -52,25 +53,22 @@
 <body>
 
 <div class="header__menu">
-    <div class="home cursor"><a href="https://geolytix.net">GEOLYTIX</a></div>
-    <div class="contact cursor scroll__contact">Contact</div>
-    <div class="team cursor">Team</div>
-    <a class="blog cursor" href="http://blog.geolytix.net">Blog</a>
-    <div class="geodata cursor">Geodata</div>
-    <div class="clients cursor">Case Studies</div>
-    <div class="services cursor">Services</div>
+    <a class="home cursor" href="https://geolytix.net">GEOLYTIX</a>
+    <div class="nav_bar">
+        <div class="contact cursor">Contact</div>
+        <div class="team cursor">Team</div>
+        <a class="blog cursor" href="http://blog.geolytix.net">Blog</a>
+        <div class="geodata cursor">Geodata</div>
+        <div class="clients cursor">Case Studies</div>
+        <div class="services cursor">Services</div>
+    </div>
 </div>
 
-
-<div class="body__outer">
-    <div class="body__inner">
-
-
-        <div class="section img__cover" id="section_intro">
-            <div class="bigtext">
-                <span>Make better</span><span>decisions where location matters</span>
-            </div>
-        </div>
+<div class="section img__cover" id="section_intro">
+    <!--<div class="intro_text">-->
+    <!--<span>Make better</span><span>decisions where location matters</span>-->
+    <!--</div>-->
+</div>
 
 
         <div class="section" id="section_services">
@@ -112,9 +110,9 @@
                     </div>
                 </li>
                 <li>
-                    <div class="li_card spatial_targeting cursor">
+                    <div class="li_card spatial_modelling cursor">
                         <div class="li_card__img img__contain"></div>
-                        <div class="li_card__title">Spatial Targeting</div>
+                        <div class="li_card__title">Spatial Modelling</div>
                     </div>
                     <div class="li_expander">
                         <div class="li_card__content">
@@ -748,10 +746,6 @@
             </ul>
 
         </div>
-
-
-    </div>
-</div>
 
 </body>
 
