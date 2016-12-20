@@ -190,7 +190,7 @@ div, a {
 
 .header__menu > .nav_bar {
     position: absolute;
-    top: 0;
+    top: 10px;
     right: 50px;
     font-size: 120%;
 }
@@ -285,7 +285,6 @@ div, a {
     top: 240px;
     text-align: center;
     font-family: ffmark_bold, "sans-serif";
-    font-size: 80%;
 }
 
 #section_services .ul_grid > li {
@@ -316,97 +315,115 @@ div, a {
 
 /* CLIENTS */
 
-#section_clients > .strip {
-    margin-top: 20px;
+#section_case_studies {
+    background-color: #079e00;
+    color: #fff;
+    padding-bottom: 30px;
+}
+
+#section_case_studies > p:nth-of-type(1){
+    font-size: 250%;
+    padding: 30px 0;
+}
+
+#section_case_studies > p:nth-of-type(2){
+    font-size: 150%;
+}
+
+#section_case_studies > .strip {
     width: 100%;
-    height: 60px;
+    height: 170px;
+    border-bottom: 1px solid #fff;
 }
 
-#section_clients > .strip > .logo {
+#section_case_studies > .strip > .active:after,
+#section_case_studies > .strip > .active:before {
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    height: 0;
+    width: 0;
+    border: solid transparent;
+    content: " ";
+    pointer-events: none;
+}
+#section_case_studies > .strip > .active:before {
+    border-bottom-color: #fff;
+    border-width: 17px;
+    margin-left: -17px;
+}
+#section_case_studies > .strip > .active:after {
+    border-bottom-color: #079e00;
+    border-width: 15px;
+    margin-left: -15px;
+    z-index: 999;
+}
+
+#section_case_studies > .strip > .logo {
     width: 16.666%;
+    position: relative;
 }
 
-#section_clients > .strip > .logo:not(.active) {
-    filter: grayscale(100%);
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    -ms-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    filter: url(resources.svg#desaturate);
-    filter: gray;
-    -webkit-filter: grayscale(1);
+#section_case_studies > .strip > .arco {
+    background-image: url(/public/images/clients/arco_logo.png);
 }
 
-#section_clients > .strip > .boots {
-    background-image: url(/public/images/clients/boots_logo.png);
-}
-
-#section_clients > .strip > .asda {
+#section_case_studies > .strip > .asda {
     background-image: url(/public/images/clients/asda_logo.png);
 }
 
-#section_clients > .strip > .camelot {
+#section_case_studies > .strip > .camelot {
     background-image: url(/public/images/clients/camelot_logo.png);
 }
 
-#section_clients > .strip > .johnlewis {
+#section_case_studies > .strip > .johnlewis {
     background-image: url(/public/images/clients/johnlewis_logo.png);
 }
 
-#section_clients > .strip > .onthemarket {
+#section_case_studies > .strip > .onthemarket {
     background-image: url(/public/images/clients/onthemarket_logo.png);
 }
 
-#section_clients > .strip > .totalfitness {
+#section_case_studies > .strip > .totalfitness {
     background-image: url(/public/images/clients/totalfitness_logo.png);
 }
 
-#section_clients > .container {
-    margin-top: 50px;
+#section_case_studies > .container {
+    margin-top: 30px;
     width: 100%;
     overflow: hidden;
 }
 
-#section_clients > .container > table {
+#section_case_studies > .container > table {
     width: 600%;
     table-layout: fixed;
-    font-size: 80%;
 }
 
-#section_clients > .container > table td {
+#section_case_studies > .container > table td {
     padding-right: 30px;
     vertical-align: top;
     line-height: 1.5em;
 }
 
-#section_clients > .container > table ul {
+#section_case_studies > .container > table ul {
     padding-left: 20px;
     margin: 0;
 }
 
-#section_clients > .container > table tr:first-of-type td {
-    padding-bottom: 30px;
-}
-
-#section_clients > .container > table tr:first-of-type span {
-    font-family: ffmark_bold, "sans-serif";
+#section_case_studies > .container > table ul > li{
     padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 6px solid black;
 }
 
-#section_clients > .container > table .quote {
+#section_case_studies > .container > table tr:first-of-type td {
+    padding-bottom: 20px;
+    text-align: center;
+    font-family: ffmark_bold, sans-serif;
+    font-size: 150%;
+}
+
+#section_case_studies > .container > table .quote {
     font-family: ffmark_italic, "sans-serif";
     margin-bottom: 16px;
-}
-
-
-
-/* clients spacer */
-#spacer_clients > .link__text {
-    margin: 50px 0 0 25%;
-    width: 120px;
-    height: 300px;
 }
 
 

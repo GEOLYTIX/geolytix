@@ -48,7 +48,7 @@ $(window).resize(function () {
 // MENU BUTTONS CONTROL
 
 var section_services = $('#section_services'),
-    section_clients = $('#section_clients'),
+    section_case_studies = $('#section_case_studies'),
     section_geodata = $('#section_geodata'),
     section_team = $('#section_team'),
     section_contact = $('#section_contact'),
@@ -60,9 +60,9 @@ if (subString == 'services') {
     }, 100);
 }
 
-if (subString == 'clients') {
+if (subString == 'case_studies') {
     setTimeout(function () {
-        body__inner.animate({scrollTop: body__inner.scrollTop() + section_clients.offset().top - 70});
+        body__inner.animate({scrollTop: body__inner.scrollTop() + section_case_studies.offset().top - 70});
     }, 100);
 }
 if (subString == 'geodata') {
@@ -92,8 +92,8 @@ $('.header__menu > .services').click(function () {
     body__inner.animate({ scrollTop: body__inner.scrollTop() + section_services.offset().top - 70 });
 });
 
-$('.header__menu > .clients').click(function () {
-    body__inner.animate({ scrollTop: body__inner.scrollTop() + section_clients.offset().top - 70 });
+$('.header__menu > .case_studies').click(function () {
+    body__inner.animate({ scrollTop: body__inner.scrollTop() + section_case_studies.offset().top - 70 });
 });
 $('.header__menu > .geodata').click(function () {
     body__inner.animate({ scrollTop: body__inner.scrollTop() + section_geodata.offset().top - 70 });
@@ -170,30 +170,30 @@ function changeExpandedCardsHeight() {
 
 
 
-// CLIENTS
+// CASE STUDIES
 
-var clients_container = section_clients.find('.container').first();
-section_clients.find('.strip > .logo').click(function(){
+var case_studies_container = section_case_studies.find('.container').first();
+section_case_studies.find('.strip > .logo').click(function(){
     $(this).siblings().removeClass('active');
     $(this).addClass('active');
     switch (true) {
-        case $(this).hasClass('johnlewis'):
-            clients_container.find('table').first().animate({ 'marginLeft': 0 }, 2000);
-            break;
         case $(this).hasClass('camelot'):
-            clients_container.find('table').first().animate({ 'marginLeft': clients_container.width() * -1 }, 1000);
+            case_studies_container.find('table').first().animate({ 'marginLeft': 0 }, 2000);
+            break;
+        case $(this).hasClass('johnlewis'):
+            case_studies_container.find('table').first().animate({ 'marginLeft': case_studies_container.width() * -1 }, 1000);
             break;
         case $(this).hasClass('onthemarket'):
-            clients_container.find('table').first().animate({ 'marginLeft': clients_container.width() * -2 }, 1000);
+            case_studies_container.find('table').first().animate({ 'marginLeft': case_studies_container.width() * -2 }, 1000);
             break;
-        case $(this).hasClass('boots'):
-            clients_container.find('table').first().animate({ 'marginLeft': clients_container.width() * -3 }, 1000);
+        case $(this).hasClass('arco'):
+            case_studies_container.find('table').first().animate({ 'marginLeft': case_studies_container.width() * -3 }, 1000);
             break;
         case $(this).hasClass('totalfitness'):
-            clients_container.find('table').first().animate({ 'marginLeft': clients_container.width() * -4 }, 1000);
+            case_studies_container.find('table').first().animate({ 'marginLeft': case_studies_container.width() * -4 }, 1000);
             break;
         case $(this).hasClass('asda'):
-            clients_container.find('table').first().animate({ 'marginLeft': clients_container.width() * -5 }, 1000);
+            case_studies_container.find('table').first().animate({ 'marginLeft': case_studies_container.width() * -5 }, 1000);
             break;
     }
 });
