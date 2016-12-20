@@ -230,7 +230,22 @@ div, a {
     border-bottom: 10px solid #000;
 }
 
-
+.header__menu > .intro_text {
+    position: absolute;
+    top: 250px;
+    left: 50px;
+    color: #fff;
+    font-family: ffmark_bold, "sans-serif";
+    font-size: 250%;
+}
+.header__menu.smaller > .intro_text {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s linear;
+}
+.header__menu.smaller.main > .intro_text {
+    display: none;
+}
 
 /* INTRO */
 
@@ -238,20 +253,6 @@ div, a {
     height: 100%;
     background-image: url(/public/images/intro_geolytix.jpg);
     margin-bottom: 50px;
-}
-#section_intro > .bigtext {
-    position: absolute;
-    top: 40%;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 80%;
-    color: #fff;
-    font-family: ffmark_bold, "sans-serif";
-    font-size: 200%;
-    opacity: 0.9;
-    text-align: center;
-    text-shadow: 3px 3px 3px #000;
 }
 
 
