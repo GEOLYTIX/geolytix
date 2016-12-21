@@ -32,18 +32,32 @@ function init() {
     });
 }
 
+// PARALLAX
+var team_photo_ = document.getElementById('team_photo');
 
-
-// RESIZE TO MOBILE
+(function () {
+    window.onscroll = function () {
+        var boo = 100 - ((team_photo_.offsetTop - window.pageYOffset) / window.innerHeight * 100);
+        if (boo > 0 && boo < 100){
+            var elBackgrounPos = "50% " + boo + "%";
+            document.getElementById("team_photo").style.backgroundPosition = elBackgrounPos;
+        }
+    };
+})();
 
 $(window).resize(function () {
     if (window.innerWidth <= 799) {
         window.location = '/mobile';
     }
     changeExpandedCardsHeight();
+    team_photo();
 });
 
-
+team_photo();
+function team_photo(){
+    var width = team_photo_.offsetWidth;
+    team_photo_.style.height = width * 0.47 + 'px';
+}
 
 // MENU BUTTONS CONTROL
 

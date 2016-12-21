@@ -647,11 +647,22 @@ div, a {
 
 
 
-
-
-
-
 /* TEAM */
+
+section.module.parallax {
+    margin: 50px 0 100px 0;
+    background-position: 50% 100%;
+}
+
+section.module.parallax {
+    background-image: url(/public/images/team/glx_team.jpg);
+    background-size: cover;
+}
+
+#section_team_photo {
+    width: 100%;
+    margin: 100px 0;
+}
 
 #section_team {
     margin-bottom: 30px;
