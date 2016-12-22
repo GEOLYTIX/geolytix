@@ -763,22 +763,37 @@ div, a {
     background-color: #079e00;
     color: #fff;
     text-align: center;
-}
-
-#section_contact > #contact_text > p {
-    font-size: 150%;
+    text-shadow: 2px 2px 2px #33691e;
 }
 
 #section_contact > #contact_text > p:nth-of-type(1) {
     font-family: ffmark_bold;
     font-size: 200%;
-    padding-top: 30px;
+    padding: 30px 0 20px 0;
+}
+
+#section_contact > #contact_text > p:nth-of-type(2) {
+    font-size: 150%;
 }
 
 #section_contact > #contact_text > a {
     font-size: 150%;
     color: #fff;
+    line-height: 2;
 }
+
+#section_contact > #contact_text > p:nth-of-type(3){
+    margin-top: 50px;
+}
+
+#section_contact > #contact_text > p:nth-of-type(3),
+#section_contact > #contact_text > p:nth-of-type(4),
+#section_contact > #contact_text > p:nth-of-type(5),
+#section_contact > #contact_text > p:nth-of-type(6){
+    font-size: 100%;
+    line-height: 1.3;
+}
+
 
 
 /* AWARDS */
