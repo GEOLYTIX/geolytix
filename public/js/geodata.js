@@ -32,6 +32,69 @@ var map_geodata = L.map('map_geodata', {
     maxZoom: 17
 }).setView([51.50, -0.1], 13);
 
+//set default
+geodata__retail_points();
+
+section_geodata.find('.container > .select > div').click(function () {
+    $(this).siblings().removeClass('selected');
+    $(this).addClass('selected');
+    section_geodata.find('.container > .content > .info').hide();
+    section_geodata.find('.container > .content').hide();
+    switch (true) {
+        case $(this).hasClass('retail_points'):
+            geodata__retail_points();
+            break;
+        case $(this).hasClass('retail_places'):
+            geodata__retail_places();
+            break;
+        case $(this).hasClass('seamless_locales'):
+            geodata__seamless_locales();
+            break;
+        case $(this).hasClass('town_suburbs'):
+            geodata__town_suburbs();
+            break;
+        case $(this).hasClass('postal_geom'):
+            geodata__postal_geom();
+            break;
+        case $(this).hasClass('public_transport'):
+            geodata__public_transport();
+            break;
+        case $(this).hasClass('road_network'):
+            geodata__road_network();
+            break;
+        case $(this).hasClass('uk_admin'):
+            geodata__uk_admin();
+            break;
+        case $(this).hasClass('education'):
+            geodata__education();
+            break;
+        case $(this).hasClass('work_places'):
+            geodata__work_places();
+            break;
+        case $(this).hasClass('residential'):
+            geodata__residential();
+            break;
+        case $(this).hasClass('media_com'):
+            geodata__media_com();
+            break;
+        case $(this).hasClass('physical'):
+            geodata__physical();
+            break;
+        case $(this).hasClass('property'):
+            geodata__property();
+            break;
+        case $(this).hasClass('poi'):
+            geodata__poi();
+            break;
+        case $(this).hasClass('pricing'):
+            section_geodata.find('.container > .pricing').first().show();
+            break;
+        case $(this).hasClass('faq'):
+            section_geodata.find('.container > .faq').first().show();
+            break;
+    }
+});
+
 function geodata__retail_points() {
     section_geodata.find('.container > .map').first().show();
     map_geodata.eachLayer(function (layer) {
@@ -358,67 +421,3 @@ function geodata__work_places() {
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
     section_geodata.find('.container > .content > .work_places').first().show();
 }
-
-//set default
-geodata__retail_points();
-
-section_geodata.find('.container > .select > .select__inner > div').click(function () {
-    $(this).siblings().removeClass('selected');
-    $(this).addClass('selected');
-    body__inner.animate({ scrollTop: body__inner.scrollTop() + section_geodata.offset().top - 70 });
-    section_geodata.find('.container > .content > .info').hide();
-    section_geodata.find('.container > .content').hide();
-    switch (true) {
-        case $(this).hasClass('retail_points'):
-            geodata__retail_points();
-            break;
-        case $(this).hasClass('retail_places'):
-            geodata__retail_places();
-            break;
-        case $(this).hasClass('seamless_locales'):
-            geodata__seamless_locales();
-            break;
-        case $(this).hasClass('town_suburbs'):
-            geodata__town_suburbs();
-            break;
-        case $(this).hasClass('postal_geom'):
-            geodata__postal_geom();
-            break;
-        case $(this).hasClass('public_transport'):
-            geodata__public_transport();
-            break;
-        case $(this).hasClass('road_network'):
-            geodata__road_network();
-            break;
-        case $(this).hasClass('uk_admin'):
-            geodata__uk_admin();
-            break;
-        case $(this).hasClass('education'):
-            geodata__education();
-            break;
-        case $(this).hasClass('work_places'):
-            geodata__work_places();
-            break;
-        case $(this).hasClass('residential'):
-            geodata__residential();
-            break;
-        case $(this).hasClass('media_com'):
-            geodata__media_com();
-            break;
-        case $(this).hasClass('physical'):
-            geodata__physical();
-            break;
-        case $(this).hasClass('property'):
-            geodata__property();
-            break;
-        case $(this).hasClass('poi'):
-            geodata__poi();
-            break;
-        case $(this).hasClass('pricing'):
-            section_geodata.find('.container > .pricing').first().show();
-            break;
-        case $(this).hasClass('faq'):
-            section_geodata.find('.container > .faq').first().show();
-            break;
-    }
-});

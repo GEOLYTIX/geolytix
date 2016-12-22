@@ -23,14 +23,13 @@ window.onresize = function () {
 };
 
 resize_team_photo();
-function resize_team_photo(){
+function resize_team_photo() {
     var width = parallax_team_photo.offsetWidth;
     parallax_team_photo.style.height = width * 0.47 + 'px';
 }
 
 
 // MENU BUTTONS CONTROL
-
 var body = $('body'),
     section_services = $('#section_services'),
     section_case_studies = $('#section_case_studies'),
@@ -39,50 +38,48 @@ var body = $('body'),
     section_contact = $('#section_contact'),
     subString = window.location.search.substring(1);
 
-setTimeout(function () {
-    subString == 'services' ? body.animate({ scrollTop: section_services.offset().top - 100 }) :
-        subString == 'case_studies' ? body.animate({ scrollTop: section_case_studies.offset().top - 50 }) :
-            subString == 'geodata' ? body.animate({ scrollTop: section_geodata.offset().top - 80 }) :
-                subString == 'team' ? body.animate({ scrollTop: section_team.offset().top - 80 }) :
-                    subString == 'contact' ? body.animate({ scrollTop: section_contact.offset().top - 70 }) : null;
-}, 100);
+subString == 'services' ? body.animate({scrollTop: section_services.offset().top - 100}) :
+    subString == 'case_studies' ? body.animate({scrollTop: section_case_studies.offset().top - 50}) :
+        subString == 'geodata' ? body.animate({scrollTop: section_geodata.offset().top - 80}) :
+            subString == 'team' ? body.animate({scrollTop: section_team.offset().top - 80}) :
+                subString == 'contact' ? body.animate({scrollTop: section_contact.offset().top - 70}) : null;
 
-$('#home').click(function(e){
+$('#home').click(function (e) {
     e.preventDefault();
-    body.animate({ scrollTop: 0 });
+    body.animate({scrollTop: 0});
 });
 
 $('#services').click(function () {
-    body.animate({ scrollTop: section_services.offset().top - 100 });
+    body.animate({scrollTop: section_services.offset().top - 100});
 });
 
 $('#case_studies').click(function () {
-    body.animate({ scrollTop: section_case_studies.offset().top - 50 });
+    body.animate({scrollTop: section_case_studies.offset().top - 50});
 });
 
 $('#geodata').click(function () {
-    body.animate({ scrollTop: section_geodata.offset().top - 80 });
+    body.animate({scrollTop: section_geodata.offset().top - 80});
 });
 
 $('#team').click(function () {
-    body.animate({ scrollTop: section_team.offset().top - 80 });
+    body.animate({scrollTop: section_team.offset().top - 80});
 });
 
 $('#contact').click(function () {
-    body.animate({ scrollTop: section_contact.offset().top - 70 });
+    body.animate({scrollTop: section_contact.offset().top - 70});
 });
 
 
-
 // UL_GRIDS
-
 var section_services__expanded_card,
     section_services__cards = section_services.find('.ul_grid .li_card'),
     section_team__expanded_card,
     section_team__cards = section_team.find('.ul_grid .li_card');
 
 section_services__cards.click(function () {
-    if (section_services__expanded_card) {section_services__expanded_card.removeAttr('style')}
+    if (section_services__expanded_card) {
+        section_services__expanded_card.removeAttr('style')
+    }
     section_services__expanded_card = $(this).parent('li');
     var content = section_services__expanded_card.find('.li_card__content'),
         li_expander = $(this).nextAll('.li_expander');
@@ -102,10 +99,12 @@ section_services.find('.network_strategy').first().trigger('click');
 
 section_team__cards.click(expandTeamCard);
 
-section_team.find('.blair').first().trigger('click',[true]);
+section_team.find('.blair').first().trigger('click', [true]);
 
-function expandTeamCard(trigger) {
-    if (section_team__expanded_card) {section_team__expanded_card.removeAttr('style')}
+function expandTeamCard(e, trigger) {
+    if (section_team__expanded_card) {
+        section_team__expanded_card.removeAttr('style')
+    }
     section_team__expanded_card = $(this).parent('li');
     var content = section_team__expanded_card.find('.li_card__content'),
         li_expander = $(this).nextAll('.li_expander');
@@ -119,7 +118,7 @@ function expandTeamCard(trigger) {
         content.css('opacity', 0).animate({opacity: 1});
         li_expander.css('visibility', 'visible');
         if (trigger != true) {
-            body.animate({ scrollTop: body.scrollTop() + section_team__expanded_card.offset().top - 70 });
+            body.animate({scrollTop: section_team__expanded_card.offset().top - 80});
         }
     }
 }
@@ -134,39 +133,35 @@ function changeExpandedCardsHeight() {
 }
 
 
-
 // CASE STUDIES
-
 var case_studies_container = section_case_studies.find('.container').first();
-section_case_studies.find('.strip > .logo').click(function(){
+section_case_studies.find('.strip > .logo').click(function () {
     $(this).siblings().removeClass('active');
     $(this).addClass('active');
     switch (true) {
         case $(this).hasClass('camelot'):
-            case_studies_container.find('table').first().animate({ 'marginLeft': 0 }, 2000);
+            case_studies_container.find('table').first().animate({'marginLeft': 0}, 2000);
             break;
         case $(this).hasClass('johnlewis'):
-            case_studies_container.find('table').first().animate({ 'marginLeft': case_studies_container.width() * -1 }, 1000);
+            case_studies_container.find('table').first().animate({'marginLeft': case_studies_container.width() * -1}, 1000);
             break;
         case $(this).hasClass('onthemarket'):
-            case_studies_container.find('table').first().animate({ 'marginLeft': case_studies_container.width() * -2 }, 1000);
+            case_studies_container.find('table').first().animate({'marginLeft': case_studies_container.width() * -2}, 1000);
             break;
         case $(this).hasClass('arco'):
-            case_studies_container.find('table').first().animate({ 'marginLeft': case_studies_container.width() * -3 }, 1000);
+            case_studies_container.find('table').first().animate({'marginLeft': case_studies_container.width() * -3}, 1000);
             break;
         case $(this).hasClass('totalfitness'):
-            case_studies_container.find('table').first().animate({ 'marginLeft': case_studies_container.width() * -4 }, 1000);
+            case_studies_container.find('table').first().animate({'marginLeft': case_studies_container.width() * -4}, 1000);
             break;
         case $(this).hasClass('asda'):
-            case_studies_container.find('table').first().animate({ 'marginLeft': case_studies_container.width() * -5 }, 1000);
+            case_studies_container.find('table').first().animate({'marginLeft': case_studies_container.width() * -5}, 1000);
             break;
     }
 });
 
 
-
 // CONTACT
-
 var map_contact = L.map('contact_map', {scrollWheelZoom: false})
     .setView([51.52733, -0.11525], 14)
     .addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
