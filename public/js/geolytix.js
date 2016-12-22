@@ -2,6 +2,8 @@ var header = $('.header__menu'),
     intro_img = $('#section_intro'),
     parallax_team_photo = document.getElementById('team_photo');
 
+header.removeClass('load');
+
 window.onscroll = function () {
 
     // TITLE
