@@ -163,7 +163,7 @@ div, a {
     color: #fff;
 }
 
-.header__menu > .home {
+.header__menu > #home {
     float: left;
     font-family: ffmark_black;
     margin-top: 120px;
@@ -171,7 +171,7 @@ div, a {
     transition: all 0.3s;
 }
 
-.header__menu.smaller > .home {
+.header__menu.smaller > #home {
     margin-top: 10px;
     font-size: 60px;
 }
@@ -186,6 +186,7 @@ div, a {
 .header__menu.smaller.main {
     color: #000;
     background-color: #fff;
+    height: 75px;
 }
 
 .header__menu.smaller.main a{
@@ -231,7 +232,7 @@ div, a {
 #section_intro {
     height: 100%;
     background-image: url(/public/images/intro_geolytix.jpg);
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 
@@ -310,7 +311,8 @@ div, a {
 }
 
 #section_case_studies > p:nth-of-type(1){
-    font-size: 250%;
+    font-size: 300%;
+    font-family: ffmark_bold;
     padding: 30px 0;
 }
 
@@ -433,6 +435,7 @@ div, a {
 #section_geodata > p:nth-of-type(3){
     font-size: 130%;
     margin: 10px 0 20px 0;
+    padding-right: 50px;
 }
 
 #section_geodata {
@@ -443,62 +446,33 @@ div, a {
     min-height: 572px;
 }
 
-#section_geodata > .title {
-    display: table-row;
-    height: 1px;
-}
-
-#section_geodata > .table-row__spacer:nth-of-type(1) {
-    display: table-row;
-    height: 30px;
-}
-
-#section_geodata > .intro {
-    display: table-row;
-    height: 1px;
-}
-
-#section_geodata > .table-row__spacer:nth-of-type(2) {
-    display: table-row;
-    height: 40px;
-}
-
 #section_geodata > .container {
     width: 100%;
     display: table-row;
     height: 100%;
 }
 
-/* geodata select */
 #section_geodata > .container > .select {
     position: relative;
     float: left;
     width: 200px;
     height: 100%;
-    /*overflow-y: scroll;*/
-    /*overflow-x: hidden;*/
 }
 
-#section_geodata > .container > .select > .select__inner {
-    position: absolute;
-    width: 200px;
-    top: 0;
-}
-
-#section_geodata > .container > .select > .select__inner > div {
+#section_geodata > .container > .select > div {
     margin-bottom: 5px;
     border-bottom: 10px solid #fff;
 }
 
-#section_geodata > .container > .select > .select__inner > div:hover {
+#section_geodata > .container > .select > div:hover {
     border-bottom: 10px solid #000;
 }
 
-#section_geodata > .container > .select > .select__inner > .selected {
+#section_geodata > .container > .select > .selected {
     font-family: ffmark_bold;
 }
 
-#section_geodata > .container > .select > .select__inner > .pricing {
+#section_geodata > .container > .select > .pricing {
     margin-top: 50px;
 }
 
@@ -888,7 +862,7 @@ div, a {
 }
 
 #footer__menu > .ul_grid > li {
-    width: 33%;
+    width: 32%;
     padding-bottom: 20px;
     text-align: center;
 }
@@ -914,33 +888,8 @@ div, a {
 
 /* RESIZE */
 
-/*@media screen and (max-width: 1025px) {*/
-/*.header__menu > div:not(.home),*/
-/*.header__menu > a:not(.home){*/
-/*display: none;*/
-/*}*/
-/*}*/
-/*@media screen and (max-width: 1100px) {*/
-/*body {*/
-/*padding: 0 5px;*/
-/*font-size: 20px;*/
-/*}*/
-/*.header__menu {*/
-/*width: calc(100% - 10px);*/
-/*}*/
-/*}*/
-/*@media screen and (min-width: 1100px) {*/
-/*body {*/
-/*padding: 0 50px;*/
-/*font-size: 25px;*/
-/*}*/
-/*.header__menu {*/
-/*width: calc(100% - 100px);*/
-/*}*/
-/*}*/
-/*@media screen and (max-width: 1250px) {*/
-/*.header__menu > div:not(.home),*/
-/*.header__menu > a:not(.home) {*/
-/*font-size: 20px;*/
-/*}*/
-/*}*/
+@media screen and (max-width: 1070px) {
+    .header__menu.smaller > #home {
+        display: none;
+    }
+}
