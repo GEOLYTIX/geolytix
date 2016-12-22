@@ -41,38 +41,13 @@ body {
 }
 
 a {
-    text-decoration: none;
     color: #000;
+    text-decoration: none;
     background-color: transparent;
 }
 
 p {
     margin: 0;
-}
-
-.section {
-    box-sizing: border-box;
-    padding: 0 50px;
-    width: 100%;
-}
-
-.section > .title {
-    margin-bottom: 30px;
-    font-size: 200%;
-}
-
-.section > .intro {
-    margin-bottom: 30px;
-    font-size: 120%;
-}
-
-.spacer > .link__intro {
-    margin: 200px 0 0 25%;
-    font-size: 160%;
-}
-
-.spacer > .link__text {
-    font-family: ffmark_bold, "sans-serif";
 }
 
 div, a {
@@ -95,6 +70,12 @@ div, a {
     background-position: center center;
 }
 
+.section {
+    box-sizing: border-box;
+    padding: 0 50px;
+    width: 100%;
+}
+
 .strip > div,
 .strip > a {
     display: block;
@@ -108,52 +89,59 @@ div, a {
 
 
 
-/* GRID */
+/* UL_GRID */
 
 .ul_grid {
     position: relative;
     width: 100%;
-	margin: 0;
+    margin: 0;
     padding: 0;
 }
+
 .ul_grid > li {
-	display: inline-block;
-	vertical-align: top;
+    display: inline-block;
+    vertical-align: top;
 }
+
 .ul_grid > li > .li_card {
-	position: relative;
+    position: relative;
 }
+
 .ul_grid > .li_expanded > .li_card:after,
 .ul_grid > .li_expanded > .li_card:before {
     position: absolute;
-	bottom: -1px;
-	left: 50%;
+    bottom: -1px;
+    left: 50%;
     height: 0;
-	width: 0;
-	border: solid transparent;
-	content: " ";
-	pointer-events: none;
+    width: 0;
+    border: solid transparent;
+    content: " ";
+    pointer-events: none;
 }
+
 .ul_grid > .li_expanded > .li_card:before {
-	border-bottom-color: #000;
-	border-width: 16px;
-	margin-left: -16px;
+    border-bottom-color: #000;
+    border-width: 16px;
+    margin-left: -16px;
 }
+
 .ul_grid > .li_expanded > .li_card:after {
-	border-bottom-color: #fff;
-	border-width: 15px;
-	margin-left: -15px;
+    border-bottom-color: #fff;
+    border-width: 15px;
+    margin-left: -15px;
     z-index: 999;
 }
+
 .ul_grid > li > .li_expander {
-	position: absolute;
-	top: auto;
+    position: absolute;
+    top: auto;
     left: 0;
-	width: 100%;
+    width: 100%;
     margin: 0 0 0 0;
     border-top: 1px solid #000;
     visibility: hidden;
 }
+
 .ul_grid > li > .li_expander > .li_card__content {
     padding: 15px 0;
 }
@@ -177,7 +165,7 @@ div, a {
 
 .header__menu > .home {
     float: left;
-    font-family: ffmark_black, "sans-serif";
+    font-family: ffmark_black;
     margin-top: 120px;
     font-size: 120px;
     transition: all 0.3s;
@@ -226,7 +214,7 @@ div, a {
     top: 250px;
     left: 50px;
     color: #fff;
-    font-family: ffmark_bold, "sans-serif";
+    font-family: ffmark_bold;
     font-size: 250%;
 }
 
@@ -284,7 +272,7 @@ div, a {
     width: 100%;
     top: 240px;
     text-align: center;
-    font-family: ffmark_bold, "sans-serif";
+    font-family: ffmark_bold;
 }
 
 #section_services .ul_grid > li {
@@ -417,12 +405,12 @@ div, a {
 #section_case_studies > .container > table tr:first-of-type td {
     padding-bottom: 20px;
     text-align: center;
-    font-family: ffmark_bold, sans-serif;
+    font-family: ffmark_bold;
     font-size: 150%;
 }
 
 #section_case_studies > .container > table .quote {
-    font-family: ffmark_italic, "sans-serif";
+    font-family: ffmark_italic;
     margin-bottom: 16px;
 }
 
@@ -488,7 +476,7 @@ div, a {
 }
 
 #section_geodata > .container > .select > .select__inner > .selected {
-    font-family: ffmark_bold, "sans-serif";
+    font-family: ffmark_bold;
 }
 
 #section_geodata > .container > .select > .select__inner > .pricing {
@@ -537,7 +525,7 @@ div, a {
     right: 0;
     padding: 0 10px 0 5px;
     z-index: 999;
-    font-family: ffmark_bold, "sans-serif";
+    font-family: ffmark_bold;
     font-size: 15px;
     background-color: rgba(255,255,255,0.8);
     text-align: right;
@@ -558,7 +546,7 @@ div, a {
 }
 
 #section_geodata > .container > .map > .info > .bold {
-    font-family: ffmark_bold, "sans-serif";
+    font-family: ffmark_bold;
 }
 
 #section_geodata > .container > .map > .map__expand {
@@ -600,13 +588,13 @@ div, a {
 }
 
 #section_geodata > .container > .faq table .title {
-    font-family: ffmark_bold, "sans-serif";
+    font-family: ffmark_bold;
     padding-bottom: 10px;
 }
 
 /* geodata content pricing*/
 #section_geodata > .container > .pricing .title{
-    font-family: ffmark_bold, "sans-serif";
+    font-family: ffmark_bold;
     font-size: 25px;
     margin-bottom: 40px;
 }
@@ -698,7 +686,7 @@ div, a {
 }
 
 #section_team .li_card__title span:nth-of-type(1) {
-    font-family: ffmark_bold, sans-serif;
+    font-family: ffmark_bold;
 }
 
 #section_team .li_card__title span:nth-of-type(2) {
@@ -753,10 +741,27 @@ div, a {
     background-image: url(/public/images/team/kerst_.jpg);
 }
 
+
+
+/* CONTACT */
+
+#section_contact > .container {
+    width: 100%;
+    height: 350px;
+}
+
+#section_contact > .container > #map_contact {
+    width: 100%;
+    height: 100%;
+    float: right;
+}
+
+
+
 /* AWARDS */
 
 #section_awards {
-    margin-bottom: 30px;
+    margin: 50px 0;
 }
 
 #section_awards > .strip:nth-of-type(1) {
@@ -808,21 +813,6 @@ div, a {
 
 
 
-/* CONTACT */
-
-#section_contact > .container {
-    width: 100%;
-    height: 350px;
-}
-
-#section_contact > .container > #map_contact {
-    width: 100%;
-    height: 100%;
-    float: right;
-}
-
-
-
 /* FOOTER */
 
 #footer__menu {
@@ -839,7 +829,7 @@ div, a {
 }
 
 #footer__menu > .ul_grid > li {
-    width: 24%;
+    width: 33%;
     padding-bottom: 20px;
     text-align: center;
 }
@@ -859,7 +849,7 @@ div, a {
 
 #footer__menu .social_media__icons > a:hover {
     cursor: pointer;
-    color: #00ff00;
+    color: #079e00;
 }
 
 /* RESIZE */

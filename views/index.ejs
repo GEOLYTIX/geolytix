@@ -260,204 +260,164 @@
 </div>
 
 
+<div class="section" id="section_geodata">
+    <p class="title">Geodata</p>
+    <div class="table-row__spacer"></div>
+    <p class="intro">Where people live, work and shop; retail ranks and pitch, town boundaries, postal sectors, demographics, university boundaries. We create novel datasets using Open Data as inputs, to help with your network strategy and location based decisions. We also give back to the Open Data community by releasing open datasets such as Retail Points.</p>
+    <div class="table-row__spacer"></div>
+    <div class="container">
 
-        <div class="section" id="section_geodata">
-            <p class="title">Geodata</p>
-            <div class="table-row__spacer"></div>
-            <p class="intro">Where people live, work and shop; retail ranks and pitch, town boundaries, postal sectors, demographics, university boundaries. We create novel datasets using Open Data as inputs, to help with your network strategy and location based decisions. We also give back to the Open Data community by releasing open datasets such as Retail Points.</p>
-            <div class="table-row__spacer"></div>
-            <div class="container">
+        <div class="select">
+            <div class="select__inner">
+                <div class="cursor retail_points selected">Retail Points</div>
+                <div class="cursor seamless_locales">Seamless Locales</div>
+                <div class="cursor retail_places">Retail Places</div>
+                <div class="cursor public_transport">Public Transport</div>
+                <div class="cursor postal_geom">Postal Geometries</div>
+                <div class="cursor town_suburbs">Town and Suburb</div>
+                <div class="cursor education">Education</div>
+                <!--<div class="cursor work_places">Work Places</div>-->
+                <div class="cursor poi">Points of Interest</div>
+                <!--<div class="cursor residential">Residential</div>-->
+                <div class="cursor uk_admin">UK Admin</div>
+                <!--<div class="cursor property">Property</div>-->
+                <div class="cursor road_network">Road Network</div>
+                <!--<div class="cursor media_com">Media and Communications</div>-->
+                <!--<div class="cursor physical">Physical Geography</div>-->
+                <div class="cursor pricing">Pricing</div>
+                <div class="cursor faq">FAQ</div>
+            </div>
+        </div>
 
-                <div class="select">
-                    <div class="select__inner">
-                        <div class="cursor retail_points selected">Retail Points</div>
-                        <div class="cursor seamless_locales">Seamless Locales</div>
-                        <div class="cursor retail_places">Retail Places</div>
-                        <div class="cursor public_transport">Public Transport</div>
-                        <div class="cursor postal_geom">Postal Geometries</div>
-                        <div class="cursor town_suburbs">Town and Suburb</div>
-                        <div class="cursor education">Education</div>
-                        <!--<div class="cursor work_places">Work Places</div>-->
-                        <div class="cursor poi">Points of Interest</div>
-                        <!--<div class="cursor residential">Residential</div>-->
-                        <div class="cursor uk_admin">UK Admin</div>
-                        <!--<div class="cursor property">Property</div>-->
-                        <div class="cursor road_network">Road Network</div>
-                        <!--<div class="cursor media_com">Media and Communications</div>-->
-                        <!--<div class="cursor physical">Physical Geography</div>-->
-                        <div class="cursor pricing">Pricing</div>
-                        <div class="cursor faq">FAQ</div>
-                    </div>
-                </div>
+        <div class="content map">
 
-                <div class="content map">
-                    <div id="map_geodata"></div>
-                    <div class="map__expand"><i class="icon-resize-full"></i></div>
-                    <div class="info retail_points">
-                        <p>Over 10,000 supermarket roof-top locations and addresses. Retailers include Aldi, Asda, Booths, Budgens, Co-op, Costco, Lidl, Marks and Spencer, Morrisons, Sainsbury’s,
-                            Tesco, Waitrose, Wholefoods. Please download for free and use this data openly. <a
-                                    href="https://drive.google.com/a/geolytix.co.uk/file/d/0B1GCK8cPXzg-ZUl6MDFUUkFBVEU"
-                                    target="_blank"><i class="icon-file-pdf"></i></a>
-                            <a href="https://drive.google.com/file/d/0B1GCK8cPXzg-bGhoZk9DdUZLNTg/view" target="_blank"><i
-                                        class="icon-download"></i></a>
-                        <div class="tooltip">Download a zip archive containing the latest version of our Open Retail Points data pack.
-                        </div>
-                        </p>
-                    </div>
-                    <div class="info seamless_locales">
-                        <p>100% Seamless UK definitions of natural markets at 4 levels, local, towns, district and region. Close match to true ‘markets’ at multiple scales. <a
-                                    href="https://drive.google.com/file/d/0B1GCK8cPXzg-TGdzNzA4VUY4TGs/view"
-                                    target="_blank"><i class="icon-file-pdf"></i></a></p>
-                    </div>
-                    <div class="info retail_places">
-                        <p>More than 20k scored, profiled and named polygons detailing where people shop in the UK, and catchment area demographics. Ideal for locating new sites and understanding
-                            micro location performance. <a href="https://drive.google.com/open?id=0B1GCK8cPXzg-OWE4Q3Nrdzk3d2M"
-                                                           target="_blank"><i class="icon-file-pdf"></i></a>
-                            <a href="https://drive.google.com/file/d/0B1GCK8cPXzg-OWE4Q3Nrdzk3d2M/view" target="_blank"><i
-                                        class="icon-download"></i></a>
-                        <div class="tooltip">Download a sub-set of four hundred centres; scored, profiled and named polygons detailing where people shop in the UK. Note that the Open version requires
-                            attribution of the Ordnance Survey, Royal Mail, and GEOLYTIX.
-                        </div>
-                        </p>
-                    </div>
-                    <div class="info public_transport">
-                        <p>Precise access points to all public transport including detailed volume data. Perfect for accessibility studies and modelling on-street pedestrian volume. <a
-                                    href="https://drive.google.com/file/d/0B1GCK8cPXzg-Q3MwM2pvS1FlNHM/view"
-                                    target="_blank"><i class="icon-file-pdf"></i></a></p>
-                    </div>
-                    <div class="info postal_geom">
-                        <p>High resolution postal boundaries combining exceptional ‘enclosure’ accuracy with boundaries that follow real-world features. <a
-                                    href="https://drive.google.com/file/d/0B1GCK8cPXzg-Nk5nZ2c0S2JUOTg/view"
-                                    target="_blank"><i class="icon-file-pdf"></i></a>
-                            <a href="https://drive.google.com/file/d/0B5UPsNN3XERXZi00WE5aZTBXV0E/view" target="_blank"><i
-                                        class="icon-download"></i></a>
-                        <div class="tooltip">Download a zip archive containing 9,232 geographic postal sector boundaries covering Great Britain as of October 2012. Released under the same terms as the
-                            OS OpenData license with the single addition of GEOLYTIX to the attribution list.
-                        </div>
-                        </p>
-                    </div>
-                    <div class="info town_suburbs">
-                        <p>A precise and intuitive set of 30,000 named ‘places’ across the UK richly attributed with data. Ideal base for UK wide profiling and benchmarking. <a
-                                    href="https://drive.google.com/file/d/0B1GCK8cPXzg-bDhiZkY2a2VmQk0/view"
-                                    target="_blank"><i class="icon-file-pdf"></i></a></p>
-                    </div>
-                    <div class="info education">
-                        <p>All University buildings & entrances digitised and attributed, with student counts. All primary and secondary schools both private and state. Includes school roll data, exam
-                            results and pupil demographics. Includes official codes for onward linking. <a
-                                    href="https://drive.google.com/file/d/0B1GCK8cPXzg-ZF9NbjZ6WXVxQUE/view"
-                                    target="_blank"><i class="icon-file-pdf"></i></a></p>
-                    </div>
-                    <div class="info work_places">
-                        <p>Up to date worker counts for more than 400,000 commercial postcodes across the UK. Split by type of occupation for a deeper understanding of who works where.<a
-                                    href="https://drive.google.com/open?id=0B1GCK8cPXzg-bzJ2TF9KWFZiNEE"
-                                    target="_blank"><i class="icon-file-pdf"></i></a></p>
-                    </div>
-                    <div class="info poi">
-                        <p>A collection of points of interest across the UK including healthcare locations, law and order sites along with sport & leisure facilities, car parks, cinemas and service
-                            areas. <a
-                                    href="https://drive.google.com/file/d/0B1GCK8cPXzg-V1F1ZEFTX0xuRG8/view"
-                                    target="_blank"><i class="icon-file-pdf"></i></a></p>
-                    </div>
-                    <div class="info residential">
-                        <p>Data relating to residential and population, current and forecasted figures.<a
-                                    href="https://drive.google.com/open?id=0B1GCK8cPXzg-VTU2a0hRY2VrREk"
-                                    target="_blank"><i class="icon-file-pdf"></i></a></p>
-                    </div>
-                    <div class="info uk_admin">
-                        <p>All UK’s administrative boundaries in a consistent package. Includes all police, health, fire, EU zones, regions, constituencies, wards and statistical geographies. The core
-                            framework which all national statistics are published within. <a
-                                    href="https://drive.google.com/open?id=0B1GCK8cPXzg-M0RzdXAwUUo2YkE"
-                                    target="_blank"><i class="icon-file-pdf"></i></a>
-                            <a href="https://drive.google.com/a/geolytix.co.uk/file/d/0B1GCK8cPXzg-QlBsUS1TaWhTU0k/view" target="_blank"><i
-                                        class="icon-download"></i></a>
-                        <div class="tooltip">Download a collection of 197 variables as Output Area (OA) level. English, Welsh, Scottish and Northern Irish Census data processed into a single
-                            easy-to-use flat file. We have released free-of-charge and under the same license terms as the census.
-                        </div>
-                        </p>
-                    </div>
-                    <div class="info property">
-                        <p><a
-                                    href="https://drive.google.com/open?id=0B1GCK8cPXzg-V3lEYnNBQVMxckk"
-                                    target="_blank"><i class="icon-file-pdf"></i></a></p>
-                    </div>
+            <div id="map_geodata"></div>
+            <div class="map__expand"><i class="icon-resize-full"></i></div>
 
-                    <div class="info road_network">
-                        <p>Routable Link/Node data with link-level mid-afternoon speeds based on Highways agency probe data and sophisticated speed model; painlessly integrates into multiple routing
-                            software tools. <a
-                                    href="https://drive.google.com/file/d/0B1GCK8cPXzg-bVlZRnBiMEFxbms/view"
-                                    target="_blank"><i class="icon-file-pdf"></i></a></p>
-                    </div>
+            <div class="info retail_points">
+                <p>Over 10,000 supermarket roof-top locations and addresses. Retailers include Aldi, Asda, Booths, Budgens, Co-op, Costco, Lidl, Marks and Spencer, Morrisons, Sainsbury’s, Tesco, Waitrose, Wholefoods. Please download for free and use this data openly. <a href="https://drive.google.com/a/geolytix.co.uk/file/d/0B1GCK8cPXzg-ZUl6MDFUUkFBVEU" target="_blank"><i class="icon-file-pdf"></i></a><a href="https://drive.google.com/file/d/0B1GCK8cPXzg-bGhoZk9DdUZLNTg/view" target="_blank"><i class="icon-download"></i></a>
+                <div class="tooltip">Download a zip archive containing the latest version of our Open Retail Points data pack.</div>
+                </p>
+            </div>
 
-                    <div class="info media_com">
-                        <p>A spatial dataset of broadcasting regions, broadband speeds by postcode, Wi-Fi hotspots by postcode and radio coverage.<a
-                                    href="https://drive.google.com/open?id=0B1GCK8cPXzg-Wjl3SnUtZzdzQXM"
-                                    target="_blank"><i class="icon-file-pdf"></i></a></p>
-                    </div>
+            <div class="info seamless_locales">
+                <p>100% Seamless UK definitions of natural markets at 4 levels, local, towns, district and region. Close match to true ‘markets’ at multiple scales. <a href="https://drive.google.com/file/d/0B1GCK8cPXzg-TGdzNzA4VUY4TGs/view" target="_blank"><i class="icon-file-pdf"></i></a></p>
+            </div>
 
-                    <div class="info physical">
-                        <p>High resolution coastlines, hydrology, contours and summits. Key input to classic outdoor maps.<a
-                                    href="https://drive.google.com/open?id=0B1GCK8cPXzg-UlZGbGR1VExkT1E"
-                                    target="_blank"><i class="icon-file-pdf"></i></a></p>
-                    </div>
-                </div>
+            <div class="info retail_places">
+                <p>More than 20k scored, profiled and named polygons detailing where people shop in the UK, and catchment area demographics. Ideal for locating new sites and understanding micro location performance. <a href="https://drive.google.com/open?id=0B1GCK8cPXzg-OWE4Q3Nrdzk3d2M" target="_blank"><i class="icon-file-pdf"></i></a><a href="https://drive.google.com/file/d/0B1GCK8cPXzg-OWE4Q3Nrdzk3d2M/view" target="_blank"><i class="icon-download"></i></a>
+                <div class="tooltip">Download a sub-set of four hundred centres; scored, profiled and named polygons detailing where people shop in the UK. Note that the Open version requires attribution of the Ordnance Survey, Royal Mail, and GEOLYTIX.</div>
+                </p>
+            </div>
 
-                <div class="content faq">
-                    <table>
-                        <tbody>
-                        <tr>
-                            <td class="title">IS THE DATA I PURCHASE LICENSED?</td>
-                            <td class="title">CAN I PUBLISH THE DATA?</td>
-                        </tr>
-                        <tr>
-                            <td>Yes, our aim is to keep licensing simple and transparent. All prices shown are for an annual right to use. This includes full corporate use with no restrictions on user
-                                numbers.
-                            </td>
-                            <td>The prices shown are for internal business use only. If you would like to use the data in a website or in a commercial product we’d be delighted to discuss options so
-                                please get in touch.
-                            </td>
-                        </tr>
-                        <tr><td class="title">WHAT SOFTWARE CAN THE DATA BE USED IN?</td>
-                            <td class="title">I CAN’T TELL IF THE DATA IS WHAT I NEED?</td>
-                        </tr>
-                        <tr>
-                            <td>We provide our data in all formats commonly used by desktop GIS, spatial databases and web mapping applications. We’re more than happy to discuss, whatever your
-                                software requirements are.
-                            </td>
-                            <td>Then please get in touch. We’d be delighted to pay a visit and take you through the data with examples of the benefits and how it can be used.
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="title">HOW OFTEN IS THE DATA UPDATED?</td>
-                            <td class="title">I’M INTERESTED, HOW DO I BUY?</td>
-                        </tr>
-                        <tr>
-                            <td>Every pack is updated at least annually, with some packs updated every quarter. Ask for more details.
-                            </td>
-                            <td>Please get in touch, we can send you the data asap and provide payment details.</td>
-                        </tr>
-                        <tr>
-                            <td class="title">CAN I SEE A USER GUIDE / DOCUMENTATION?</td>
-                            <td class="title">HOW DOES THE DATA ARRIVE?</td>
-                        </tr>
-                        <tr>
-                            <td>Yes of course, please get in touch and we will send the same day.</td>
-                            <td>We can send a link to download, memory stick or DVD.</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="info public_transport">
+                <p>Precise access points to all public transport including detailed volume data. Perfect for accessibility studies and modelling on-street pedestrian volume. <a href="https://drive.google.com/file/d/0B1GCK8cPXzg-Q3MwM2pvS1FlNHM/view" target="_blank"><i class="icon-file-pdf"></i></a></p>
+            </div>
 
-                <div class="content pricing">
-                    <div class="title">These are the most popular plans for full corporate use with no restrictions on user number or user cases.
-                    </div>
-                    <div class="price_box img__contain three"></div>
-                    <div class="price_box img__contain six"></div>
-                    <div class="price_box img__contain all"></div>
-                </div>
+            <div class="info postal_geom">
+                <p>High resolution postal boundaries combining exceptional ‘enclosure’ accuracy with boundaries that follow real-world features. <a href="https://drive.google.com/file/d/0B1GCK8cPXzg-Nk5nZ2c0S2JUOTg/view" target="_blank"><i class="icon-file-pdf"></i></a><a href="https://drive.google.com/file/d/0B5UPsNN3XERXZi00WE5aZTBXV0E/view" target="_blank"><i class="icon-download"></i></a>
+                <div class="tooltip">Download a zip archive containing 9,232 geographic postal sector boundaries covering Great Britain as of October 2012. Released under the same terms as the OS OpenData license with the single addition of GEOLYTIX to the attribution list.</div>
+                </p>
+            </div>
 
+            <div class="info town_suburbs">
+                <p>A precise and intuitive set of 30,000 named ‘places’ across the UK richly attributed with data. Ideal base for UK wide profiling and benchmarking. <a href="https://drive.google.com/file/d/0B1GCK8cPXzg-bDhiZkY2a2VmQk0/view" target="_blank"><i class="icon-file-pdf"></i></a></p>
+            </div>
+
+            <div class="info education">
+                <p>All University buildings & entrances digitised and attributed, with student counts. All primary and secondary schools both private and state. Includes school roll data, exam results and pupil demographics. Includes official codes for onward linking. <a href="https://drive.google.com/file/d/0B1GCK8cPXzg-ZF9NbjZ6WXVxQUE/view" target="_blank"><i class="icon-file-pdf"></i></a></p>
+            </div>
+
+            <div class="info work_places">
+                <p>Up to date worker counts for more than 400,000 commercial postcodes across the UK. Split by type of occupation for a deeper understanding of who works where. <a href="https://drive.google.com/open?id=0B1GCK8cPXzg-bzJ2TF9KWFZiNEE" target="_blank"><i class="icon-file-pdf"></i></a></p>
+            </div>
+
+            <div class="info poi">
+                <p>A collection of points of interest across the UK including healthcare locations, law and order sites along with sport & leisure facilities, car parks, cinemas and service areas. <a href="https://drive.google.com/file/d/0B1GCK8cPXzg-V1F1ZEFTX0xuRG8/view" target="_blank"><i class="icon-file-pdf"></i></a></p>
+            </div>
+
+            <div class="info residential">
+                <p>Data relating to residential and population, current and forecasted figures. <a href="https://drive.google.com/open?id=0B1GCK8cPXzg-VTU2a0hRY2VrREk" target="_blank"><i class="icon-file-pdf"></i></a></p>
+            </div>
+
+            <div class="info uk_admin">
+                <p>All UK’s administrative boundaries in a consistent package. Includes all police, health, fire, EU zones, regions, constituencies, wards and statistical geographies. The core framework which all national statistics are published within. <a href="https://drive.google.com/open?id=0B1GCK8cPXzg-M0RzdXAwUUo2YkE" target="_blank"><i class="icon-file-pdf"></i></a><a href="https://drive.google.com/a/geolytix.co.uk/file/d/0B1GCK8cPXzg-QlBsUS1TaWhTU0k/view" target="_blank"><i class="icon-download"></i></a>
+                <div class="tooltip">Download a collection of 197 variables as Output Area (OA) level. English, Welsh, Scottish and Northern Irish Census data processed into a single easy-to-use flat file. We have released free-of-charge and under the same license terms as the census.</div>
+                </p>
+            </div>
+
+            <div class="info property">
+                <p><a href="https://drive.google.com/open?id=0B1GCK8cPXzg-V3lEYnNBQVMxckk" target="_blank"><i class="icon-file-pdf"></i></a></p>
+            </div>
+
+            <div class="info road_network">
+                <p>Routable Link/Node data with link-level mid-afternoon speeds based on Highways agency probe data and sophisticated speed model; painlessly integrates into multiple routing software tools. <a href="https://drive.google.com/file/d/0B1GCK8cPXzg-bVlZRnBiMEFxbms/view" target="_blank"><i class="icon-file-pdf"></i></a></p>
+            </div>
+
+            <div class="info media_com">
+                <p>A spatial dataset of broadcasting regions, broadband speeds by postcode, Wi-Fi hotspots by postcode and radio coverage.<a href="https://drive.google.com/open?id=0B1GCK8cPXzg-Wjl3SnUtZzdzQXM" target="_blank"><i class="icon-file-pdf"></i></a></p>
+            </div>
+
+            <div class="info physical">
+                <p>High resolution coastlines, hydrology, contours and summits. Key input to classic outdoor maps.<a href="https://drive.google.com/open?id=0B1GCK8cPXzg-UlZGbGR1VExkT1E" target="_blank"><i class="icon-file-pdf"></i></a></p>
             </div>
 
         </div>
+
+        <div class="content faq">
+            <table>
+                <tbody>
+                <tr>
+                    <td class="title">IS THE DATA I PURCHASE LICENSED?</td>
+                    <td class="title">CAN I PUBLISH THE DATA?</td>
+                </tr>
+                <tr>
+                    <td>Yes, our aim is to keep licensing simple and transparent. All prices shown are for an annual right to use. This includes full corporate use with no restrictions on user numbers.
+                    </td>
+                    <td>The prices shown are for internal business use only. If you would like to use the data in a website or in a commercial product we’d be delighted to discuss options so please get in touch.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">WHAT SOFTWARE CAN THE DATA BE USED IN?</td>
+                    <td class="title">I CAN’T TELL IF THE DATA IS WHAT I NEED?</td>
+                </tr>
+                <tr>
+                    <td>We provide our data in all formats commonly used by desktop GIS, spatial databases and web mapping applications. We’re more than happy to discuss, whatever your software requirements are.
+                    </td>
+                    <td>Then please get in touch. We’d be delighted to pay a visit and take you through the data with examples of the benefits and how it can be used.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">HOW OFTEN IS THE DATA UPDATED?</td>
+                    <td class="title">I’M INTERESTED, HOW DO I BUY?</td>
+                </tr>
+                <tr>
+                    <td>Every pack is updated at least annually, with some packs updated every quarter. Ask for more details.
+                    </td>
+                    <td>Please get in touch, we can send you the data asap and provide payment details.</td>
+                </tr>
+                <tr>
+                    <td class="title">CAN I SEE A USER GUIDE / DOCUMENTATION?</td>
+                    <td class="title">HOW DOES THE DATA ARRIVE?</td>
+                </tr>
+                <tr>
+                    <td>Yes of course, please get in touch and we will send the same day.</td>
+                    <td>We can send a link to download, memory stick or DVD.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content pricing">
+            <div class="title">These are the most popular plans for full corporate use with no restrictions on user number or user cases.</div>
+            <div class="price_box img__contain three"></div>
+            <div class="price_box img__contain six"></div>
+            <div class="price_box img__contain all"></div>
+        </div>
+
+    </div>
+
+</div>
 
 
 <div class="parallax" id="team_photo"></div>
@@ -658,86 +618,69 @@
 </div>
 
 
-        <div class="section" id="section_awards">
+<div class="section" id="section_contact">
+    <div class="container">
+        <div id="map_contact"></div>
+    </div>
+</div>
 
-            <div class="strip">
-                <a class="img__contain"
-                   href="http://blog.geolytix.net/2016/07/01/data-analytics-firm-geolytix-win-queens-award-for-enterprise"
-                   target="_blank"></a>
-                <a class="img__contain"
-                   href="https://theodi.org/news/first-odi-open-data-awards-presented-by-sir-tim-berners-lee-and-sir-nigel-shadbolt"
-                   target="_blank"></a>
-                <a class="img__contain" href="http://businessawardslondon.co.uk" target="_blank"></a>
+
+<div class="section" id="section_awards">
+
+    <div class="strip">
+        <a class="img__contain"
+           href="http://blog.geolytix.net/2016/07/01/data-analytics-firm-geolytix-win-queens-award-for-enterprise"
+           target="_blank"></a>
+        <a class="img__contain"
+           href="https://theodi.org/news/first-odi-open-data-awards-presented-by-sir-tim-berners-lee-and-sir-nigel-shadbolt"
+           target="_blank"></a>
+        <a class="img__contain" href="http://businessawardslondon.co.uk" target="_blank"></a>
+    </div>
+
+    <div class="strip">
+        <a class="img__contain"></a>
+        <a class="img__contain"
+           href="http://www.nationalbusinessawards.co.uk/Content/2015-Winners-of-the-National-Business-Awards-2014/4_10"
+           target="_blank"></a>
+        <a class="img__contain" href="http://www.thesla.org/previous-winners" target="_blank"></a>
+        <a class="img__contain"></a>
+    </div>
+
+</div>
+
+
+<div id="footer__menu">
+    <ul class="ul_grid">
+
+        <li>
+            <div class="li_card">
+                <a href="http://theodi.org/" target="_blank">
+                    <img src="/public/images/logo_odi_supporter.png"/>
+                </a>
             </div>
+        </li>
 
-            <div class="strip">
-                <a class="img__contain"></a>
-                <a class="img__contain"
-                   href="http://www.nationalbusinessawards.co.uk/Content/2015-Winners-of-the-National-Business-Awards-2014/4_10"
-                   target="_blank"></a>
-                <a class="img__contain" href="http://www.thesla.org/previous-winners" target="_blank"></a>
-                <a class="img__contain"></a>
+        <li>
+            <div class="li_card">
+                <p class="social_media__icons">
+                    <a href="https://www.linkedin.com/company/geolytix" target="_blank"><i class="icon-linkedin-squared"></i></a>
+                    <a href="http://twitter.com/geolytix" target="_blank"><i class="icon-twitter-squared"></i></a>
+                    <a href="http://stackoverflow.com/jobs/companies/geolytix" target="_blank"><i class="icon-stackoverflow"></i></a>
+                </p>
+                <a class="privacy_policy" target="_blank" href="https://docs.google.com/document/d/1ZyhEzxi0MCsMK3HnR6fGpBhNm725916AxmElkOsHFIY">Privacy Policy</a>
+                <a class="terms_conditions" target="_blank" href="https://docs.google.com/document/d/1MteGDtrZx2TWXcuKqTzEMPRGmtlvEzF0g9Vy9r5H_vs">Terms & Conditions</a>
             </div>
+        </li>
 
-        </div>
-
-
-        <div class="section" id="section_contact">
-            <p class="title">Contact</p>
-
-            <div class="container">
-                <div id="map_contact"></div>
+        <li>
+            <div class="li_card">
+                <p>© 2017 GEOLYTIX Ltd.</p>
+                <p>All rights reserved</p>
             </div>
+        </li>
 
-        </div>
-
-
-        <div id="footer__menu">
-
-            <ul class="ul_grid">
-                <li>
-                    <div class="li_card">
-                        <p class="social_media__icons">
-                            <a href="https://www.linkedin.com/company/geolytix" target="_blank"><i
-                                        class="icon-linkedin-squared"></i></a>
-                            <a href="http://twitter.com/geolytix" target="_blank"><i
-                                        class="icon-twitter-squared"></i></a>
-                            <a href="http://stackoverflow.com/jobs/companies/geolytix" target="_blank"><i
-                                        class="icon-stackoverflow"></i></a>
-                        </p>
-                        <a class="privacy_policy" target="_blank"
-                           href="https://docs.google.com/document/d/1ZyhEzxi0MCsMK3HnR6fGpBhNm725916AxmElkOsHFIY">Privacy
-                            Policy</a>
-                        <a class="terms_conditions" target="_blank"
-                           href="https://docs.google.com/document/d/1MteGDtrZx2TWXcuKqTzEMPRGmtlvEzF0g9Vy9r5H_vs">Terms
-                            & Conditions</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="li_card">
-                        <p x-ms-format-detection="none">+44 20 82 42 41 66</p>
-                        <p><a href="mailto:info@geolytix.co.uk">info@geolytix.co.uk</a></p>
-                        <p>Phoenix Yard</p>
-                        <p>65 Kings Cross Road</p>
-                        <p>London WC1X 9LW</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="li_card">
-                        <a href="http://theodi.org/" target="_blank">
-                            <img src="/public/images/logo_odi_supporter.png"/>
-                        </a>
-                    </div>
-                </li>
-                <li>
-                    <div class="li_card">
-                        <p>© 2016 GEOLYTIX Ltd.</p>
-                        <p>All rights reserved</p>
-                    </div>
-                </li>
-            </ul>
-
-        </div>
+    </ul>
+</div>
 
 </body>
 
