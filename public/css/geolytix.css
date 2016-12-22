@@ -418,10 +418,29 @@ div, a {
 
 /* GEODATA */
 
+#section_geodata > p:nth-of-type(1){
+    font-family: ffmark_bold;
+    font-size: 300%;
+}
+
+#section_geodata > p:nth-of-type(2){
+    color: #079e00;
+    font-family: ffmark_bold;
+    font-size: 200%;
+    margin-top: 10px;
+}
+
+#section_geodata > p:nth-of-type(3){
+    font-size: 130%;
+    margin: 10px 0 20px 0;
+}
+
 #section_geodata {
-    margin-top: 200px;
+    margin-top: 50px;
+    padding-left: 50px;
     display: table;
     height: calc(100% - 95px);
+    min-height: 572px;
 }
 
 #section_geodata > .title {
@@ -454,15 +473,15 @@ div, a {
 #section_geodata > .container > .select {
     position: relative;
     float: left;
-    width: 300px;
+    width: 200px;
     height: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    /*overflow-y: scroll;*/
+    /*overflow-x: hidden;*/
 }
 
 #section_geodata > .container > .select > .select__inner {
     position: absolute;
-    width: 300px;
+    width: 200px;
     top: 0;
 }
 
@@ -487,21 +506,21 @@ div, a {
 #section_geodata > .container > .content {
     position: relative;
     float: right;
-    width: calc(100% - 300px);
+    width: calc(100% - 200px);
     height: 100%;
     display: none;
 }
 
 #section_geodata > .container > .map {
-    width: calc(100% - 300px);
+    width: calc(100% - 200px);
 }
 
 #section_geodata > .container > .pricing {
-    width: calc(100% - 330px);
+    width: calc(100% - 230px);
 }
 
 #section_geodata > .container > .faq {
-    width: calc(100% - 330px);
+    width: calc(100% - 230px);
 }
 
 /* geodata content map*/
@@ -526,6 +545,7 @@ div, a {
     padding: 0 10px 0 5px;
     z-index: 999;
     font-family: ffmark_bold;
+    line-height: 1.34;
     font-size: 15px;
     background-color: rgba(255,255,255,0.8);
     text-align: right;
