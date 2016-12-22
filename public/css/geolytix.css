@@ -820,7 +820,8 @@ div, a {
     padding-top: 30px;
 }
 
-.privacy_policy, .terms_conditions {
+#privacy_policy,
+#terms_conditions {
     display: block;
 }
 
@@ -834,7 +835,8 @@ div, a {
     text-align: center;
 }
 
-#footer__menu p, #footer__menu a {
+#footer__menu p,
+#footer__menu a {
     margin: 0;
     line-height: 1.5em;
     color: #fff;
