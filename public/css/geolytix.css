@@ -745,17 +745,40 @@ div, a {
 
 /* CONTACT */
 
-#section_contact > .container {
+#section_contact {
     width: 100%;
     height: 350px;
 }
 
-#section_contact > .container > #map_contact {
-    width: 100%;
+#section_contact > #contact_map {
+    width: calc(100% - 300px);
     height: 100%;
-    float: right;
+    float: left;
 }
 
+#section_contact > #contact_text {
+    width: 300px;
+    height: 100%;
+    float: right;
+    background-color: #079e00;
+    color: #fff;
+    text-align: center;
+}
+
+#section_contact > #contact_text > p {
+    font-size: 150%;
+}
+
+#section_contact > #contact_text > p:nth-of-type(1) {
+    font-family: ffmark_bold;
+    font-size: 200%;
+    padding-top: 30px;
+}
+
+#section_contact > #contact_text > a {
+    font-size: 150%;
+    color: #fff;
+}
 
 
 /* AWARDS */

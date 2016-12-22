@@ -123,7 +123,7 @@ $('.scroll__contact').click(function () {
 
 
 
-// GRIDS
+// UL_GRIDS
 
 var section_services__expanded_card,
     section_services__cards = section_services.find('.ul_grid .li_card'),
@@ -216,7 +216,7 @@ section_case_studies.find('.strip > .logo').click(function(){
 
 // CONTACT
 
-var map_contact = L.map('map_contact', {scrollWheelZoom: false})
+var map_contact = L.map('contact_map', {scrollWheelZoom: false})
     .setView([51.52733, -0.11525], 14)
     .addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
 
@@ -224,7 +224,7 @@ new L.Marker(
     [51.52733, -0.11525],
     {
         icon: L.icon({
-            iconUrl: '/public/images/leaflet/marker_a.svg',
+            iconUrl: '/public/images/leaflet/marker.svg',
             iconSize: [80, 40],
             iconAnchor: [40, 40]
         })
