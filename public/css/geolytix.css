@@ -32,6 +32,7 @@
 body {
     position: absolute;
     height: 100%;
+    width: 100%;
     margin: 0;
     font-family: ffmark, sans-serif;
 }
@@ -313,26 +314,32 @@ div, a {
     background-color: #079e00;
     color: #fff;
     padding-bottom: 30px;
+    width: 100%;
 }
 
-#section_case_studies > p:nth-of-type(1){
+#section_case_studies > .limiter {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+#section_case_studies > .limiter > p:nth-of-type(1){
     font-size: 300%;
     font-family: ffmark_bold;
     padding: 30px 0;
 }
 
-#section_case_studies > p:nth-of-type(2){
+#section_case_studies > .limiter > p:nth-of-type(2){
     font-size: 150%;
 }
 
-#section_case_studies > .strip {
+#section_case_studies > .limiter > .strip {
     width: 100%;
     height: 170px;
     border-bottom: 1px solid #fff;
 }
 
-#section_case_studies > .strip > .active:after,
-#section_case_studies > .strip > .active:before {
+#section_case_studies > .limiter > .strip > .active:after,
+#section_case_studies > .limiter > .strip > .active:before {
     position: absolute;
     bottom: -1px;
     left: 50%;
@@ -342,81 +349,81 @@ div, a {
     content: " ";
     pointer-events: none;
 }
-#section_case_studies > .strip > .active:before {
+#section_case_studies > .limiter > .strip > .active:before {
     border-bottom-color: #fff;
     border-width: 17px;
     margin-left: -17px;
 }
-#section_case_studies > .strip > .active:after {
+#section_case_studies > .limiter > .strip > .active:after {
     border-bottom-color: #079e00;
     border-width: 15px;
     margin-left: -15px;
     z-index: 999;
 }
 
-#section_case_studies > .strip > .logo {
+#section_case_studies > .limiter > .strip > .logo {
     width: 16.666%;
     position: relative;
 }
 
-#section_case_studies > .strip > .arco {
+#section_case_studies > .limiter > .strip > .arco {
     background-image: url(/public/images/clients/arco_logo_white.png);
 }
 
-#section_case_studies > .strip > .asda {
+#section_case_studies > .limiter > .strip > .asda {
     background-image: url(/public/images/clients/asda_logo_white.png);
 }
 
-#section_case_studies > .strip > .camelot {
+#section_case_studies > .limiter > .strip > .camelot {
     background-image: url(/public/images/clients/camelot_logo_white.png);
 }
 
-#section_case_studies > .strip > .johnlewis {
+#section_case_studies > .limiter > .strip > .johnlewis {
     background-image: url(/public/images/clients/johnlewis_logo_white.png);
 }
 
-#section_case_studies > .strip > .onthemarket {
+#section_case_studies > .limiter > .strip > .onthemarket {
     background-image: url(/public/images/clients/onthemarket_logo_white.png);
 }
 
-#section_case_studies > .strip > .totalfitness {
+#section_case_studies > .limiter > .strip > .totalfitness {
     background-image: url(/public/images/clients/totalfitness_logo_white.png);
 }
 
-#section_case_studies > .container {
+#section_case_studies > .limiter > .container {
     margin-top: 30px;
     width: 100%;
     overflow: hidden;
 }
 
-#section_case_studies > .container > table {
+#section_case_studies > .limiter > .container > table {
     width: 600%;
     table-layout: fixed;
 }
 
-#section_case_studies > .container > table td {
+#section_case_studies > .limiter > .container > table td {
     padding-right: 30px;
     vertical-align: top;
     line-height: 1.5em;
 }
 
-#section_case_studies > .container > table ul {
+#section_case_studies > .limiter > .container > table ul {
     padding-left: 20px;
     margin: 0;
 }
 
-#section_case_studies > .container > table ul > li{
+#section_case_studies > .limiter > .container > table ul > li{
     padding-bottom: 10px;
 }
 
-#section_case_studies > .container > table tr:first-of-type td {
+#section_case_studies > .limiter > .container > table tr:first-of-type td {
     padding-bottom: 20px;
     text-align: center;
     font-family: ffmark_bold;
     font-size: 150%;
 }
 
-#section_case_studies > .container > table .quote {
+#section_case_studies > .limiter > .container > table .quote {
     font-family: ffmark_italic;
     margin-bottom: 16px;
 }
@@ -640,6 +647,7 @@ div, a {
 .parallax {
     margin: 100px 0;
     width: 100%;
+    max-height: 1000px;
     background-position: 50% 100%;
     background-size: cover;
 }
@@ -750,15 +758,22 @@ div, a {
 #section_contact {
     width: 100%;
     height: 350px;
+    background-color: #079e00;
 }
 
-#section_contact > #contact_map {
+#section_contact > .limiter {
+    height: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+#section_contact > .limiter > #contact_map {
     width: calc(100% - 300px);
     height: 100%;
     float: left;
 }
 
-#section_contact > #contact_text {
+#section_contact > .limiter > #contact_text {
     width: 300px;
     height: 100%;
     float: right;
@@ -768,30 +783,30 @@ div, a {
     text-shadow: 2px 2px 2px #33691e;
 }
 
-#section_contact > #contact_text > p:nth-of-type(1) {
+#section_contact > .limiter > #contact_text > p:nth-of-type(1) {
     font-family: ffmark_bold;
     font-size: 200%;
     padding: 30px 0 20px 0;
 }
 
-#section_contact > #contact_text > p:nth-of-type(2) {
+#section_contact > .limiter > #contact_text > p:nth-of-type(2) {
     font-size: 150%;
 }
 
-#section_contact > #contact_text > a {
+#section_contact > .limiter > #contact_text > a {
     font-size: 150%;
     color: #fff;
     line-height: 2;
 }
 
-#section_contact > #contact_text > p:nth-of-type(3){
+#section_contact > .limiter > #contact_text > p:nth-of-type(3){
     margin-top: 50px;
 }
 
-#section_contact > #contact_text > p:nth-of-type(3),
-#section_contact > #contact_text > p:nth-of-type(4),
-#section_contact > #contact_text > p:nth-of-type(5),
-#section_contact > #contact_text > p:nth-of-type(6){
+#section_contact > .limiter > #contact_text > p:nth-of-type(3),
+#section_contact > .limiter > #contact_text > p:nth-of-type(4),
+#section_contact > .limiter > #contact_text > p:nth-of-type(5),
+#section_contact > .limiter > #contact_text > p:nth-of-type(6){
     font-size: 100%;
     line-height: 1.3;
 }
