@@ -33,14 +33,14 @@ function init() {
 }
 
 // PARALLAX
-var team_photo_ = document.getElementById('team_photo');
+var parallax_team_photo = document.getElementById('team_photo');
 
 (function () {
     window.onscroll = function () {
-        var boo = 100 - ((team_photo_.offsetTop - window.pageYOffset) / window.innerHeight * 100);
-        if (boo > 0 && boo < 100){
-            var elBackgrounPos = "50% " + boo + "%";
-            document.getElementById("team_photo").style.backgroundPosition = elBackgrounPos;
+        var shift = 100 - ((parallax_team_photo.offsetTop - window.pageYOffset) / window.innerHeight * 100);
+        if (shift > 0 && shift < 100){
+            var elBackgrounPos = "50% " + shift + "%";
+            parallax_team_photo.style.backgroundPosition = elBackgrounPos;
         }
     };
 })();
@@ -50,13 +50,13 @@ $(window).resize(function () {
         window.location = '/mobile';
     }
     changeExpandedCardsHeight();
-    team_photo();
+    resize_team_photo();
 });
 
-team_photo();
-function team_photo(){
-    var width = team_photo_.offsetWidth;
-    team_photo_.style.height = width * 0.47 + 'px';
+resize_team_photo();
+function resize_team_photo(){
+    var width = parallax_team_photo.offsetWidth;
+    parallax_team_photo.style.height = width * 0.47 + 'px';
 }
 
 // MENU BUTTONS CONTROL

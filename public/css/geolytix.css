@@ -648,25 +648,33 @@ div, a {
 
 
 /* TEAM */
-
-section.module.parallax {
-    margin: 50px 0 100px 0;
+.parallax {
+    margin: 100px 0;
+    width: 100%;
     background-position: 50% 100%;
-}
-
-section.module.parallax {
-    background-image: url(/public/images/team/glx_team.jpg);
     background-size: cover;
 }
 
-#section_team_photo {
-    width: 100%;
-    margin: 100px 0;
+#team_photo {
+    background-image: url(/public/images/team/glx_team.jpg);
 }
 
 #section_team {
     margin-bottom: 30px;
 }
+
+#section_team > p:nth-of-type(1){
+    font-size: 300%;
+    font-family: ffmark_bold;
+    color: #079e00;
+}
+
+#section_team > p:nth-of-type(2){
+    font-size: 150%;
+    font-family: ffmark_bold;
+    padding: 10px 0 20px 0;
+}
+
 
 #section_team .li_card__img {
     height: 250px;
