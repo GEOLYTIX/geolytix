@@ -2,14 +2,11 @@ var header = $('.header__menu'),
     intro_img = $('#section_intro'),
     parallax_team_photo = document.getElementById('team_photo');
 
-header.removeClass('load');
+title_image();
 
 window.onscroll = function () {
 
-    // TITLE
-    var distanceY = window.pageYOffset || document.documentElement.scrollTop;
-    distanceY > 300 ? header.addClass('smaller') : header.removeClass('smaller');
-    distanceY > intro_img.height() - 80 ? header.addClass('main') : header.removeClass('main');
+    title_image();
 
     // PARALLAX
     var shift = 100 - ((parallax_team_photo.offsetTop - window.pageYOffset) / window.innerHeight * 100);
@@ -17,6 +14,13 @@ window.onscroll = function () {
         parallax_team_photo.style.backgroundPosition = "50% " + shift + "%";
     }
 };
+
+function title_image() {
+    var distanceY = window.pageYOffset || document.documentElement.scrollTop;
+    distanceY > 300 ? header.addClass('smaller') : header.removeClass('smaller');
+    distanceY > intro_img.height() - 80 ? header.addClass('main') : header.removeClass('main');
+    header.removeClass('load');
+}
 
 window.onresize = function () {
     window.innerWidth <= 799 ? window.location = '/mobile' : null;
