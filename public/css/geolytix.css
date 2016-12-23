@@ -913,6 +913,12 @@ div, a {
 
 @media screen and (max-width: 1070px) {
     .header__menu.smaller > #home {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 890px) {
+    .header__menu.smaller > #home {
         display: none;
     }
 }
