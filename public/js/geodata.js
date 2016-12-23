@@ -11,15 +11,15 @@ section_geodata.find('.container > .content .icon-download').bind({
     }
 });
 
-map_expand.click(function () {
-    map_container.toggleClass('map__fullscreen');
-    setTimeout(function () {
-        map_geodata.invalidateSize()
-    }, 100);
-    map_expand__i.toggleClass('icon-resize-full');
-    map_expand__i.toggleClass('icon-resize-small');
-    $('.icon-download').toggleClass('icon-download__hide');
-});
+// map_expand.click(function () {
+//     map_container.toggleClass('map__fullscreen');
+//     setTimeout(function () {
+//         map_geodata.invalidateSize()
+//     }, 100);
+//     map_expand__i.toggleClass('icon-resize-full');
+//     map_expand__i.toggleClass('icon-resize-small');
+//     $('.icon-download').toggleClass('icon-download__hide');
+// });
 
 section_geodata.find('.container > .map').first().show();
 var southWest = L.latLng(51.35, -0.4),
