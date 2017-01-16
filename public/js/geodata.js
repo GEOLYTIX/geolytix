@@ -1,6 +1,7 @@
-var map_container = section_geodata.find('.container > .content').first(),
+var section_geodata = $('#section_geodata'),
+    map_container = section_geodata.find('.container > .content').first(),
     map_expand = map_container.find('.map__expand').first(),
-    map_expand__i = map_expand.find('i').first();
+    map_geodata;
 
 section_geodata.find('.container > .content .icon-download').bind({
     mouseenter: function () {
@@ -11,29 +12,33 @@ section_geodata.find('.container > .content .icon-download').bind({
     }
 });
 
-// map_expand.click(function () {
-//     map_container.toggleClass('map__fullscreen');
-//     setTimeout(function () {
-//         map_geodata.invalidateSize()
-//     }, 100);
-//     map_expand__i.toggleClass('icon-resize-full');
-//     map_expand__i.toggleClass('icon-resize-small');
-//     $('.icon-download').toggleClass('icon-download__hide');
-// });
+map_expand.click(function () {
+    map_container.toggleClass('map__fullscreen');
+    setTimeout(function () {
+        map_geodata.invalidateSize()
+    }, 100);
+    map_expand__i.toggleClass('icon-resize-full');
+    map_expand__i.toggleClass('icon-resize-small');
+    $('.icon-download').toggleClass('icon-download__hide');
+});
 
 section_geodata.find('.container > .map').first().show();
 var southWest = L.latLng(51.35, -0.4),
     northEast = L.latLng(51.65, 0.2),
     bounds = L.latLngBounds(southWest, northEast);
-var map_geodata = L.map('map_geodata', {
-    scrollWheelZoom: false,
-    maxBounds: bounds,
-    minZoom: 12,
-    maxZoom: 17
-}).setView([51.50, -0.1], 13);
 
-//set default
-geodata__retail_points();
+window.setTimeout(map_init,100);
+
+function map_init(){
+    map_geodata = L.map('map_geodata', {
+        scrollWheelZoom: false,
+        maxBounds: bounds,
+        minZoom: 12,
+        maxZoom: 17
+    }).setView([51.50, -0.1], 13);
+
+    geodata__retail_points();
+}
 
 section_geodata.find('.container > .select > div').click(function () {
     $(this).siblings().removeClass('selected');

@@ -6,11 +6,6 @@
 }
 
 @font-face {
-    font-family: ffmark_thin;
-    src: url('/public/fonts/MarkWeb-Thin.woff') format('woff');
-}
-
-@font-face {
     font-family: ffmark;
     src: url('/public/fonts/MarkWebPro.woff') format('woff');
 }
@@ -18,11 +13,6 @@
 @font-face {
     font-family: ffmark_bold;
     src: url('/public/fonts/MarkWebPro-Bold.woff') format('woff');
-}
-
-@font-face {
-    font-family: ffmark_italic;
-    src: url('/public/fonts/MarkWebPro-Italic.woff') format('woff');
 }
 
 

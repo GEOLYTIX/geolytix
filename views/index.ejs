@@ -20,7 +20,6 @@
     </script>
 
     <script src="/public/js/jquery.js"></script>
-    <script src="/public/js/webfontloader.js"></script>
 
     <script>
         (function (i, s, o, g, r, a, m) {
@@ -36,14 +35,9 @@
         ga('create', 'UA-82852467-1', 'auto');
         ga('send', 'pageview');
 
-        WebFont.load({
-            custom: {
-                families: ['ffmark_black', 'ffmark_thin', 'ffmark', 'ffmark_bold', 'ffmark_italic'],
-                urls: ['/public/css/fontello_embedded.css']
-            }
-        });
     </script>
 
+    <link rel="stylesheet" href="/public/css/fontello_embedded.css"/>
     <link rel="stylesheet" href="/public/css/leaflet.css"/>
     <link rel="stylesheet" href="/public/css/geolytix.css"/>
 </head>
@@ -300,13 +294,11 @@
             <div class="info retail_points">
                 <p>Over 10,000 supermarket roof-top locations and addresses. Retailers include Aldi, Asda, Booths, Budgens, Co-op, Costco, Lidl, Marks and Spencer, Morrisons, Sainsbury’s, Tesco, Waitrose, Wholefoods. Please download for free and use this data openly. <a href="https://drive.google.com/a/geolytix.co.uk/file/d/0B1GCK8cPXzg-ZUl6MDFUUkFBVEU" target="_blank"><i class="icon-file-pdf"></i></a><a href="https://drive.google.com/file/d/0B1GCK8cPXzg-bGhoZk9DdUZLNTg/view" target="_blank"><i class="icon-download"></i></a>
                 <div class="tooltip">Download a zip archive containing the latest version of our Open Retail Points data pack.</div>
-                </p>
             </div>
 
             <div class="info retail_places">
                 <p>More than 20k scored, profiled and named polygons detailing where people shop in the UK, and catchment area demographics. Ideal for locating new sites and understanding micro location performance. Additionally pitch can be purchased along side this pack. <a href="https://drive.google.com/open?id=0B1GCK8cPXzg-OWE4Q3Nrdzk3d2M" target="_blank"><i class="icon-file-pdf"></i></a><a href="https://drive.google.com/file/d/0B1GCK8cPXzg-OWE4Q3Nrdzk3d2M/view" target="_blank"><i class="icon-download"></i></a>
                 <div class="tooltip">Download a sub-set of four hundred centres; scored, profiled and named polygons detailing where people shop in the UK. Note that the Open version requires attribution of the Ordnance Survey, Royal Mail, and GEOLYTIX.</div>
-                </p>
             </div>
 
             <div class="info seamless_locales">
@@ -320,7 +312,6 @@
             <div class="info postal_geom">
                 <p>High resolution postal boundaries combining exceptional ‘enclosure’ accuracy with boundaries that follow real-world features. <a href="https://drive.google.com/file/d/0B1GCK8cPXzg-Nk5nZ2c0S2JUOTg/view" target="_blank"><i class="icon-file-pdf"></i></a><a href="https://drive.google.com/file/d/0B5UPsNN3XERXZi00WE5aZTBXV0E/view" target="_blank"><i class="icon-download"></i></a>
                 <div class="tooltip">Download a zip archive containing 9,232 geographic postal sector boundaries covering Great Britain as of October 2012. Released under the same terms as the OS OpenData license with the single addition of GEOLYTIX to the attribution list.</div>
-                </p>
             </div>
 
             <div class="info public_transport">
@@ -334,7 +325,6 @@
             <div class="info uk_admin">
                 <p>All UK’s administrative boundaries in a consistent package. Includes all police, health, fire, EU zones, regions, constituencies, wards and statistical geographies. The core framework which all national statistics are published within. <a href="https://drive.google.com/a/geolytix.co.uk/file/d/0B1GCK8cPXzg-QlBsUS1TaWhTU0k" target="_blank"><i class="icon-file-pdf"></i></a><a href="https://drive.google.com/file/d/0B1GCK8cPXzg-Ui1FYWpxRDctT1k" target="_blank"><i class="icon-download"></i></a>
                 <div class="tooltip">Download a collection of 197 variables as Output Area (OA) level. English, Welsh, Scottish and Northern Irish Census data processed into a single easy-to-use flat file. We have released free-of-charge and under the same license terms as the census.</div>
-                </p>
             </div>
 
             <div class="info education">
