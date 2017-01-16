@@ -769,7 +769,7 @@ div, a {
     background-color: #079e00;
     color: #fff;
     text-align: center;
-    text-shadow: 2px 2px 2px #33691e;
+    /*text-shadow: 2px 2px 2px #33691e;*/
 }
 
 #section_contact > .limiter > #contact_text > p:nth-of-type(1) {
