@@ -671,6 +671,7 @@ div, a {
     position: absolute;
     width: 100%;
     top: 250px;
+    margin-top: 15px;
     background-color: #fff;
     text-align: center;
 }
