@@ -435,9 +435,10 @@ div, a {
     padding-left: 50px;
     display: table;
     box-sizing: border-box;
+    min-height: 772px;
     height: calc(100% - 95px);
     width: 100%;
-    min-height: 572px;
+
 }
 
 #section_geodata > p:nth-of-type(1){
@@ -458,8 +459,8 @@ div, a {
 }
 
 #section_geodata > .container {
-    width: 100%;
     display: table-row;
+    width: 100%;
     height: 100%;
 }
 
@@ -497,10 +498,6 @@ div, a {
     display: none;
 }
 
-#section_geodata > .container > .map {
-    width: calc(100% - 200px);
-}
-
 #section_geodata > .container > .pricing {
     width: calc(100% - 230px);
 }
@@ -510,15 +507,6 @@ div, a {
 }
 
 /* geodata content map*/
-#section_geodata > .container > .map__fullscreen {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 10000
-}
-
 #section_geodata > .container > .map > #map_geodata {
     width: 100%;
     height: 100%;

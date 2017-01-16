@@ -1,4 +1,4 @@
-var map_container = section_geodata.find('.container > .map').first(),
+var map_container = section_geodata.find('.container > .content').first(),
     map_expand = map_container.find('.map__expand').first(),
     map_expand__i = map_expand.find('i').first();
 
@@ -383,7 +383,7 @@ function geodata__property() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    section_geodata.find('.container > .content > .work_places').first().show();
+    section_geodata.find('.container > .content > .property').first().show();
 }
 
 function geodata__work_places() {
@@ -401,7 +401,7 @@ function geodata__residential() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    section_geodata.find('.container > .content > .work_places').first().show();
+    section_geodata.find('.container > .content > .residential').first().show();
 }
 
 function geodata__media_com() {
@@ -410,7 +410,7 @@ function geodata__media_com() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    section_geodata.find('.container > .content > .media_comms').first().show();
+    section_geodata.find('.container > .content > .media_com').first().show();
 }
 
 function geodata__physical() {
@@ -419,5 +419,5 @@ function geodata__physical() {
         map_geodata.removeLayer(layer);
     });
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
-    section_geodata.find('.container > .content > .work_places').first().show();
+    section_geodata.find('.container > .content > .physical').first().show();
 }
