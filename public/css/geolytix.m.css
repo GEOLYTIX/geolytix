@@ -105,12 +105,12 @@ div, td {
 
 /* MENU */
 
-.header__menu {
+.header_menu {
     width: 100%;
     background-color: #fff;
     padding-top: 3px;
 }
-.header__menu > .home {
+.header_menu > .home {
     margin-left: 5px;
     font-family: ffmark_black, "sans-serif";
     font-size: 40px;

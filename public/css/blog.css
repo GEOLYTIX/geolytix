@@ -45,14 +45,14 @@ footer {
 }
 
 @media screen and (max-width: 1075px) {
-    .header__menu > div:not(.home),
-    .header__menu > a:not(.home) {
+    .header_menu > div:not(.home),
+    .header_menu > a:not(.home) {
         display: none;
     }
 }
 
 @media screen and (max-width: 1125px) {
-    .header__menu {
+    .header_menu {
         width: calc(100% - 10px);
     }
     .site-content {
@@ -61,7 +61,7 @@ footer {
 }
 
 @media screen and (min-width: 1125px) {
-    .header__menu {
+    .header_menu {
         margin-left: 50px;
         width: calc(100% - 100px);
     }
@@ -71,8 +71,8 @@ footer {
 }
 
 @media screen and (max-width: 1250px) {
-    .header__menu > div:not(.home),
-    .header__menu > a:not(.home) {
+    .header_menu > div:not(.home),
+    .header_menu > a:not(.home) {
         font-size: 20px !important;
     }
 }
@@ -81,7 +81,7 @@ footer {
     padding-top: 100px;
 }
 
-.header__menu {
+.header_menu {
     position: fixed;
     top: 0;
     background-color: #fff;
@@ -90,19 +90,19 @@ footer {
     line-height: 1 !important;
 }
 
-.header__menu a,
-.header__menu a:hover {
+.header_menu a,
+.header_menu a:hover {
     color: #000 !important;
 }
 
-.header__menu > .home {
+.header_menu > .home {
     float: left;
     font-family: ffmark_black, "sans-serif";
     font-size: 60px;
 }
 
-.header__menu > div:not(.home),
-.header__menu > a:not(.home) {
+.header_menu > div:not(.home),
+.header_menu > a:not(.home) {
     font-family: ffmark, "sans-serif";
     font-size: 25px;
     float: right;
@@ -110,8 +110,8 @@ footer {
     padding: 7px 0 7px 0;
 }
 
-.header__menu > div:not(.home):hover,
-.header__menu > a:not(.home):hover {
+.header_menu > div:not(.home):hover,
+.header_menu > a:not(.home):hover {
     border-bottom: 10px solid #000;
 }
 
