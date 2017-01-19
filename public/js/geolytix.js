@@ -43,7 +43,9 @@ $('#home').click(function (e) {
 const header__button = $('.header__menu > div');
 
 header__button.click(function(){
-    scrollTo($(this).attr('id'));
+    var loc = $(this).attr('id');
+    history.pushState({so: 'glx'}, loc, '/?' + loc);
+    scrollTo(loc);
 });
 
 function scrollTo(section){

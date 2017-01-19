@@ -360,7 +360,8 @@ function geodata__education() {
 function geodata__poi() {
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
 
-    var poiFilter = "poi_type='carpark'";
+    var poiFilterArray = ["poi_type='carpark'"],
+        poiFilter = poiFilterArray[0];
 
     L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'poi',
@@ -375,27 +376,27 @@ function geodata__poi() {
     var poiBtn = $('.poi .legend span');
     poiBtn.click(function(){
         $(this).toggleClass('active');
-        poiFilter = poiFilter.replace(/ OR /g,' ');
         if ($(this).hasClass('active')) {
-            poiFilter += " poi_type='" + $(this).attr('id') + "'";
+            poiFilterArray.push("poi_type='" + $(this).attr('id') + "'");
         } else {
-            var regex = new RegExp("poi_type='" + $(this).attr('id') + "'", "g");
-            poiFilter = poiFilter.replace(regex,'');
+            poiFilterArray.splice($.inArray("poi_type='" + $(this).attr('id') + "'", poiFilterArray),1);
         }
 
-        poiFilter = poiFilter.replace(/ /g,' OR ');
+        poiFilter = poiFilterArray.join(' OR ');
 
         removeLayer();
 
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
 
-        L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-            layers: 'poi',
-            format: 'image/png',
-            transparent: true,
-            styles: 'poi',
-            CQL_FILTER: poiFilter
-        }).addTo(map_geodata);
+        if (poiFilter.length > 0) {
+            L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+                layers: 'poi',
+                format: 'image/png',
+                transparent: true,
+                styles: 'poi',
+                CQL_FILTER: poiFilter
+            }).addTo(map_geodata);
+        }
 
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map_geodata);
     });
