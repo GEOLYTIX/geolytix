@@ -174,8 +174,9 @@ function geodata__retail_places() {
 function geodata__seamless_locales() {
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
 
-    new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+    var lSeamless = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         opacity: 1.0,
+        version: '1.3',
         layers: 'seamless_locales',
         format: 'image/png',
         transparent: true,
@@ -183,7 +184,64 @@ function geodata__seamless_locales() {
         zIndex: 3,
         styles: 'seamless_locales'
     }).addTo(map_geodata);
+
+    map_geodata.on('click', function(e) {
+        var url = getFeatureInfoUrl(
+            map_geodata,
+            lSeamless,
+            e.latlng,
+            {
+                'propertyName': 'locale_name'
+            }
+        );
+
+        console.log(url);
+
+        $.ajax({
+            url: url,
+            success: function (data) {
+                console.log(data);
+                var feature = data.features[0];
+                L.popup()
+                    .setLatLng(e.latlng)
+                    .setContent(L.Util.template("<h2>{locale_name}</h2>", feature.properties))
+                    .openOn(map_geodata);
+            }
+        });
+
+    });
+
 }
+
+function getFeatureInfoUrl(map, layer, latlng, params) {
+    var point = map.latLngToContainerPoint(latlng, map.getZoom()),
+        size = map.getSize(),
+        bounds = map.getBounds(),
+        proj_WGS84 = proj4.Proj('WGS84'),
+        proj_3857 = proj4.Proj('EPSG:3857'),
+        sw = proj4.transform(proj_WGS84, proj_3857, proj4.toPoint([bounds.getWest(), bounds.getSouth()])),
+        ne = proj4.transform(proj_WGS84, proj_3857, proj4.toPoint([bounds.getEast(), bounds.getNorth()])),
+        defaultParams = {
+            request: 'GetFeatureInfo',
+            service: 'WMS',
+            srs: layer._crs.code,
+            styles: '',
+            version: layer._wmsVersion,
+            format: layer.options.format,
+            bbox: [sw.x, sw.y, ne.x, ne.y],
+            height: size.y,
+            width: size.x,
+            layers: layer.options.layers,
+            query_layers: layer.options.layers,
+            info_format: 'application/json'
+        };
+    params = L.Util.extend(defaultParams, params || {});
+    params[params.version === '1.3' ? 'i' : 'x'] = point.x;
+    params[params.version === '1.3' ? 'j' : 'y'] = point.y;
+    return layer._wmsUrl + L.Util.getParamString(params, layer._wmsUrl, true);
+}
+
+
 
 function geodata__town_suburbs() {
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);

@@ -1,4 +1,4 @@
-const body = $('body, html');
+const body = $('html, body');
 const header = $('.header');
 const header__image = document.getElementById('header__image');
 const parallax_team_photo = document.getElementById('team_photo');
