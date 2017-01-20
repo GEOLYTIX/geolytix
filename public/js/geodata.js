@@ -171,6 +171,9 @@ function geodata__retail_places() {
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map_geodata);
 }
 
+var layerHover,
+    featureHover;
+
 function geodata__seamless_locales() {
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
 
@@ -186,35 +189,50 @@ function geodata__seamless_locales() {
     }).addTo(map_geodata);
 
     map_geodata.on('mousemove', function(e) {
-        var url = getFeatureInfoUrl(
-            map_geodata,
-            lSeamless,
-            e.latlng,
-            {
-                'propertyName': 'geometry,locale_name'
+
+        if (featureHover){
+            var pHover = turf.point([e.latlng.lng, e.latlng.lat]);
+            if (!turf.inside(pHover, featureHover)) {
+                wmsGetFeatureInfo(getFeatureInfoUrl(
+                    map_geodata,
+                    lSeamless,
+                    e.latlng,
+                    {
+                        'propertyName': 'geoj_4326,locale_name'
+                    }
+                ))
             }
-        );
-
-        console.log(url);
-
-        $.ajax({
-            url: url,
-            success: function (data) {
-                //console.log(data);
-                //var feature = data.features[0];
-                // L.popup()
-                //     .setLatLng(e.latlng)
-                //     .setContent(L.Util.template("<h2>{locale_name}</h2>", feature.properties))
-                //     .openOn(map_geodata);
-
-
-                createHoverFeature(data.features[0].geometry);
-
-            }
-        });
-
+        } else {
+            wmsGetFeatureInfo(getFeatureInfoUrl(
+                map_geodata,
+                lSeamless,
+                e.latlng,
+                {
+                    'propertyName': 'geoj_4326,locale_name'
+                }
+            ))
+        }
     });
+}
 
+var xhr;
+function wmsGetFeatureInfo(url){
+    if (xhr) xhr.abort();
+    xhr = $.ajax({
+        url: url,
+        success: function (data) {
+            //console.log(data);
+            var f = data.features[0];
+            // L.popup()
+            //     .setLatLng(e.latlng)
+            //     .setContent(L.Util.template("<h2>{locale_name}</h2>", feature.properties))
+            //     .openOn(map_geodata);
+
+
+            createHoverFeature(f.properties.geoj_4326);
+
+        }
+    });
 }
 
 function getFeatureInfoUrl(map, layer, latlng, params) {
@@ -243,23 +261,16 @@ function getFeatureInfoUrl(map, layer, latlng, params) {
     return layer._wmsUrl + L.Util.getParamString(params, layer._wmsUrl, true);
 }
 
-var layerHover;
 function createHoverFeature(geom) {
     if (layerHover) {
         map_geodata.removeLayer(layerHover)
     }
-    var f = {
+    featureHover = {
         'type': 'Feature',
         'properties': {},
-        'geometry': geom,
-        'crs': {
-            'type': 'name',
-            'properties': {
-                'name': 'urn:ogc:def:crs:EPSG::3857'
-            }
-        }
+        'geometry': JSON.parse(geom)
     };
-    layerHover = L.Proj.geoJson(f, {
+    layerHover = L.geoJson(featureHover, {
         style: function () {
             return {
                 color: '#00bcd4',
@@ -268,6 +279,13 @@ function createHoverFeature(geom) {
         }
     });
     layerHover.addTo(map_geodata);
+    // layerHover.on('mouseover', function(){
+    //     layerHover_over = true;
+    // });
+    // layerHover.on('mouseout', function(){
+    //     layerHover_over = false;
+    // });
+
     //map_geodata.fitBounds(layerHover.getBounds());
 }
 
