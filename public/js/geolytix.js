@@ -44,7 +44,7 @@ const header__button = $('.header__menu > div');
 
 header__button.click(function(){
     var loc = $(this).attr('id');
-    history.pushState({so: 'glx'}, loc, '/?' + loc);
+    history.pushState({so: 'glx'}, loc, '?' + loc);
     scrollTo(loc);
 });
 
