@@ -177,7 +177,7 @@ function geodata__seamless_locales() {
     var lSeamless = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         opacity: 1.0,
         version: '1.3',
-        layers: 'seamless_locales',
+        layers: 'seamless_locales_3857',
         format: 'image/png',
         transparent: true,
         pane: 'tilePane',
@@ -185,13 +185,13 @@ function geodata__seamless_locales() {
         styles: 'seamless_locales'
     }).addTo(map_geodata);
 
-    map_geodata.on('click', function(e) {
+    map_geodata.on('mousemove', function(e) {
         var url = getFeatureInfoUrl(
             map_geodata,
             lSeamless,
             e.latlng,
             {
-                'propertyName': 'locale_name'
+                'propertyName': 'geometry,locale_name'
             }
         );
 
@@ -200,12 +200,16 @@ function geodata__seamless_locales() {
         $.ajax({
             url: url,
             success: function (data) {
-                console.log(data);
-                var feature = data.features[0];
-                L.popup()
-                    .setLatLng(e.latlng)
-                    .setContent(L.Util.template("<h2>{locale_name}</h2>", feature.properties))
-                    .openOn(map_geodata);
+                //console.log(data);
+                //var feature = data.features[0];
+                // L.popup()
+                //     .setLatLng(e.latlng)
+                //     .setContent(L.Util.template("<h2>{locale_name}</h2>", feature.properties))
+                //     .openOn(map_geodata);
+
+
+                createHoverFeature(data.features[0].geometry);
+
             }
         });
 
@@ -225,9 +229,7 @@ function getFeatureInfoUrl(map, layer, latlng, params) {
             request: 'GetFeatureInfo',
             service: 'WMS',
             srs: layer._crs.code,
-            styles: '',
             version: layer._wmsVersion,
-            format: layer.options.format,
             bbox: [sw.x, sw.y, ne.x, ne.y],
             height: size.y,
             width: size.x,
@@ -241,6 +243,33 @@ function getFeatureInfoUrl(map, layer, latlng, params) {
     return layer._wmsUrl + L.Util.getParamString(params, layer._wmsUrl, true);
 }
 
+var layerHover;
+function createHoverFeature(geom) {
+    if (layerHover) {
+        map_geodata.removeLayer(layerHover)
+    }
+    var f = {
+        'type': 'Feature',
+        'properties': {},
+        'geometry': geom,
+        'crs': {
+            'type': 'name',
+            'properties': {
+                'name': 'urn:ogc:def:crs:EPSG::3857'
+            }
+        }
+    };
+    layerHover = L.Proj.geoJson(f, {
+        style: function () {
+            return {
+                color: '#00bcd4',
+                fillOpacity: 0.1
+            };
+        }
+    });
+    layerHover.addTo(map_geodata);
+    //map_geodata.fitBounds(layerHover.getBounds());
+}
 
 
 function geodata__town_suburbs() {
