@@ -519,8 +519,8 @@ div, a {
     margin-left: -3px;
 }
 .poi .legend img{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
 }
 .poi .legend .active{
     font-family: ffmark_bold, sans-serif;

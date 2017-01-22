@@ -285,15 +285,20 @@ $('#poi').click(function() {
     var poiFilterArray = ["poi_type='carpark'"],
         poiFilter = poiFilterArray[0];
 
-    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-        layers: 'poi',
+    var lPOI = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+        version: '1.3',
+        layers: 'poi_combined',
         format: 'image/png',
         transparent: true,
-        styles: 'poi',
+        styles: 'poi_combined',
         CQL_FILTER: poiFilter
     }).addTo(map_geodata);
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map_geodata);
+
+
+    map_geodata.on('click', function(e){clickSelect(e, map_geodata, lPOI)});
+
 
     var poiBtn = $('.poi .legend span');
     poiBtn.click(function(){
@@ -312,10 +317,10 @@ $('#poi').click(function() {
 
         if (poiFilter.length > 0) {
             L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-                layers: 'poi',
+                layers: 'poi_combined',
                 format: 'image/png',
                 transparent: true,
-                styles: 'poi',
+                styles: 'poi_combined',
                 CQL_FILTER: poiFilter
             }).addTo(map_geodata);
         }
@@ -441,6 +446,19 @@ function hoverSelect(e, map, layer) {
     }
 }
 
+
+function clickSelect(e, map, layer) {
+    wmsGetFeatureInfoPopup(getFeatureInfoUrl_(
+        map,
+        layer,
+        e.latlng,
+        {
+            'propertyName': 'poi_info'
+        }
+    ), e)
+}
+
+
 const proj_4326 = proj4.Proj('EPSG:4326');
 const proj_3857 = proj4.Proj('EPSG:3857');
 function getFeatureInfoUrl(map, layer, latlng, params) {
@@ -465,6 +483,30 @@ function getFeatureInfoUrl(map, layer, latlng, params) {
     params[params.version === '1.3' ? 'i' : 'x'] = point.x;
     params[params.version === '1.3' ? 'j' : 'y'] = point.y;
     return layer._wmsUrl + L.Util.getParamString(params, layer._wmsUrl, true);
+}
+
+function getFeatureInfoUrl_(map, layer, latlng, params) {
+    var point = map.latLngToContainerPoint(latlng, map.getZoom()),
+        size = map.getSize(),
+        bounds = map.getBounds(),
+        sw = proj4.transform(proj_4326, proj_3857, proj4.toPoint([bounds.getWest(), bounds.getSouth()])),
+        ne = proj4.transform(proj_4326, proj_3857, proj4.toPoint([bounds.getEast(), bounds.getNorth()])),
+        defaultParams = {
+            request: 'GetFeatureInfo',
+            service: 'WMS',
+            srs: layer._crs.code,
+            version: layer._wmsVersion,
+            bbox: [sw.x, sw.y, ne.x, ne.y],
+            height: size.y,
+            width: size.x,
+            layers: layer.options.layers,
+            query_layers: layer.options.layers,
+            info_format: 'application/json'
+        };
+    params = L.Util.extend(defaultParams, params || {});
+    params[params.version === '1.3' ? 'i' : 'x'] = point.x;
+    params[params.version === '1.3' ? 'j' : 'y'] = point.y;
+    return layer._url + L.Util.getParamString(params, layer._url, true);
 }
 
 
@@ -499,9 +541,15 @@ function createHoverFeature(geom) {
 }
 
 
-function popup(e, f) {
-    L.popup()
-        .setLatLng(e.latlng)
-        .setContent(L.Util.template("<h2>{locale_name}</h2>", f.properties))
-        .openOn(map_geodata);
+function wmsGetFeatureInfoPopup(url, e){
+    if (xhr) xhr.abort();
+    xhr = $.ajax({
+        url: url,
+        success: function (data) {
+            L.popup()
+                .setLatLng(e.latlng)
+                .setContent(L.Util.template("<h2>{poi_info}</h2>", data.features[0].properties))
+                .openOn(map_geodata);
+        }
+    });
 }
