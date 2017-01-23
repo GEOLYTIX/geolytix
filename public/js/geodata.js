@@ -287,10 +287,10 @@ $('#poi').click(function() {
 
     var lPOI = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         version: '1.3',
-        layers: 'poi_combined',
+        layers: 'poi',
         format: 'image/png',
         transparent: true,
-        styles: 'poi_combined',
+        styles: 'poi',
         CQL_FILTER: poiFilter
     }).addTo(map_geodata);
 
@@ -317,10 +317,10 @@ $('#poi').click(function() {
 
         if (poiFilter.length > 0) {
             L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-                layers: 'poi_combined',
+                layers: 'poi',
                 format: 'image/png',
                 transparent: true,
-                styles: 'poi_combined',
+                styles: 'poi',
                 CQL_FILTER: poiFilter
             }).addTo(map_geodata);
         }
