@@ -533,7 +533,7 @@ function createHoverFeature(geom) {
     layerHover = L.geoJson(featureHover, {
         style: function () {
             return {
-                color: '#00bcd4',
+                color: '#079e00',
                 fillOpacity: 0.1
             };
         }

@@ -28,9 +28,9 @@ $('.scroll__contact').click(function () {
 
 // preload images
 var section_intro = $('#section_intro');
-section_intro.find('.img__preload').attr('src', '/public/images/intro_naeblys.jpg').load(function () {
+section_intro.find('.img__preload').attr('src', '/public/images/intro_geolytix.jpg').load(function () {
     $(this).remove();
-    section_intro.css('background-image', 'url(/public/images/intro_naeblys.jpg)');
+    section_intro.css('background-image', 'url(/public/images/intro_geolytix.jpg)');
     section_intro.find('span').css({
         'color': '#fff'
     });
