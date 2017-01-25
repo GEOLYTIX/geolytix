@@ -513,6 +513,20 @@ div, a {
     font-size: 12px;
 }
 
+.geodata__scrolly .info{
+    font-family: monospace;
+    width: 100%;
+}
+
+.info tr:first-of-type{
+    font-weight: 700;
+}
+
+.geodata__scrolly .info th,
+.geodata__scrolly .info td{
+    vertical-align: top !important;
+}
+
 /*poi*/
 .poi .legend{
     margin-top: 10px;

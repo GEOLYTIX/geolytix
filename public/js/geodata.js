@@ -57,7 +57,7 @@ seamless_locales.click(function() {
     var lSeamless = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         opacity: 1.0,
         version: '1.3',
-        layers: 'seamless_locales_3857',
+        layers: 'seamless_locales',
         format: 'image/png',
         transparent: true,
         pane: 'tilePane',
@@ -440,7 +440,7 @@ function hoverSelect(e, map, layer) {
             layer,
             e.latlng,
             {
-                'propertyName': 'geoj_4326,locale_name'
+                'propertyName': 'geoj,infoj'
             }
         ))
     }
@@ -515,9 +515,24 @@ function wmsGetFeatureInfo(url){
     xhr = $.ajax({
         url: url,
         success: function (data) {
-            createHoverFeature(data.features[0].properties.geoj_4326);
+            createHoverFeature(data.features[0].properties.geoj);
+            populateInfoTable(JSON.parse(data.features[0].properties.infoj));
         }
     });
+}
+
+function populateInfoTable(infoj){
+    var infoTable = document.getElementById('seamless_locales_info');
+    infoTable.innerHTML = '';
+    var r = infoTable.insertRow(infoTable.rows.length);
+    r.insertCell(0).innerHTML = 'Info';
+    Object.keys(infoj).map(function(Okey) {
+        if (infoj[Okey]) {
+            r = infoTable.insertRow(infoTable.rows.length);
+            r.insertCell(0).innerHTML = Okey;
+            r.insertCell(1).innerHTML = infoj[Okey];
+        }
+    })
 }
 
 
