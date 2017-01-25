@@ -522,24 +522,45 @@ div, a {
     font-weight: 700;
 }
 
-.geodata__scrolly .info th,
-.geodata__scrolly .info td{
+.geodata__scrolly .info td,
+.leaflet-popup-content td{
     vertical-align: top !important;
 }
 
-/*poi*/
-.poi .legend{
+.leaflet-popup-content table td:first-child{
+    font-weight: 700;
+}
+
+.leaflet-popup-content table td:nth-child(2){
+    font-family: monospace;
+}
+
+.geodata__scrolly .legend{
     margin-top: 10px;
     margin-left: -3px;
 }
+
+.geodata__scrolly .legend .active{
+    font-family: ffmark_bold, sans-serif;
+}
+
+.retail_points .legend img{
+    width: 20px;
+    height: 20px;
+}
+
 .poi .legend img{
     width: 40px;
     height: 40px;
 }
-.poi .legend .active{
-    font-family: ffmark_bold, sans-serif;
+
+.seamless_locales .info td:first-child{
+    width: 110px;
 }
 
+.town_suburbs .info td:first-child{
+    width: 100px;
+}
 
 .geodata__content{
     width: calc(100% - 500px);
@@ -590,80 +611,36 @@ div, a {
     left: 10px;
 }
 
+/* geodata faq*/
+.geodata__faq {
+    display: none;
+    width: calc(100% - 200px);
+    float: left;
+    background-color: #fff;
+    height: 619px;
+    margin-left: 200px;
+    margin-top: -619px;
+    z-index: 999;
+    position: relative;
+}
+
+.geodata__faq table td {
+    padding-bottom: 20px;
+    vertical-align: top;
+}
+
+.geodata__faq table td:first-child {
+    padding-right: 30px;
+}
+
+.geodata__faq table .title {
+    font-family: ffmark_bold, sans-serif;
+    padding-bottom: 10px;
+}
 
 /* geodata content */
 /*#section_geodata > .container > .pricing {*/
     /*width: calc(100% - 230px);*/
-/*}*/
-
-/*#section_geodata > .container > .faq {*/
-    /*width: calc(100% - 230px);*/
-/*}*/
-
-/*#section_geodata > .container > .map > #map_geodata:after {*/
-    /*position: absolute;*/
-    /*bottom: 0;*/
-    /*right: 0;*/
-    /*padding: 0 10px 0 5px;*/
-    /*z-index: 999;*/
-    /*font-family: ffmark_bold, sans-serif;*/
-    /*line-height: 1.34;*/
-    /*font-size: 15px;*/
-    /*background-color: rgba(255,255,255,0.95);*/
-    /*text-align: right;*/
-    /*content: 'Leaflet | Map data © OpenStreetMap contributors | Tiles © CartoDB';*/
-/*}*/
-
-/*#section_geodata > .container > .map > .info {*/
-    /*display: none;*/
-    /*position: absolute;*/
-    /*width: 400px;*/
-    /*bottom: 20px;*/
-    /*left: 20px;*/
-    /*z-index: 999;*/
-    /*padding: 10px;*/
-    /*font-size: 20px;*/
-    /*line-height: 1.2;*/
-    /*background-color: rgba(255,255,255,0.95);*/
-/*}*/
-
-/*#section_geodata > .container > .map > .info > .bold {*/
-    /*font-family: ffmark_bold, sans-serif;*/
-/*}*/
-
-/*#section_geodata > .container > .map > .map__expand {*/
-    /*position: absolute;*/
-    /*top: 10px;*/
-    /*right: 10px;*/
-    /*width: 30px;*/
-    /*height: 30px;*/
-    /*line-height: 33px;*/
-    /*z-index: 999;*/
-    /*background-color: #fff;*/
-    /*border: 2px solid rgba(0,0,0,0.2);*/
-    /*border-radius: 4px;*/
-/*}*/
-
-
-
-/*!* geodata content faq*!*/
-/*#section_geodata > .container > .faq table {*/
-    /*width: 100%;*/
-    /*font-size: 20px;*/
-/*}*/
-
-/*#section_geodata > .container > .faq table td {*/
-    /*padding-bottom: 20px;*/
-    /*vertical-align: top;*/
-/*}*/
-
-/*#section_geodata > .container > .faq table td:first-child {*/
-    /*padding-right: 30px;*/
-/*}*/
-
-/*#section_geodata > .container > .faq table .title {*/
-    /*font-family: ffmark_bold, sans-serif;*/
-    /*padding-bottom: 10px;*/
 /*}*/
 
 /*!* geodata content pricing*!*/
@@ -692,21 +669,6 @@ div, a {
 /*#section_geodata > .container > .pricing .all {*/
     /*background-image: url(/public/images/geodata/pricing_all.png);*/
 /*}*/
-
-/*#section_geodata .tooltip {*/
-    /*display: none;*/
-    /*position: absolute;*/
-    /*padding: 5px;*/
-    /*margin-left: -10px;*/
-    /*width: calc(100% - 10px);*/
-    /*line-height: 1.5em;*/
-    /*font-size: 15px;*/
-    /*text-shadow: 1px 1px 1px #aaa;*/
-    /*background-color: #000;*/
-    /*color: #fff;*/
-    /*z-index: 1001;*/
-/*}*/
-
 
 
 /* TEAM */
@@ -989,13 +951,13 @@ div, a {
 /* RESIZE */
 
 @media screen and (max-width: 1070px) {
-    .header_menu.smaller > #home {
+    .header__smaller > #home {
         font-size: 24px;
     }
 }
 
 @media screen and (max-width: 890px) {
-    .header_menu.smaller > #home {
+    .header__smaller > #home {
         display: none;
     }
 }

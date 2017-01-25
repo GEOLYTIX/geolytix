@@ -27,6 +27,7 @@ $('.geodata__content > .btnFullScreen').click(function() {
 
 
 const geodataScrollyFirst = $('.geodata__scrolly > div').first();
+const geodataFAQ = $('.geodata__faq');
 
 function selectGeodata(_this, _i){
     _this.siblings().removeClass('selected');
@@ -34,7 +35,9 @@ function selectGeodata(_this, _i){
     currentDataset = _this.attr('id');
     removeLayer();
     map_geodata.off('mousemove');
+    map_geodata.off('click');
     geodataScrollyFirst.animate({'marginTop': 619 * -_i});
+    currentDataset == 'faq' ? geodataFAQ.show() : geodataFAQ.hide();
 }
 
 function removeLayer(){
@@ -42,7 +45,6 @@ function removeLayer(){
         map_geodata.removeLayer(layer);
     });
 }
-
 
 var xhr,
     layerHover,
@@ -54,9 +56,9 @@ seamless_locales.click(function() {
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
 
-    var lSeamless = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-        opacity: 1.0,
+    var layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         version: '1.3',
+        opacity: 1.0,
         layers: 'seamless_locales',
         format: 'image/png',
         transparent: true,
@@ -65,7 +67,9 @@ seamless_locales.click(function() {
         styles: 'seamless_locales'
     }).addTo(map_geodata);
 
-    map_geodata.on('mousemove', function(e){hoverSelect(e, map_geodata, lSeamless)});
+    map_geodata.on('mousemove', function (e) {
+        hoverSelect(e, map_geodata, layer, document.getElementById('seamless_locales_info'))
+    });
 });
 
 seamless_locales.trigger('click');
@@ -76,14 +80,51 @@ $('#retail_points').click(function() {
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
 
-    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+    var cqlFilterArray = ["brand='asda'","brand='morrisons'","brand='sainsburys'","brand='tesco'"],
+        cqlFilter = cqlFilterArray.join(' OR ');
+
+    var layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+        version: '1.3',
         layers: 'retailpoints',
         format: 'image/png',
         transparent: true,
-        styles: 'retailpoints'
+        styles: 'retailpoints',
+        CQL_FILTER: cqlFilter
     }).addTo(map_geodata);
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map_geodata);
+
+    map_geodata.on('click', function(e){clickSelect(e, map_geodata, layer, cqlFilter)});
+
+    var selectBtn = $('.retail_points .legend span');
+    selectBtn.click(function(){
+        $(this).toggleClass('active');
+        if ($(this).hasClass('active')) {
+            cqlFilterArray.push("brand='" + $(this).attr('id') + "'");
+        } else {
+            cqlFilterArray.splice($.inArray("brand='" + $(this).attr('id') + "'", cqlFilterArray),1);
+        }
+
+        cqlFilter = cqlFilterArray.join(' OR ');
+
+        removeLayer();
+
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
+
+        if (cqlFilter.length > 0) {
+            L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+                version: '1.3',
+                layers: 'retailpoints',
+                format: 'image/png',
+                transparent: true,
+                styles: 'retailpoints',
+                CQL_FILTER: cqlFilter
+            }).addTo(map_geodata);
+        }
+
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map_geodata);
+    });
+
 });
 
 
@@ -242,15 +283,19 @@ $('#town_suburbs').click(function() {
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
 
-    new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+    var layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+        version: '1.3',
         opacity: 1.0,
-        layers: 'townsuburb_suburb',
+        layers: 'town_suburb',
         format: 'image/png',
         transparent: true,
         pane: 'tilePane',
         zIndex: 3,
-        styles: 'townsuburb_suburb'
+        styles: 'town_suburb'
     }).addTo(map_geodata);
+
+    map_geodata.on('mousemove', function(e){hoverSelect(e, map_geodata, layer, document.getElementById('town_suburb_info'))});
+
 });
 
 
@@ -282,46 +327,46 @@ $('#poi').click(function() {
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
 
-    var poiFilterArray = ["poi_type='carpark'"],
-        poiFilter = poiFilterArray[0];
+    var cqlFilterArray = ["poi_type='carpark'"],
+        cqlFilter = cqlFilterArray[0];
 
-    var lPOI = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+    var layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         version: '1.3',
         layers: 'poi',
         format: 'image/png',
         transparent: true,
         styles: 'poi',
-        CQL_FILTER: poiFilter
+        CQL_FILTER: cqlFilter
     }).addTo(map_geodata);
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map_geodata);
 
 
-    map_geodata.on('click', function(e){clickSelect(e, map_geodata, lPOI)});
+    map_geodata.on('click', function(e){clickSelect(e, map_geodata, layer, cqlFilter)});
 
 
     var poiBtn = $('.poi .legend span');
     poiBtn.click(function(){
         $(this).toggleClass('active');
         if ($(this).hasClass('active')) {
-            poiFilterArray.push("poi_type='" + $(this).attr('id') + "'");
+            cqlFilterArray.push("poi_type='" + $(this).attr('id') + "'");
         } else {
-            poiFilterArray.splice($.inArray("poi_type='" + $(this).attr('id') + "'", poiFilterArray),1);
+            cqlFilterArray.splice($.inArray("poi_type='" + $(this).attr('id') + "'", cqlFilterArray),1);
         }
 
-        poiFilter = poiFilterArray.join(' OR ');
+        cqlFilter = cqlFilterArray.join(' OR ');
 
         removeLayer();
 
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
 
-        if (poiFilter.length > 0) {
+        if (cqlFilter.length > 0) {
             L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
                 layers: 'poi',
                 format: 'image/png',
                 transparent: true,
                 styles: 'poi',
-                CQL_FILTER: poiFilter
+                CQL_FILTER: cqlFilter
             }).addTo(map_geodata);
         }
 
@@ -432,37 +477,42 @@ $('#faq').click(function() {
 });
 
 
-function hoverSelect(e, map, layer) {
+function hoverSelect(e, map, layer, infoTable) {
     var pHover = turf.point([e.latlng.lng, e.latlng.lat]);
-    if (!featureHover || !turf.inside(pHover, featureHover)){
-        wmsGetFeatureInfo(getFeatureInfoUrl(
-            map,
-            layer,
-            e.latlng,
-            {
-                'propertyName': 'geoj,infoj'
-            }
-        ))
+    if (!featureHover || !turf.inside(pHover, featureHover)) {
+        wmsGetHoverFeatureInfo(
+            getFeatureInfoUrl(
+                map,
+                layer,
+                e.latlng,
+                {
+                    'propertyName': 'geoj,infoj'
+                }
+            ),
+            infoTable)
     }
 }
 
 
-function clickSelect(e, map, layer) {
-    wmsGetFeatureInfoPopup(getFeatureInfoUrl_(
-        map,
-        layer,
-        e.latlng,
-        {
-            'propertyName': 'poi_info'
-        }
-    ), e)
+function clickSelect(e, map, layer, cqlFilter) {
+    wmsGetClickFeatureInfo(
+        getFeatureInfoUrl(
+            map,
+            layer,
+            e.latlng,
+            {
+                'propertyName': 'latlonj,infoj',
+                'CQL_FILTER': cqlFilter
+            }
+        )
+    )
 }
-
 
 const proj_4326 = proj4.Proj('EPSG:4326');
 const proj_3857 = proj4.Proj('EPSG:3857');
 function getFeatureInfoUrl(map, layer, latlng, params) {
-    var point = map.latLngToContainerPoint(latlng, map.getZoom()),
+    var url = layer._wmsUrl || layer._url,
+        point = map.latLngToContainerPoint(latlng, map.getZoom()),
         size = map.getSize(),
         bounds = map.getBounds(),
         sw = proj4.transform(proj_4326, proj_3857, proj4.toPoint([bounds.getWest(), bounds.getSouth()])),
@@ -482,47 +532,38 @@ function getFeatureInfoUrl(map, layer, latlng, params) {
     params = L.Util.extend(defaultParams, params || {});
     params[params.version === '1.3' ? 'i' : 'x'] = point.x;
     params[params.version === '1.3' ? 'j' : 'y'] = point.y;
-    return layer._wmsUrl + L.Util.getParamString(params, layer._wmsUrl, true);
+    return url + L.Util.getParamString(params, url, true);
 }
 
-function getFeatureInfoUrl_(map, layer, latlng, params) {
-    var point = map.latLngToContainerPoint(latlng, map.getZoom()),
-        size = map.getSize(),
-        bounds = map.getBounds(),
-        sw = proj4.transform(proj_4326, proj_3857, proj4.toPoint([bounds.getWest(), bounds.getSouth()])),
-        ne = proj4.transform(proj_4326, proj_3857, proj4.toPoint([bounds.getEast(), bounds.getNorth()])),
-        defaultParams = {
-            request: 'GetFeatureInfo',
-            service: 'WMS',
-            srs: layer._crs.code,
-            version: layer._wmsVersion,
-            bbox: [sw.x, sw.y, ne.x, ne.y],
-            height: size.y,
-            width: size.x,
-            layers: layer.options.layers,
-            query_layers: layer.options.layers,
-            info_format: 'application/json'
-        };
-    params = L.Util.extend(defaultParams, params || {});
-    params[params.version === '1.3' ? 'i' : 'x'] = point.x;
-    params[params.version === '1.3' ? 'j' : 'y'] = point.y;
-    return layer._url + L.Util.getParamString(params, layer._url, true);
-}
-
-
-function wmsGetFeatureInfo(url){
+function wmsGetHoverFeatureInfo(url, infoTable){
     if (xhr) xhr.abort();
     xhr = $.ajax({
         url: url,
         success: function (data) {
             createHoverFeature(data.features[0].properties.geoj);
-            populateInfoTable(JSON.parse(data.features[0].properties.infoj));
+            populateInfoTable(JSON.parse(data.features[0].properties.infoj), infoTable);
         }
     });
 }
 
-function populateInfoTable(infoj){
-    var infoTable = document.getElementById('seamless_locales_info');
+function createHoverFeature(geom) {
+    if (layerHover) map_geodata.removeLayer(layerHover);
+    featureHover = {
+        'type': 'Feature',
+        'properties': {},
+        'geometry': JSON.parse(geom)
+    };
+    layerHover = L.geoJson(featureHover, {
+        style: function () {
+            return {
+                color: '#079e00',
+                fillOpacity: 0.1
+            };
+        }
+    }).addTo(map_geodata);
+}
+
+function populateInfoTable(infoj, infoTable){
     infoTable.innerHTML = '';
     var r = infoTable.insertRow(infoTable.rows.length);
     r.insertCell(0).innerHTML = 'Info';
@@ -536,35 +577,34 @@ function populateInfoTable(infoj){
 }
 
 
-function createHoverFeature(geom) {
-    if (layerHover) map_geodata.removeLayer(layerHover);
-
-    featureHover = {
-        'type': 'Feature',
-        'properties': {},
-        'geometry': JSON.parse(geom)
-    };
-
-    layerHover = L.geoJson(featureHover, {
-        style: function () {
-            return {
-                color: '#079e00',
-                fillOpacity: 0.1
-            };
-        }
-    }).addTo(map_geodata);
-}
 
 
-function wmsGetFeatureInfoPopup(url, e){
+function wmsGetClickFeatureInfo(url){
     if (xhr) xhr.abort();
     xhr = $.ajax({
         url: url,
         success: function (data) {
-            L.popup()
-                .setLatLng(e.latlng)
-                .setContent(L.Util.template("<h2>{poi_info}</h2>", data.features[0].properties))
-                .openOn(map_geodata);
+            if (data.features.length > 0) {
+                var infoj = JSON.parse(data.features[0].properties.infoj);
+                if (infoj){
+                    L.popup()
+                        .setLatLng(JSON.parse(data.features[0].properties.latlonj))
+                        .setContent(buildHtmlTable(infoj))
+                        .openOn(map_geodata);
+                }
+            }
         }
     });
+}
+
+function buildHtmlTable(infoj) {
+    var table = document.createElement('table');
+    Object.keys(infoj).map(function(Okey) {
+        if (infoj[Okey]) {
+            var r = table.insertRow(table.rows.length);
+            r.insertCell(0).innerHTML = Okey;
+            r.insertCell(1).innerHTML = infoj[Okey];
+        }
+    });
+    return table;
 }
