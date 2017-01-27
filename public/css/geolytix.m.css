@@ -24,7 +24,7 @@
 /* GLOBAL */
 body {
     position: fixed;
-    font-family: ffmark, "sans-serif";
+    font-family: ffmark, sans-serif;
     font-size: 20px;
     margin: 0;
     height: 100%;
@@ -79,7 +79,7 @@ p {
 
 
 /* INTRO */
-.intro__section {
+#intro__section {
     position: relative;
     width: 100%;
     height: 100%;
@@ -91,7 +91,7 @@ p {
     margin-bottom: 30px;
 }
 
-.intro__section > span {
+#intro__section > span {
     position: absolute;
     color: #000;
     text-align: left;
@@ -102,17 +102,17 @@ p {
     transition: color 0.5s linear;
 }
 
-.intro__logo {
+#intro__logo {
     font-family: ffmark_black, sans-serif;
     top: 10px;
-    left: 5px;
+    left: 10px;
     font-size: 60px;
 }
 
-.intro__text {
+#intro__text {
     font-family: ffmark_bold, sans-serif;
-    bottom: 0;
-    left: 5px;
+    bottom: 10px;
+    left: 10px;
     font-size: 40px;
 }
 
@@ -145,7 +145,7 @@ p {
 
 #services__section > .scroll__x {
     margin-top: 20px;
-    padding-left: 5px;
+    padding-left: 10px;
     width: 100%;
 }
 
@@ -164,7 +164,7 @@ p {
 }
 
 .services__table tr:nth-of-type(2) {
-    font-family: ffmark_bold, "sans-serif";
+    font-family: ffmark_bold, sans-serif;
 }
 
 .services__table tr:nth-of-type(2) td {
@@ -206,7 +206,7 @@ p {
 }
 
 #case_studies__section > p:nth-of-type(1){
-    font-size: 30px;
+    font-size: 35px;
     font-family: ffmark_bold, sans-serif;
     padding: 30px 10px 0 10px;
 }
@@ -215,253 +215,206 @@ p {
     padding: 20px 10px 20px 10px;
 }
 
-.case_studies__logos {
+#case_studies__logos {
     margin-bottom: 40px;
 }
 
-.case_studies__logos > .scroll__container {
+#case_studies__logos > .scroll__container {
     width: 500%;
     height: 100px;
 }
 
-.case_studies__logos .img__contain {
+#case_studies__logos .img__contain {
     background-position: center center;
 }
 
-.case_studies__logos .camelot {
+#case_studies__logos .camelot {
     background-image: url(/public/images/clients/camelot_logo_white.png);
 }
 
-.case_studies__logos .johnlewis {
+#case_studies__logos .johnlewis {
     background-image: url(/public/images/clients/johnlewis_logo_white.png);
 }
 
-.case_studies__logos .onthemarket {
+#case_studies__logos .onthemarket {
     background-image: url(/public/images/clients/onthemarket_logo_white.png);
 }
 
-.case_studies__logos .arco {
+#case_studies__logos .arco {
     background-image: url(/public/images/clients/arco_logo_white.png);
 }
 
-.case_studies__logos .totalfitness {
+#case_studies__logos .totalfitness {
     background-image: url(/public/images/clients/totalfitness_logo_white.png);
 }
 
-.case_studies__logos .asda {
+#case_studies__logos .asda {
     background-image: url(/public/images/clients/asda_logo_white.png);
 }
 
-.case_studies__info > .scroll__container {
+#case_studies__info > .scroll__container {
     width: 250%;
     table-layout: fixed;
 }
 
-.case_studies__info td {
+#case_studies__info td {
     display: none;
     vertical-align: top;
 }
 
-.active {
-    display: table-cell;
+#case_studies__info .active {
+    display: table-cell !important;
 }
 
-.case_studies__info tr:nth-of-type(1) {
+#case_studies__info .pad_left {
+    padding-left: 10px;
+}
+
+#case_studies__info tr:nth-of-type(1) {
      height: 50px;
-     font-family: ffmark_bold, "sans-serif";
+     font-family: ffmark_bold, sans-serif;
      font-size: 25px;
 }
 
-.case_studies__info tr:nth-of-type(2) td{
+#case_studies__info tr:nth-of-type(2) td{
     font-size: 18px;
     padding-right: 20px;
 }
 
-.case_studies__info .quote {
-    font-family: ffmark_italic, "sans-serif";
+#case_studies__info .quote {
+    font-family: ffmark_italic, sans-serif;
     margin-bottom: 16px;
 }
 
-.case_studies__info ul {
+#case_studies__info ul {
     padding-left: 18px;
     margin: 0;
 }
 
-.case_studies__info ul li{
+#case_studies__info ul li{
     margin-bottom: 10px;
 }
 
 
 
 /* GEODATA */
-
-#section_geodata {
+.geodata__section {
     width: 100%;
 }
 
-#section_geodata > .container {
-    position: relative;
-    width: calc(100% - 5px);
-    padding-left: 5px;
+.geodata__section > p:nth-of-type(1){
+    font-family: ffmark_bold, sans-serif;
+    font-size: 35px;
+    padding: 50px 10px 0 10px;
 }
-#section_geodata > .container > .scroll__container {
+
+.geodata__section > p:nth-of-type(2){
+    color: #079e00;
+    font-family: ffmark_bold, sans-serif;
+    font-size: 25px;
+    padding: 20px 10px 10px 10px;
+}
+
+.geodata__section > p:nth-of-type(3){
+    font-size: 20px;
+    padding: 0 10px 30px 10px;
+}
+
+.geodata__section > .scroll__x {
+    padding-left: 10px;
+    width: 100%;
+}
+
+.geodata__table {
     width: 1300%;
-}
-#section_geodata > .container > .scroll__container > .card {
-    position: relative;
-    float: left;
-    padding-right: 20px;
-    width: calc(7.14% - 20px);
-}
-#section_geodata > .container > .scroll__container > .card > .title {
-    height: 50px;
-    font-size: 120%;
-    font-family: ffmark_bold, "sans-serif";
-}
-#section_geodata > .container > .scroll__container > .card > .img {
-    width: 100%;
-    height: 300px;
-    background-position: center center;
-}
-#section_geodata > .container > .scroll__container > .card > .info {
-    background-color: #fff;
-    padding-top: 5px;
-    padding-left: 5px;
-    border-left: 1px solid;
-    font-size: 80%;
-}
-#section_geodata > .container > .scroll__container > .card > .img {
-    position: relative;
-}
-#section_geodata > .container > .scroll__container > .card > .img > a {
-    position: absolute;
-    top: 5px;
-    right: 0;
-    font-size: 150%;
-}
-#section_geodata > .container > .scroll__container > .retail_points > .img{
-    background-image: url(/public/images/geodata/retail_points.jpg);
-}
-#section_geodata > .container > .scroll__container > .retail_places > .img {
-    background-image: url(/public/images/geodata/retail_places.jpg);
-}
-#section_geodata > .container > .scroll__container > .seamless_locales > .img {
-    background-image: url(/public/images/geodata/seamless_locales.jpg);
-}
-#section_geodata > .container > .scroll__container > .town_suburbs > .img {
-    background-image: url(/public/images/geodata/town_suburbs.jpg);
-}
-#section_geodata > .container > .scroll__container > .postal_geom > .img {
-    background-image: url(/public/images/geodata/postal_geom.jpg);
-}
-#section_geodata > .container > .scroll__container > .public_transport > .img {
-    background-image: url(/public/images/geodata/public_transport.jpg);
-}
-#section_geodata > .container > .scroll__container > .road_network > .img {
-    background-image: url(/public/images/geodata/road_network.jpg);
-}
-#section_geodata > .container > .scroll__container > .uk_admin > .img {
-    background-image: url(/public/images/geodata/uk_admin.jpg);
-}
-#section_geodata > .container > .scroll__container > .education > .img {
-    background-image: url(/public/images/geodata/education.jpg);
-}
-#section_geodata > .container > .scroll__container > .poi > .img {
-    background-image: url(/public/images/geodata/poi.jpg);
+    table-layout: fixed;
 }
 
+.geodata__table td {
+    vertical-align: top;
+    border-right: 20px solid #fff;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+}
+
+.geodata__table tr:nth-of-type(1) {
+    font-family: ffmark_bold, sans-serif;
+    font-size: 25px;
+}
+
+.geodata__table tr:nth-of-type(2) {
+    height: 300px;
+}
+
+.geodata__table .docu_link{
+    color: #079e00;
+    line-height: 3;
+    margin-left: -4px;
+}
 
 
 /* blog spacer */
-.spacer {
-    height: 500px;
-    width: 100%;
-}
-
-.spacer > .link__intro {
-    padding: 100px 0 0 50px;
-    font-size: 200%;
-}
-
-.spacer > .link__text {
-    font-family: ffmark_bold, "sans-serif";
-    font-size: 150%;
-}
-
-#spacer_blog > .link__text {
-    margin: 50px 0 0 100px;
+#blog__link {
+    font-family: ffmark_bold, sans-serif;
+    margin: 30px 0 120px 100px;
     border-top: 10px solid #079e00;
-    padding: 10px 0;
-}
-
-#spacer_blog > .link__text:hover {
-    cursor: pointer;
-    border-top: 10px solid #079e00;
+    padding-top: 10px;
 }
 
 
 
 /* TEAM */
-
-#section_team {
+#team__section {
     width: 100%;
     margin-bottom: 80px;
 }
-#section_team > .scroll__x {
+
+#team__section > p:nth-of-type(1){
+    color: #079e00;
+    font-family: ffmark_bold, sans-serif;
+    font-size: 35px;
+    padding: 30px 10px 0 10px;
+}
+
+#team__section > p:nth-of-type(2){
+    font-family: ffmark_bold, sans-serif;
+    font-size: 25px;
+    padding: 20px 10px 40px 10px;
+}
+
+#team__section > .scroll__x {
     padding-left: 5px;
     width: 100%;
 }
-#section_team > .scroll__x > table {
-    width: 650%;
+
+.team__table {
+    width: 900%;
     table-layout: fixed;
 }
-#section_team > .scroll__x > table td {
+
+.team__table td {
     vertical-align: top;
     padding-right: 20px;
 }
-#section_team > .scroll__x > table tr:nth-of-type(1) .img__contain {
+
+.team__table tr:nth-of-type(1) {
     height: 150px;
-    width: 150px;
-    border-radius: 50%;
 }
-#section_team > .scroll__x > table .blair {
-    background-image: url(/public/images/team/blair.jpg);
-}
-#section_team > .scroll__x > table .sarah {
-    background-image: url(/public/images/team/sarah.jpg);
-}
-#section_team > .scroll__x > table .neil {
-    background-image: url(/public/images/team/neil.jpg);
-}
-#section_team > .scroll__x > table .samantha {
-    background-image: url(/public/images/team/samantha.jpg);
-}
-#section_team > .scroll__x > table .simon {
-    background-image: url(/public/images/team/simon.jpg);
-}
-#section_team > .scroll__x > table .louise {
-    background-image: url(/public/images/team/louise.jpg);
-}
-#section_team > .scroll__x > table .christoph {
-    background-image: url(/public/images/team/christoph.jpg);
-}
-#section_team > .scroll__x > table .jasmin {
-    background-image: url(/public/images/team/jasmin.jpg);
-}
-#section_team > .scroll__x > table .dennis {
-    background-image: url(/public/images/team/dennis.jpg);
-}
-#section_team > .scroll__x > table tr:nth-of-type(2) td {
-    font-family: ffmark_bold, "sans-serif";
+
+.team__table tr:nth-of-type(2) td {
+    font-family: ffmark_bold, sans-serif;
     padding-top: 10px;
 }
-#section_team > .scroll__x > table tr:nth-of-type(4) td {
-    padding-top: 20px;
+
+.team__table tr:nth-of-type(4) td {
+    padding-top: 10px;
 }
-#section_team > .scroll__x > table tr:nth-of-type(4) {
-    font-size: 80%;
+
+.team__table tr:nth-of-type(4) {
+    font-size: 18px;
 }
-#section_team > .scroll__x > table tr:nth-of-type(4) i {
+
+.team__table tr:nth-of-type(4) i {
     font-size: 35px;
     margin-left: -9px;
 }
@@ -470,97 +423,67 @@ p {
 
 /* AWARDS */
 
-#section_awards {
-    width: 100%;
+#awards__section {
     margin-bottom: 30px;
 }
 
-#section_awards > .container {
-    position: relative;
-    width: calc(100% - 5px);
-    height: 300px;
-    padding-left: 5px;
+#awards__section > .container {
+    padding-left: 10px;
 }
 
-#section_awards > .container > .scroll__container {
+#awards__section > .container > .scroll__container {
     width: 900px;
-    height: 100%;
 }
 
-#section_awards > .container > .scroll__container > .strip {
-    width: 100%;
-    height: 50%;
-}
-
-#section_awards > .container > .scroll__container > .strip > .award {
+#awards__section > .container > .scroll__container > .strip > .award {
+    height: 100px;
     width: 250px;
-    height: 100%;
     margin-right: 50px;
     background-position: center center;
 }
 
-#section_awards > .container > .scroll__container > .strip:nth-of-type(1) > div:nth-of-type(1) {
+#awards__section .strip:nth-of-type(1) > div:nth-of-type(1) {
     background-image: url(/public/images/awards/award_qa.jpg);
 }
 
-#section_awards > .container > .scroll__container > .strip:nth-of-type(1) > div:nth-of-type(2) {
+#awards__section .strip:nth-of-type(1) > div:nth-of-type(2) {
     background-image: url(/public/images/awards/award_odi.jpg);
 }
 
-#section_awards > .container > .scroll__container > .strip:nth-of-type(1) > div:nth-of-type(3) {
+#awards__section .strip:nth-of-type(1) > div:nth-of-type(3) {
     background-image: url(/public/images/awards/award_fsb.jpg);
 }
 
-#section_awards > .container > .scroll__container > .strip:nth-of-type(2) > div:nth-of-type(1) {
+#awards__section .strip:nth-of-type(2) > div:nth-of-type(1) {
     margin-left: 150px;
     background-image: url(/public/images/awards/award_nba.jpg);
 }
 
-#section_awards > .container > .scroll__container > .strip:nth-of-type(2) > div:nth-of-type(2) {
+#awards__section .strip:nth-of-type(2) > div:nth-of-type(2) {
     background-image: url(/public/images/awards/award_sla.jpg);
 }
 
 
 
 /* FOOTER */
-
-#footer__menu {
+#footer {
     background-color: #222;
-    padding-top: 30px;
+    text-align: center;
 }
-.privacy_policy, .terms_conditions {
-    display: block;
+
+#footer .footer__half {
+    width: 49%;
+    margin: 20px 0;
+    display: inline-block;
 }
-#footer__menu .ul_grid {
-    position: relative;
-	margin: 0;
-    padding: 0;
-	text-align: center;
-	width: 100%;
-}
-#footer__menu .ul_grid > li {
-	display: inline-block;
-	vertical-align: top;
-}
-#footer__menu i {
-    margin: -10px;
-}
-#footer__menu > .ul_grid > li{
-    width: 50%;
-    padding-bottom: 20px;
-}
-#footer__menu p, #footer__menu a {
-    margin: 0;
+
+#footer p, #footer a {
     line-height: 1.5em;
     color: #fff;
     text-shadow: 2px 2px 2px #000;
     font-size: 15px;
 }
-#footer__menu .social_media__icons > a {
-    margin: -30px 5px 10px 5px;
+
+#footer .social_media__icons > a {
     font-size: 50px;
-}
-#footer__menu .social_media__icons > a:hover {
-    cursor: pointer;
-    color: #00ff00;
 }

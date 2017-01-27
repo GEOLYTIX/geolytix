@@ -28,10 +28,6 @@
         ga('send', 'pageview');
     </script>
 
-    <script src="/public/js/jquery.js"></script>
-    <script src="/public/js/jquery.mobile.js"></script>
-    <script src="/public/js/debounce.js"></script>
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     <link rel="stylesheet" href="/public/css/fontello_embedded.css"/>
     <link rel="stylesheet" href="/public/css/geolytix.m.css"/>
@@ -42,9 +38,9 @@
 
 <div class="inner">
 
-    <div class="intro__section img__cover">
-        <span class="intro__logo">GEOLYTIX</span>
-        <span class="intro__text"></span>
+    <div id="intro__section" class="img__cover">
+        <span id="intro__logo">GEOLYTIX</span>
+        <span id="intro__text"></span>
     </div>
 
 
@@ -92,8 +88,8 @@
         <p>Case Studies</p>
         <p>We build close, on-going relationships with our customers and will become your trusted advisors.</p>
 
-        <div class="case_studies__logos scroll__x">
-            <table class="scroll__container">
+        <div id="case_studies__logos" class="scroll__x">
+            <table id="case_studies__logos__table" class="scroll__container">
                 <td class="img__contain camelot active"></td>
                 <td class="img__contain johnlewis"></td>
                 <td class="img__contain onthemarket"></td>
@@ -103,33 +99,33 @@
             </table>
         </div>
 
-        <div class="case_studies__info scroll__x">
+        <div id="case_studies__info" class="scroll__x">
 
             <table class="scroll__container">
 
                 <tr>
-                    <td class="camelot active">Camelot</td>
+                    <td class="camelot pad_left active">Camelot</td>
                     <td class="camelot active">Strategy</td>
                     <td class="camelot active">Results</td>
-                    <td class="johnlewis">John Lewis</td>
+                    <td class="johnlewis pad_left">John Lewis</td>
                     <td class="johnlewis">Strategy</td>
                     <td class="johnlewis">Results</td>
-                    <td class="onthemarket">On The Market</td>
+                    <td class="onthemarket pad_left">On The Market</td>
                     <td class="onthemarket">Strategy</td>
                     <td class="onthemarket">Results</td>
-                    <td class="arco">Arco</td>
+                    <td class="arco pad_left">Arco</td>
                     <td class="arco">Strategy</td>
                     <td class="arco">Results</td>
-                    <td class="totalfitness">Total Fitness</td>
+                    <td class="totalfitness pad_left">Total Fitness</td>
                     <td class="totalfitness">Strategy</td>
                     <td class="totalfitness">Results</td>
-                    <td class="asda">ASDA</td>
+                    <td class="asda pad_left">ASDA</td>
                     <td class="asda">Strategy</td>
                     <td class="asda">Results</td>
                 </tr>
 
                 <tr>
-                    <td class="camelot active">
+                    <td class="camelot pad_left active">
                         <p>Predicting future revenue potential from new lottery terminals, marketing activity and product innovations.</p>
                     </td>
                     <td class="camelot active">
@@ -144,7 +140,7 @@
                         <p>Paul Clarke, Retail Planning Manager</p>
                     </td>
 
-                    <td class="johnlewis">
+                    <td class="johnlewis pad_left">
                         <p>Improving the efficiency of the Catchment Strategy Review Process.</p>
                     </td>
                     <td class="johnlewis">
@@ -161,7 +157,7 @@
                         <p>Michael Flood, Strategic Customer Analysis Manager</p>
                     </td>
 
-                    <td class="onthemarket">
+                    <td class="onthemarket pad_left">
                         <p>Supporting On The Market to deliver a web search tool that provides the right properties to view.</p>
                     </td>
                     <td class="onthemarket">
@@ -176,7 +172,7 @@
                         <p>Morgan Ross, IT Director</p>
                     </td>
 
-                    <td class="arco">
+                    <td class="arco pad_left">
                         <p>Understanding the drivers of store performance, and to use this to develop a blueprint for expansion of the stores network across the UK.</p>
                     </td>
                     <td class="arco">
@@ -192,7 +188,7 @@
                         <p>Paul Frewin, Divisional Director - Retail</p>
                     </td>
 
-                    <td class="totalfitness">
+                    <td class="totalfitness pad_left">
                         <p>Understanding the size of the opportunity for new gym locations.</p>
                     </td>
                     <td class="totalfitness">
@@ -208,7 +204,7 @@
                         <p>Richard Millman, CEO</p>
                     </td>
 
-                    <td class="asda">
+                    <td class="asda pad_left">
                         <p>A complete overhaul of new store forecasting processes and new space strategy.</p>
                     </td>
                     <td class="asda">
@@ -225,299 +221,147 @@
                 </tr>
 
             </table>
-
-            <!--<div class="scroll__container">-->
-
-                <!--<div class="card camelot">-->
-                    <!--<p class="title">Camelot</p>-->
-                    <!--<p>Predicting future revenue potential from new lottery terminals, marketing activity and product innovations.</p>-->
-                <!--</div>-->
-                <!--<div class="card camelot">-->
-                    <!--<p class="title">Strategy</p>-->
-                    <!--<ul>-->
-                        <!--<li>Understanding the behaviour of existing customers to build a model to predict the future.</li>-->
-                        <!--<li>Understand the effect of demographics and channel at a detailed level.</li>-->
-                        <!--<li>Develop on a platform that will provide in field analytics and mobile data capture, in order to futureproof processes and accuracy.</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-                <!--<div class="card camelot">-->
-                    <!--<p class="quote">"GEOLYTIX have transformed our location planning capability and have been fundamental in supporting our goal of unlocking opportunities for growth, optimising our ever changing retail network and further influencing channel strategies. They have absolutely enabled us to make better decisions where location matters."</p>-->
-                    <!--<p>Paul Clarke, Retail Planning Manager</p>-->
-                <!--</div>-->
-
-
-                <!--<div class="card johnlewis">-->
-                    <!--<p class="title">John Lewis</p>-->
-                    <!--<p>Improving the efficiency of the Catchment Strategy Review Process.</p>-->
-                <!--</div>-->
-                <!--<div class="card johnlewis">-->
-                    <!--<p class="title">Strategy</p>-->
-                    <!--<ul>-->
-                        <!--<li>Our job was to focus on the process, rather than the modelling which John Lewis carry out in-house.</li>-->
-                        <!--<li>Automate all steps in the process – as few clicks as possible.</li>-->
-                        <!--<li>Include geodata to improve the system.</li>-->
-                        <!--<li>Allow multiple strategic scenarios to be carried out more quickly, including the addition of click and collect locations.-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-                <!--<div class="card johnlewis">-->
-                    <!--<p class="title">Results</p>-->
-                    <!--<p class="quote">"The GEOLYTIX team were able to provide a bespoke solution that worked for us, rather than an off-the-shelf product. Simon went the extra mile and worked closely with us resulting in a significant improvement in efficiency, allowing multiple multi-channel strategy scenarios to be reviewed"</p>-->
-                    <!--<p>Michael Flood, Strategic Customer Analysis Manager</p>-->
-                <!--</div>-->
-
-
-                <!--<div class="card onthemarket">-->
-                    <!--<p class="title">On The Market</p>-->
-                    <!--<p>Supporting On The Market to deliver a web search tool that provides the right properties to view.</p>-->
-                <!--</div>-->
-                <!--<div class="card onthemarket">-->
-                    <!--<p class="title">Strategy</p>-->
-                    <!--<ul>-->
-                        <!--<li>Provide town and suburb boundaries that reflect where people want to live.</li>-->
-                        <!--<li>Support in creating a search hierarchy that covers all options for users.</li>-->
-                        <!--<li>Provide an accurate Point of Interest dataset to describe the provision in an area e.g. schools, public transport, supermarkets.</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-                <!--<div class="card onthemarket">-->
-                    <!--<p class="title">Results</p>-->
-                    <!--<p class="quote">"The GEOLYTIX team worked with us to understand our needs and provide accurate data that successfully reflects the areas where people want to search for property. Furthermore they supported our technical team with valuable advice, supporting us in delivering to tight timescales"</p>-->
-                    <!--<p>Morgan Ross, IT Director</p>-->
-                <!--</div>-->
-
-
-                <!--<div class="card arco">-->
-                    <!--<p class="title">Arco</p>-->
-                    <!--<p>Understanding the drivers of store performance, and to use this to develop a blueprint for expansion of the stores network across the UK.</p>-->
-                <!--</div>-->
-                <!--<div class="card arco">-->
-                    <!--<p class="title">Strategy</p>-->
-                    <!--<ul>-->
-                        <!--<li>In depth analysis of store data to build understanding of branch catchment areas.</li>-->
-                        <!--<li>Identification of the key factors which drive branch performance – both at the macro (market) level and at the micro (location specific) level.</li>-->
-                        <!--<li>Development of a unique, bespoke database of all trade parks in the UK, each ranked according to it’s suitability for a new Arco store.</li>-->
-                        <!--<li>Identification of the best opportunities for new branch openings, in terms of both the markets to enter and the trade parks on which to locate.</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-                <!--<div class="card arco">-->
-                    <!--<p class="title">Results</p>-->
-                    <!--<p class="quote">"The GEOLYTIX team worked closely with us to help us to understand our trade customers and stores. Their insight has identified the growth potential for our retail business, and a detailed blueprint to guide our strategic investments as we develop our branch portfolio."</p>-->
-                    <!--<p>Paul Frewin, Divisional Director - Retail</p>-->
-                <!--</div>-->
-
-
-                <!--<div class="card totalfitness">-->
-                    <!--<p class="title">Total Fitness</p>-->
-                    <!--<p>Understanding the size of the opportunity for new gym locations.</p>-->
-                <!--</div>-->
-                <!--<div class="card totalfitness">-->
-                    <!--<p class="title">Strategy</p>-->
-                    <!--<ul>-->
-                        <!--<li>Determining the best locations for the next Total Fitness gyms.</li>-->
-                        <!--<li>Understand the true customer profiles and catchments for specific location types.</li>-->
-                        <!--<li>Understand the size of the opportunity and how this affects market share and access to potential customers.-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-                <!--<div class="card totalfitness">-->
-                    <!--<p class="title">Results</p>-->
-                    <!--<p class="quote">"The work by GEOLYTIX quickly allowed us to understand the potential for increasing our market share and how we could best achieve this. They have given us the insight to support our strategic decision making in order to push our business forward."</p>-->
-                    <!--<p>Richard Millman, CEO</p>-->
-                <!--</div>-->
-
-
-                <!--<div class="card asda">-->
-                    <!--<p class="title">Asda</p>-->
-                    <!--<p>A complete overhaul of new store forecasting processes and new space strategy.</p>-->
-                <!--</div>-->
-                <!--<div class="card asda">-->
-                    <!--<p class="title">Strategy</p>-->
-                    <!--<ul>-->
-                        <!--<li>Business Requirements & IT Systems Design Review.</li>-->
-                        <!--<li>Forecasting Models Development– User front end to drive efficiency.</li>-->
-                        <!--<li>Team coaching and mentoring.</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-                <!--<div class="card asda">-->
-                    <!--<p class="title">Results</p>-->
-                    <!--<p class="quote">“The data & modelling will drive an increase in our forecasting accuracy, bespoke software development makes us more efficient. Just as importantly, GEOLYTIX have mentored and up-skilled the team. The work we have done with GEOLYTIX has shaped our strategy and enabled us to reach a space growth plan we are confident about. GEOLYTIX are helping us to invest wisely.”</p>-->
-                    <!--<p>David Dodd, Market Strategy Manager</p>-->
-                <!--</div>-->
-
-            <!--</div>-->
         </div>
     </div>
 
 
 
-    <div id="section_geodata">
-        <p class="title">Geodata</p>
-        <p class="intro">Where people live, work and shop; retail ranks and pitch, town boundaries, postal sectors,
-            demographics, university boundaries. We create novel datasets using Open Data as inputs, to help with your
-            network strategy and location based decisions. We also give back to the Open Data community by releasing
-            open datasets such as Retail Points.</p>
-
-        <div class="container scroll__x">
-
-            <div class="scroll__container">
-
-                <div class="card retail_points">
-                    <div class="title">Retail Points</div>
-                    <div class="img img__cover">
-                        <a href="/map?retail_points" target="_blank"><i
-                                    class="icon-export-alt"></i></a>
-                    </div>
-                    <div class="info">Over 10,000 supermarket roof-top locations and addresses. Retailers include Aldi,
-                        Asda, Booths, Budgens, Co-op, Costco, Lidl, Marks and Spencer, Morrisons, Sainsbury’s, Tesco,
-                        Waitrose, Wholefoods. Please download for free and use this data openly.
-                    </div>
-                </div>
-                <div class="card retail_places">
-                    <div class="title">Retail Places</div>
-                    <div class="img img__cover">
-                        <a href="/map?retail_places" target="_blank"><i
-                                    class="icon-export-alt"></i></a>
-                    </div>
-                    <div class="info">More than 20k scored, profiled and named polygons detailing where people shop in
-                        the UK, and catchment area demographics. Ideal for locating new sites and understanding micro
-                        location performance.
-                    </div>
-                </div>
-                <div class="card seamless_locales">
-                    <div class="title">Seamless Locales</div>
-                    <div class="img img__cover">
-                        <a href="/map?seamless_locales" target="_blank"><i
-                                    class="icon-export-alt"></i></a>
-                    </div>
-                    <div class="info">100% Seamless UK definitions of natural markets at 4 levels, local, towns,
-                        district and region. Close match to true ‘markets’ at multiple scales.
-                    </div>
-                </div>
-                <div class="card town_suburbs">
-                    <div class="title">Town and Suburb</div>
-                    <div class="img img__cover">
-                        <a href="/map?town_suburbs" target="_blank"><i
-                                    class="icon-export-alt"></i></a>
-                    </div>
-                    <div class="info">A precise and intuitive set of 30,000 named ‘places’ across the UK richly
-                        attributed with data. Ideal base for UK wide profiling and benchmarking.
-                    </div>
-                </div>
-                <div class="card postal_geom">
-                    <div class="title">Postal Geometries</div>
-                    <div class="img img__cover">
-                        <a href="/map?postal_geom" target="_blank"><i
-                                    class="icon-export-alt"></i></a>
-                    </div>
-                    <div class="info">High resolution postal boundaries combining exceptional ‘enclosure’ accuracy with
-                        boundaries that follow real-world features.
-                    </div>
-                </div>
-                <div class="card public_transport">
-                    <div class="title">Public Transport</div>
-                    <div class="img img__cover">
-                        <a href="/map?public_transport" target="_blank"><i
-                                    class="icon-export-alt"></i></a>
-                    </div>
-                    <div class="info">Precise access points to all public transport including detailed volume data.
-                        Perfect for accessibility studies and modelling on-street pedestrian volume.
-                    </div>
-                </div>
-                <div class="card road_network">
-                    <div class="title">Road Network</div>
-                    <div class="img img__cover">
-                        <a href="/map?road_network" target="_blank"><i
-                                    class="icon-export-alt"></i></a>
-                    </div>
-                    <div class="info">Routable Link/Node data with link-level mid-afternoon speeds based on Highways
-                        agency probe data and sophisticated speed model; painlessly integrates into multiple routing
-                        software tools.
-                    </div>
-                </div>
-                <div class="card uk_admin">
-                    <div class="title">UK Admin</div>
-                    <div class="img img__cover">
-                        <a href="/map?uk_admin" target="_blank"><i
-                                    class="icon-export-alt"></i></a>
-                    </div>
-                    <div class="info">All UK’s administrative boundaries in a consistent package. Includes all police,
-                        health, fire, EU zones, regions, constituencies, wards and statistical geographies. The core
-                        framework which all national statistics are published within.
-                    </div>
-                </div>
-                <div class="card education">
-                    <div class="title">Education</div>
-                    <div class="img img__cover">
-                        <a href="/map?education" target="_blank"><i
-                                    class="icon-export-alt"></i></a>
-                    </div>
-                    <div class="info">All University buildings & entrances digitised and attributed, with student
-                        counts. All primary and secondary schools both private and state. Includes school roll data,
-                        exam results and pupil demographics. Includes official codes for onward linking.
-                    </div>
-                </div>
-                <div class="card poi">
-                    <div class="title">Points of Interest</div>
-                    <div class="img img__cover">
-                        <a href="/map?poi" target="_blank"><i
-                                    class="icon-export-alt"></i></a>
-                    </div>
-                    <div class="info">All housing transactions since 1995 including address, value and classifications.
-                        A continually growing source of local area insight. Plus all 500K listed properties across the
-                        UK.
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="spacer" id="spacer_blog">
-        <div class="link__intro">Would you like to read more?</div>
-        <div class="link__text"><a href="http://blog.geolytix.net">Please visit our blog.</a></div>
-    </div>
-
-
-    <div id="section_team">
-        <p class="title">Team</p>
-        <p class="intro">We have over 50 years experience in the geospatial industry, both as consultants and as
-            customers at some of the largest retailers. We understand the likely challenges you will face.</p>
+    <div class="geodata__section">
+        <p>GeoData</p>
+        <p>Where people live, work, study and shop</p>
+        <p>We create novel datasets using Open Data as inputs, to help with your network strategy and location based decisions.</p>
 
         <div class="scroll__x">
-
-            <table>
-                <tbody>
+            <table class="geodata__table scroll__container">
                 <tr>
-                    <td>
-                        <div class="img__contain blair"></div>
+                    <td>Seamless Locales</td>
+                    <td>Retail Points</td>
+                    <td>Retail Places</td>
+                    <td>Public Transport</td>
+                    <td>Postal Geometries</td>
+                    <td>Town and Suburb</td>
+                    <td>Education</td>
+                    <td>Work Places</td>
+                    <td>Points of Interest</td>
+                    <td>Residential</td>
+                    <td>UK Admin</td>
+                    <td>Property</td>
+                    <td>Road Network</td>
+                    <td>Media and Communications</td>
+                    <td>Physical Geography</td>
+                </tr>
+                <tr>
+                    <td id="seamless_locales" class="img__cover img__load"></td>
+                    <td id="retail_points" class="img__cover img__load"></td>
+                    <td id="retail_places" class="img__cover img__load"></td>
+                    <td id="public_transport" class="img__cover img__load"></td>
+                    <td id="postal_geom" class="img__cover img__load"></td>
+                    <td id="town_suburbs" class="img__cover img__load"></td>
+                    <td id="education" class="img__cover img__load"></td>
+                    <td id="work_places" class="img__cover img__load"></td>
+                    <td id="poi" class="img__cover img__load"></td>
+                    <td id="residential" class="img__cover img__load"></td>
+                    <td id="uk_admin" class="img__cover img__load"></td>
+                    <td id="property" class="img__cover img__load"></td>
+                    <td id="road_network" class="img__cover img__load"></td>
+                    <td id="media_com" class="img__cover img__load"></td>
+                    <td id="physical" class="img__cover img__load"></td>
+                </tr>
+                <tr>
+                    <td class="seamless_locales">
+                        <p>100% Seamless UK definitions of natural markets at 4 levels, local, towns, district and region. Close match to true ‘markets’ at multiple scales.</p>
+                        <p><a class="docu_link" href="https://drive.google.com/file/d/0B1GCK8cPXzg-TGdzNzA4VUY4TGs" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
                     </td>
-                    <td>
-                        <div class="img__contain sarah"></div>
+                    <td class="retail_points">
+                        <p>Over 10,000 supermarket roof-top locations and addresses. Retailers include Aldi, Asda, Booths, Budgens, Co-op, Costco, Lidl, Marks and Spencer, Morrisons, Sainsbury’s, Tesco, Waitrose, Wholefoods. Please download for free and use this data openly.</p>
+                        <p><a href="https://drive.google.com/file/d/0B1GCK8cPXzg-bGhoZk9DdUZLNTg" target="_blank">Download a zip archive containing the latest version of our Open Retail Points data pack.</a></p>
+                        <p><a class="docu_link" href="https://drive.google.com/a/geolytix.co.uk/file/d/0B1GCK8cPXzg-ZUl6MDFUUkFBVEU" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
                     </td>
-                    <td>
-                        <div class="img__contain neil"></div>
+                    <td class="retail_places">
+                        <p>More than 20k scored, profiled and named polygons detailing where people shop in the UK, and catchment area demographics. Ideal for locating new sites and understanding micro location performance. Additionally pitch can be purchased along side this pack.</p>
+                        <p><a href="https://drive.google.com/file/d/0B1GCK8cPXzg-OWE4Q3Nrdzk3d2M" target="_blank">Download a sub-set of four hundred centres; scored, profiled and named polygons detailing where people shop in the UK. Note that the Open version requires attribution of the Ordnance Survey, Royal Mail, and GEOLYTIX.</a></p>
+                        <p><a class="docu_link" href="https://drive.google.com/open?id=0B1GCK8cPXzg-OWE4Q3Nrdzk3d2M" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
                     </td>
-                    <td>
-                        <div class="img__contain samantha"></div>
+                    <td class="public_transport">
+                        <p>Precise access points to all public transport including detailed volume data. Perfect for accessibility studies and modelling on-street pedestrian volume.</p>
+                        <p><a class="docu_link" href="https://drive.google.com/file/d/0B1GCK8cPXzg-Q3MwM2pvS1FlNHM" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
                     </td>
-                    <td>
-                        <div class="img__contain simon"></div>
+                    <td class="postal_geom">
+                        <p>High resolution postal boundaries combining exceptional ‘enclosure’ accuracy with boundaries that follow real-world features.</p>
+                        <p><a href="https://drive.google.com/file/d/0B5UPsNN3XERXZi00WE5aZTBXV0E" target="_blank">Download a zip archive containing 9,232 geographic postal sector boundaries covering Great Britain as of October 2012. Released under the same terms as the OS OpenData license with the single addition of GEOLYTIX to the attribution list.</a></p>
+                        <p><a class="docu_link" href="https://drive.google.com/file/d/0B1GCK8cPXzg-Nk5nZ2c0S2JUOTg" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
                     </td>
-                    <td>
-                        <div class="img__contain louise"></div>
+                    <td class="town_suburbs">
+                        <p>A precise and intuitive set of 30,000 named ‘places’ across the UK richly attributed with data. Ideal base for UK wide profiling and benchmarking.</p>
+                        <p><a class="docu_link" href="https://drive.google.com/file/d/0B1GCK8cPXzg-bDhiZkY2a2VmQk0" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
                     </td>
-                    <td>
-                        <div class="img__contain christoph"></div>
+                    <td class="education">
+                        <p>All University buildings & entrances digitised and attributed, with student counts. All primary and secondary schools both private and state. Includes school roll data, exam results and pupil demographics. Includes official codes for onward linking.</p>
+                        <p><a class="docu_link" href="https://drive.google.com/file/d/0B1GCK8cPXzg-ZF9NbjZ6WXVxQUE" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
                     </td>
-                    <td>
-                        <div class="img__contain jasmin"></div>
+                    <td class="work_places">
+                        <p>Up to date worker counts for more than 400,000 commercial postcodes across the UK. Split by type of occupation for a deeper understanding of who works where.</p>
+                        <p><a class="docu_link" href="https://drive.google.com/open?id=0B1GCK8cPXzg-bzJ2TF9KWFZiNEE" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
                     </td>
-                    <td>
-                        <div class="img__contain dennis"></div>
+                    <td class="poi">
+                        <p>A collection of points of interest across the UK including healthcare locations, law and order sites along with sport & leisure facilities, car parks, cinemas and service areas.</p>
+                        <p><a class="docu_link" href="https://drive.google.com/file/d/0B1GCK8cPXzg-V1F1ZEFTX0xuRG8" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
                     </td>
+                    <td class="residential">
+                        <p>Data relating to residential and population, current and forecasted figures.</p>
+                        <p><a class="docu_link" href="https://drive.google.com/open?id=0B1GCK8cPXzg-VTU2a0hRY2VrREk" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
+                    </td>
+                    <td class="uk_admin">
+                        <p>All UK’s administrative boundaries in a consistent package. Includes all police, health, fire, EU zones, regions, constituencies, wards and statistical geographies. The core framework which all national statistics are published within.</p>
+                        <p><a href="https://drive.google.com/file/d/0B1GCK8cPXzg-Ui1FYWpxRDctT1k" target="_blank">Download a collection of 197 variables as Output Area (OA) level. English, Welsh, Scottish and Northern Irish Census data processed into a single easy-to-use flat file. We have released free-of-charge and under the same license terms as the census.</a></p>
+                        <p><a class="docu_link" href="https://drive.google.com/a/geolytix.co.uk/file/d/0B1GCK8cPXzg-QlBsUS1TaWhTU0k" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
+                    </td>
+                    <td class="property">
+                        <p>All housing transactions since 1995 including address, value and classifications. A continually growing source of local area insight. Plus all 500K listed properties across the UK.</p>
+                        <p><a class="docu_link" href="https://drive.google.com/open?id=0B1GCK8cPXzg-V3lEYnNBQVMxckk" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
+                    </td>
+                    <td class="road_network">
+                        <p>Routable Link/Node data with link-level mid-afternoon speeds based on Highways agency probe data and sophisticated speed model; painlessly integrates into multiple routing software tools.</p>
+                        <p><a class="docu_link" href="https://drive.google.com/file/d/0B1GCK8cPXzg-bVlZRnBiMEFxbms" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
+                    </td>
+                    <td class="media_com">
+                        <p>A spatial dataset of broadcasting regions, broadband speeds by postcode, Wi-Fi hotspots by postcode and radio coverage.</p>
+                        <p><a class="docu_link" href="https://drive.google.com/open?id=0B1GCK8cPXzg-Wjl3SnUtZzdzQXM" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
+                    </td>
+                    <td class="physical">
+                        <p>High resolution coastlines, hydrology, contours and summits. Key input to classic outdoor maps.</p>
+                        <p><a class="docu_link" href="https://drive.google.com/open?id=0B1GCK8cPXzg-UlZGbGR1VExkT1E" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+
+    <div id="blog__link"><a href="http://blog.geolytix.net">Please visit our blog.</a></div>
+
+
+
+    <div id="team__section">
+        <p>Meet the team</p>
+        <p>We understand the likely challenges you will face.</p>
+
+        <div class="scroll__x">
+            <table class="team__table">
+                <tr>
+                    <td id="blair" class="img__contain img__load"></td>
+                    <td id="sarah" class="img__contain img__load"></td>
+                    <td id="neil" class="img__contain img__load"></td>
+                    <td id="samantha" class="img__contain img__load"></td>
+                    <td id="simon" class="img__contain img__load"></td>
+                    <td id="louise" class="img__contain img__load"></td>
+                    <td id="christoph" class="img__contain img__load"></td>
+                    <td id="jasmin" class="img__contain img__load"></td>
+                    <td id="dennis" class="img__contain img__load"></td>
+                    <td id="martin" class="img__contain img__load"></td>
+                    <td id="alana" class="img__contain img__load"></td>
+                    <td id="kerst" class="img__contain img__load"></td>
                 </tr>
                 <tr>
                     <td>Blair Freebairn</td>
@@ -529,6 +373,9 @@
                     <td>Christoph Mülligann</td>
                     <td>Jasmin Fitzpatrick</td>
                     <td>Dennis Bauszus</td>
+                    <td>Martin Bregazzi</td>
+                    <td>Alana Sutton</td>
+                    <td>Kerst Mattner</td>
                 </tr>
                 <tr>
                     <td>Chief Executive</td>
@@ -542,81 +389,46 @@
                     <td>Web Solutions Engineer</td>
                 </tr>
                 <tr>
-                    <td>Blair has built gravity models for 10 of the 15 largest retailers the last 20 years. Previously
-                        head of analytics at MapInfo UK, in September 2011 he took the plunge, and set up his own
-                        business focused on helping businesses solve problems where location matters – GEOLYTIX was
-                        born.<br><br>
-                        <a href="https://uk.linkedin.com/in/blair-freebairn-4176ab11" target="_blank"><i
-                                    class="icon-linkedin-squared"></i></a></td>
-                    <td>Sarah started her career at Boots working on ground-breaking customer analysis following the
-                        launch of Advantage Card. Prior to GEOLYTIX, Sarah led the Network Planning team at Sainsbury's
-                        during an exciting period when space growth and her team's ambitious strategy was a key driver
-                        of Sainsbury's success.<br><br>
-                        <a href="https://www.linkedin.com/in/sarah-hitchcock-808390b" target="_blank"><i
-                                    class="icon-linkedin-squared"></i></a></td>
-                    <td>Neil has built models for retailers, banking & insurers over the last 8 years - 2 years at
-                        GEOLYTIX and previously at Pitney Bowes Mapinfo. He started out at the Co-op where he spent 5
-                        years overhauling their modelling and processes.<br><br>
-                        <a href="https://www.linkedin.com/in/neil-farricker-6566a338" target="_blank"><i
-                                    class="icon-linkedin-squared"></i></a></td>
-                    <td>For 15 years Samantha has shaped the new space expansion of major retailers in the UK and
-                        Australia. After supporting Coles Myer through major multi-format new space development Samantha
-                        moved to Sainsbury’s and led their strategy for network expansion. As the industry looked for
-                        other avenues of growth Samantha took a lead role in transforming Sainsbury’s non-food
-                        operation.<br><br>
-                        <a href="https://www.linkedin.com/in/samantha-colebatch-hodkinson-09a30564" target="_blank"><i
-                                    class="icon-linkedin-squared"></i></a></td>
-                    <td>Simon has delivered GIS based solutions and customer friendly user interfaces for many FTSE 100
-                        retailers, local authorities, police forces and transport consultants. Previously worked as
-                        Technical Manager at Sainsbury's, supporting Network Planning, providing others with the tools
-                        and information they need to do their jobs.<br><br>
-                        <a href="https://www.linkedin.com/in/simon-dixon-2b261761" target="_blank"><i
-                                    class="icon-linkedin-squared"></i></a></td>
-                    <td>Louise is a geographer specialising in GIS and has a passion for Open Data. Her first role at
-                        GEOLYTIX was supporting a major UK retailer with an overhaul of their site forecasting systems,
-                        data and methodology. Lou manages our GeoData range, creating innovative new data
-                        products.<br><br>
-                        <a href="https://www.linkedin.com/in/louise-cross-7b70916b" target="_blank"><i
-                                    class="icon-linkedin-squared"></i></a>
+                    <td>Blair has built gravity models for 10 of the 15 largest retailers the last 20 years. Previously head of analytics at MapInfo UK, in September 2011 he took the plunge, and set up his own business focused on helping businesses solve problems where location matters – GEOLYTIX was born.<br><br>
+                        <a href="https://uk.linkedin.com/in/blair-freebairn-4176ab11" target="_blank"><i class="icon-linkedin-squared"></i></a></td>
+                    <td>Sarah started her career at Boots working on ground-breaking customer analysis following the launch of Advantage Card. Prior to GEOLYTIX, Sarah led the Network Planning team at Sainsbury's during an exciting period when space growth and her team's ambitious strategy was a key driver of Sainsbury's success.<br><br>
+                        <a href="https://www.linkedin.com/in/sarah-hitchcock-808390b" target="_blank"><i class="icon-linkedin-squared"></i></a></td>
+                    <td>Neil, a mathematician with too many qualifications to mention, has built models for retailers, banks & insurers over the last 15 years. Previously a senior modeller at Mapinfo UK, Neil started out at the Co-op where he spent 5 years overhauling their modelling and processes.<br><br>
+                        <a href="https://www.linkedin.com/in/neil-farricker-6566a338" target="_blank"><i class="icon-linkedin-squared"></i></a></td>
+                    <td>For 15 years Samantha has shaped the expansion of retailers in the UK and Australia. After supporting Coles Myer through multi-format development she moved to Sainsbury’s. Samantha led their strategy for network expansion, before taking a lead role in transforming Sainsbury’s non-food operation.<br><br>
+                        <a href="https://www.linkedin.com/in/samantha-colebatch-hodkinson-09a30564" target="_blank"><i class="icon-linkedin-squared"></i></a></td>
+                    <td>Simon has delivered GIS based solutions and customer friendly user interfaces for many retailers, local authorities and transport consultants. Previously Simon led the Technical team within the Network Planning department at Sainsbury’s.<br><br>
+                        <a href="https://www.linkedin.com/in/simon-dixon-2b261761" target="_blank"><i class="icon-linkedin-squared"></i></a></td>
+                    <td>Louise is a geographer specialising in GIS and has a passion for Open Data. Her first role at GEOLYTIX was supporting a major UK retailer with an overhaul of their site forecasting systems, data and methodology. Lou manages our GeoData range, creating innovative new data products.<br><br>
+                        <a href="https://www.linkedin.com/in/louise-cross-7b70916b" target="_blank"><i class="icon-linkedin-squared"></i></a>
                         <a href="https://twitter.com/WheresLou" target="_blank"><i class="icon-twitter-squared"></i></a>
                     </td>
-                    <td>Christoph has an education in Geoinformatics from the University of Munster, Germany. Having
-                        worked at on-geo in Dortmund creating a flagship website for property valuation, he is an expert
-                        in programming for the web. At GEOLYTIX Christoph writes code that crunches big data sets for
-                        our spatial models and GeoData range.<br><br>
-                        <a href="https://www.linkedin.com/in/christoph-mülligann-a8a76194" target="_blank"><i
-                                    class="icon-linkedin-squared"></i></a></td>
-                    <td>Jasmin, a geographer from Leeds University joins us from Colliers International UK where she
-                        managed the GIS and mapping function, delivering spatial solutions to help a wide range of
-                        clients with strategic network decisions. Jasmin will help to support our customers and deliver
-                        projects.<br><br>
-                        <a href="https://www.linkedin.com/in/jasminfitzpatrick" target="_blank"><i
-                                    class="icon-linkedin-squared"></i></a></td>
-                    <td>Dennis has previously worked as a project manager for Cadcorp and joins GEOLYTIX as a web
-                        developer from Argeomatica in Mexico City. His 20 years of professional experience in the
-                        spatial information sector have seen many transitions; From field work and paper maps to
-                        digital, from desktop to cloud, and most recently from proprietary to open source
-                        technologies.<br><br>
-                        <a href="https://www.linkedin.com/in/dennis-bauszus-45b55760" target="_blank"><i
-                                    class="icon-linkedin-squared"></i></a>
-                        <a href="http://stackexchange.com/users/2521477/dennis-bauszus?tab=accounts" target="_blank"><i
-                                    class="icon-stackexchange"></i></a>
+                    <td>Christoph has an education in Geoinformatics from the University of Munster, Germany. Having worked at on-geo in Dortmund creating a flagship website for property valuation, he is an expert in programming for the web. At GEOLYTIX Christoph writes code that crunches big data sets for our spatial models and GeoData range.<br><br>
+                        <a href="https://www.linkedin.com/in/christoph-mülligann-a8a76194" target="_blank"><i class="icon-linkedin-squared"></i></a></td>
+                    <td>Jasmin is a geographer from Leeds University. Having managed the GIS and mapping function at Colliers International UK, she now supports our customers and delivers spatial solutions to help with their strategic network decisions.<br><br>
+                        <a href="https://www.linkedin.com/in/jasminfitzpatrick" target="_blank"><i class="icon-linkedin-squared"></i></a></td>
+                    <td>Dennis has previously worked as a project manager for Cadcorp and joins GEOLYTIX as a web developer from Argeomatica in Mexico City. His 20 years of professional experience in the spatial information sector have seen many transitions; From field work and paper maps to digital, from desktop to cloud, and most recently from proprietary to open source technologies.<br><br>
+                        <a href="https://www.linkedin.com/in/dennis-bauszus-45b55760" target="_blank"><i class="icon-linkedin-squared"></i></a>
+                        <a href="http://stackexchange.com/users/2521477/dennis-bauszus?tab=accounts" target="_blank"><i class="icon-stackexchange"></i></a>
                         <a href="https://github.com/dbauszus" target="_blank"><i class="icon-github"></i></a>
                         <a href="http://dbauszus.xyz/" target="_blank"><i class="icon-wordpress"></i></a></td>
+                    <td>Martin has over 20 years’ experience of research and analysis in retail property, leading teams in delivering location strategy, new market entry and M&A analysis across multiple sectors of the market, with experience in the UK, Europe, North and Central America and Asia.<br><br>
+                        <a href="https://www.linkedin.com/in/martin-bregazzi-8345835b" target="_blank"><i class="icon-linkedin-squared"></i></a></td>
+                    <td>Alana has recently joined GEOLYTIX after graduating with a Geography degree from the University of Leeds. With a particular interest in location analysis, she is enjoying being involved with a wide range of projects, building on the skills learnt during her degree.<br><br>
+                        <a href="https://www.linkedin.com/in/alanasutton1" target="_blank"><i class="icon-linkedin-squared"></i></a>
+                        <a href="https://twitter.com/AlanaSutton1" target="_blank"><i class="icon-twitter-squared"></i></a></td>
+                    <td>Kerst has an education in GIS from the University of Edinburgh. He joins GEOLYTIX as a Data Scientist and is busy analysing customer data and developing technical solutions for them.<br><br>
+                        <a href="https://www.linkedin.com/in/kerst-mattner-92a931107" target="_blank"><i class="icon-linkedin-squared"></i></a></td>
                 </tr>
-                </tbody>
             </table>
-
         </div>
-
     </div>
 
 
 
-    <div id="section_awards">
+    <div id="awards__section">
         <div class="container scroll__x">
             <div class="scroll__container">
-
                 <div class="strip">
                     <div class="award img__contain"></div>
                     <div class="award img__contain"></div>
@@ -626,49 +438,41 @@
                     <div class="award img__contain"></div>
                     <div class="award img__contain"></div>
                 </div>
-
             </div>
         </div>
     </div>
 
 
 
-    <div id="footer__menu">
+    <div id="footer">
 
-        <ul class="ul_grid">
-            <li>
-                <div class="li_card">
-                    <p class="social_media__icons">
-                        <a href="https://www.linkedin.com/company/geolytix" target="_blank"><i class="icon-linkedin-squared social_media_icon"></i></a>
-                        <a href="http://twitter.com/geolytix" target="_blank"><i class="icon-twitter-squared"></i></a>
-                        <a href="http://stackoverflow.com/jobs/companies/geolytix" target="_blank"><i class="icon-stackoverflow"></i></a>
-                    </p>
-                    <a class="privacy_policy cursor" target="_blank" href="https://docs.google.com/document/d/1ZyhEzxi0MCsMK3HnR6fGpBhNm725916AxmElkOsHFIY">Privacy Policy</a>
-                    <a class="terms_conditions cursor" target="_blank" href="https://docs.google.com/document/d/1MteGDtrZx2TWXcuKqTzEMPRGmtlvEzF0g9Vy9r5H_vs">Terms & Conditions</a>
-                </div>
-            </li>
-            <li>
-                <div class="li_card">
-                    <a href="http://theodi.org/" target="_blank">
-                        <img src="/public/images/logo_odi_supporter.png"/>
-                    </a>
-                </div>
-            </li>
-            <li>
-                <div class="li_card">
-                    <p x-ms-format-detection="none">+44 20 82 42 41 66</p>
-                    <p><a href="mailto:info@geolytix.co.uk">info@geolytix.co.uk</a></p>
-                    <p>Phoenix Yard</p>
-                    <p>65 Kings Cross Road</p>
-                    <p>London WC1X 9LW</p>
-                </div>
-            </li>
-            <li>
-                <div class="li_card">
-                    <p>© GEOLYTIX Ltd.</p>
-                </div>
-            </li>
-        </ul>
+        <div>
+            <p class="social_media__icons">
+                <a href="https://www.linkedin.com/company/geolytix" target="_blank"><i class="icon-linkedin-squared social_media_icon"></i></a>
+                <a href="http://twitter.com/geolytix" target="_blank"><i class="icon-twitter-squared"></i></a>
+                <a href="http://stackoverflow.com/jobs/companies/geolytix" target="_blank"><i class="icon-stackoverflow"></i></a>
+            </p>
+        </div>
+
+        <div class="footer__half">
+            <a href="http://theodi.org/" target="_blank">
+                <img src="/public/images/logo_odi_supporter.png"/>
+            </a>
+        </div>
+
+        <div class="footer__half">
+            <p x-ms-format-detection="none">+44 20 82 42 41 66</p>
+            <p><a href="mailto:info@geolytix.co.uk">info@geolytix.co.uk</a></p>
+            <p>Phoenix Yard</p>
+            <p>65 Kings Cross Road</p>
+            <p>London WC1X 9LW</p>
+        </div>
+
+        <div>
+            <p><a class="privacy_policy cursor" target="_blank" href="https://docs.google.com/document/d/1ZyhEzxi0MCsMK3HnR6fGpBhNm725916AxmElkOsHFIY">Privacy Policy</a></p>
+            <p><a class="terms_conditions cursor" target="_blank" href="https://docs.google.com/document/d/1MteGDtrZx2TWXcuKqTzEMPRGmtlvEzF0g9Vy9r5H_vs">Terms & Conditions</a></p>
+            <p>© GEOLYTIX Ltd.</p>
+        </div>
 
     </div>
 
