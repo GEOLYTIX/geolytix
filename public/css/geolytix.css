@@ -614,10 +614,11 @@ div, a {
 /* geodata faq*/
 .geodata__faq {
     display: none;
-    width: calc(100% - 200px);
     float: left;
     background-color: #fff;
+    padding-left: 100px;
     height: 619px;
+    width: calc(100% - 300px);
     margin-left: 200px;
     margin-top: -619px;
     z-index: 999;
@@ -638,37 +639,44 @@ div, a {
     padding-bottom: 10px;
 }
 
-/* geodata content */
-/*#section_geodata > .container > .pricing {*/
-    /*width: calc(100% - 230px);*/
-/*}*/
+.geodata__pricing {
+    display: none;
+    float: left;
+    background-color: #fff;
+    padding-left: 200px;
+    height: 619px;
+    width: calc(100% - 400px);
+    margin-left: 200px;
+    margin-top: -619px;
+    z-index: 999;
+    position: relative;
+}
 
-/*!* geodata content pricing*!*/
-/*#section_geodata > .container > .pricing .title{*/
-    /*font-family: ffmark_bold, sans-serif;*/
-    /*font-size: 25px;*/
-    /*margin-bottom: 40px;*/
-/*}*/
+.geodata__pricing > p{
+    font-size: 150%;
+    font-family: ffmark_bold, sans-serif;
+    padding: 0 20px 30px 0;
+}
 
-/*#section_geodata > .container > .pricing .price_box{*/
-    /*display: inline-block;*/
-    /*width: calc(33% - 25px);*/
-    /*height: 100%;*/
-    /*background-position: top center;*/
-/*}*/
+.geodata__pricing .price_box{
+    display: inline-block;
+    width: calc(33% - 25px);
+    height: 100%;
+    background-position: top center;
+}
 
-/*#section_geodata > .container > .pricing .three {*/
-    /*background-image: url(/public/images/geodata/pricing_three.png);*/
-/*}*/
+.geodata__pricing .three {
+    background-image: url(/public/images/geodata/pricing_three.png);
+}
 
-/*#section_geodata > .container > .pricing .six {*/
-    /*background-image: url(/public/images/geodata/pricing_six.png);*/
-    /*margin: 0 30px;*/
-/*}*/
+.geodata__pricing .six {
+    background-image: url(/public/images/geodata/pricing_six.png);
+    margin: 0 30px;
+}
 
-/*#section_geodata > .container > .pricing .all {*/
-    /*background-image: url(/public/images/geodata/pricing_all.png);*/
-/*}*/
+.geodata__pricing .all {
+    background-image: url(/public/images/geodata/pricing_all.png);
+}
 
 
 /* TEAM */

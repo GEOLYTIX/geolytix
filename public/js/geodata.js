@@ -27,6 +27,7 @@ $('.geodata__content > .btnFullScreen').click(function() {
 
 
 const geodataScrollyFirst = $('.geodata__scrolly > div').first();
+const geodataPricing = $('.geodata__pricing');
 const geodataFAQ = $('.geodata__faq');
 
 function selectGeodata(_this, _i){
@@ -37,6 +38,7 @@ function selectGeodata(_this, _i){
     map_geodata.off('mousemove');
     map_geodata.off('click');
     geodataScrollyFirst.animate({'marginTop': 619 * -_i});
+    currentDataset == 'pricing' ? geodataPricing.show() : geodataPricing.hide();
     currentDataset == 'faq' ? geodataFAQ.show() : geodataFAQ.hide();
 }
 
