@@ -4,7 +4,7 @@ const intro__text = document.getElementById('intro__text');
 orientation();
 
 function orientation() {
-    if (window.innerHeight < window.innerWidth) {
+    if (window.innerHeight || screen.height < window.innerWidth || screen.width) {
         intro__text.innerHTML = 'better decisions<br>where location matters';
     } else {
         intro__text.innerHTML = 'better<br>decisions<br>where<br>location<br>matters';
