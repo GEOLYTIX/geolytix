@@ -1,5 +1,5 @@
-const intro__logo = document.getElementById('intro__logo');
-const intro__text = document.getElementById('intro__text');
+var intro__logo = document.getElementById('intro__logo');
+var intro__text = document.getElementById('intro__text');
 
 orientation();
 
