@@ -24,7 +24,7 @@ window.addEventListener('resize', function () {
 
 // preload images
 // var img = new Image();
-var section_intro = document.getElementById('intro__section');
+const section_intro = document.getElementById('intro__section');
 // img.addEventListener('load', function(){
 //     alert('farts');
 //     section_intro.setAttribute('style', 'background-image: url(/public/images/intro_geolytix_m.jpg)');
