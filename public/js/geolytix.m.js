@@ -38,13 +38,14 @@ const section_intro = document.getElementById('intro__section');
 // section_intro.setAttribute('style', '-moz-background-size: cover');
 // section_intro.setAttribute('style', '-o-background-size: cover');
 // section_intro.setAttribute('style', 'background-size: cover');
-section_intro.style.background = 'url(/public/images/intro_geolytix_m.jpg) no-repeat center center';
-section_intro.style['background-size'] = 'cover';
-section_intro.style['-webkit-background-size'] = 'cover';
-section_intro.style['-moz-background-size'] = 'cover';
-section_intro.style['-o-background-size'] = 'cover';
-intro__logo.style.color = '#fff';
-intro__text.style.color = '#fff';
+
+// section_intro.style.background = 'url(/public/images/intro_geolytix_m.jpg) no-repeat center center';
+// section_intro.style['background-size'] = 'cover';
+// section_intro.style['-webkit-background-size'] = 'cover';
+// section_intro.style['-moz-background-size'] = 'cover';
+// section_intro.style['-o-background-size'] = 'cover';
+// intro__logo.style.color = '#fff';
+// intro__text.style.color = '#fff';
 
 
 
