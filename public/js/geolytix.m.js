@@ -26,6 +26,9 @@ window.addEventListener('resize', function () {
 var img = new Image();
 const section_intro = document.getElementById('intro__section');
 img.addEventListener('load', setBackgroundImg);
+img.addEventListener('onError', function(){
+    section_intro.setAttribute('style', 'background-image: url(/public/images/rotten_apple.jpg)');
+});
 img.src = '/public/images/intro_geolytix_m.jpg';
 
 function setBackgroundImg(){
