@@ -30,6 +30,7 @@ img.addEventListener('load', function(){
     intro__logo.setAttribute('style', 'color: #fff');
     intro__text.setAttribute('style', 'color: #fff');
 });
+img.src = '';
 img.src = '/public/images/intro_geolytix_m.jpg';
 
 
