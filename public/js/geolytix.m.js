@@ -4,7 +4,6 @@ var intro__text = document.getElementById('intro__text');
 orientation();
 
 function orientation() {
-    alert('boo');
     if (screen.height < screen.width) {
         intro__text.innerHTML = 'better decisions<br>where location matters';
     } else {
@@ -12,20 +11,20 @@ function orientation() {
     }
 }
 
-// window.addEventListener('resize', function () {
-//     if (window.innerWidth > 799) {
-//         window.location = "/";
-//     }
-//     if (window.innerWidth > window.innerHeight) {
-//         orientation();
-//     }
-// });
+window.addEventListener('resize', function () {
+    if (window.innerWidth > 799) {
+        window.location = "/";
+    }
+    if (window.innerWidth > window.innerHeight) {
+        orientation();
+    }
+});
 
 
 
 // preload images
 // var img = new Image();
-const section_intro = document.getElementById('intro__section');
+var section_intro = document.getElementById('intro__section');
 // img.addEventListener('load', function(){
 //     alert('farts');
 //     section_intro.setAttribute('style', 'background-image: url(/public/images/intro_geolytix_m.jpg)');
@@ -40,13 +39,13 @@ const section_intro = document.getElementById('intro__section');
 // section_intro.setAttribute('style', '-o-background-size: cover');
 // section_intro.setAttribute('style', 'background-size: cover');
 
-// section_intro.style.background = 'url(/public/images/intro_geolytix_m.jpg) no-repeat center center';
-// section_intro.style['background-size'] = 'cover';
-// section_intro.style['-webkit-background-size'] = 'cover';
-// section_intro.style['-moz-background-size'] = 'cover';
-// section_intro.style['-o-background-size'] = 'cover';
-// intro__logo.style.color = '#fff';
-// intro__text.style.color = '#fff';
+section_intro.style.background = 'url(/public/images/intro_geolytix_m.jpg) no-repeat center center';
+section_intro.style['background-size'] = 'cover';
+section_intro.style['-webkit-background-size'] = 'cover';
+section_intro.style['-moz-background-size'] = 'cover';
+section_intro.style['-o-background-size'] = 'cover';
+intro__logo.style.color = '#fff';
+intro__text.style.color = '#fff';
 
 
 
