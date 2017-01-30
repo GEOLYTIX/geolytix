@@ -25,11 +25,11 @@ window.addEventListener('resize', function () {
 // preload images
 var img = new Image();
 const section_intro = document.getElementById('intro__section');
-img.onload = function(){
+img.addEventListener('load', function(){
     section_intro.setAttribute('style', 'background-image: url(/public/images/intro_geolytix_m.jpg)');
     intro__logo.setAttribute('style', 'color: #fff');
     intro__text.setAttribute('style', 'color: #fff');
-};
+});
 img.src = '/public/images/intro_geolytix_m.jpg';
 
 
