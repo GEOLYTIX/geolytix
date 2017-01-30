@@ -4,6 +4,7 @@ const intro__text = document.getElementById('intro__text');
 orientation();
 
 function orientation() {
+    alert('boo');
     if (screen.height < screen.width) {
         intro__text.innerHTML = 'better decisions<br>where location matters';
     } else {
@@ -11,14 +12,14 @@ function orientation() {
     }
 }
 
-window.addEventListener('resize', function () {
-    if (window.innerWidth > 799) {
-        window.location = "/";
-    }
-    if (window.innerWidth > window.innerHeight) {
-        orientation();
-    }
-});
+// window.addEventListener('resize', function () {
+//     if (window.innerWidth > 799) {
+//         window.location = "/";
+//     }
+//     if (window.innerWidth > window.innerHeight) {
+//         orientation();
+//     }
+// });
 
 
 
