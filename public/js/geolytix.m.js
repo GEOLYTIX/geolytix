@@ -38,7 +38,7 @@ const section_intro = document.getElementById('intro__section');
 // section_intro.setAttribute('style', '-moz-background-size: cover');
 // section_intro.setAttribute('style', '-o-background-size: cover');
 // section_intro.setAttribute('style', 'background-size: cover');
-section_intro.style.background = 'url(/public/images/intro_geolytix_m.jpg) no-repeat center center fixed';
+section_intro.style.background = 'url(/public/images/intro_geolytix_m.jpg) no-repeat center center';
 section_intro.style['background-size'] = 'cover';
 section_intro.style['-webkit-background-size'] = 'cover';
 section_intro.style['-moz-background-size'] = 'cover';
