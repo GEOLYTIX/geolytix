@@ -1,5 +1,5 @@
-const intro__logo = document.getElementById('intro__logo');
-const intro__text = document.getElementById('intro__text');
+var intro__logo = document.getElementById('intro__logo');
+var intro__text = document.getElementById('intro__text');
 
 orientation();
 
@@ -23,31 +23,19 @@ window.addEventListener('resize', function () {
 
 
 // preload images
-// var img = new Image();
-const section_intro = document.getElementById('intro__section');
-// img.addEventListener('load', function(){
-//     alert('farts');
-//     section_intro.setAttribute('style', 'background-image: url(/public/images/intro_geolytix_m.jpg)');
+var img = new Image();
+var section_intro = document.getElementById('intro__section');
+img.addEventListener('load', function(){
+    section_intro.setAttribute('style', 'background-image: url(/public/images/intro_geolytix_m.jpg)');
+    intro__logo.setAttribute('style', 'color: #fff');
+    intro__text.setAttribute('style', 'color: #fff');
+});
+// img.addEventListener('error', function(){
+//     section_intro.setAttribute('style', 'background: url(/public/images/intro_geolytix_m.jpg)');
 //     intro__logo.setAttribute('style', 'color: #fff');
 //     intro__text.setAttribute('style', 'color: #fff');
 // });
-// img.src = '/public/images/intro_geolytix_m.jpg';
-
-// section_intro.setAttribute('style', 'background: url(/public/images/intro_geolytix_m.jpg) no-repeat center center fixed');
-// section_intro.setAttribute('style', '-webkit-background-size: cover');
-// section_intro.setAttribute('style', '-moz-background-size: cover');
-// section_intro.setAttribute('style', '-o-background-size: cover');
-// section_intro.setAttribute('style', 'background-size: cover');
-
-section_intro.style.background = 'url(/public/images/intro_geolytix_m.jpg) no-repeat center center';
-section_intro.style['background-size'] = 'cover';
-section_intro.style['-webkit-background-size'] = 'cover';
-section_intro.style['-moz-background-size'] = 'cover';
-section_intro.style['-o-background-size'] = 'cover';
-intro__logo.style.color = '#fff';
-intro__text.style.color = '#fff';
-
-
+img.src = '/public/images/intro_geolytix_m.jpg';
 
 const csInfo = document.getElementById('case_studies__info');
 const csLogos = document.getElementById('case_studies__logos');
