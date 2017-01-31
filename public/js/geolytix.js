@@ -1,12 +1,12 @@
-const body = $('html, body');
-const header = $('.header');
-const header__image = document.getElementById('header__image');
-const parallax_team_photo = document.getElementById('team_photo');
-const section_services = $('.services');
-const section_case_studies = $('.case_studies');
-const section_geodata = $('.geodata');
-const section_team = $('.team');
-const section_contact = $('.contact');
+var body = $('html, body');
+var header = $('.header');
+var header__image = document.getElementById('header__image');
+var parallax_team_photo = document.getElementById('team_photo');
+var section_services = $('.services');
+var section_case_studies = $('.case_studies');
+var section_geodata = $('.geodata');
+var section_team = $('.team');
+var section_contact = $('.contact');
 
 scrollTo(window.location.search.substring(1));
 
@@ -40,7 +40,7 @@ $('#home').click(function (e) {
     body.animate({scrollTop: 0});
 });
 
-const header__button = $('.header__menu > div');
+var header__button = $('.header__menu > div');
 
 header__button.click(function(){
     var loc = $(this).attr('id');
@@ -59,7 +59,7 @@ function scrollTo(section){
 
 
 // services cards
-const service_cards = section_services.find('.ul_grid .li_card');
+var service_cards = section_services.find('.ul_grid .li_card');
 
 var service_card__expanded;
 
@@ -85,8 +85,8 @@ section_services.find('.network_strategy').first().trigger('click');
 
 
 // case studies
-const case_studies_container = section_case_studies.find('.container').first();
-const case_studies__table = case_studies_container.find('table').first();
+var case_studies_container = section_case_studies.find('.container').first();
+var case_studies__table = case_studies_container.find('table').first();
 
 section_case_studies.find('.strip > .logo').click(function () {
     $(this).siblings().removeClass('active');
@@ -97,7 +97,7 @@ section_case_studies.find('.strip > .logo').click(function () {
 
 
 // team cards
-const team_cards = section_team.find('.ul_grid .li_card');
+var team_cards = section_team.find('.ul_grid .li_card');
 
 var team_card__expanded;
 
@@ -144,12 +144,12 @@ new L.Marker(
     })
     .addTo(map_contact);
 
-const contact__btnZoomIn = $('.contact__limiter > .btnZoomIn');
+var contact__btnZoomIn = $('.contact__limiter > .btnZoomIn');
 contact__btnZoomIn.click(function() {
     map_contact.setZoom(map_contact.getZoom() + 1);
 });
 
-const contact__btnZoomOut = $('.contact__limiter > .btnZoomOut');
+var contact__btnZoomOut = $('.contact__limiter > .btnZoomOut');
 contact__btnZoomOut.click(function() {
     map_contact.setZoom(map_contact.getZoom() - 1);
 });

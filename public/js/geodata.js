@@ -2,7 +2,7 @@ var southWest = L.latLng(51.35, -0.4),
     northEast = L.latLng(51.65, 0.2),
     bounds = L.latLngBounds(southWest, northEast);
 
-const map_geodata = L.map('map_geodata', {
+var map_geodata = L.map('map_geodata', {
     scrollWheelZoom: false,
     zoomControl: false,
     maxBounds: bounds,
@@ -10,12 +10,12 @@ const map_geodata = L.map('map_geodata', {
     maxZoom: 17
 }).setView([51.50, -0.1], 13);
 
-const geodata__btnZoomIn = $('.geodata__content > .btnZoomIn');
+var geodata__btnZoomIn = $('.geodata__content > .btnZoomIn');
 geodata__btnZoomIn.click(function() {
     map_geodata.setZoom(map_geodata.getZoom() + 1);
 });
 
-const geodata__btnZoomOut = $('.geodata__content > .btnZoomOut');
+var geodata__btnZoomOut = $('.geodata__content > .btnZoomOut');
 geodata__btnZoomOut.click(function() {
     map_geodata.setZoom(map_geodata.getZoom() - 1);
 });
@@ -26,9 +26,9 @@ $('.geodata__content > .btnFullScreen').click(function() {
 });
 
 
-const geodataScrollyFirst = $('.geodata__scrolly > div').first();
-const geodataPricing = $('.geodata__pricing');
-const geodataFAQ = $('.geodata__faq');
+var geodataScrollyFirst = $('.geodata__scrolly > div').first();
+var geodataPricing = $('.geodata__pricing');
+var geodataFAQ = $('.geodata__faq');
 
 function selectGeodata(_this, _i){
     _this.siblings().removeClass('selected');
@@ -52,7 +52,7 @@ var xhr,
     layerHover,
     featureHover;
 
-const seamless_locales = $('#seamless_locales');
+var seamless_locales = $('#seamless_locales');
 seamless_locales.click(function() {
     selectGeodata($(this),0);
 
@@ -510,8 +510,8 @@ function clickSelect(e, map, layer, cqlFilter) {
     )
 }
 
-const proj_4326 = proj4.Proj('EPSG:4326');
-const proj_3857 = proj4.Proj('EPSG:3857');
+var proj_4326 = proj4.Proj('EPSG:4326');
+var proj_3857 = proj4.Proj('EPSG:3857');
 function getFeatureInfoUrl(map, layer, latlng, params) {
     var url = layer._wmsUrl || layer._url,
         point = map.latLngToContainerPoint(latlng, map.getZoom()),

@@ -37,9 +37,9 @@ img.addEventListener('error', function(){
 });
 img.src = '/public/images/intro_geolytix_m.jpg';
 
-const csInfo = document.getElementById('case_studies__info');
-const csLogos = document.getElementById('case_studies__logos');
-const csInfoTable = document.getElementById('case_studies__logos__table');
+var csInfo = document.getElementById('case_studies__info');
+var csLogos = document.getElementById('case_studies__logos');
+var csInfoTable = document.getElementById('case_studies__logos__table');
 csLogos.addEventListener('scroll', debounce(function(){
     var swapy = csInfoTable.offsetWidth / 6;
     var scrolly = csLogos.scrollLeft;
@@ -97,7 +97,7 @@ function removeClass(elems, className) {
 
 
 // preload images
-const imgLoadArray = document.querySelectorAll('.img__load');
+var imgLoadArray = document.querySelectorAll('.img__load');
 for (var i = 0; i < imgLoadArray.length; i++) {
     var imgDOM = imgLoadArray[i];
     var imgID = imgDOM.getAttribute('id');
