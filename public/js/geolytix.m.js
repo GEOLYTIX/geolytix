@@ -30,11 +30,11 @@ img.addEventListener('load', function(){
     intro__logo.setAttribute('style', 'color: #fff');
     intro__text.setAttribute('style', 'color: #fff');
 });
-// img.addEventListener('error', function(){
-//     section_intro.setAttribute('style', 'background: url(/public/images/intro_geolytix_m.jpg)');
-//     intro__logo.setAttribute('style', 'color: #fff');
-//     intro__text.setAttribute('style', 'color: #fff');
-// });
+img.addEventListener('error', function(){
+    section_intro.setAttribute('style', 'background: url(/public/images/intro_geolytix_m.jpg)');
+    intro__logo.setAttribute('style', 'color: #fff');
+    intro__text.setAttribute('style', 'color: #fff');
+});
 img.src = '/public/images/intro_geolytix_m.jpg';
 
 const csInfo = document.getElementById('case_studies__info');
