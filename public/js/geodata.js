@@ -462,6 +462,25 @@ $('#physical').click(function() {
     selectGeodata($(this), 14);
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
+
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+        version: '1.3',
+        layers: 'physical_poly',
+        format: 'image/png',
+        transparent: true,
+        styles: 'physical_poly'
+    }).addTo(map_geodata);
+
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+        version: '1.3',
+        layers: 'physical_line',
+        format: 'image/png',
+        transparent: true,
+        styles: 'physical_line'
+    }).addTo(map_geodata);
+
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map_geodata);
+
 });
 
 
