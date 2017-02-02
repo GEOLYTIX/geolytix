@@ -690,6 +690,7 @@ div, a {
 .media_com .legend_title{
     font-family: monospace;
     font-size: 13px;
+    margin-top: 10px;
 }
 .media_com .legend {
     font-family: monospace;
