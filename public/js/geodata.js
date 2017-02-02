@@ -451,10 +451,185 @@ $('#road_network').click(function() {
 });
 
 
+var xhr_grid,
+    gridZoomLayerArray,
+    dotLayer,
+    dotLayer_,
+    circleRadiusArray = [],
+    labelLayer;
+
+var gridZoomShift = {
+    12: 0.0004,
+    13: 0.0002,
+    14: 0.0001,
+    15: 0.00005,
+    16: 0.000025,
+    17: 0.0000125
+};
+
+map_geodata.createPane('labels');
+map_geodata.getPane('labels').style.zIndex = 650;
+map_geodata.getPane('labels').style.pointerEvents = 'none';
+
 $('#media_com').click(function() {
     selectGeodata($(this), 13);
 
-    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
+
+    gridZoomLayerArray = {
+        12: 'media_wifi_hx400',
+        13: 'media_wifi_hx200',
+        14: 'media_wifi_hx100',
+        15: 'media_wifi_hx050',
+        16: 'media_wifi_hx025',
+        17: 'media_wifi_hotspots'
+    };
+
+    media_wifi_grid();
+
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_only_labels/{z}/{x}/{y}.png',{pane: 'labels'}).addTo(map_geodata);
+
+    map_geodata.on('zoomend', function () {
+        media_wifi_grid();
+    });
+
+    map_geodata.on('moveend', function () {
+        media_wifi_grid();
+    });
+
+    function media_wifi_grid(){
+        if (xhr_grid && xhr_grid.readyState != 4) xhr_grid.abort();
+
+        if (dotLayer) map_geodata.removeLayer(dotLayer);
+        if (dotLayer_) map_geodata.removeLayer(dotLayer_);
+
+        var bounds = map_geodata.getBounds();
+
+        xhr_grid = $.ajax({
+            url: '/grid_query',
+            dataType: 'json',
+            data: {
+                layer: gridZoomLayerArray[map_geodata.getZoom()],
+                west: bounds.getWest(),
+                south: bounds.getSouth(),
+                east: bounds.getEast(),
+                north: bounds.getNorth()
+            },
+            success: function (data) {
+                var avg_c = 0,
+                    n = data.length,
+                    dots = {
+                        type: "FeatureCollection",
+                        features: []
+                    },
+                    dots_ = {
+                        type: "FeatureCollection",
+                        features: []
+                    },
+                    dotShift = gridZoomShift[map_geodata.getZoom()];
+
+                for (var i = 0; i < n; i++) {
+                    var c = data[i].c,
+                        g = {
+                            "type": "Point",
+                            "coordinates": [data[i].lon, data[i].lat]
+                        },
+                        g_ = {
+                            "type": "Point",
+                            "coordinates": [data[i].lon + dotShift, data[i].lat - dotShift]
+                        },
+                        p = {
+                            "c": c
+                        };
+
+                    avg_c += c;
+
+                    dots.features.push({
+                        "geometry": g,
+                        "type": "Feature",
+                        "properties": p
+                    });
+                    dots_.features.push({
+                        "geometry": g_,
+                        "type": "Feature",
+                        "properties": p
+                    });
+                }
+
+                var min_c = getMath(data, 'c', 'min');
+                var max_c = getMath(data, 'c', 'max');
+                avg_c /= n;
+                var step_c_lower = (avg_c - min_c) / 6;
+                var step_c_upper = (max_c - avg_c) / 6;
+                circleRadiusArray[0] = min_c + step_c_lower;
+                circleRadiusArray[1] = min_c + (step_c_lower * 2);
+                circleRadiusArray[2] = min_c + (step_c_lower * 3);
+                circleRadiusArray[3] = min_c + (step_c_lower * 4);
+                circleRadiusArray[4] = min_c + (step_c_lower * 5);
+                circleRadiusArray[5] = avg_c;
+                circleRadiusArray[6] = avg_c + step_c_upper;
+                circleRadiusArray[7] = avg_c + (step_c_upper * 2);
+                circleRadiusArray[8] = avg_c + (step_c_upper * 3);
+                circleRadiusArray[9] = avg_c + (step_c_upper * 4);
+
+                dotLayer_ = new L.geoJson(dots_, {
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng, style_(feature));
+                    }
+                    //onEachFeature: onEachDot
+                }).addTo(map_geodata);
+
+                dotLayer = new L.geoJson(dots, {
+                    pointToLayer: function (feature, latlng) {
+                        return L.circleMarker(latlng, style(feature));
+                    }
+                    //onEachFeature: onEachDot
+                }).addTo(map_geodata);
+
+            }
+        })
+    }
+
+    function style_(feature) {
+        var c = feature.properties.c;
+        return {
+            stroke: false,
+            fillOpacity: 0.4,
+            fillColor: '#f4ff81',
+            radius: c < circleRadiusArray[0] ? 1.66 :
+                c < circleRadiusArray[1] ? 2.00 :
+                    c < circleRadiusArray[2] ? 2.33 :
+                        c < circleRadiusArray[3] ? 2.66 :
+                            c < circleRadiusArray[4] ? 3.00 :
+                                c < circleRadiusArray[5] ? 3.33 :
+                                    c < circleRadiusArray[6] ? 3.66 :
+                                        c < circleRadiusArray[7] ? 4.00 :
+                                            c < circleRadiusArray[8] ? 4.33 :
+                                                c < circleRadiusArray[9] ? 4.66 :
+                                                    5
+        };
+    }
+
+    function style(feature) {
+        var c = feature.properties.c;
+        return {
+            stroke: false,
+            fillOpacity: 1,
+            fillColor: '#eeff41',
+            radius: c < circleRadiusArray[0] ? 1.66 :
+                c < circleRadiusArray[1] ? 2.00 :
+                    c < circleRadiusArray[2] ? 2.33 :
+                        c < circleRadiusArray[3] ? 2.66 :
+                            c < circleRadiusArray[4] ? 3.00 :
+                                c < circleRadiusArray[5] ? 3.33 :
+                                    c < circleRadiusArray[6] ? 3.66 :
+                                        c < circleRadiusArray[7] ? 4.00 :
+                                            c < circleRadiusArray[8] ? 4.33 :
+                                                c < circleRadiusArray[9] ? 4.66 :
+                                                    5
+        };
+    }
+
 });
 
 
@@ -628,4 +803,10 @@ function buildHtmlTable(infoj) {
         }
     });
     return table;
+}
+
+function getMath(arr, key, type) {
+    return Math[type].apply(null, arr.map(function (obj) {
+        return obj[key];
+    }))
 }
