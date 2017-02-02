@@ -38,6 +38,8 @@ function selectGeodata(_this, _i){
     removeLayer();
     map_geodata.off('mousemove');
     map_geodata.off('click');
+    map_geodata.off('zoomend');
+    map_geodata.off('moveend');
     geodataScrollyFirst.animate({'marginTop': 619 * -_i});
     currentDataset == 'pricing' ? geodataPricing.show() : geodataPricing.hide();
     currentDataset == 'faq' ? geodataFAQ.show() : geodataFAQ.hide();
@@ -455,18 +457,8 @@ $('#road_network').click(function() {
 var xhr_grid,
     gridZoomLayerArray,
     dotLayer,
-    dotLayer_,
     circleRadiusArray = [],
-    labelLayer;
-
-var gridZoomShift = {
-    12: 0.0004,
-    13: 0.0002,
-    14: 0.0001,
-    15: 0.00005,
-    16: 0.000025,
-    17: 0.0000125
-};
+    circleColorArray = [];
 
 map_geodata.createPane('labels');
 map_geodata.getPane('labels').style.zIndex = 650;
@@ -475,34 +467,132 @@ map_geodata.getPane('labels').style.pointerEvents = 'none';
 $('#media_com').click(function() {
     selectGeodata($(this), 13);
 
-    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map_geodata);
+
+    // gridZoomLayerArray = {
+    //     12: 'media_wifi_hx400',
+    //     13: 'media_wifi_hx200',
+    //     14: 'media_wifi_hx100',
+    //     15: 'media_wifi_hx050',
+    //     16: 'media_wifi_hx025',
+    //     17: 'media_wifi_hotspots'
+    // };
 
     gridZoomLayerArray = {
-        12: 'media_wifi_hx400',
-        13: 'media_wifi_hx200',
-        14: 'media_wifi_hx100',
-        15: 'media_wifi_hx050',
-        16: 'media_wifi_hx025',
-        17: 'media_wifi_hotspots'
+        12: 'media_bb_hx800',
+        13: 'media_bb_hx400',
+        14: 'media_bb_hx200',
+        15: 'media_bb_hx100',
+        16: 'media_bb_hx050',
+        17: 'media_bb'
     };
 
-    media_wifi_grid();
+    getGridDataBV();
 
-    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_only_labels/{z}/{x}/{y}.png',{pane: 'labels'}).addTo(map_geodata);
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png',{pane: 'labels'}).addTo(map_geodata);
 
     map_geodata.on('zoomend', function () {
-        media_wifi_grid();
+        getGridDataBV();
     });
 
     map_geodata.on('moveend', function () {
-        media_wifi_grid();
+        getGridDataBV();
     });
 
-    function media_wifi_grid(){
+    function getGridDataBV(){
         if (xhr_grid && xhr_grid.readyState != 4) xhr_grid.abort();
 
         if (dotLayer) map_geodata.removeLayer(dotLayer);
-        if (dotLayer_) map_geodata.removeLayer(dotLayer_);
+
+        var bounds = map_geodata.getBounds();
+
+        console.log(map_geodata.getZoom() + ' | ' + gridZoomLayerArray[map_geodata.getZoom()]);
+
+        xhr_grid = $.ajax({
+            url: '/grid_query',
+            dataType: 'json',
+            data: {
+                layer: gridZoomLayerArray[map_geodata.getZoom()],
+                west: bounds.getWest(),
+                south: bounds.getSouth(),
+                east: bounds.getEast(),
+                north: bounds.getNorth()
+            },
+            success: function (data) {
+                var avg_c = 0,
+                    avg_v = 0,
+                    n = data.length,
+                    dots = {
+                        type: "FeatureCollection",
+                        features: []
+                    };
+
+                for (var i = 0; i < n; i++) {
+                    var c = data[i].c,
+                        v = data[i].v,
+                        g = {
+                            "type": "Point",
+                            "coordinates": [data[i].lon, data[i].lat]
+                        },
+                        p = {
+                            "c": c,
+                            "v": v
+                        };
+
+                    avg_c += c;
+                    avg_v += v;
+
+                    dots.features.push({
+                        "geometry": g,
+                        "type": "Feature",
+                        "properties": p
+                    });
+                }
+
+                var min = getMath(data, 'c', 'min');
+                var max = getMath(data, 'c', 'max');
+                var avg = avg_c / n;
+                var step_lower = (avg - min) / 5;
+                var step_upper = (max - avg) / 4;
+                circleRadiusArray[0] = min + step_lower;
+                circleRadiusArray[1] = min + (step_lower * 2);
+                circleRadiusArray[2] = min + (step_lower * 3);
+                circleRadiusArray[3] = min + (step_lower * 4);
+                circleRadiusArray[4] = avg;
+                circleRadiusArray[5] = avg + step_upper;
+                circleRadiusArray[6] = avg + (step_upper * 2);
+                circleRadiusArray[7] = avg + (step_upper * 3);
+
+                min = getMath(data, 'v', 'min');
+                max = getMath(data, 'v', 'max');
+                avg = avg_v / n;
+                step_lower = (avg - min) / 5;
+                step_upper = (max - avg) / 4;
+                circleColorArray[0] = min + step_lower;
+                circleColorArray[1] = min + (step_lower * 2);
+                circleColorArray[2] = min + (step_lower * 3);
+                circleColorArray[3] = min + (step_lower * 4);
+                circleColorArray[4] = avg;
+                circleColorArray[5] = avg + step_upper;
+                circleColorArray[6] = avg + (step_upper * 2);
+                circleColorArray[7] = avg + (step_upper * 3);
+
+                dotLayer = new L.geoJson(dots, {
+                    pointToLayer: function (feature, latlng) {
+                        return L.marker(latlng, divStyle(feature));
+                    }
+                    //onEachFeature: onEachDot
+                }).addTo(map_geodata);
+
+            }
+        })
+    }
+
+
+    function getGridData(){
+        if (xhr_grid && xhr_grid.readyState != 4) xhr_grid.abort();
+
+        if (dotLayer) map_geodata.removeLayer(dotLayer);
 
         var bounds = map_geodata.getBounds();
 
@@ -522,22 +612,13 @@ $('#media_com').click(function() {
                     dots = {
                         type: "FeatureCollection",
                         features: []
-                    },
-                    dots_ = {
-                        type: "FeatureCollection",
-                        features: []
-                    },
-                    dotShift = gridZoomShift[map_geodata.getZoom()];
+                    };
 
                 for (var i = 0; i < n; i++) {
                     var c = data[i].c,
                         g = {
                             "type": "Point",
                             "coordinates": [data[i].lon, data[i].lat]
-                        },
-                        g_ = {
-                            "type": "Point",
-                            "coordinates": [data[i].lon + dotShift, data[i].lat - dotShift]
                         },
                         p = {
                             "c": c
@@ -547,11 +628,6 @@ $('#media_com').click(function() {
 
                     dots.features.push({
                         "geometry": g,
-                        "type": "Feature",
-                        "properties": p
-                    });
-                    dots_.features.push({
-                        "geometry": g_,
                         "type": "Feature",
                         "properties": p
                     });
@@ -573,22 +649,8 @@ $('#media_com').click(function() {
                 circleRadiusArray[8] = avg_c + (step_c_upper * 3);
                 circleRadiusArray[9] = avg_c + (step_c_upper * 4);
 
-                // dotLayer_ = new L.geoJson(dots_, {
-                //     pointToLayer: function (feature, latlng) {
-                //         return L.circleMarker(latlng, style_(feature));
-                //     }
-                //     //onEachFeature: onEachDot
-                // }).addTo(map_geodata);
-
-
-                var div_circle = L.divIcon({
-                    className: 'circle',
-                    iconSize: [8, 8]
-                });
                 dotLayer = new L.geoJson(dots, {
                     pointToLayer: function (feature, latlng) {
-                        //return L.circleMarker(latlng, style(feature));
-                        //return L.marker(latlng, {icon: div_circle});
                         return L.marker(latlng, divStyle(feature));
                     }
                     //onEachFeature: onEachDot
@@ -600,64 +662,33 @@ $('#media_com').click(function() {
 
     function divStyle(feature){
         var c = feature.properties.c;
+        var v = feature.properties.v;
 
         var s = c < circleRadiusArray[0] ? 4 :
-            c < circleRadiusArray[1] ? 4.5 :
+                c < circleRadiusArray[1] ? 4.5 :
                 c < circleRadiusArray[2] ? 5 :
-                    c < circleRadiusArray[3] ? 5.5 :
-                        c < circleRadiusArray[4] ? 6 :
-                            c < circleRadiusArray[5] ? 6.5 :
-                                c < circleRadiusArray[6] ? 7 :
-                                    c < circleRadiusArray[7] ? 7.5 :
-                                        c < circleRadiusArray[8] ? 8 :
-                                            c < circleRadiusArray[9] ? 8.5 :
-                                                9;
+                c < circleRadiusArray[3] ? 5.5 :
+                c < circleRadiusArray[4] ? 6 :
+                c < circleRadiusArray[5] ? 6.5 :
+                c < circleRadiusArray[6] ? 7 :
+                c < circleRadiusArray[7] ? 7.5 :
+                                           8.5;
+
+        var circle_colour = v < circleColorArray[0] ? 'circle_c51b7d' :
+                            v < circleColorArray[1] ? 'circle_de77ae' :
+                            v < circleColorArray[2] ? 'circle_f1b6da' :
+                            v < circleColorArray[3] ? 'circle_fde0ef' :
+                            v < circleColorArray[4] ? 'circle_f7f7f7' :
+                            v < circleColorArray[5] ? 'circle_e6f5d0' :
+                            v < circleColorArray[6] ? 'circle_b8e186' :
+                            v < circleColorArray[7] ? 'circle_b8e186' :
+                                                      'circle_4d9221';
 
         return {
             icon: L.divIcon({
-                className: 'circle',
+                className: circle_colour,
                 iconSize: [s, s]
             })
-        };
-    }
-
-    function style_(feature) {
-        var c = feature.properties.c;
-        return {
-            stroke: false,
-            fillOpacity: 0.4,
-            fillColor: '#f4ff81',
-            radius: c < circleRadiusArray[0] ? 1.66 :
-                c < circleRadiusArray[1] ? 2.00 :
-                    c < circleRadiusArray[2] ? 2.33 :
-                        c < circleRadiusArray[3] ? 2.66 :
-                            c < circleRadiusArray[4] ? 3.00 :
-                                c < circleRadiusArray[5] ? 3.33 :
-                                    c < circleRadiusArray[6] ? 3.66 :
-                                        c < circleRadiusArray[7] ? 4.00 :
-                                            c < circleRadiusArray[8] ? 4.33 :
-                                                c < circleRadiusArray[9] ? 4.66 :
-                                                    5
-        };
-    }
-
-    function style(feature) {
-        var c = feature.properties.c;
-        return {
-            stroke: false,
-            fillOpacity: 1,
-            fillColor: '#eeff41',
-            radius: c < circleRadiusArray[0] ? 1.66 :
-                c < circleRadiusArray[1] ? 2.00 :
-                    c < circleRadiusArray[2] ? 2.33 :
-                        c < circleRadiusArray[3] ? 2.66 :
-                            c < circleRadiusArray[4] ? 3.00 :
-                                c < circleRadiusArray[5] ? 3.33 :
-                                    c < circleRadiusArray[6] ? 3.66 :
-                                        c < circleRadiusArray[7] ? 4.00 :
-                                            c < circleRadiusArray[8] ? 4.33 :
-                                                c < circleRadiusArray[9] ? 4.66 :
-                                                    5
         };
     }
 
