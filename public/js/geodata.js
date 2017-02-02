@@ -506,7 +506,7 @@ $('#media_com').click(function() {
 
         var bounds = map_geodata.getBounds();
 
-        console.log(map_geodata.getZoom() + ' | ' + gridZoomLayerArray[map_geodata.getZoom()]);
+        // console.log(map_geodata.getZoom() + ' | ' + gridZoomLayerArray[map_geodata.getZoom()]);
 
         xhr_grid = $.ajax({
             url: '/grid_query',
@@ -576,6 +576,18 @@ $('#media_com').click(function() {
                 circleColorArray[5] = avg + step_upper;
                 circleColorArray[6] = avg + (step_upper * 2);
                 circleColorArray[7] = avg + (step_upper * 3);
+
+                var legend_text = document.getElementsByClassName('legend_text');
+                legend_text[0].innerHTML = '< ' + circleColorArray[0].toFixed(2) + ' M/s';
+                legend_text[1].innerHTML = '< ' + circleColorArray[1].toFixed(2);
+                legend_text[2].innerHTML = '< ' + circleColorArray[2].toFixed(2);
+                legend_text[3].innerHTML = '< ' + circleColorArray[3].toFixed(2);
+                legend_text[4].innerHTML = '< ' + circleColorArray[4].toFixed(2);
+                legend_text[5].innerHTML = '< ' + circleColorArray[5].toFixed(2);
+                legend_text[6].innerHTML = '< ' + circleColorArray[6].toFixed(2);
+                legend_text[7].innerHTML = '< ' + circleColorArray[7].toFixed(2);
+                legend_text[8].innerHTML = '> ' + circleColorArray[7].toFixed(2) + ' M/s';
+
 
                 dotLayer = new L.geoJson(dots, {
                     pointToLayer: function (feature, latlng) {
@@ -681,7 +693,7 @@ $('#media_com').click(function() {
                             v < circleColorArray[4] ? 'circle_f7f7f7' :
                             v < circleColorArray[5] ? 'circle_e6f5d0' :
                             v < circleColorArray[6] ? 'circle_b8e186' :
-                            v < circleColorArray[7] ? 'circle_b8e186' :
+                            v < circleColorArray[7] ? 'circle_7fbc41' :
                                                       'circle_4d9221';
 
         return {
