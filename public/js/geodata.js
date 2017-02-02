@@ -3,6 +3,7 @@ var southWest = L.latLng(51.35, -0.4),
     bounds = L.latLngBounds(southWest, northEast);
 
 var map_geodata = L.map('map_geodata', {
+    renderer: L.svg(),
     scrollWheelZoom: false,
     zoomControl: false,
     maxBounds: bounds,
@@ -572,22 +573,52 @@ $('#media_com').click(function() {
                 circleRadiusArray[8] = avg_c + (step_c_upper * 3);
                 circleRadiusArray[9] = avg_c + (step_c_upper * 4);
 
-                dotLayer_ = new L.geoJson(dots_, {
-                    pointToLayer: function (feature, latlng) {
-                        return L.circleMarker(latlng, style_(feature));
-                    }
-                    //onEachFeature: onEachDot
-                }).addTo(map_geodata);
+                // dotLayer_ = new L.geoJson(dots_, {
+                //     pointToLayer: function (feature, latlng) {
+                //         return L.circleMarker(latlng, style_(feature));
+                //     }
+                //     //onEachFeature: onEachDot
+                // }).addTo(map_geodata);
 
+
+                var div_circle = L.divIcon({
+                    className: 'circle',
+                    iconSize: [8, 8]
+                });
                 dotLayer = new L.geoJson(dots, {
                     pointToLayer: function (feature, latlng) {
-                        return L.circleMarker(latlng, style(feature));
+                        //return L.circleMarker(latlng, style(feature));
+                        //return L.marker(latlng, {icon: div_circle});
+                        return L.marker(latlng, divStyle(feature));
                     }
                     //onEachFeature: onEachDot
                 }).addTo(map_geodata);
 
             }
         })
+    }
+
+    function divStyle(feature){
+        var c = feature.properties.c;
+
+        var s = c < circleRadiusArray[0] ? 4 :
+            c < circleRadiusArray[1] ? 4.5 :
+                c < circleRadiusArray[2] ? 5 :
+                    c < circleRadiusArray[3] ? 5.5 :
+                        c < circleRadiusArray[4] ? 6 :
+                            c < circleRadiusArray[5] ? 6.5 :
+                                c < circleRadiusArray[6] ? 7 :
+                                    c < circleRadiusArray[7] ? 7.5 :
+                                        c < circleRadiusArray[8] ? 8 :
+                                            c < circleRadiusArray[9] ? 8.5 :
+                                                9;
+
+        return {
+            icon: L.divIcon({
+                className: 'circle',
+                iconSize: [s, s]
+            })
+        };
     }
 
     function style_(feature) {
@@ -631,6 +662,8 @@ $('#media_com').click(function() {
     }
 
 });
+
+
 
 
 $('#physical').click(function() {
