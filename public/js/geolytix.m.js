@@ -15,12 +15,12 @@ window.addEventListener('resize', function () {
     if (window.innerWidth > 799) {
         window.location = "/";
     }
-    if (window.innerWidth > window.innerHeight) {
-        orientation();
-    }
+    orientation();
 });
 
-
+window.addEventListener("orientationchange", function() {
+    orientation();
+}, false);
 
 // preload images
 var img = new Image();
