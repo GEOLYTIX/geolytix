@@ -4,7 +4,7 @@ var intro__text = document.getElementById('intro__text');
 orientation();
 
 function orientation() {
-    if (screen.height < screen.width) {
+    if (window.innerWidth || screen.height < window.innerWidth || screen.width) {
         intro__text.innerHTML = 'better decisions<br>where location matters';
     } else {
         intro__text.innerHTML = 'better<br>decisions<br>where<br>location<br>matters';
@@ -12,15 +12,15 @@ function orientation() {
 }
 
 window.addEventListener('resize', function () {
-    if (window.innerWidth > 799) {
+    if (window.innerWidth || screen.width > 799) {
         window.location = "/";
     }
     orientation();
 });
 
-window.addEventListener("orientationchange", function() {
+window.addEventListener('orientationchange', function() {
     orientation();
-}, false);
+});
 
 // preload images
 var img = new Image();
