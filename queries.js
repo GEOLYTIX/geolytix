@@ -3,7 +3,9 @@ var pgp = require('pg-promise')({promiseLib: promise});
 var db = pgp(process.env.POSTGRES);
 
 function grid_query(req, res) {
-    db.any('SELECT lon, lat, connections c, avg_dwload v FROM ' +
+    db.any('SELECT lon, lat, ' +
+        req.query.c + ' c, ' +
+        req.query.v + ' v FROM ' +
         req.query.layer + ' WHERE geom && ST_MakeEnvelope(' +
         req.query.west + ', ' +
         req.query.south + ', ' +

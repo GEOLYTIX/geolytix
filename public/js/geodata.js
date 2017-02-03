@@ -86,9 +86,9 @@ $('#education').click(function() {
     education()
 });
 
-$('#work_place').click(function() {
+$('#workplace').click(function() {
     selectGeodata($(this), 7);
-    work_place()
+    workplace()
 });
 
 $('#poi').click(function() {
@@ -136,6 +136,7 @@ $('#faq').click(function() {
 
 
 function selectGeodata(_this, _i){
+    $('.tmpl_legend').html('');
     _this.siblings().removeClass('selected');
     _this.addClass('selected');
     currentDataset = _this.attr('id');
@@ -387,8 +388,52 @@ function education(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map);
 }
 
-function work_place(){
+function workplace(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+
+    var layer;
+    workplace_checkZ();
+
+    function workplace_hz(){
+        layer = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+            version: '1.3',
+            layers: 'workplace_hz',
+            format: 'image/png',
+            transparent: true,
+            styles: 'workplace_hz'
+        }).addTo(map);
+
+        map.on('click', function(e){
+            clickSelect(e, map, layer, "id>0")
+        });
+
+        map.on('zoomend', function () {
+            workplace_checkZ();
+        });
+    }
+
+    function workplace_pc(){
+        map.on('zoomend', function () {
+            workplace_checkZ();
+        });
+    }
+
+    function workplace_checkZ(){
+        if (xhr && xhr.readyState != 4) xhr.abort();
+        //map.off('mousemove');
+        map.off('click');
+        map.off('zoomend');
+        map.off('moveend');
+        if (layer) map.removeLayer(layer);
+        var z = map.getZoom();
+        if (z > 14) {
+            workplace_hz()
+        } else {
+            workplace_pc()
+        }
+    }
+
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
 }
 
 function poi(){
@@ -478,6 +523,42 @@ function uk_admin(){
 
 function property(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+
+    var arrayZoom = {
+            12: 'property_hx800',
+            13: 'property_hx400',
+            14: 'property_hx200',
+            15: 'property_hx100',
+            16: 'property_hx050',
+            17: 'property_hx025'
+        },
+        arrayStyle = [
+            'circle_c51b7d',
+            'circle_de77ae',
+            'circle_f1b6da',
+            'circle_fde0ef',
+            'circle_f7f7f7',
+            'circle_e6f5d0',
+            'circle_b8e186',
+            'circle_7fbc41',
+            'circle_4d9221'
+        ];
+
+    getGridData(
+        map.getBounds(),
+        arrayZoom[map.getZoom()],
+        divStyle,
+        'n',
+        'price_paid',
+        arrayStyle
+    );
+
+    $.when($.get('/public/tmpl/legend_property.html'))
+        .done(function(_tmpl) {
+            var t = $(_tmpl).render();
+            $('#legend__property').append(t);
+        });
+
 }
 
 function road_network(){
@@ -497,156 +578,64 @@ function road_network(){
 function media_com(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
-    var arraySize = [],
-        arrayColor = [],
-        arrayZoom = {
-        12: 'media_bb_hx800',
-        13: 'media_bb_hx400',
-        14: 'media_bb_hx200',
-        15: 'media_bb_hx100',
-        16: 'media_bb_hx050',
-        17: 'media_bb'
-    };
+    var arrayZoom = {
+            12: 'media_bb_hx800',
+            13: 'media_bb_hx400',
+            14: 'media_bb_hx200',
+            15: 'media_bb_hx100',
+            16: 'media_bb_hx050',
+            17: 'media_bb'
+        },
+        arrayStyle = [
+            'circle_c51b7d',
+            'circle_de77ae',
+            'circle_f1b6da',
+            'circle_fde0ef',
+            'circle_f7f7f7',
+            'circle_e6f5d0',
+            'circle_b8e186',
+            'circle_7fbc41',
+            'circle_4d9221'
+        ];
 
-    getGridData();
+    getGridData(
+        map.getBounds(),
+        arrayZoom[map.getZoom()],
+        divStyle,
+        'connections',
+        'avg_dwload',
+        arrayStyle
+    );
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png',{pane: 'labels'}).addTo(map);
 
     map.on('zoomend', function () {
-        getGridData();
+        getGridData(
+            map.getBounds(),
+            arrayZoom[map.getZoom()],
+            divStyle,
+            'connections',
+            'avg_dwload',
+            arrayStyle
+        );
     });
 
     map.on('moveend', function () {
-        getGridData();
+        getGridData(
+            map.getBounds(),
+            arrayZoom[map.getZoom()],
+            divStyle,
+            'connections',
+            'avg_dwload',
+            arrayStyle
+        );
     });
 
-    function getGridData(){
-        if (xhr && xhr.readyState != 4) xhr.abort();
-        if (layerGrid) map.removeLayer(layerGrid);
-
-        var bounds = map.getBounds();
-        xhr = $.ajax({
-            url: '/grid_query',
-            dataType: 'json',
-            data: {
-                layer: arrayZoom[map.getZoom()],
-                west: bounds.getWest(),
-                south: bounds.getSouth(),
-                east: bounds.getEast(),
-                north: bounds.getNorth()
-            },
-            success: function (data) {
-                var avg_c = 0,
-                    avg_v = 0,
-                    n = data.length,
-                    dots = {
-                        type: "FeatureCollection",
-                        features: []
-                    };
-
-                for (var i = 0; i < n; i++) {
-                    var c = data[i].c,
-                        v = data[i].v,
-                        g = {
-                            "type": "Point",
-                            "coordinates": [data[i].lon, data[i].lat]
-                        },
-                        p = {
-                            "c": c,
-                            "v": v
-                        };
-
-                    avg_c += c;
-                    avg_v += v;
-
-                    dots.features.push({
-                        "geometry": g,
-                        "type": "Feature",
-                        "properties": p
-                    });
-                }
-
-                var min = getMath(data, 'c', 'min'),
-                    max = getMath(data, 'c', 'max'),
-                    avg = avg_c / n,
-                    step_lower = (avg - min) / 5,
-                    step_upper = (max - avg) / 4;
-
-                arraySize[0] = min + step_lower;
-                arraySize[1] = min + (step_lower * 2);
-                arraySize[2] = min + (step_lower * 3);
-                arraySize[3] = min + (step_lower * 4);
-                arraySize[4] = avg;
-                arraySize[5] = avg + step_upper;
-                arraySize[6] = avg + (step_upper * 2);
-                arraySize[7] = avg + (step_upper * 3);
-
-                min = getMath(data, 'v', 'min');
-                max = getMath(data, 'v', 'max');
-                avg = avg_v / n;
-                step_lower = (avg - min) / 5;
-                step_upper = (max - avg) / 4;
-
-                arrayColor[0] = min + step_lower;
-                arrayColor[1] = min + (step_lower * 2);
-                arrayColor[2] = min + (step_lower * 3);
-                arrayColor[3] = min + (step_lower * 4);
-                arrayColor[4] = avg;
-                arrayColor[5] = avg + step_upper;
-                arrayColor[6] = avg + (step_upper * 2);
-                arrayColor[7] = avg + (step_upper * 3);
-
-                var legend_text = document.getElementsByClassName('legend_text');
-                legend_text[0].innerHTML = '< ' + arrayColor[0].toFixed(2) + ' Mb/s';
-                legend_text[1].innerHTML = '< ' + arrayColor[1].toFixed(2);
-                legend_text[2].innerHTML = '< ' + arrayColor[2].toFixed(2);
-                legend_text[3].innerHTML = '< ' + arrayColor[3].toFixed(2);
-                legend_text[4].innerHTML = '< ' + arrayColor[4].toFixed(2);
-                legend_text[5].innerHTML = '< ' + arrayColor[5].toFixed(2);
-                legend_text[6].innerHTML = '< ' + arrayColor[6].toFixed(2);
-                legend_text[7].innerHTML = '< ' + arrayColor[7].toFixed(2);
-                legend_text[8].innerHTML = '> ' + arrayColor[7].toFixed(2) + ' Mb/s';
-
-                layerGrid = new L.geoJson(dots, {
-                    pointToLayer: function (feature, latlng) {
-                        return L.marker(latlng, divStyle(feature));
-                    }
-                    //onEachFeature: onEachDot
-                }).addTo(map);
-            }
-        })
-    }
-
-    function divStyle(feature){
-        var c = feature.properties.c,
-            v = feature.properties.v,
-            s = c < arraySize[0] ? 4 :
-                c < arraySize[1] ? 4.5 :
-                c < arraySize[2] ? 5 :
-                c < arraySize[3] ? 5.5 :
-                c < arraySize[4] ? 6 :
-                c < arraySize[5] ? 6.5 :
-                c < arraySize[6] ? 7 :
-                c < arraySize[7] ? 7.5 :
-                                   8.5,
-            circle_colour = v < arrayColor[0] ? 'circle_c51b7d' :
-                            v < arrayColor[1] ? 'circle_de77ae' :
-                            v < arrayColor[2] ? 'circle_f1b6da' :
-                            v < arrayColor[3] ? 'circle_fde0ef' :
-                            v < arrayColor[4] ? 'circle_f7f7f7' :
-                            v < arrayColor[5] ? 'circle_e6f5d0' :
-                            v < arrayColor[6] ? 'circle_b8e186' :
-                            v < arrayColor[7] ? 'circle_7fbc41' :
-                                                'circle_4d9221';
-
-        if (v == null) circle_colour = 'circle_eeff41';
-        return {
-            icon: L.divIcon({
-                className: circle_colour,
-                iconSize: [s, s]
-            })
-        };
-    }
+    $.when($.get('/public/tmpl/legend_media_bb.html'))
+        .done(function(_tmpl) {
+            var t = $(_tmpl).render();
+            $('#legend__media').append(t);
+        });
 }
 
 
@@ -670,6 +659,137 @@ function physical(){
     }).addTo(map);
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map);
+}
+
+
+function divStyle(_f, _arrayColor, _arraySize, _arrayStyle){
+    var c = _f.properties.c,
+        v = _f.properties.v,
+        s = c < _arraySize[0] ? 4 :
+            c < _arraySize[1] ? 4.5 :
+                c < _arraySize[2] ? 5 :
+                    c < _arraySize[3] ? 5.5 :
+                        c < _arraySize[4] ? 6 :
+                            c < _arraySize[5] ? 6.5 :
+                                c < _arraySize[6] ? 7 :
+                                    c < _arraySize[7] ? 7.5 :
+                                        8.5,
+        circle_colour = v < _arrayColor[0] ? _arrayStyle[0] :
+            v < _arrayColor[1] ? _arrayStyle[1] :
+                v < _arrayColor[2] ? _arrayStyle[2] :
+                    v < _arrayColor[3] ? _arrayStyle[3] :
+                        v < _arrayColor[4] ? _arrayStyle[4] :
+                            v < _arrayColor[5] ? _arrayStyle[5] :
+                                v < _arrayColor[6] ? _arrayStyle[6] :
+                                    v < _arrayColor[7] ? _arrayStyle[7] :
+                                        _arrayStyle[8];
+
+    if (v == null) circle_colour = 'circle_eeff41';
+    return {
+        icon: L.divIcon({
+            className: circle_colour,
+            iconSize: [s, s]
+        })
+    };
+}
+
+function getGridData(_bounds, _layer, _style, _c, _v, _arrayStyle){
+    if (xhr && xhr.readyState != 4) xhr.abort();
+    if (layerGrid) map.removeLayer(layerGrid);
+    xhr = $.ajax({
+        url: '/grid_query',
+        dataType: 'json',
+        data: {
+            c: _c,
+            v: _v,
+            layer: _layer,
+            west: _bounds.getWest(),
+            south: _bounds.getSouth(),
+            east: _bounds.getEast(),
+            north: _bounds.getNorth()
+        },
+        success: function (data) {
+            var avg_c = 0,
+                avg_v = 0,
+                arrayColor = [],
+                arraySize = [],
+                n = data.length,
+                dots = {
+                    type: "FeatureCollection",
+                    features: []
+                };
+
+            for (var i = 0; i < n; i++) {
+                var c = data[i].c,
+                    v = data[i].v,
+                    g = {
+                        "type": "Point",
+                        "coordinates": [data[i].lon, data[i].lat]
+                    },
+                    p = {
+                        "c": c,
+                        "v": v
+                    };
+
+                avg_c += c;
+                avg_v += v;
+
+                dots.features.push({
+                    "geometry": g,
+                    "type": "Feature",
+                    "properties": p
+                });
+            }
+
+            var min = getMath(data, 'c', 'min'),
+                max = getMath(data, 'c', 'max'),
+                avg = avg_c / n,
+                step_lower = (avg - min) / 5,
+                step_upper = (max - avg) / 4;
+
+            arraySize[0] = min + step_lower;
+            arraySize[1] = min + (step_lower * 2);
+            arraySize[2] = min + (step_lower * 3);
+            arraySize[3] = min + (step_lower * 4);
+            arraySize[4] = avg;
+            arraySize[5] = avg + step_upper;
+            arraySize[6] = avg + (step_upper * 2);
+            arraySize[7] = avg + (step_upper * 3);
+
+            min = getMath(data, 'v', 'min');
+            max = getMath(data, 'v', 'max');
+            avg = avg_v / n;
+            step_lower = (avg - min) / 5;
+            step_upper = (max - avg) / 4;
+
+            arrayColor[0] = min + step_lower;
+            arrayColor[1] = min + (step_lower * 2);
+            arrayColor[2] = min + (step_lower * 3);
+            arrayColor[3] = min + (step_lower * 4);
+            arrayColor[4] = avg;
+            arrayColor[5] = avg + step_upper;
+            arrayColor[6] = avg + (step_upper * 2);
+            arrayColor[7] = avg + (step_upper * 3);
+
+            var legend_text = document.getElementsByClassName('legend_text');
+            legend_text[0].innerHTML = '< ' + arrayColor[0].toFixed(2) + ' Mb/s';
+            legend_text[1].innerHTML = '< ' + arrayColor[1].toFixed(2);
+            legend_text[2].innerHTML = '< ' + arrayColor[2].toFixed(2);
+            legend_text[3].innerHTML = '< ' + arrayColor[3].toFixed(2);
+            legend_text[4].innerHTML = '< ' + arrayColor[4].toFixed(2);
+            legend_text[5].innerHTML = '< ' + arrayColor[5].toFixed(2);
+            legend_text[6].innerHTML = '< ' + arrayColor[6].toFixed(2);
+            legend_text[7].innerHTML = '< ' + arrayColor[7].toFixed(2);
+            legend_text[8].innerHTML = '> ' + arrayColor[7].toFixed(2) + ' Mb/s';
+
+            layerGrid = new L.geoJson(dots, {
+                pointToLayer: function (feature, latlng) {
+                    return L.marker(latlng, _style(feature, arrayColor, arraySize, _arrayStyle));
+                }
+                //onEachFeature: onEachDot
+            }).addTo(map);
+        }
+    })
 }
 
 
@@ -732,7 +852,7 @@ function getFeatureInfoUrl(map, layer, latlng, params) {
 
 
 function wmsGetHoverFeatureInfo(url, infoTable){
-    if (xhr) xhr.abort();
+    if (xhr && xhr.readyState != 4) xhr.abort();
     xhr = $.ajax({
         url: url,
         success: function (data) {
@@ -754,7 +874,8 @@ function createHoverFeature(geom) {
         style: function () {
             return {
                 color: '#079e00',
-                fillOpacity: 0.1
+                fillOpacity: 0.1,
+                interactive: false
             };
         }
     }).addTo(map);
@@ -776,7 +897,7 @@ function populateInfoTable(infoj, infoTable){
 
 
 function wmsGetClickFeatureInfo(url){
-    if (xhr) xhr.abort();
+    if (xhr && xhr.readyState != 4) xhr.abort();
     xhr = $.ajax({
         url: url,
         success: function (data) {

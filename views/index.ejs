@@ -15,7 +15,7 @@
                 window.location = "//blog.geolytix.net";
             }
         }
-        if (window.innerWidth <= 799) {
+        if (window.innerWidth || screen.width <= 799) {
             window.location = "/mobile";
         }
 
@@ -270,7 +270,7 @@
             <div id="postal_geom" class="cursor">Postal Geometries</div>
             <div id="town_suburb" class="cursor">Town and Suburb</div>
             <div id="education" class="cursor">Education</div>
-            <div id="work_place" class="cursor">Work Places</div>
+            <div id="workplace" class="cursor">Work Places</div>
             <div id="poi" class="cursor">Points of Interest</div>
             <div id="residential" class="cursor">Residential</div>
             <div id="uk_admin" class="cursor">UK Admin</div>
@@ -427,7 +427,7 @@
                     </div>
                 </div>
 
-                <div class="work_place">
+                <div class="workplace">
                     <div>
                         <p>Up to date worker counts for more than 400,000 commercial postcodes across the UK. Split by type of occupation for a deeper understanding of who works where.</p>
                         <p><a class="docu_link" href="https://drive.google.com/open?id=0B1GCK8cPXzg-bzJ2TF9KWFZiNEE" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
@@ -518,6 +518,7 @@
                     <div>
                         <p>All housing transactions since 1995 including address, value and classifications. A continually growing source of local area insight. Plus all 500K listed properties across the UK.</p>
                         <p><a class="docu_link" href="https://drive.google.com/open?id=0B1GCK8cPXzg-V3lEYnNBQVMxckk" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
+                        <div id="legend__property" class="tmpl__legend"></div>
                         <div class="attribution">
                             <p>Map data - OpenStreetMap</p>
                             <p>Tiles from CartoDB</p>
@@ -540,130 +541,7 @@
                     <div>
                         <p>A spatial dataset of broadcasting regions, broadband speeds by postcode, Wi-Fi hotspots by postcode and radio coverage.</p>
                         <p><a class="docu_link" href="https://drive.google.com/open?id=0B1GCK8cPXzg-Wjl3SnUtZzdzQXM" target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
-                        <p>Average download speed</p>
-                        <p class="legend_title">Number of connections</p>
-                        <table class="legend">
-                            <tr>
-                                <td><div class="circle_c51b7d"></div></td>
-                                <td><div class="circle_c51b7d"></div></td>
-                                <td><div class="circle_c51b7d"></div></td>
-                                <td><div class="circle_c51b7d"></div></td>
-                                <td><div class="circle_c51b7d"></div></td>
-                                <td><div class="circle_c51b7d"></div></td>
-                                <td><div class="circle_c51b7d"></div></td>
-                                <td><div class="circle_c51b7d"></div></td>
-                                <td><div class="circle_c51b7d"></div></td>
-                                <td class="legend_text"></td>
-                            </tr>
-                            <tr>
-                                <td><div class="circle_de77ae"></div></td>
-                                <td><div class="circle_de77ae"></div></td>
-                                <td><div class="circle_de77ae"></div></td>
-                                <td><div class="circle_de77ae"></div></td>
-                                <td><div class="circle_de77ae"></div></td>
-                                <td><div class="circle_de77ae"></div></td>
-                                <td><div class="circle_de77ae"></div></td>
-                                <td><div class="circle_de77ae"></div></td>
-                                <td><div class="circle_de77ae"></div></td>
-                                <td class="legend_text"></td>
-                            </tr>
-                            <tr>
-                                <td><div class="circle_f1b6da"></div></td>
-                                <td><div class="circle_f1b6da"></div></td>
-                                <td><div class="circle_f1b6da"></div></td>
-                                <td><div class="circle_f1b6da"></div></td>
-                                <td><div class="circle_f1b6da"></div></td>
-                                <td><div class="circle_f1b6da"></div></td>
-                                <td><div class="circle_f1b6da"></div></td>
-                                <td><div class="circle_f1b6da"></div></td>
-                                <td><div class="circle_f1b6da"></div></td>
-                                <td class="legend_text"></td>
-                            </tr>
-                            <tr>
-                                <td><div class="circle_fde0ef"></div></td>
-                                <td><div class="circle_fde0ef"></div></td>
-                                <td><div class="circle_fde0ef"></div></td>
-                                <td><div class="circle_fde0ef"></div></td>
-                                <td><div class="circle_fde0ef"></div></td>
-                                <td><div class="circle_fde0ef"></div></td>
-                                <td><div class="circle_fde0ef"></div></td>
-                                <td><div class="circle_fde0ef"></div></td>
-                                <td><div class="circle_fde0ef"></div></td>
-                                <td class="legend_text"></td>
-                            </tr>
-                            <tr>
-                                <td><div class="circle_f7f7f7"></div></td>
-                                <td><div class="circle_f7f7f7"></div></td>
-                                <td><div class="circle_f7f7f7"></div></td>
-                                <td><div class="circle_f7f7f7"></div></td>
-                                <td><div class="circle_f7f7f7"></div></td>
-                                <td><div class="circle_f7f7f7"></div></td>
-                                <td><div class="circle_f7f7f7"></div></td>
-                                <td><div class="circle_f7f7f7"></div></td>
-                                <td><div class="circle_f7f7f7"></div></td>
-                                <td  class="legend_text"></td>
-                            </tr>
-                            <tr>
-                                <td><div class="circle_e6f5d0"></div></td>
-                                <td><div class="circle_e6f5d0"></div></td>
-                                <td><div class="circle_e6f5d0"></div></td>
-                                <td><div class="circle_e6f5d0"></div></td>
-                                <td><div class="circle_e6f5d0"></div></td>
-                                <td><div class="circle_e6f5d0"></div></td>
-                                <td><div class="circle_e6f5d0"></div></td>
-                                <td><div class="circle_e6f5d0"></div></td>
-                                <td><div class="circle_e6f5d0"></div></td>
-                                <td class="legend_text"></td>
-                            </tr>
-                            <tr>
-                                <td><div class="circle_b8e186"></div></td>
-                                <td><div class="circle_b8e186"></div></td>
-                                <td><div class="circle_b8e186"></div></td>
-                                <td><div class="circle_b8e186"></div></td>
-                                <td><div class="circle_b8e186"></div></td>
-                                <td><div class="circle_b8e186"></div></td>
-                                <td><div class="circle_b8e186"></div></td>
-                                <td><div class="circle_b8e186"></div></td>
-                                <td><div class="circle_b8e186"></div></td>
-                                <td class="legend_text"></td>
-                            </tr>
-                            <tr>
-                                <td><div class="circle_7fbc41"></div></td>
-                                <td><div class="circle_7fbc41"></div></td>
-                                <td><div class="circle_7fbc41"></div></td>
-                                <td><div class="circle_7fbc41"></div></td>
-                                <td><div class="circle_7fbc41"></div></td>
-                                <td><div class="circle_7fbc41"></div></td>
-                                <td><div class="circle_7fbc41"></div></td>
-                                <td><div class="circle_7fbc41"></div></td>
-                                <td><div class="circle_7fbc41"></div></td>
-                                <td class="legend_text"></td>
-                            </tr>
-                            <tr>
-                                <td><div class="circle_4d9221"></div></td>
-                                <td><div class="circle_4d9221"></div></td>
-                                <td><div class="circle_4d9221"></div></td>
-                                <td><div class="circle_4d9221"></div></td>
-                                <td><div class="circle_4d9221"></div></td>
-                                <td><div class="circle_4d9221"></div></td>
-                                <td><div class="circle_4d9221"></div></td>
-                                <td><div class="circle_4d9221"></div></td>
-                                <td><div class="circle_4d9221"></div></td>
-                                <td class="legend_text"></td>
-                            </tr>
-                            <tr>
-                                <td><div class="circle_eeff41"></div></td>
-                                <td><div class="circle_eeff41"></div></td>
-                                <td><div class="circle_eeff41"></div></td>
-                                <td><div class="circle_eeff41"></div></td>
-                                <td><div class="circle_eeff41"></div></td>
-                                <td><div class="circle_eeff41"></div></td>
-                                <td><div class="circle_eeff41"></div></td>
-                                <td><div class="circle_eeff41"></div></td>
-                                <td><div class="circle_eeff41"></div></td>
-                                <td class="legend_text">avg speed n/a</td>
-                            </tr>
-                        </table>
+                        <div id="legend__media" class="tmpl__legend"></div>
                         <div class="attribution">
                             <p>Map data - OpenStreetMap</p>
                             <p>Tiles from CartoDB</p>
@@ -1031,6 +909,7 @@
 
 </body>
 
+<script type="application/javascript" src="/public/js/jsrender.min.js"></script>
 <script type="application/javascript" src="/public/js/leaflet.js"></script>
 <script type="application/javascript" src="/public/js/proj4.js"></script>
 <script type="application/javascript" src="/public/js/proj4leaflet.js"></script>
