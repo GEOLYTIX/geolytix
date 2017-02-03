@@ -12,7 +12,7 @@ function orientation() {
 }
 
 window.addEventListener('resize', function () {
-    if (window.innerWidth || screen.width > 799) {
+    if (window.innerWidth > 799) {
         window.location = "/";
     }
     orientation();
