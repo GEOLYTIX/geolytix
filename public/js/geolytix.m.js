@@ -3,6 +3,14 @@ var intro__text = document.getElementById('intro__text');
 
 orientation();
 
+window.addEventListener('resize', function () {
+    orientation();
+});
+
+window.addEventListener('orientationchange', function() {
+    orientation();
+});
+
 function orientation() {
     if (window.innerWidth || screen.height < window.innerWidth || screen.width) {
         intro__text.innerHTML = 'better decisions<br>where location matters';
@@ -10,17 +18,6 @@ function orientation() {
         intro__text.innerHTML = 'better<br>decisions<br>where<br>location<br>matters';
     }
 }
-
-window.addEventListener('resize', function () {
-    if (window.innerWidth || screen.width > 799) {
-        window.location = "/";
-    }
-    orientation();
-});
-
-window.addEventListener('orientationchange', function() {
-    orientation();
-});
 
 // preload images
 var img = new Image();
