@@ -16,7 +16,11 @@
             }
         }
         if (screen.width < 799) {
-            window.location = "/mobile";
+            if (window.width) {
+                if (window.width < 799) window.location = "/mobile";
+            } else {
+                window.location = "/mobile";
+            }
         }
 
         //google analytics
