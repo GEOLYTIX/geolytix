@@ -156,7 +156,6 @@ contact__btnZoomOut.click(function() {
 
 // resize window
 window.onresize = function () {
-    window.innerWidth <= 799 ? window.location = '/mobile' : null;
     parallax_team_photo.style.height = parallax_team_photo.offsetWidth * 0.47 + 'px';
     changeExpandedCardsHeight();
 };

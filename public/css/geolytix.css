@@ -30,6 +30,7 @@ body {
     width: 100%;
     margin: 0;
     font-family: ffmark, sans-serif;
+    min-width: 799px;
 }
 
 .cursor:hover {
@@ -140,6 +141,7 @@ div, a {
     color: #fff;
     z-index: 9999;
     padding: 5px 50px 0 50px;
+    min-width: 799px;
 }
 
 .header__main {
