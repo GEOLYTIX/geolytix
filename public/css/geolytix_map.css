@@ -1,0 +1,190 @@
+/* FONTS */
+
+@font-face {
+    font-family: ffmark_black;
+    src: url('/public/fonts/MarkWeb-Black.woff') format('woff');
+}
+
+@font-face {
+    font-family: ffmark;
+    src: url('/public/fonts/MarkWebPro.woff') format('woff');
+}
+
+@font-face {
+    font-family: ffmark_bold;
+    src: url('/public/fonts/MarkWebPro-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-family: ffmark_italic;
+    src: url('/public/fonts/MarkWebPro-Italic.woff') format('woff');
+}
+
+body {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: ffmark, sans-serif;
+}
+
+.cursor:hover {
+    cursor: pointer;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.leaflet-control-attribution {
+    display: none;
+}
+
+.geodata__info {
+    width: 300px;
+    height: 100%;
+    min-height: 619px;
+    float: left;
+}
+
+.geodata__info > div {
+    display: none;
+}
+
+.geodata__info > .active {
+    display: block;
+    padding-left: 10px;
+}
+
+.geodata__info > div p:nth-of-type(1) {
+    margin-bottom: 20px;
+}
+
+.geodata__info > div a {
+    color: #079e00;
+}
+
+.docu_link {
+    line-height: 3;
+    margin-left: -4px;
+}
+
+.attribution {
+    margin-top: 20px;
+    line-height: 2;
+    font-size: 12px;
+}
+
+.info {
+    font-family: monospace;
+    width: 100%;
+}
+
+.info tr:first-of-type {
+    font-weight: 700;
+}
+
+.info td,
+.leaflet-popup-content td {
+    vertical-align: top !important;
+}
+
+.leaflet-popup-content table td:first-child {
+    font-weight: 700;
+}
+
+.leaflet-popup-content table td:nth-child(2) {
+    font-family: monospace;
+}
+
+.legend {
+    margin-top: 10px;
+    margin-left: -3px;
+}
+
+.legend .active {
+    font-family: ffmark_bold, sans-serif;
+}
+
+.retail_points .legend img {
+    width: 20px;
+    height: 20px;
+}
+
+.seamless_locales .info td:first-child {
+    width: 110px;
+}
+
+.town_suburb .info td:first-child {
+    width: 100px;
+}
+
+.geodata__content {
+    position: relative;
+    width: calc(100% - 300px);
+    height: 100%;
+    min-height: 619px;
+    float: left;
+}
+
+#logo_link {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-family: ffmark_black, sans-serif;
+    font-size: 60px;
+    z-index: 999;
+}
+
+@media screen and (max-width: 675px) {
+    #logo_link {
+        display: none;
+    }
+}
+
+#map_geodata {
+    width: 100%;
+    height: 100%;
+}
+
+.mapButton {
+    position: absolute;
+    z-index: 999;
+    opacity: 0.9;
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
+    text-align: center;
+    cursor: default;
+}
+
+.mapButton > i {
+    font-size: 30px;
+    line-height: 1.7;
+}
+
+.mapButton:hover:not(.disabled) {
+    background: #079e00;
+    color: #fff;
+    cursor: pointer;
+}
+
+.geodata__content > .btnZoomIn {
+    top: 10px;
+    left: 10px;
+}
+
+.geodata__content > .btnZoomOut {
+    top: 70px;
+    left: 10px;
+}
+
+.geodata__content > .btnFullScreen {
+    top: 130px;
+    left: 10px;
+}
