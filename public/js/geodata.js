@@ -388,11 +388,61 @@ function education(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map);
 }
 
-function workplace(){
+function workplace() {
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
+    var arrayZoom = {
+            12: 'workplace_pc_hx800',
+            13: 'workplace_pc_hx400',
+            14: 'workplace_pc_hx200',
+            15: 'workplace_pc_hx100',
+            16: 'workplace_pc_hx050',
+            17: 'workplace_pc_hx025'
+        },
+        gridOptions = {
+            queryCount: 'w15',
+            queryValue: 'w15_w11_diff',
+            oValue: {maximumFractionDigits: 0},
+            arrayStyle: [
+                'circle_d73027',
+                'circle_f46d43',
+                'circle_fdae61',
+                'circle_fee08b',
+                'circle_ffffbf',
+                'circle_d9ef8b',
+                'circle_a6d96a',
+                'circle_66bd63',
+                'circle_1a9850',
+                'circle_null'
+            ]
+        };
+
     var layer;
-    workplace_checkZ();
+
+    getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+
+    map.on('zoomend', function () {
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+        var z = map.getZoom();
+        if (z > 14) {
+            workplace_hz()
+        } else {
+            map.removeLayer(layer);
+            map.off('click');
+        }
+    });
+
+    map.on('moveend', function () {
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions)
+    });
+
+    $.when($.get('/public/tmpl/legend_workplace.html'))
+        .done(function (_tmpl) {
+            var t = $(_tmpl).render();
+            $('#legend__workplace').append(t);
+        });
+
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
 
     function workplace_hz(){
         layer = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
@@ -406,35 +456,9 @@ function workplace(){
         map.on('click', function(e){
             clickSelect(e, map, layer, "id>0")
         });
-
-        map.on('zoomend', function () {
-            workplace_checkZ();
-        });
     }
-
-    function workplace_pc(){
-        map.on('zoomend', function () {
-            workplace_checkZ();
-        });
-    }
-
-    function workplace_checkZ(){
-        if (xhr && xhr.readyState != 4) xhr.abort();
-        //map.off('mousemove');
-        map.off('click');
-        map.off('zoomend');
-        map.off('moveend');
-        if (layer) map.removeLayer(layer);
-        var z = map.getZoom();
-        if (z > 14) {
-            workplace_hz()
-        } else {
-            workplace_pc()
-        }
-    }
-
-    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
 }
+
 
 function poi(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
@@ -550,16 +574,16 @@ function property(){
             ]
         };
 
-    getGridData(map.getBounds(), arrayZoom[map.getZoom()], divStyle, gridOptions);
+    getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png',{pane: 'labels'}).addTo(map);
 
     map.on('zoomend', function () {
-        getGridData(map.getBounds(), arrayZoom[map.getZoom()], divStyle, gridOptions);
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
     });
 
     map.on('moveend', function () {
-        getGridData(map.getBounds(), arrayZoom[map.getZoom()], divStyle, gridOptions);
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
     });
 
     $.when($.get('/public/tmpl/legend_property.html'))
@@ -613,16 +637,16 @@ function media_com(){
             ]
         };
 
-    getGridData(map.getBounds(), arrayZoom[map.getZoom()], divStyle, gridOptions);
+    getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png',{pane: 'labels'}).addTo(map);
 
     map.on('zoomend', function () {
-        getGridData(map.getBounds(), arrayZoom[map.getZoom()], divStyle, gridOptions)
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions)
     });
 
     map.on('moveend', function () {
-        getGridData(map.getBounds(), arrayZoom[map.getZoom()], divStyle, gridOptions)
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions)
     });
 
     $.when($.get('/public/tmpl/legend_media_bb.html'))
@@ -687,7 +711,7 @@ function divStyle(_f, _arrayColor, _arraySize, _arrayStyle){
     };
 }
 
-function getGridData(_bounds, _layer, _style, _o){
+function getGridData(_bounds, _layer, _o){
     if (xhr && xhr.readyState != 4) xhr.abort();
     if (layerGrid) map.removeLayer(layerGrid);
     xhr = $.ajax({
@@ -783,7 +807,7 @@ function getGridData(_bounds, _layer, _style, _o){
 
             layerGrid = new L.geoJson(dots, {
                 pointToLayer: function (feature, latlng) {
-                    return L.marker(latlng, _style(feature, arrayColor, arraySize, _o.arrayStyle));
+                    return L.marker(latlng, divStyle(feature, arrayColor, arraySize, _o.arrayStyle));
                 }
                 //onEachFeature: onEachDot
             }).addTo(map);
