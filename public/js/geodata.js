@@ -502,6 +502,73 @@ function poi(){
 
 function residential(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+
+    var arrayZoom = {
+            12: 'residential_oa_hx800',
+            13: 'residential_oa_hx400',
+            14: 'residential_oa_hx200',
+            15: 'residential_oa_hx100',
+            16: 'residential_oa_hx050',
+            17: 'residential_oa_hx025'
+        },
+        gridOptions = {
+            queryCount: 'pop_21',
+            queryValue: 'growth',
+            oValue: {maximumFractionDigits: 2},
+            arrayStyle: [
+                'circle_d73027',
+                'circle_f46d43',
+                'circle_fdae61',
+                'circle_fee08b',
+                'circle_ffffbf',
+                'circle_d9ef8b',
+                'circle_a6d96a',
+                'circle_66bd63',
+                'circle_1a9850',
+                'circle_null'
+            ]
+        };
+
+    var layer;
+
+    getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+
+    map.on('zoomend', function () {
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+        var z = map.getZoom();
+        if (z > 14) {
+            residential_lsoa()
+        } else {
+            map.removeLayer(layer);
+            map.off('click');
+        }
+    });
+
+    map.on('moveend', function () {
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions)
+    });
+
+    $.when($.get('/public/tmpl/legend_residential.html'))
+        .done(function (_tmpl) {
+            var t = $(_tmpl).render();
+            $('#legend__residential').append(t);
+        });
+
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+
+    function residential_lsoa(){
+        layer = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+            version: '1.3',
+            layers: 'residential_lsoa',
+            format: 'image/png',
+            transparent: true,
+            styles: 'residential_lsoa'
+        }).addTo(map);
+
+        map.on('click', function(e){
+            clickSelect(e, map, layer, "id>0")
+        });
+    }
 }
 
 function uk_admin(){
@@ -617,7 +684,7 @@ function media_com(){
             14: 'media_bb_hx200',
             15: 'media_bb_hx100',
             16: 'media_bb_hx050',
-            17: 'media_bb'
+            17: 'media_bb_hx025'
         },
         gridOptions = {
             queryCount: 'connections',
