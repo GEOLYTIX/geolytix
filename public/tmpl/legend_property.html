@@ -1,21 +1,22 @@
 <template>
     <div class="tmpl_legend">
         <style>
-            .tmpl_legend .legend_title{
-                font-family: monospace;
-                font-size: 13px;
-                margin-top: 10px;
-            }
             .tmpl_legend .legend {
                 font-family: monospace;
                 font-size: 11px;
             }
+            .rotate {
+                -webkit-transform: rotate(-90deg);
+                -moz-transform: rotate(-90deg);
+                -ms-transform: rotate(-90deg);
+                -o-transform: rotate(-90deg);
+                filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+            }
             .tmpl_legend .legend td{
-                width: 15px;
                 height: 20px;
             }
             .tmpl_legend .legend td:nth-of-type(10){
-                width: 80px;
+                padding-left: 5px;
                 height: 15px;
             }
             .tmpl_legend .legend td div{
@@ -57,200 +58,192 @@
                 width: 5px;
                 height: 5px;
             }
-            .circle_eeff41 {
-                background: #eeff41;
+            .circle_1a9850 {
+                background: #1a9850;
                 border-radius: 50%;
-                box-shadow: 1px 2px 1px #9e9d24;
-                -moz-box-shadow: 1px 2px 1px #9e9d24;
-                -webkit-box-shadow: 1px 2px 1px #9e9d24;
+                box-shadow: 1px 2px 1px #1b7540;
+                -moz-box-shadow: 1px 2px 1px #1b7540;
+                -webkit-box-shadow: 1px 2px 1px #1b7540;
             }
-            .circle_c51b7d {
-                background: #c51b7d;
+            .circle_66bd63 {
+                background: #66bd63;
                 border-radius: 50%;
-                box-shadow: 1px 2px 1px #7c1852;
-                -moz-box-shadow: 1px 2px 1px #7c1852;
-                -webkit-box-shadow: 1px 2px 1px #7c1852;
+                box-shadow: 1px 2px 1px #1a9850;
+                -moz-box-shadow: 1px 2px 1px #1a9850;
+                -webkit-box-shadow: 1px 2px 1px #1a9850;
             }
-            .circle_de77ae {
-                background: #de77ae;
+            .circle_a6d96a {
+                background: #a6d96a;
                 border-radius: 50%;
-                box-shadow: 1px 2px 1px #c51b7d;
-                -moz-box-shadow: 1px 2px 1px #c51b7d;
-                -webkit-box-shadow: 1px 2px 1px #c51b7d;
+                box-shadow: 1px 2px 1px #1a9850;
+                -moz-box-shadow: 1px 2px 1px #1a9850;
+                -webkit-box-shadow: 1px 2px 1px #1a9850;
             }
-            .circle_f1b6da {
-                background: #f1b6da;
+            .circle_d9ef8b {
+                background: #d9ef8b;
                 border-radius: 50%;
-                box-shadow: 1px 2px 1px #de77ae;
-                -moz-box-shadow: 1px 2px 1px #de77ae;
-                -webkit-box-shadow: 1px 2px 1px #de77ae;
+                box-shadow: 1px 2px 1px #a6d96a;
+                -moz-box-shadow: 1px 2px 1px #a6d96a;
+                -webkit-box-shadow: 1px 2px 1px #a6d96a;
             }
-            .circle_fde0ef {
-                background: #fde0ef;
+            .circle_ffffbf {
+                background: #ffffbf;
                 border-radius: 50%;
-                box-shadow: 1px 2px 1px #f1b6da;
-                -moz-box-shadow: 1px 2px 1px #f1b6da;
-                -webkit-box-shadow: 1px 2px 1px #f1b6da;
+                box-shadow: 1px 2px 1px #fee08b;
+                -moz-box-shadow: 1px 2px 1px #fee08b;
+                -webkit-box-shadow: 1px 2px 1px #fee08b;
             }
-            .circle_f7f7f7 {
-                background: #f7f7f7;
+            .circle_fee08b {
+                background: #fee08b;
                 border-radius: 50%;
-                box-shadow: 1px 2px 1px #fde0ef;
-                -moz-box-shadow: 1px 2px 1px #fde0ef;
-                -webkit-box-shadow: 1px 2px 1px #fde0ef;
+                box-shadow: 1px 2px 1px #fdae61;
+                -moz-box-shadow: 1px 2px 1px #fdae61;
+                -webkit-box-shadow: 1px 2px 1px #fdae61;
             }
-            .circle_e6f5d0 {
-                background: #e6f5d0;
+            .circle_fdae61 {
+                background: #fdae61;
                 border-radius: 50%;
-                box-shadow: 1px 2px 1px #f7f7f7;
-                -moz-box-shadow: 1px 2px 1px #f7f7f7;
-                -webkit-box-shadow: 1px 2px 1px #f7f7f7;
+                box-shadow: 1px 2px 1px #f46d43;
+                -moz-box-shadow: 1px 2px 1px #f46d43;
+                -webkit-box-shadow: 1px 2px 1px #f46d43;
             }
-            .circle_b8e186 {
-                background: #b8e186;
+            .circle_f46d43 {
+                background: #f46d43;
                 border-radius: 50%;
-                box-shadow: 1px 2px 1px #e6f5d0;
-                -moz-box-shadow: 1px 2px 1px #e6f5d0;
-                -webkit-box-shadow: 1px 2px 1px #e6f5d0;
+                box-shadow: 1px 2px 1px #d73027;
+                -moz-box-shadow: 1px 2px 1px #d73027;
+                -webkit-box-shadow: 1px 2px 1px #d73027;
             }
-            .circle_7fbc41 {
-                background: #7fbc41;
+            .circle_d73027 {
+                background: #d73027;
                 border-radius: 50%;
-                box-shadow: 1px 2px 1px #b8e186;
-                -moz-box-shadow: 1px 2px 1px #b8e186;
-                -webkit-box-shadow: 1px 2px 1px #b8e186;
-            }
-            .circle_4d9221 {
-                background: #4d9221;
-                border-radius: 50%;
-                box-shadow: 1px 2px 1px #7fbc41;
-                -moz-box-shadow: 1px 2px 1px #7fbc41;
-                -webkit-box-shadow: 1px 2px 1px #7fbc41;
+                box-shadow: 1px 2px 1px #a02620;
+                -moz-box-shadow: 1px 2px 1px #a02620;
+                -webkit-box-shadow: 1px 2px 1px #a02620;
             }
         </style>
 
-        <p>Average download speed</p>
-        <p class="legend_title">Number of connections</p>
+        <p>Average price paid 2011 to 2016</p>
         <table class="legend">
             <tr>
-                <td><div class="circle_c51b7d"></div></td>
-                <td><div class="circle_c51b7d"></div></td>
-                <td><div class="circle_c51b7d"></div></td>
-                <td><div class="circle_c51b7d"></div></td>
-                <td><div class="circle_c51b7d"></div></td>
-                <td><div class="circle_c51b7d"></div></td>
-                <td><div class="circle_c51b7d"></div></td>
-                <td><div class="circle_c51b7d"></div></td>
-                <td><div class="circle_c51b7d"></div></td>
-                <td class="legend_text"></td>
+                <td class="legend_text rotate"><span class="rotate legend_text_c"></span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="legend_text rotate"><span class="rotate legend_text_c"></span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="legend_text rotate"><span class="rotate legend_text_c"></span></td>
+                <td>Number of properties</td>
             </tr>
             <tr>
-                <td><div class="circle_de77ae"></div></td>
-                <td><div class="circle_de77ae"></div></td>
-                <td><div class="circle_de77ae"></div></td>
-                <td><div class="circle_de77ae"></div></td>
-                <td><div class="circle_de77ae"></div></td>
-                <td><div class="circle_de77ae"></div></td>
-                <td><div class="circle_de77ae"></div></td>
-                <td><div class="circle_de77ae"></div></td>
-                <td><div class="circle_de77ae"></div></td>
-                <td class="legend_text"></td>
+                <td><div class="circle_1a9850"></div></td>
+                <td><div class="circle_1a9850"></div></td>
+                <td><div class="circle_1a9850"></div></td>
+                <td><div class="circle_1a9850"></div></td>
+                <td><div class="circle_1a9850"></div></td>
+                <td><div class="circle_1a9850"></div></td>
+                <td><div class="circle_1a9850"></div></td>
+                <td><div class="circle_1a9850"></div></td>
+                <td><div class="circle_1a9850"></div></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span><span> £</span></td>
             </tr>
             <tr>
-                <td><div class="circle_f1b6da"></div></td>
-                <td><div class="circle_f1b6da"></div></td>
-                <td><div class="circle_f1b6da"></div></td>
-                <td><div class="circle_f1b6da"></div></td>
-                <td><div class="circle_f1b6da"></div></td>
-                <td><div class="circle_f1b6da"></div></td>
-                <td><div class="circle_f1b6da"></div></td>
-                <td><div class="circle_f1b6da"></div></td>
-                <td><div class="circle_f1b6da"></div></td>
-                <td class="legend_text"></td>
+                <td><div class="circle_66bd63"></div></td>
+                <td><div class="circle_66bd63"></div></td>
+                <td><div class="circle_66bd63"></div></td>
+                <td><div class="circle_66bd63"></div></td>
+                <td><div class="circle_66bd63"></div></td>
+                <td><div class="circle_66bd63"></div></td>
+                <td><div class="circle_66bd63"></div></td>
+                <td><div class="circle_66bd63"></div></td>
+                <td><div class="circle_66bd63"></div></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span><span> £</span></td>
             </tr>
             <tr>
-                <td><div class="circle_fde0ef"></div></td>
-                <td><div class="circle_fde0ef"></div></td>
-                <td><div class="circle_fde0ef"></div></td>
-                <td><div class="circle_fde0ef"></div></td>
-                <td><div class="circle_fde0ef"></div></td>
-                <td><div class="circle_fde0ef"></div></td>
-                <td><div class="circle_fde0ef"></div></td>
-                <td><div class="circle_fde0ef"></div></td>
-                <td><div class="circle_fde0ef"></div></td>
-                <td class="legend_text"></td>
+                <td><div class="circle_a6d96a"></div></td>
+                <td><div class="circle_a6d96a"></div></td>
+                <td><div class="circle_a6d96a"></div></td>
+                <td><div class="circle_a6d96a"></div></td>
+                <td><div class="circle_a6d96a"></div></td>
+                <td><div class="circle_a6d96a"></div></td>
+                <td><div class="circle_a6d96a"></div></td>
+                <td><div class="circle_a6d96a"></div></td>
+                <td><div class="circle_a6d96a"></div></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span><span> £</span></td>
             </tr>
             <tr>
-                <td><div class="circle_f7f7f7"></div></td>
-                <td><div class="circle_f7f7f7"></div></td>
-                <td><div class="circle_f7f7f7"></div></td>
-                <td><div class="circle_f7f7f7"></div></td>
-                <td><div class="circle_f7f7f7"></div></td>
-                <td><div class="circle_f7f7f7"></div></td>
-                <td><div class="circle_f7f7f7"></div></td>
-                <td><div class="circle_f7f7f7"></div></td>
-                <td><div class="circle_f7f7f7"></div></td>
-                <td  class="legend_text"></td>
+                <td><div class="circle_d9ef8b"></div></td>
+                <td><div class="circle_d9ef8b"></div></td>
+                <td><div class="circle_d9ef8b"></div></td>
+                <td><div class="circle_d9ef8b"></div></td>
+                <td><div class="circle_d9ef8b"></div></td>
+                <td><div class="circle_d9ef8b"></div></td>
+                <td><div class="circle_d9ef8b"></div></td>
+                <td><div class="circle_d9ef8b"></div></td>
+                <td><div class="circle_d9ef8b"></div></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span><span> £</span></td>
             </tr>
             <tr>
-                <td><div class="circle_e6f5d0"></div></td>
-                <td><div class="circle_e6f5d0"></div></td>
-                <td><div class="circle_e6f5d0"></div></td>
-                <td><div class="circle_e6f5d0"></div></td>
-                <td><div class="circle_e6f5d0"></div></td>
-                <td><div class="circle_e6f5d0"></div></td>
-                <td><div class="circle_e6f5d0"></div></td>
-                <td><div class="circle_e6f5d0"></div></td>
-                <td><div class="circle_e6f5d0"></div></td>
-                <td class="legend_text"></td>
+                <td><div class="circle_ffffbf"></div></td>
+                <td><div class="circle_ffffbf"></div></td>
+                <td><div class="circle_ffffbf"></div></td>
+                <td><div class="circle_ffffbf"></div></td>
+                <td><div class="circle_ffffbf"></div></td>
+                <td><div class="circle_ffffbf"></div></td>
+                <td><div class="circle_ffffbf"></div></td>
+                <td><div class="circle_ffffbf"></div></td>
+                <td><div class="circle_ffffbf"></div></td>
+                <td  class="legend_text"><span>< </span><span class="legend_text_v"></span><span> £</span></td>
             </tr>
             <tr>
-                <td><div class="circle_b8e186"></div></td>
-                <td><div class="circle_b8e186"></div></td>
-                <td><div class="circle_b8e186"></div></td>
-                <td><div class="circle_b8e186"></div></td>
-                <td><div class="circle_b8e186"></div></td>
-                <td><div class="circle_b8e186"></div></td>
-                <td><div class="circle_b8e186"></div></td>
-                <td><div class="circle_b8e186"></div></td>
-                <td><div class="circle_b8e186"></div></td>
-                <td class="legend_text"></td>
+                <td><div class="circle_fee08b"></div></td>
+                <td><div class="circle_fee08b"></div></td>
+                <td><div class="circle_fee08b"></div></td>
+                <td><div class="circle_fee08b"></div></td>
+                <td><div class="circle_fee08b"></div></td>
+                <td><div class="circle_fee08b"></div></td>
+                <td><div class="circle_fee08b"></div></td>
+                <td><div class="circle_fee08b"></div></td>
+                <td><div class="circle_fee08b"></div></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span><span> £</span></td>
             </tr>
             <tr>
-                <td><div class="circle_7fbc41"></div></td>
-                <td><div class="circle_7fbc41"></div></td>
-                <td><div class="circle_7fbc41"></div></td>
-                <td><div class="circle_7fbc41"></div></td>
-                <td><div class="circle_7fbc41"></div></td>
-                <td><div class="circle_7fbc41"></div></td>
-                <td><div class="circle_7fbc41"></div></td>
-                <td><div class="circle_7fbc41"></div></td>
-                <td><div class="circle_7fbc41"></div></td>
-                <td class="legend_text"></td>
+                <td><div class="circle_fdae61"></div></td>
+                <td><div class="circle_fdae61"></div></td>
+                <td><div class="circle_fdae61"></div></td>
+                <td><div class="circle_fdae61"></div></td>
+                <td><div class="circle_fdae61"></div></td>
+                <td><div class="circle_fdae61"></div></td>
+                <td><div class="circle_fdae61"></div></td>
+                <td><div class="circle_fdae61"></div></td>
+                <td><div class="circle_fdae61"></div></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span><span> £</span></td>
             </tr>
             <tr>
-                <td><div class="circle_4d9221"></div></td>
-                <td><div class="circle_4d9221"></div></td>
-                <td><div class="circle_4d9221"></div></td>
-                <td><div class="circle_4d9221"></div></td>
-                <td><div class="circle_4d9221"></div></td>
-                <td><div class="circle_4d9221"></div></td>
-                <td><div class="circle_4d9221"></div></td>
-                <td><div class="circle_4d9221"></div></td>
-                <td><div class="circle_4d9221"></div></td>
-                <td class="legend_text"></td>
+                <td><div class="circle_f46d43"></div></td>
+                <td><div class="circle_f46d43"></div></td>
+                <td><div class="circle_f46d43"></div></td>
+                <td><div class="circle_f46d43"></div></td>
+                <td><div class="circle_f46d43"></div></td>
+                <td><div class="circle_f46d43"></div></td>
+                <td><div class="circle_f46d43"></div></td>
+                <td><div class="circle_f46d43"></div></td>
+                <td><div class="circle_f46d43"></div></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span><span> £</span></td>
             </tr>
             <tr>
-                <td><div class="circle_eeff41"></div></td>
-                <td><div class="circle_eeff41"></div></td>
-                <td><div class="circle_eeff41"></div></td>
-                <td><div class="circle_eeff41"></div></td>
-                <td><div class="circle_eeff41"></div></td>
-                <td><div class="circle_eeff41"></div></td>
-                <td><div class="circle_eeff41"></div></td>
-                <td><div class="circle_eeff41"></div></td>
-                <td><div class="circle_eeff41"></div></td>
-                <td class="legend_text">avg speed n/a</td>
+                <td><div class="circle_d73027"></div></td>
+                <td><div class="circle_d73027"></div></td>
+                <td><div class="circle_d73027"></div></td>
+                <td><div class="circle_d73027"></div></td>
+                <td><div class="circle_d73027"></div></td>
+                <td><div class="circle_d73027"></div></td>
+                <td><div class="circle_d73027"></div></td>
+                <td><div class="circle_d73027"></div></td>
+                <td><div class="circle_d73027"></div></td>
+                <td class="legend_text"><span>> </span><span class="legend_text_v"></span><span> £</span></td>
             </tr>
         </table>
     </div>

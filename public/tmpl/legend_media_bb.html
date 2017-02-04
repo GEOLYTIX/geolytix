@@ -1,21 +1,22 @@
 <template>
     <div class="tmpl_legend">
         <style>
-            .tmpl_legend .legend_title{
-                font-family: monospace;
-                font-size: 13px;
-                margin-top: 10px;
-            }
             .tmpl_legend .legend {
                 font-family: monospace;
                 font-size: 11px;
             }
+            .rotate {
+                -webkit-transform: rotate(-90deg);
+                -moz-transform: rotate(-90deg);
+                -ms-transform: rotate(-90deg);
+                -o-transform: rotate(-90deg);
+                filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+            }
             .tmpl_legend .legend td{
-                width: 15px;
                 height: 20px;
             }
             .tmpl_legend .legend td:nth-of-type(10){
-                width: 80px;
+                padding-left: 5px;
                 height: 15px;
             }
             .tmpl_legend .legend td div{
@@ -130,9 +131,20 @@
         </style>
 
         <p>Average download speed</p>
-        <p class="legend_title">Number of connections</p>
         <table class="legend">
             <tr>
+                <td class="legend_text rotate"><span class="rotate legend_text_c"></span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="legend_text rotate"><span class="rotate legend_text_c"></span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="legend_text rotate"><span class="rotate legend_text_c"></span></td>
+                <td>Number of connections</td>
+            </tr>
+            <tr>
                 <td><div class="circle_c51b7d"></div></td>
                 <td><div class="circle_c51b7d"></div></td>
                 <td><div class="circle_c51b7d"></div></td>
@@ -142,7 +154,7 @@
                 <td><div class="circle_c51b7d"></div></td>
                 <td><div class="circle_c51b7d"></div></td>
                 <td><div class="circle_c51b7d"></div></td>
-                <td class="legend_text"></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span><span> Mb/s</span></td>
             </tr>
             <tr>
                 <td><div class="circle_de77ae"></div></td>
@@ -154,7 +166,7 @@
                 <td><div class="circle_de77ae"></div></td>
                 <td><div class="circle_de77ae"></div></td>
                 <td><div class="circle_de77ae"></div></td>
-                <td class="legend_text"></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span></td>
             </tr>
             <tr>
                 <td><div class="circle_f1b6da"></div></td>
@@ -166,7 +178,7 @@
                 <td><div class="circle_f1b6da"></div></td>
                 <td><div class="circle_f1b6da"></div></td>
                 <td><div class="circle_f1b6da"></div></td>
-                <td class="legend_text"></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span></td>
             </tr>
             <tr>
                 <td><div class="circle_fde0ef"></div></td>
@@ -178,7 +190,7 @@
                 <td><div class="circle_fde0ef"></div></td>
                 <td><div class="circle_fde0ef"></div></td>
                 <td><div class="circle_fde0ef"></div></td>
-                <td class="legend_text"></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span></td>
             </tr>
             <tr>
                 <td><div class="circle_f7f7f7"></div></td>
@@ -190,7 +202,7 @@
                 <td><div class="circle_f7f7f7"></div></td>
                 <td><div class="circle_f7f7f7"></div></td>
                 <td><div class="circle_f7f7f7"></div></td>
-                <td  class="legend_text"></td>
+                <td  class="legend_text"><span>< </span><span class="legend_text_v"></span></td>
             </tr>
             <tr>
                 <td><div class="circle_e6f5d0"></div></td>
@@ -202,7 +214,7 @@
                 <td><div class="circle_e6f5d0"></div></td>
                 <td><div class="circle_e6f5d0"></div></td>
                 <td><div class="circle_e6f5d0"></div></td>
-                <td class="legend_text"></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span></td>
             </tr>
             <tr>
                 <td><div class="circle_b8e186"></div></td>
@@ -214,7 +226,7 @@
                 <td><div class="circle_b8e186"></div></td>
                 <td><div class="circle_b8e186"></div></td>
                 <td><div class="circle_b8e186"></div></td>
-                <td class="legend_text"></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span></td>
             </tr>
             <tr>
                 <td><div class="circle_7fbc41"></div></td>
@@ -226,7 +238,7 @@
                 <td><div class="circle_7fbc41"></div></td>
                 <td><div class="circle_7fbc41"></div></td>
                 <td><div class="circle_7fbc41"></div></td>
-                <td class="legend_text"></td>
+                <td class="legend_text"><span>< </span><span class="legend_text_v"></span></td>
             </tr>
             <tr>
                 <td><div class="circle_4d9221"></div></td>
@@ -238,7 +250,7 @@
                 <td><div class="circle_4d9221"></div></td>
                 <td><div class="circle_4d9221"></div></td>
                 <td><div class="circle_4d9221"></div></td>
-                <td class="legend_text"></td>
+                <td class="legend_text"><span>> </span><span class="legend_text_v"></span><span> Mb/s</span></td>
             </tr>
             <tr>
                 <td><div class="circle_eeff41"></div></td>

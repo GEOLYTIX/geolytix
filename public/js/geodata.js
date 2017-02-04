@@ -532,26 +532,35 @@ function property(){
             16: 'property_hx050',
             17: 'property_hx025'
         },
-        arrayStyle = [
-            'circle_c51b7d',
-            'circle_de77ae',
-            'circle_f1b6da',
-            'circle_fde0ef',
-            'circle_f7f7f7',
-            'circle_e6f5d0',
-            'circle_b8e186',
-            'circle_7fbc41',
-            'circle_4d9221'
-        ];
+        gridOptions = {
+            queryCount: 'n',
+            queryValue: 'price_paid',
+            oValue: {maximumFractionDigits: 0},
+            arrayStyle: [
+                'circle_1a9850',
+                'circle_66bd63',
+                'circle_a6d96a',
+                'circle_d9ef8b',
+                'circle_ffffbf',
+                'circle_fee08b',
+                'circle_fdae61',
+                'circle_f46d43',
+                'circle_d73027',
+                'circle_null'
+            ]
+        };
 
-    getGridData(
-        map.getBounds(),
-        arrayZoom[map.getZoom()],
-        divStyle,
-        'n',
-        'price_paid',
-        arrayStyle
-    );
+    getGridData(map.getBounds(), arrayZoom[map.getZoom()], divStyle, gridOptions);
+
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png',{pane: 'labels'}).addTo(map);
+
+    map.on('zoomend', function () {
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], divStyle, gridOptions);
+    });
+
+    map.on('moveend', function () {
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], divStyle, gridOptions);
+    });
 
     $.when($.get('/public/tmpl/legend_property.html'))
         .done(function(_tmpl) {
@@ -586,49 +595,34 @@ function media_com(){
             16: 'media_bb_hx050',
             17: 'media_bb'
         },
-        arrayStyle = [
-            'circle_c51b7d',
-            'circle_de77ae',
-            'circle_f1b6da',
-            'circle_fde0ef',
-            'circle_f7f7f7',
-            'circle_e6f5d0',
-            'circle_b8e186',
-            'circle_7fbc41',
-            'circle_4d9221'
-        ];
+        gridOptions = {
+            queryCount: 'connections',
+            queryValue: 'avg_dwload',
+            oValue: {maximumFractionDigits: 2},
+            arrayStyle: [
+                'circle_c51b7d',
+                'circle_de77ae',
+                'circle_f1b6da',
+                'circle_fde0ef',
+                'circle_f7f7f7',
+                'circle_e6f5d0',
+                'circle_b8e186',
+                'circle_7fbc41',
+                'circle_4d9221',
+                'circle_eeff41'
+            ]
+        };
 
-    getGridData(
-        map.getBounds(),
-        arrayZoom[map.getZoom()],
-        divStyle,
-        'connections',
-        'avg_dwload',
-        arrayStyle
-    );
+    getGridData(map.getBounds(), arrayZoom[map.getZoom()], divStyle, gridOptions);
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png',{pane: 'labels'}).addTo(map);
 
     map.on('zoomend', function () {
-        getGridData(
-            map.getBounds(),
-            arrayZoom[map.getZoom()],
-            divStyle,
-            'connections',
-            'avg_dwload',
-            arrayStyle
-        );
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], divStyle, gridOptions)
     });
 
     map.on('moveend', function () {
-        getGridData(
-            map.getBounds(),
-            arrayZoom[map.getZoom()],
-            divStyle,
-            'connections',
-            'avg_dwload',
-            arrayStyle
-        );
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], divStyle, gridOptions)
     });
 
     $.when($.get('/public/tmpl/legend_media_bb.html'))
@@ -684,7 +678,7 @@ function divStyle(_f, _arrayColor, _arraySize, _arrayStyle){
                                     v < _arrayColor[7] ? _arrayStyle[7] :
                                         _arrayStyle[8];
 
-    if (v == null) circle_colour = 'circle_eeff41';
+    if (v == null) circle_colour = _arrayStyle[9];
     return {
         icon: L.divIcon({
             className: circle_colour,
@@ -693,15 +687,15 @@ function divStyle(_f, _arrayColor, _arraySize, _arrayStyle){
     };
 }
 
-function getGridData(_bounds, _layer, _style, _c, _v, _arrayStyle){
+function getGridData(_bounds, _layer, _style, _o){
     if (xhr && xhr.readyState != 4) xhr.abort();
     if (layerGrid) map.removeLayer(layerGrid);
     xhr = $.ajax({
         url: '/grid_query',
         dataType: 'json',
         data: {
-            c: _c,
-            v: _v,
+            c: _o.queryCount,
+            v: _o.queryValue,
             layer: _layer,
             west: _bounds.getWest(),
             south: _bounds.getSouth(),
@@ -747,6 +741,11 @@ function getGridData(_bounds, _layer, _style, _c, _v, _arrayStyle){
                 step_lower = (avg - min) / 5,
                 step_upper = (max - avg) / 4;
 
+            var legend_text_c = document.getElementsByClassName('legend_text_c');
+            legend_text_c[0].innerHTML = max.toLocaleString('en-GB', {maximumFractionDigits: 0});
+            legend_text_c[1].innerHTML = avg.toLocaleString('en-GB', {maximumFractionDigits: 0});
+            legend_text_c[2].innerHTML = min.toLocaleString('en-GB', {maximumFractionDigits: 0});
+
             arraySize[0] = min + step_lower;
             arraySize[1] = min + (step_lower * 2);
             arraySize[2] = min + (step_lower * 3);
@@ -771,20 +770,20 @@ function getGridData(_bounds, _layer, _style, _c, _v, _arrayStyle){
             arrayColor[6] = avg + (step_upper * 2);
             arrayColor[7] = avg + (step_upper * 3);
 
-            var legend_text = document.getElementsByClassName('legend_text');
-            legend_text[0].innerHTML = '< ' + arrayColor[0].toFixed(2) + ' Mb/s';
-            legend_text[1].innerHTML = '< ' + arrayColor[1].toFixed(2);
-            legend_text[2].innerHTML = '< ' + arrayColor[2].toFixed(2);
-            legend_text[3].innerHTML = '< ' + arrayColor[3].toFixed(2);
-            legend_text[4].innerHTML = '< ' + arrayColor[4].toFixed(2);
-            legend_text[5].innerHTML = '< ' + arrayColor[5].toFixed(2);
-            legend_text[6].innerHTML = '< ' + arrayColor[6].toFixed(2);
-            legend_text[7].innerHTML = '< ' + arrayColor[7].toFixed(2);
-            legend_text[8].innerHTML = '> ' + arrayColor[7].toFixed(2) + ' Mb/s';
+            var legend_text_v = document.getElementsByClassName('legend_text_v');
+            legend_text_v[0].innerHTML = arrayColor[0].toLocaleString('en-GB', _o.oValue);
+            legend_text_v[1].innerHTML = arrayColor[1].toLocaleString('en-GB', _o.oValue);
+            legend_text_v[2].innerHTML = arrayColor[2].toLocaleString('en-GB', _o.oValue);
+            legend_text_v[3].innerHTML = arrayColor[3].toLocaleString('en-GB', _o.oValue);
+            legend_text_v[4].innerHTML = arrayColor[4].toLocaleString('en-GB', _o.oValue);
+            legend_text_v[5].innerHTML = arrayColor[5].toLocaleString('en-GB', _o.oValue);
+            legend_text_v[6].innerHTML = arrayColor[6].toLocaleString('en-GB', _o.oValue);
+            legend_text_v[7].innerHTML = arrayColor[7].toLocaleString('en-GB', _o.oValue);
+            legend_text_v[8].innerHTML = arrayColor[7].toLocaleString('en-GB', _o.oValue);
 
             layerGrid = new L.geoJson(dots, {
                 pointToLayer: function (feature, latlng) {
-                    return L.marker(latlng, _style(feature, arrayColor, arraySize, _arrayStyle));
+                    return L.marker(latlng, _style(feature, arrayColor, arraySize, _o.arrayStyle));
                 }
                 //onEachFeature: onEachDot
             }).addTo(map);
