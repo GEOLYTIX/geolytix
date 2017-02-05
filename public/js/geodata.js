@@ -43,7 +43,8 @@ var xhr,
     geodataPricing = $('.geodata__pricing'),
     geodataFAQ = $('.geodata__faq'),
     proj_4326 = proj4.Proj('EPSG:4326'),
-    proj_3857 = proj4.Proj('EPSG:3857');
+    proj_3857 = proj4.Proj('EPSG:3857'),
+    priceTags = $('.pricetag');
 
 seamless_locales();
 
@@ -128,10 +129,46 @@ $('#physical').click(function() {
 
 $('#pricing').click(function() {
     selectGeodata($(this), 15);
+    var selectedPacks = 1,
+        priceTable = ['£ null', '£ 3,000', '£ 5,500', '£ 8,000' , '£ 10,000', '£ 12,000', '£ 14,000', '£ 16,000', '£ 18,000', '£ 20,000','£ 22,000', '£ 24,000' , '£ 25,000'];
+    priceTags.click(function(){
+        $(this).toggleClass('active');
+        var n = $(this).html() == '£ 5500 (2 Packs)' ? 2 : 1;
+        $(this).hasClass('active') ? selectedPacks += n : selectedPacks -= n;
+        if (selectedPacks >= 12) {
+            $('.p_pricing__all').hide();
+            $('.p_pricing__first').hide();
+            $('.p_pricing__first_all').show();
+        } else if (selectedPacks >= 9) {
+            $('.p_pricing__first_all').hide();
+            $('.p_pricing__nine').hide();
+            $('.p_pricing__all').show();
+            $('.p_pricing__first').show();
+        } else if (selectedPacks >= 6) {
+            $('.p_pricing__six').hide();
+            $('.p_pricing__nine').show();
+        } else if (selectedPacks >= 3) {
+            $('.p_pricing__nine').hide();
+            $('.p_pricing__three').hide();
+            $('.p_pricing__six').show();
+        } else if (selectedPacks > 0) {
+            $('.p_pricing__six').hide();
+            $('.p_pricing__first_select').hide();
+            $('.p_pricing__three').show();
+            $('.p_pricing__first').show();
+            $('.p_pricing__current').show();
+        } else {
+            $('.p_pricing__first').hide();
+            $('.p_pricing__current').hide();
+            $('.p_pricing__first_select').show();
+        }
+
+        $('#p_pricing__current').html(priceTable[selectedPacks]);
+    })
 });
 
 $('#faq').click(function() {
-    selectGeodata($(this), 15);
+    geodataFAQ.show();
 });
 
 
@@ -146,8 +183,15 @@ function selectGeodata(_this, _i){
     map.off('zoomend');
     map.off('moveend');
     geodataScrollyFirst.animate({'marginTop': 619 * -_i});
-    currentDataset == 'pricing' ? geodataPricing.show() : geodataPricing.hide();
-    currentDataset == 'faq' ? geodataFAQ.show() : geodataFAQ.hide();
+    if (currentDataset == 'pricing') {
+        geodataFAQ.hide();
+        geodataPricing.show();
+    } else {
+        geodataFAQ.hide();
+        geodataPricing.hide();
+        priceTags.removeClass('active');
+        priceTags.eq(_i).addClass('active');
+    }
 }
 
 function removeLayer(){
