@@ -1,13 +1,27 @@
 <template>
     <div class="tmpl_legend">
         <style>
-            .poi .legend img {
-                width: 40px;
-                height: 40px;
+            .poi__legend img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .poi__legend td:nth-of-type(2),
+            .poi__legend td:nth-of-type(4) {
+                width: 100px;
+            }
+
+            .poi__legend {
+                font-family: ffmark;
+                font-size: 12px;
+            }
+
+            .poi__legend .active {
+                font-family: ffmark_bold, sans-serif;
             }
         </style>
 
-        <table class="legend">
+        <table class="poi__legend">
             <tr>
                 <td><img src="/public/images/map_icons/poi_carpark.png"/></td>
                 <td><span id="carpark" class="cursor active">Carpark</span></td>

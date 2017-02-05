@@ -101,28 +101,32 @@ function retail_points() {
 
     map.on('click', function(e){clickSelect(e, map, layer, cqlFilter)});
 
-    $('.retail_points .legend span').click(function(){
-        $(this).toggleClass('active');
-        if ($(this).hasClass('active')) {
-            cqlFilterArray.push("brand='" + $(this).attr('id') + "'");
-        } else {
-            cqlFilterArray.splice($.inArray("brand='" + $(this).attr('id') + "'", cqlFilterArray),1);
-        }
-        cqlFilter = cqlFilterArray.join(' OR ');
+    $.when($.get('/public/tmpl/legend_retailpoints.html'))
+        .done(function (_tmpl) {
+            var t = $(_tmpl).render();
+            $('#legend__retailpoints').append(t);
+            $('.retailpoints__legend span').click(function () {
+                $(this).toggleClass('active');
+                if ($(this).hasClass('active')) {
+                    cqlFilterArray.push("brand='" + $(this).attr('id') + "'");
+                } else {
+                    cqlFilterArray.splice($.inArray("brand='" + $(this).attr('id') + "'", cqlFilterArray),1);
+                }
+                cqlFilter = cqlFilterArray.join(' OR ');
 
-        map.removeLayer(layer);
-
-        if (cqlFilter.length > 0) {
-            L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-                version: '1.3',
-                layers: 'retailpoints',
-                format: 'image/png',
-                transparent: true,
-                styles: 'retailpoints',
-                CQL_FILTER: cqlFilter
-            }).addTo(map);
-        }
-    });
+                map.removeLayer(layer);
+                if (cqlFilter.length > 0) {
+                    layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+                        version: '1.3',
+                        layers: 'retailpoints',
+                        format: 'image/png',
+                        transparent: true,
+                        styles: 'retailpoints',
+                        CQL_FILTER: cqlFilter
+                    }).addTo(map);
+                }
+            });
+        });
 }
 
 function retail_places(){
@@ -404,7 +408,7 @@ function poi(){
         .done(function (_tmpl) {
             var t = $(_tmpl).render();
             $('#legend__poi').append(t);
-            $('#legend__poi .legend span').click(function () {
+            $('.poi__legend span').click(function () {
                 $(this).toggleClass('active');
                 if ($(this).hasClass('active')) {
                     cqlFilterArray.push("poi_type='" + $(this).attr('id') + "'");

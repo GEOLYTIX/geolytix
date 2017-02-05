@@ -15,11 +15,6 @@
     src: url('/public/fonts/MarkWebPro-Bold.woff') format('woff');
 }
 
-@font-face {
-    font-family: ffmark_italic;
-    src: url('/public/fonts/MarkWebPro-Italic.woff') format('woff');
-}
-
 body {
     position: absolute;
     height: 100%;
@@ -58,11 +53,13 @@ a {
     padding-left: 10px;
 }
 
-.geodata__info > div p:nth-of-type(1) {
-    margin-bottom: 20px;
+.geodata__infobox {
+    font-family: ffmark, sans-serif;
+    font-size: 15px;
+    width: 285px;
 }
 
-.geodata__info > div a {
+.geodata__infobox a {
     color: #079e00;
 }
 
@@ -77,16 +74,29 @@ a {
     font-size: 12px;
 }
 
-.info {
+.attribution p {
+    margin: 0;
+}
+
+.infotable {
     font-family: monospace;
+    font-size: 12px;
     width: 100%;
 }
 
-.info tr:first-of-type {
+.infotable tr:first-of-type {
     font-weight: 700;
 }
 
-.info td,
+.seamless_locales .infotable td:first-child {
+    width: 110px;
+}
+
+.town_suburb .infotable td:first-child {
+    width: 100px;
+}
+
+.infotable td,
 .leaflet-popup-content td {
     vertical-align: top !important;
 }
@@ -97,28 +107,6 @@ a {
 
 .leaflet-popup-content table td:nth-child(2) {
     font-family: monospace;
-}
-
-.legend {
-    margin-top: 10px;
-    margin-left: -3px;
-}
-
-.legend .active {
-    font-family: ffmark_bold, sans-serif;
-}
-
-.retail_points .legend img {
-    width: 20px;
-    height: 20px;
-}
-
-.seamless_locales .info td:first-child {
-    width: 110px;
-}
-
-.town_suburb .info td:first-child {
-    width: 100px;
 }
 
 .geodata__content {
