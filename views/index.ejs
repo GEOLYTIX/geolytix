@@ -16,7 +16,7 @@
             }
         }
         if (window.width || screen.width < 799) {
-            window.location = "/mobile"
+            window.location = "/mobile?" + window.location.search.substring(1)
         }
 
         //google analytics

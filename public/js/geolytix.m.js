@@ -20,15 +20,15 @@ function orientation() {
 }
 
 
-// scrollTo(window.location.search.substring(1));
-// function scrollTo(section){
-//     console.log();
-//     section == 'services' ? $('html,body').animate({scrollTop: $('#services__section').offset().top},600) :
-//         section == 'case_studies' ? $('html,body').animate({scrollTop: $('.case_studies__section').offset().top},600) :
-//             section == 'geodata' ? $('html,body').animate({scrollTop: $('.geodata__section').offset().top},600) :
-//                 section == 'team' ? $('html,body').animate({scrollTop: $('#team__section').offset().top},600) :
-//                     section == 'contact' ? $('html,body').animate({scrollTop: $('#footer').offset().top},600) : null;
-// }
+scrollTo(window.location.search.substring(1));
+function scrollTo(section){
+    console.log();
+    section == 'services' ? $('.inner').animate({scrollTop: $('#services__section').offset().top},600) :
+        section == 'case_studies' ? $('.inner').animate({scrollTop: $('#case_studies__section').offset().top},600) :
+            section == 'geodata' ? $('.inner').animate({scrollTop: $('.geodata__section').offset().top},600) :
+                section == 'team' ? $('.inner').animate({scrollTop: $('#team__section').offset().top},600) :
+                    section == 'contact' ? $('.inner').animate({scrollTop: $('#footer').offset().top},600) : null;
+}
 
 // preload images
 var img = new Image();
