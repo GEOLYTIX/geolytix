@@ -804,6 +804,9 @@ p {
     background-image: url(/public/images/team/kerst_.jpg);
 }
 
+.donna > .li_card__img {
+    background-image: url(/public/images/team/donna_.jpg);
+}
 
 
 /* CONTACT */
