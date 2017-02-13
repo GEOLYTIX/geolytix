@@ -25,7 +25,7 @@ function scrollTo(section){
     console.log();
     section == 'services' ? $('.inner').animate({scrollTop: $('#services__section').offset().top},600) :
         section == 'case_studies' ? $('.inner').animate({scrollTop: $('#case_studies__section').offset().top},600) :
-            section == 'geodata' ? $('.inner').animate({scrollTop: $('.geodata__section').offset().top},600) :
+            section == 'geodata' ? $('.inner').animate({scrollTop: $('.geodata__section').offset().top - 50},600) :
                 section == 'team' ? $('.inner').animate({scrollTop: $('#team__section').offset().top},600) :
                     section == 'contact' ? $('.inner').animate({scrollTop: $('#footer').offset().top},600) : null;
 }
