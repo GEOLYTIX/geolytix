@@ -8,8 +8,6 @@ var section_geodata = $('.geodata');
 var section_team = $('.team');
 var section_contact = $('.contact');
 
-scrollTo(window.location.search.substring(1));
-
 parallax_team_photo.style.height = parallax_team_photo.offsetWidth * 0.47 + 'px';
 
 setHeader();
@@ -168,3 +166,5 @@ function changeExpandedCardsHeight() {
         team_card__expanded.height(team_card__expanded.find('.li_card').height() + team_card__expanded.find('.li_card__content').height() + 50);
     }
 }
+
+scrollTo(window.location.search.substring(1));

@@ -42,7 +42,6 @@ var xhr,
     proj_4326 = proj4.Proj('EPSG:4326'),
     proj_3857 = proj4.Proj('EPSG:3857');
 
-
 dataset == 'seamless_locales' ? seamless_locales() :
 dataset == 'retail_points' ? retail_points() :
 dataset == 'retail_places' ? retail_places() :
