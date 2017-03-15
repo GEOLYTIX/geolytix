@@ -52,12 +52,12 @@ a {
     right: 10px;
     font-family: ffmark_black, sans-serif;
     font-size: 40px;
-    z-index: 999;
+    z-index: 998;
 }
 
 .mapButton {
     position: fixed;
-    z-index: 999;
+    z-index: 998;
     opacity: 0.9;
     background: #fff;
     color: #000;
@@ -89,7 +89,7 @@ a {
 }
 
 .geodata__info {
-
+    z-index: 999;
 }
 
 .geodata__info > div {
