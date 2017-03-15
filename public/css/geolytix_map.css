@@ -164,6 +164,10 @@ a {
     line-height: 1.7;
 }
 
+.disabled {
+    opacity: 0.3;
+}
+
 .mapButton:hover:not(.disabled) {
     background: #079e00;
     color: #fff;

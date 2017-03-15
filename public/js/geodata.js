@@ -339,24 +339,6 @@ function public_transport(){
 function postal_geom(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
-    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-        layers: 'postal_district',
-        format: 'image/png',
-        transparent: true,
-        styles: 'postal_district_nolabel',
-        minZoom: 14,
-        maxZoom: 14
-    }).addTo(map);
-
-    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-        layers: 'postal_sector',
-        format: 'image/png',
-        transparent: true,
-        styles: 'postal_sector_nolabel',
-        minZoom: 15,
-        maxZoom: 15
-    }).addTo(map);
-
     new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         opacity: 1.0,
         layers: 'postal_area',
@@ -365,6 +347,15 @@ function postal_geom(){
         pane: 'tilePane',
         zIndex: 3,
         styles: 'postal_area',
+        maxZoom: 14
+    }).addTo(map);
+
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+        layers: 'postal_district',
+        format: 'image/png',
+        transparent: true,
+        styles: 'postal_district_nolabel',
+        minZoom: 14,
         maxZoom: 14
     }).addTo(map);
 
@@ -381,11 +372,12 @@ function postal_geom(){
     }).addTo(map);
 
     L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-        layers: 'postal_code',
+        layers: 'postal_sector',
         format: 'image/png',
         transparent: true,
-        styles: 'postal_code',
-        minZoom: 17
+        styles: 'postal_sector_nolabel',
+        minZoom: 15,
+        maxZoom: 15
     }).addTo(map);
 
     new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
@@ -397,6 +389,14 @@ function postal_geom(){
         zIndex: 3,
         styles: 'postal_sector',
         minZoom: 16
+    }).addTo(map);
+
+    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+        layers: 'postal_code',
+        format: 'image/png',
+        transparent: true,
+        styles: 'postal_code',
+        minZoom: 17
     }).addTo(map);
 }
 
@@ -821,7 +821,8 @@ function divStyle(_f, _arrayColor, _arraySize, _arrayStyle){
         icon: L.divIcon({
             className: circle_colour,
             iconSize: [s, s]
-        })
+        }),
+        interactive: false
     };
 }
 
