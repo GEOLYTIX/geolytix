@@ -11,8 +11,8 @@ map.createPane('labels');
 map.getPane('labels').style.zIndex = 650;
 map.getPane('labels').style.pointerEvents = 'none';
 
-var geodata__btnZoomIn = $('.geodata__content > .btnZoomIn'),
-    geodata__btnZoomOut = $('.geodata__content > .btnZoomOut');
+var geodata__btnZoomIn = $('.btnZoomIn'),
+    geodata__btnZoomOut = $('.btnZoomOut');
 
 geodata__btnZoomIn.click(function() {
     var z = map.getZoom() + 1;

@@ -17,7 +17,7 @@
 
 <body>
 
-<a id="logo_link" href="/">GEOLYTIX</a>
+<a id="logo_link" href="/mobile?geodata">GEOLYTIX</a>
 
 <div class="mapButton btnZoomIn noselect">
     <i class="material-icons">add</i>
@@ -29,8 +29,10 @@
 
 <div id="map_geodata"></div>
 
-<div class="geodata__info">
+<div id="spacer_geodata"></div>
 
+<div class="geodata__info">
+    <i class="material-icons slider_geodata">swap_vert</i>
         <div class="seamless_locales">
             <div class="geodata__infobox">
                 <p>100% Seamless UK definitions of natural markets at 4 levels, local, towns, district and region. Close match to true ‘markets’ at multiple scales.</p>
@@ -254,6 +256,6 @@
 <script type="application/javascript" src="/public/js/turf.js"></script>
 <script type="application/javascript" src="/public/js/leaflet.NonTiledLayer.js"></script>
 <script type="application/javascript" src="/public/js/leaflet.NonTiledLayer.WMS.js"></script>
-<script type="application/javascript" src="/public/js/geodata_map.js"></script>
+<script type="application/javascript" src="/public/js/geodata_map.m.js"></script>
 
 </html>

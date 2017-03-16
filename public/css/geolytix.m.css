@@ -346,11 +346,23 @@ p {
     height: 300px;
 }
 
-.geodata__table .docu_link{
+.geodata__table .docu_link {
     color: #079e00;
     line-height: 3;
     margin-left: -4px;
 }
+
+.map_mobile__launch {
+    float: right;
+    color: #079e00;
+    font-size: 35px;
+    background-color: white;
+    border-radius: 20%;
+    opacity: 0.8;
+    margin: 5px;
+    text-shadow: 1px 1px 2px grey;
+}
+
 
 
 /* blog spacer */

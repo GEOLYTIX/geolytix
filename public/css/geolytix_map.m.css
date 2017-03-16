@@ -42,8 +42,21 @@ a {
 }
 
 #map_geodata {
+    position: fixed;
     width: 100%;
-    height: 80%;
+    height: 90%;
+}
+
+#spacer_geodata {
+    width: 100%;
+    height: 90%;
+}
+
+.slider_geodata {
+    margin: -15px auto;
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
 }
 
 #logo_link {
@@ -90,20 +103,26 @@ a {
 
 .geodata__info {
     z-index: 999;
+    position: absolute;
+    background-color: white;
+    border-top: 2px solid whitesmoke;
+    text-align: center;
 }
 
 .geodata__info > div {
     display: none;
+    text-align: left;
 }
 
 .geodata__info > .active {
     display: block;
-    padding-left: 10px;
 }
 
 .geodata__infobox {
     font-family: ffmark, sans-serif;
     font-size: 15px;
+    padding: 10px;
+    margin-top: -20px;
 }
 
 .geodata__infobox a {
