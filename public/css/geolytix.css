@@ -534,7 +534,7 @@ p {
 }
 
 .leaflet-popup-close-button {
-    color: #079e00;
+    color: #079e00 !important;
 }
 
 .leaflet-popup-content-wrapper {
