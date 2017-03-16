@@ -853,7 +853,7 @@ function clickSelect(e, map, layer, cqlFilter) {
             'CQL_FILTER': cqlFilter
         }
     );
-    alert(url);
+    // alert(url);
     wmsGetClickFeatureInfo(url);
 }
 
