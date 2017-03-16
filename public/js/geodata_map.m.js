@@ -935,7 +935,7 @@ function wmsGetClickFeatureInfo(url){
     $.ajax({
         url: url,
         success: function (data) {
-            alert(JSON.stringify(data.features[0]));
+            alert(JSON.stringify(data));
             if (data.features.length > 0) {
                 var infoj = JSON.parse(data.features[0].properties.infoj);
                 if (infoj){
