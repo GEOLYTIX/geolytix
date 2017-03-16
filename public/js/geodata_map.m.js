@@ -931,6 +931,7 @@ function populateInfoTable(infoj, infoTable){
 
 
 function wmsGetClickFeatureInfo(url){
+    alert('foo');
     $.ajax({
         url: url,
         success: function (data) {
