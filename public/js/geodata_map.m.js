@@ -123,6 +123,7 @@ function retail_points() {
                         styles: 'retailpoints',
                         CQL_FILTER: cqlFilter
                     }).addTo(map);
+                    map.on('click', function(e){clickSelect(e, map, layer, cqlFilter)});
                 }
             });
         });
