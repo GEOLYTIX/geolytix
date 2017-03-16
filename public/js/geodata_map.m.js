@@ -943,7 +943,12 @@ function wmsGetClickFeatureInfo(url){
                         .setContent(buildHtmlTable(infoj))
                         .openOn(map);
                 }
+            } else {
+                alert('boo');
             }
+        },
+        error: function (err) {
+            alert(err);
         }
     });
 }
