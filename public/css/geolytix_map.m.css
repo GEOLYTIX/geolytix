@@ -55,6 +55,7 @@ a {
 .slider_geodata {
     margin: -15px auto;
     background-color: white;
+    color: #079e00;
     border-radius: 50%;
     padding: 5px;
 }
@@ -65,6 +66,7 @@ a {
     right: 10px;
     font-family: ffmark_black, sans-serif;
     font-size: 40px;
+    text-shadow: 4px 0px 2px white;
     z-index: 998;
 }
 
@@ -95,6 +97,7 @@ a {
 .mapButton > i {
     font-size: 30px;
     line-height: 1.7;
+    color: #079e00;
 }
 
 .disabled {
