@@ -853,7 +853,6 @@ function clickSelect(e, map, layer, cqlFilter) {
             'CQL_FILTER': cqlFilter
         }
     );
-    // alert(url);
     wmsGetClickFeatureInfo(url);
 }
 
@@ -879,8 +878,8 @@ function getFeatureInfoUrl(map, layer, latlng, params) {
             buffer: 10
         };
     params = L.Util.extend(defaultParams, params || {});
-    params[params.version === '1.3' ? 'i' : 'x'] = point.x;
-    params[params.version === '1.3' ? 'j' : 'y'] = point.y;
+    params[params.version === '1.3' ? 'i' : 'x'] = parseInt(point.x);
+    params[params.version === '1.3' ? 'j' : 'y'] = parseInt(point.y);
     return url + L.Util.getParamString(params, url, true);
 }
 
@@ -934,8 +933,7 @@ function wmsGetClickFeatureInfo(url){
     $.ajax({
         url: url,
         success: function (data) {
-            // alert(JSON.stringify(data));
-            alert(url);
+            // alert(url);
             if (data.features.length > 0) {
                 var infoj = JSON.parse(data.features[0].properties.infoj);
                 if (infoj){
@@ -944,8 +942,6 @@ function wmsGetClickFeatureInfo(url){
                         .setContent(buildHtmlTable(infoj))
                         .openOn(map);
                 }
-            } else {
-                alert('boo');
             }
         }
     });
