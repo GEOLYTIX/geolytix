@@ -931,11 +931,11 @@ function populateInfoTable(infoj, infoTable){
 
 
 function wmsGetClickFeatureInfo(url){
-    alert('foo');
     $.ajax({
         url: url,
         success: function (data) {
-            alert(JSON.stringify(data));
+            // alert(JSON.stringify(data));
+            alert(url);
             if (data.features.length > 0) {
                 var infoj = JSON.parse(data.features[0].properties.infoj);
                 if (infoj){
@@ -947,9 +947,6 @@ function wmsGetClickFeatureInfo(url){
             } else {
                 alert('boo');
             }
-        },
-        error: function (err) {
-            alert(err);
         }
     });
 }
