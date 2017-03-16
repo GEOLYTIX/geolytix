@@ -874,7 +874,8 @@ function getFeatureInfoUrl(map, layer, latlng, params) {
             width: size.x,
             layers: layer.options.layers,
             query_layers: layer.options.layers,
-            info_format: 'application/json'
+            info_format: 'application/json',
+            buffer: 5
         };
     params = L.Util.extend(defaultParams, params || {});
     params[params.version === '1.3' ? 'i' : 'x'] = point.x;
