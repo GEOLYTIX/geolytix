@@ -931,8 +931,7 @@ function populateInfoTable(infoj, infoTable){
 
 
 function wmsGetClickFeatureInfo(url){
-    if (xhr && xhr.readyState != 4) xhr.abort();
-    xhr = $.ajax({
+    $.ajax({
         url: url,
         success: function (data) {
             if (data.features.length > 0) {
