@@ -41,6 +41,14 @@ a {
     display: none;
 }
 
+.leaflet-popup-close-button {
+    color: #079e00;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 0;
+}
+
 #map_geodata {
     position: fixed;
     width: 100%;
@@ -53,7 +61,8 @@ a {
 }
 
 .slider_geodata {
-    margin: -15px auto;
+    font-size: 30px;
+    margin: -18px auto;
     background-color: white;
     color: #079e00;
     border-radius: 50%;

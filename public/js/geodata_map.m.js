@@ -75,7 +75,7 @@ function seamless_locales() {
         styles: 'seamless_locales'
     }).addTo(map);
 
-    map.on('mousemove', function (e) {
+    map.on('click', function (e) {
         hoverSelect(e, map, layer, document.getElementById('seamless_locales_info'))
     });
 }
@@ -291,7 +291,7 @@ function town_suburb(){
         styles: 'town_suburb'
     }).addTo(map);
 
-    map.on('mousemove', function(e){hoverSelect(e, map, layer, document.getElementById('town_suburb_info'))});
+    map.on('click', function(e){hoverSelect(e, map, layer, document.getElementById('town_suburb_info'))});
 }
 
 function education(){

@@ -533,6 +533,14 @@ p {
     vertical-align: top !important;
 }
 
+.leaflet-popup-close-button {
+    color: #079e00;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 0;
+}
+
 .leaflet-popup-content table td:first-child{
     font-weight: 700;
 }
