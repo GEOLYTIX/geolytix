@@ -123,7 +123,7 @@ function retail_points() {
                         styles: 'retailpoints',
                         CQL_FILTER: cqlFilter
                     }).addTo(map);
-                    map.on('click', function(e){clickSelect(e, map, layer, cqlFilter)});
+                    // map.on('click', function(e){clickSelect(e, map, layer, cqlFilter)});
                 }
             });
         });
@@ -844,17 +844,17 @@ function hoverSelect(e, map, layer, infoTable) {
 
 
 function clickSelect(e, map, layer, cqlFilter) {
-    wmsGetClickFeatureInfo(
-        getFeatureInfoUrl(
-            map,
-            layer,
-            e.latlng,
-            {
-                'propertyName': 'latlonj,infoj',
-                'CQL_FILTER': cqlFilter
-            }
-        )
-    )
+    var url = getFeatureInfoUrl(
+        map,
+        layer,
+        e.latlng,
+        {
+            'propertyName': 'latlonj,infoj',
+            'CQL_FILTER': cqlFilter
+        }
+    );
+    alert(url);
+    wmsGetClickFeatureInfo(url);
 }
 
 
