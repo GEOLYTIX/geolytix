@@ -125,12 +125,7 @@ a {
 }
 
 .geodata__info > div {
-    display: none;
     text-align: left;
-}
-
-.geodata__info > .active {
-    display: block;
 }
 
 .geodata__infobox {

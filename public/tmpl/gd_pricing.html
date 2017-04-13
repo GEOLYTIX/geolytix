@@ -1,0 +1,118 @@
+<div>
+    <style>
+        .pricing {
+            padding: 3px 0 0 20px;
+        }
+
+        .pricing > p {
+            font-size: 15px;
+            margin-bottom: 18px;
+        }
+
+        .pricing > p:nth-of-type(14) {
+            margin: 25px 0 30px 0;
+        }
+
+        .pricing > .active {
+            color: #079e00;
+            font-family: ffmark_bold, sans-serif;
+        }
+
+        .p_pricing__fat {
+            font-size: 35px;
+            font-family: ffmark_bold, sans-serif;
+            margin-bottom: 30px;
+        }
+
+        .p_pricing__green {
+            color: #079e00;
+        }
+
+        .p_pricing__three,
+        .p_pricing__nine,
+        .p_pricing__first_all,
+        .p_pricing__first_select {
+            display: none;
+        }
+
+        .p_pricing__thin {
+            font-size: 35px;
+            font-family: ffmark, sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .p_pricing__note {
+            font-size: 25px;
+            font-family: ffmark, sans-serif;
+            margin-top: 50px;
+            padding-left: 40px;
+        }
+
+        .p_pricing__price {
+            font-size: 50px;
+            font-family: ffmark_bold, sans-serif;
+        }
+
+        .p_pricing__current {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+    </style>
+    <div class="pricing">
+        <p class="pricetag cursor active">£ 3000</p>
+        <p class="pricetag cursor active">£ 3000</p>
+        <p class="pricetag cursor active">£ 5500 (2 Packs)</p>
+        <p class="pricetag cursor">£ 3000</p>
+        <p class="pricetag cursor">£ 3000</p>
+        <p class="pricetag cursor">£ 3000</p>
+        <p class="pricetag cursor">£ 3000</p>
+        <p class="pricetag cursor">£ 3000</p>
+        <p class="pricetag cursor">£ 3000</p>
+        <p class="pricetag cursor">£ 3000</p>
+        <p class="pricetag cursor">£ 3000</p>
+        <p class="pricetag cursor">£ 3000</p>
+        <p class="pricetag cursor">£ 3000</p>
+        <p class="pricetag cursor">£ 3000</p>
+        <p class="pricetag cursor">£ 3000</p>
+    </div>
+    <script>
+        $('.geodata__pricing').show();
+        var selectedPacks = 4,
+            priceTable = ['£ null', '£ 3,000', '£ 5,500', '£ 8,000' , '£ 10,000', '£ 12,000', '£ 14,000', '£ 16,000', '£ 18,000', '£ 20,000','£ 22,000', '£ 24,000' , '£ 25,000'];
+
+        $('.pricetag').click(function(){
+            $(this).toggleClass('active');
+            var n = $(this).html() == '£ 5500 (2 Packs)' ? 2 : 1;
+            $(this).hasClass('active') ? selectedPacks += n : selectedPacks -= n;
+            if (selectedPacks >= 12) {
+                $('.p_pricing__all').hide();
+                $('.p_pricing__first').hide();
+                $('.p_pricing__first_all').show();
+            } else if (selectedPacks >= 9) {
+                $('.p_pricing__first_all').hide();
+                $('.p_pricing__nine').hide();
+                $('.p_pricing__all').show();
+                $('.p_pricing__first').show();
+            } else if (selectedPacks >= 6) {
+                $('.p_pricing__six').hide();
+                $('.p_pricing__nine').show();
+            } else if (selectedPacks >= 3) {
+                $('.p_pricing__nine').hide();
+                $('.p_pricing__three').hide();
+                $('.p_pricing__six').show();
+            } else if (selectedPacks > 0) {
+                $('.p_pricing__six').hide();
+                $('.p_pricing__first_select').hide();
+                $('.p_pricing__three').show();
+                $('.p_pricing__first').show();
+                $('.p_pricing__current').show();
+            } else {
+                $('.p_pricing__first').hide();
+                $('.p_pricing__current').hide();
+                $('.p_pricing__first_select').show();
+            }
+            $('#p_pricing__current').html(priceTable[selectedPacks]);
+        });
+
+    </script>
+</div>

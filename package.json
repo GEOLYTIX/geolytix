@@ -13,7 +13,7 @@
     "ejs": "~2.4.1",
     "express": "~4.13.4",
     "helmet": "^3.1.0",
-    "morgan": "~1.7.0",
+    "jsrender": "^0.9.84",
     "pg-promise": "^5.5.6",
     "serve-favicon": "~2.3.0"
   }

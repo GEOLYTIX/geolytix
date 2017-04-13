@@ -1,28 +1,14 @@
-var body = $('html, body');
-var header = $('.header');
-var header__image = document.getElementById('header__image');
-var parallax_team_photo = document.getElementById('team_photo');
-var section_services = $('.services');
-var section_case_studies = $('.case_studies');
-var section_geodata = $('.geodata');
-var section_team = $('.team');
-var section_contact = $('.contact');
+var body = $('html, body'),
+    header = $('.header'),
+    header__image = document.getElementById('header__image'),
+    parallax_team_photo = document.getElementById('team_photo'),
+    section_services = $('.services'),
+    section_case_studies = $('.case_studies'),
+    section_geodata = $('.geodata'),
+    section_team = $('.team'),
+    section_contact = $('.contact');
 
 parallax_team_photo.style.height = parallax_team_photo.offsetWidth * 0.47 + 'px';
-
-setHeader();
-header.show();
-
-window.onscroll = function () {
-
-    setHeader();
-
-    // parallax
-    var shift = 100 - ((parallax_team_photo.offsetTop - window.pageYOffset) / window.innerHeight * 100);
-    if (shift > 0 && shift < 100) {
-        parallax_team_photo.style.backgroundPosition = "50% " + shift + "%";
-    }
-};
 
 function setHeader() {
     var distanceY = window.pageYOffset || document.documentElement.scrollTop;
@@ -30,36 +16,42 @@ function setHeader() {
     distanceY > header__image.clientHeight - 80 ? header.addClass('header__main') : header.removeClass('header__main');
 }
 
+setHeader();
+
+window.onscroll = function () {
+    setHeader();
+    var shift = 100 - ((parallax_team_photo.offsetTop - window.pageYOffset) / window.innerHeight * 100);
+    if (shift > 0 && shift < 100) parallax_team_photo.style.backgroundPosition = "50% " + shift + "%";
+};
 
 
-// menu control
+
+//menu control
 $('#home').click(function (e) {
     e.preventDefault();
     body.animate({scrollTop: 0});
 });
 
-var header__button = $('.header__menu > div');
-
-header__button.click(function(){
+$('.header__menu > div').click(function () {
     var loc = $(this).attr('id');
     history.pushState({so: 'glx'}, loc, '?' + loc);
     scrollTo(loc);
 });
 
-function scrollTo(section){
-    section == 'services' ? body.animate({scrollTop: section_services.offset().top - 100}) :
-        section == 'case_studies' ? body.animate({scrollTop: section_case_studies.offset().top - 50}) :
-            section == 'geodata' ? body.animate({scrollTop: section_geodata.offset().top - 80}) :
-                section == 'team' ? body.animate({scrollTop: section_team.offset().top - 80}) :
-                    section == 'contact' ? body.animate({scrollTop: section_contact.offset().top - 70}) : null;
+function scrollTo(section) {
+    section === 'services' ? body.animate({scrollTop: section_services.offset().top - 100}) :
+        section === 'case_studies' ? body.animate({scrollTop: section_case_studies.offset().top - 50}) :
+            section === 'geodata' ? body.animate({scrollTop: section_geodata.offset().top - 80}) :
+                section === 'team' ? body.animate({scrollTop: section_team.offset().top - 80}) :
+                    section === 'contact' ? body.animate({scrollTop: section_contact.offset().top - 70}) :
+                        null;
 }
 
 
 
 // services cards
-var service_cards = section_services.find('.ul_grid .li_card');
-
-var service_card__expanded;
+var service_cards = section_services.find('.ul_grid .li_card'),
+    service_card__expanded;
 
 service_cards.click(function () {
     if (service_card__expanded) service_card__expanded.removeAttr('style');
@@ -83,8 +75,8 @@ section_services.find('.network_strategy').first().trigger('click');
 
 
 // case studies
-var case_studies_container = section_case_studies.find('.container').first();
-var case_studies__table = case_studies_container.find('table').first();
+var case_studies_container = section_case_studies.find('.container').first(),
+    case_studies__table = case_studies_container.find('table').first();
 
 section_case_studies.find('.strip > .logo').click(function () {
     $(this).siblings().removeClass('active');
@@ -95,9 +87,8 @@ section_case_studies.find('.strip > .logo').click(function () {
 
 
 // team cards
-var team_cards = section_team.find('.ul_grid .li_card');
-
-var team_card__expanded;
+var team_cards = section_team.find('.ul_grid .li_card'),
+    team_card__expanded;
 
 team_cards.click(function (e, trigger) {
     if (team_card__expanded) team_card__expanded.removeAttr('style');
@@ -113,7 +104,7 @@ team_cards.click(function (e, trigger) {
         team_card__expanded.addClass('li_expanded').height($(this).height() + content.height() + 50);
         content.css('opacity', 0).animate({opacity: 1});
         li_expander.css('visibility', 'visible');
-        if (trigger != true) {
+        if (trigger !== true) {
             body.animate({scrollTop: team_card__expanded.offset().top - 80});
         }
     }

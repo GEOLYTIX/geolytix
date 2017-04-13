@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GEOLYTIX</title>
+
+    <meta name="description" content="Experts in providing data and services for location, demographic, customer and market analysis for retailers and investors in the UK, Europe and America."/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" href="/public/css/fontello_embedded.css"/>
+    <link rel="stylesheet" href="/public/css/leaflet.css"/>
+    <link rel="stylesheet" href="/public/css/geodata_map.m.css"/>
+
+</head>
+
+<body>
+
+<a id="logo_link" href="/mobile?geodata">GEOLYTIX</a>
+
+<div class="mapButton btnZoomIn noselect">
+    <i class="material-icons">add</i>
+</div>
+
+<div class="mapButton btnZoomOut noselect">
+    <i class="material-icons">remove</i>
+</div>
+
+<div id="map_geodata"></div>
+
+<div id="spacer_geodata"></div>
+
+
+
+<div class="geodata__info">
+    <i class="material-icons slider_geodata">swap_vert</i>
+    {{include tmpl=gd_tmpl /}}
+
+</div>
+
+</body>
+
+<script type="application/javascript" src="/public/js/jquery.js"></script>
+<script type="application/javascript" src="/public/js/jsrender.js"></script>
+<script type="application/javascript" src="/public/js/leaflet.js"></script>
+<script type="application/javascript" src="/public/js/proj4.js"></script>
+<script type="application/javascript" src="/public/js/leaflet.proj4.js"></script>
+<script type="application/javascript" src="/public/js/turf.js"></script>
+<script type="application/javascript" src="/public/js/leaflet.NonTiledLayer.js"></script>
+<script>const mobile_flag = true;</script>
+<script type="application/javascript" src="/public/js/geodata_map.js"></script>
+
+</html>

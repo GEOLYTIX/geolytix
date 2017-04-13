@@ -46,17 +46,16 @@ a {
 }
 
 .geodata__info {
-    width: 300px;
+    width: 330px;
     height: 100%;
-    min-height: 619px;
     float: left;
 }
 
-.geodata__info > div {
+.infobox {
     display: none;
 }
 
-.geodata__info > .active {
+.infobox__active {
     display: block;
     padding-left: 10px;
 }
@@ -127,10 +126,9 @@ a {
 
 .geodata__content {
     position: relative;
-    width: calc(100% - 300px);
+    width: calc(100% - 330px);
     height: 100%;
-    min-height: 619px;
-    float: left;
+    float: right;
 }
 
 #logo_link {
@@ -184,10 +182,10 @@ a {
 
 .geodata__content > .btnZoomIn {
     top: 10px;
-    left: 10px;
+    left: -10px;
 }
 
 .geodata__content > .btnZoomOut {
     top: 70px;
-    left: 10px;
+    left: -10px;
 }

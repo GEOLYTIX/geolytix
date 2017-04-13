@@ -39,153 +39,43 @@ var xhr,
     featureHover,
     layerGrid,
     currentDataset = 'seamless_locales',
-    geodataScrollyFirst = $('.geodata__scrolly > div').first(),
-    geodataPricing = $('.geodata__pricing'),
     geodataFAQ = $('.geodata__faq'),
     proj_4326 = proj4.Proj('EPSG:4326'),
-    proj_3857 = proj4.Proj('EPSG:3857'),
-    priceTags = $('.pricetag');
-
-seamless_locales();
+    proj_3857 = proj4.Proj('EPSG:3857');
 
 $('.btnFullScreen').click(function() {
     window.location = '/map?' + currentDataset;
 });
 
-$('#seamless_locales').click(function () {
-    selectGeodata($(this), 0);
-    seamless_locales()
+selectGeodata($('#seamless_locales'));
+
+$('.geodata__select > div').click(function () {
+    selectGeodata($(this));
 });
 
-$('#retail_points').click(function () {
-    selectGeodata($(this), 1);
-    retail_points()
-});
+function selectGeodata(_this){
+    $('.geodata__pricing').hide();
+    geodataFAQ.hide();
+    currentDataset = _this.attr('id');
 
-$('#retail_places').click(function () {
-    selectGeodata($(this), 2);
-    retail_places()
-});
+    $.when($.get('/public/tmpl/gd_'+currentDataset+'.html'))
+        .done(function (_tmpl) {
+            var t = $(_tmpl).render();
+            $('.geodata__info').html(t);
+        });
 
-$('#public_transport').click(function() {
-    selectGeodata($(this), 3);
-    public_transport()
-});
-
-$('#postal_geom').click(function() {
-    selectGeodata($(this), 4);
-    postal_geom()
-});
-
-$('#town_suburb').click(function() {
-    selectGeodata($(this), 5);
-    town_suburb()
-});
-
-$('#education').click(function() {
-    selectGeodata($(this), 6);
-    education()
-});
-
-$('#workplace').click(function() {
-    selectGeodata($(this), 7);
-    workplace()
-});
-
-$('#poi').click(function() {
-    selectGeodata($(this), 8);
-    poi()
-});
-
-$('#residential').click(function() {
-    selectGeodata($(this), 9);
-    residential()
-});
-
-$('#uk_admin').click(function() {
-    selectGeodata($(this), 10);
-    uk_admin()
-});
-
-$('#property').click(function() {
-    selectGeodata($(this), 11);
-    property()
-});
-
-$('#road_network').click(function() {
-    selectGeodata($(this), 12);
-    road_network()
-});
-
-$('#media_com').click(function() {
-    selectGeodata($(this), 13);
-    media_com()
-});
-
-$('#physical').click(function() {
-    selectGeodata($(this), 14);
-    physical()
-});
-
-var selectedPacks = 4,
-    priceTable = ['£ null', '£ 3,000', '£ 5,500', '£ 8,000' , '£ 10,000', '£ 12,000', '£ 14,000', '£ 16,000', '£ 18,000', '£ 20,000','£ 22,000', '£ 24,000' , '£ 25,000'];
-
-$('#pricing').click(function() {
-    selectGeodata($(this), 15);
-});
-
-priceTags.click(function(){
-    $(this).toggleClass('active');
-    var n = $(this).html() == '£ 5500 (2 Packs)' ? 2 : 1;
-    $(this).hasClass('active') ? selectedPacks += n : selectedPacks -= n;
-    if (selectedPacks >= 12) {
-        $('.p_pricing__all').hide();
-        $('.p_pricing__first').hide();
-        $('.p_pricing__first_all').show();
-    } else if (selectedPacks >= 9) {
-        $('.p_pricing__first_all').hide();
-        $('.p_pricing__nine').hide();
-        $('.p_pricing__all').show();
-        $('.p_pricing__first').show();
-    } else if (selectedPacks >= 6) {
-        $('.p_pricing__six').hide();
-        $('.p_pricing__nine').show();
-    } else if (selectedPacks >= 3) {
-        $('.p_pricing__nine').hide();
-        $('.p_pricing__three').hide();
-        $('.p_pricing__six').show();
-    } else if (selectedPacks > 0) {
-        $('.p_pricing__six').hide();
-        $('.p_pricing__first_select').hide();
-        $('.p_pricing__three').show();
-        $('.p_pricing__first').show();
-        $('.p_pricing__current').show();
-    } else {
-        $('.p_pricing__first').hide();
-        $('.p_pricing__current').hide();
-        $('.p_pricing__first_select').show();
-    }
-    $('#p_pricing__current').html(priceTable[selectedPacks]);
-});
-
-$('#faq').click(function() {
-    selectGeodata($(this), 15);
-});
-
-
-function selectGeodata(_this, _i){
-    $('.tmpl_legend').html('');
     _this.siblings().removeClass('selected');
     _this.addClass('selected');
-    currentDataset = _this.attr('id');
+
     removeLayer();
     map.off('mousemove');
     map.off('click');
     map.off('zoomend');
     map.off('moveend');
-    geodataScrollyFirst.animate({'marginTop': 619 * -_i});
-    currentDataset == 'pricing' ? geodataPricing.show() : geodataPricing.hide();
-    currentDataset == 'faq' ? geodataFAQ.show() : geodataFAQ.hide();
+
+    currentDataset == 'pricing' ? null :
+        currentDataset == 'faq' ? geodataFAQ.show() :
+        window[currentDataset]();
 }
 
 function removeLayer(){
@@ -231,32 +121,27 @@ function retail_points() {
 
     map.on('click', function(e){clickSelect(e, map, layer, cqlFilter)});
 
-    $.when($.get('/public/tmpl/legend_retailpoints.html'))
-        .done(function (_tmpl) {
-            var t = $(_tmpl).render();
-            $('#legend__retailpoints').append(t);
-            $('.retailpoints__legend span').click(function () {
-                $(this).toggleClass('active');
-                if ($(this).hasClass('active')) {
-                    cqlFilterArray.push("brand='" + $(this).attr('id') + "'");
-                } else {
-                    cqlFilterArray.splice($.inArray("brand='" + $(this).attr('id') + "'", cqlFilterArray),1);
-                }
-                cqlFilter = cqlFilterArray.join(' OR ');
+    $('.retailpoints__legend span').click(function () {
+        $(this).toggleClass('active');
+        if ($(this).hasClass('active')) {
+            cqlFilterArray.push("brand='" + $(this).attr('id') + "'");
+        } else {
+            cqlFilterArray.splice($.inArray("brand='" + $(this).attr('id') + "'", cqlFilterArray), 1);
+        }
+        cqlFilter = cqlFilterArray.join(' OR ');
 
-                map.removeLayer(layer);
-                if (cqlFilter.length > 0) {
-                    layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-                        version: '1.3',
-                        layers: 'retailpoints',
-                        format: 'image/png',
-                        transparent: true,
-                        styles: 'retailpoints',
-                        CQL_FILTER: cqlFilter
-                    }).addTo(map);
-                }
-            });
-        });
+        map.removeLayer(layer);
+        if (cqlFilter.length > 0) {
+            layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+                version: '1.3',
+                layers: 'retailpoints',
+                format: 'image/png',
+                transparent: true,
+                styles: 'retailpoints',
+                CQL_FILTER: cqlFilter
+            }).addTo(map);
+        }
+    });
 }
 
 function retail_places(){
@@ -478,12 +363,6 @@ function workplace() {
         getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions)
     });
 
-    $.when($.get('/public/tmpl/legend_workplace.html'))
-        .done(function (_tmpl) {
-            var t = $(_tmpl).render();
-            $('#legend__workplace').append(t);
-        });
-
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
 
     function workplace_hz(){
@@ -520,31 +399,26 @@ function poi(){
 
     map.on('click', function(e){clickSelect(e, map, layer, cqlFilter)});
 
-    $.when($.get('/public/tmpl/legend_poi.html'))
-        .done(function (_tmpl) {
-            var t = $(_tmpl).render();
-            $('#legend__poi').append(t);
-            $('.poi__legend span').click(function () {
-                $(this).toggleClass('active');
-                if ($(this).hasClass('active')) {
-                    cqlFilterArray.push("poi_type='" + $(this).attr('id') + "'");
-                } else {
-                    cqlFilterArray.splice($.inArray("poi_type='" + $(this).attr('id') + "'", cqlFilterArray), 1);
-                }
-                cqlFilter = cqlFilterArray.join(' OR ');
+    $('.poi__legend span').click(function () {
+        $(this).toggleClass('active');
+        if ($(this).hasClass('active')) {
+            cqlFilterArray.push("poi_type='" + $(this).attr('id') + "'");
+        } else {
+            cqlFilterArray.splice($.inArray("poi_type='" + $(this).attr('id') + "'", cqlFilterArray), 1);
+        }
+        cqlFilter = cqlFilterArray.join(' OR ');
 
-                map.removeLayer(layer);
-                if (cqlFilter.length > 0) {
-                    layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-                        layers: 'poi',
-                        format: 'image/png',
-                        transparent: true,
-                        styles: 'poi',
-                        CQL_FILTER: cqlFilter
-                    }).addTo(map);
-                }
-            });
-        });
+        map.removeLayer(layer);
+        if (cqlFilter.length > 0) {
+            layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+                layers: 'poi',
+                format: 'image/png',
+                transparent: true,
+                styles: 'poi',
+                CQL_FILTER: cqlFilter
+            }).addTo(map);
+        }
+    });
 }
 
 function residential(){
@@ -594,12 +468,6 @@ function residential(){
     map.on('moveend', function () {
         getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions)
     });
-
-    $.when($.get('/public/tmpl/legend_residential.html'))
-        .done(function (_tmpl) {
-            var t = $(_tmpl).render();
-            $('#legend__residential').append(t);
-        });
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
 
@@ -699,13 +567,6 @@ function property(){
     map.on('moveend', function () {
         getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
     });
-
-    $.when($.get('/public/tmpl/legend_property.html'))
-        .done(function(_tmpl) {
-            var t = $(_tmpl).render();
-            $('#legend__property').append(t);
-        });
-
 }
 
 function road_network(){
@@ -762,12 +623,6 @@ function media_com(){
     map.on('moveend', function () {
         getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions)
     });
-
-    $.when($.get('/public/tmpl/legend_media_bb.html'))
-        .done(function(_tmpl) {
-            var t = $(_tmpl).render();
-            $('#legend__media').append(t);
-        });
 }
 
 
@@ -919,6 +774,8 @@ function getGridData(_bounds, _layer, _o){
             legend_text_v[6].innerHTML = arrayColor[6].toLocaleString('en-GB', _o.oValue);
             legend_text_v[7].innerHTML = arrayColor[7].toLocaleString('en-GB', _o.oValue);
             legend_text_v[8].innerHTML = arrayColor[7].toLocaleString('en-GB', _o.oValue);
+
+            $('.tmpl_legend').fadeIn();
 
             layerGrid = new L.geoJson(dots, {
                 pointToLayer: function (feature, latlng) {
