@@ -1,6 +1,6 @@
 var map = L.map('map_geodata', {
         renderer: L.svg(),
-        scrollWheelZoom: false,
+        scrollWheelZoom: view_mode === 'integrated' ? false : true,
         zoomControl: false,
         maxBounds: L.latLngBounds(L.latLng(51.35, -0.4), L.latLng(51.65, 0.2)),
         minZoom: 12,
@@ -38,16 +38,16 @@ var xhr,
     layerHover,
     featureHover,
     layerGrid,
-    currentDataset = 'seamless_locales',
-    geodataFAQ = $('.geodata__faq'),
     proj_4326 = proj4.Proj('EPSG:4326'),
     proj_3857 = proj4.Proj('EPSG:3857');
 
-$('.btnFullScreen').click(function() {
-    window.location = '/map?' + currentDataset;
-});
 
-selectGeodata($('#seamless_locales'));
+if (view_mode === 'integrated') {
+    selectGeodata($('#seamless_locales'));
+} else {
+    window[$('.infobox').attr('id').substring(3)]();
+}
+
 
 $('.geodata__select > div').click(function () {
     selectGeodata($(this));
@@ -55,51 +55,50 @@ $('.geodata__select > div').click(function () {
 
 function selectGeodata(_this){
     $('.geodata__pricing').hide();
-    geodataFAQ.hide();
-    currentDataset = _this.attr('id');
-
-    $.when($.get('/public/tmpl/gd_'+currentDataset+'.html'))
-        .done(function (_tmpl) {
-            var t = $(_tmpl).render();
-            $('.geodata__info').html(t);
-        });
-
+    $('.geodata__faq').hide();
     _this.siblings().removeClass('selected');
     _this.addClass('selected');
 
-    removeLayer();
+    map.eachLayer(function (layer) {
+        map.removeLayer(layer);
+    });
     map.off('mousemove');
     map.off('click');
     map.off('zoomend');
     map.off('moveend');
 
-    currentDataset == 'pricing' ? null :
-        currentDataset == 'faq' ? geodataFAQ.show() :
-        window[currentDataset]();
+    var dataset = _this.attr('id');
+
+    $('.btnFullScreen').click(function() {
+        window.location = '/map?' + dataset;
+    });
+
+    $.when($.get('/public/tmpl/gd_' + dataset + '.html'))
+        .done(function (_tmpl) {
+            var t = $(_tmpl).render();
+            $('.geodata__info').html(t);
+            window[dataset]();
+        });
 }
 
-function removeLayer(){
-    map.eachLayer(function (layer) {
-        map.removeLayer(layer);
-    });
-}
 
 function seamless_locales() {
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
     var layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-        version: '1.3',
-        opacity: 1.0,
-        layers: 'seamless_locales',
-        format: 'image/png',
-        transparent: true,
-        pane: 'tilePane',
-        zIndex: 3,
-        styles: 'seamless_locales'
-    }).addTo(map);
+            version: '1.3',
+            opacity: 1.0,
+            layers: 'seamless_locales',
+            format: 'image/png',
+            transparent: true,
+            pane: 'tilePane',
+            zIndex: 3,
+            styles: 'seamless_locales'
+        }).addTo(map),
+        infotable = document.querySelector('#gd_seamless_locales .infobox__table');
 
     map.on('mousemove', function (e) {
-        hoverSelect(e, map, layer, document.getElementById('seamless_locales_info'))
+        hoverSelect(e, map, layer, infotable)
     });
 }
 
@@ -121,7 +120,7 @@ function retail_points() {
 
     map.on('click', function(e){clickSelect(e, map, layer, cqlFilter)});
 
-    $('.retailpoints__legend span').click(function () {
+    $('.infobox__legend span').click(function () {
         $(this).toggleClass('active');
         if ($(this).hasClass('active')) {
             cqlFilterArray.push("brand='" + $(this).attr('id') + "'");
@@ -289,17 +288,20 @@ function town_suburb(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
     var layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-        version: '1.3',
-        opacity: 1.0,
-        layers: 'town_suburb',
-        format: 'image/png',
-        transparent: true,
-        pane: 'tilePane',
-        zIndex: 3,
-        styles: 'town_suburb'
-    }).addTo(map);
+            version: '1.3',
+            opacity: 1.0,
+            layers: 'town_suburb',
+            format: 'image/png',
+            transparent: true,
+            pane: 'tilePane',
+            zIndex: 3,
+            styles: 'town_suburb'
+        }).addTo(map),
+        infotable = document.querySelector('#gd_town_suburb .infobox__table');
 
-    map.on('mousemove', function(e){hoverSelect(e, map, layer, document.getElementById('town_suburb_info'))});
+    map.on('mousemove', function (e) {
+        hoverSelect(e, map, layer, infotable)
+    });
 }
 
 function education(){
@@ -399,7 +401,7 @@ function poi(){
 
     map.on('click', function(e){clickSelect(e, map, layer, cqlFilter)});
 
-    $('.poi__legend span').click(function () {
+    $('.infobox__legend span').click(function () {
         $(this).toggleClass('active');
         if ($(this).hasClass('active')) {
             cqlFilterArray.push("poi_type='" + $(this).attr('id') + "'");
@@ -775,7 +777,7 @@ function getGridData(_bounds, _layer, _o){
             legend_text_v[7].innerHTML = arrayColor[7].toLocaleString('en-GB', _o.oValue);
             legend_text_v[8].innerHTML = arrayColor[7].toLocaleString('en-GB', _o.oValue);
 
-            $('.tmpl_legend').fadeIn();
+            $('.grid_legend').fadeIn();
 
             layerGrid = new L.geoJson(dots, {
                 pointToLayer: function (feature, latlng) {

@@ -51,59 +51,49 @@ a {
     float: left;
 }
 
+/*geodata__infobox*/
 .infobox {
-    display: none;
+    padding: 0 10px;
+    font-size: 18px;
 }
 
-.infobox__active {
-    display: block;
-    padding-left: 10px;
+.infobox > p:nth-of-type(1) {
+    margin-bottom: 20px;
 }
 
-.geodata__infobox {
-    font-family: ffmark, sans-serif;
-    font-size: 15px;
-    width: 285px;
-}
-
-.geodata__infobox a {
+.infobox a {
     color: #079e00;
 }
 
-.docu_link {
+.infobox__docu_link{
     line-height: 3;
     margin-left: -4px;
 }
 
-.attribution {
+.infobox__attribution{
     margin-top: 20px;
     line-height: 2;
     font-size: 12px;
 }
 
-.attribution p {
-    margin: 0;
-}
-
-.infotable {
+.infobox__table{
     font-family: monospace;
-    font-size: 12px;
+    font-size: 16px;
     width: 100%;
 }
 
-.infotable tr:first-of-type {
+.infobox__table tr:first-of-type{
     font-weight: 700;
 }
 
-.seamless_locales .infotable td:first-child {
+.infobox__table td:first-child {
     width: 110px;
 }
 
-.town_suburb .infotable td:first-child {
-    width: 100px;
+.infobox__table td {
+    vertical-align: top !important;
 }
 
-.infotable td,
 .leaflet-popup-content td {
     vertical-align: top !important;
 }
@@ -116,11 +106,11 @@ a {
     border-radius: 0;
 }
 
-.leaflet-popup-content table td:first-child {
+.leaflet-popup-content table td:first-child{
     font-weight: 700;
 }
 
-.leaflet-popup-content table td:nth-child(2) {
+.leaflet-popup-content table td:nth-child(2){
     font-family: monospace;
 }
 
@@ -154,9 +144,8 @@ a {
 .mapButton {
     position: absolute;
     z-index: 999;
-    opacity: 0.9;
     background: #fff;
-    color: #000;
+    color: #079e00;
     border-radius: 50%;
     height: 50px;
     width: 50px;

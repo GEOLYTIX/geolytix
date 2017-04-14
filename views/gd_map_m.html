@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     <link rel="stylesheet" href="/public/css/fontello_embedded.css"/>
     <link rel="stylesheet" href="/public/css/leaflet.css"/>
-    <link rel="stylesheet" href="/public/css/geodata_map.m.css"/>
+    <link rel="stylesheet" href="/public/css/gd_map.m.css"/>
 
 </head>
 
@@ -31,24 +31,22 @@
 
 <div id="spacer_geodata"></div>
 
-
-
 <div class="geodata__info">
     <i class="material-icons slider_geodata">swap_vert</i>
     {{include tmpl=gd_tmpl /}}
-
 </div>
 
 </body>
 
 <script type="application/javascript" src="/public/js/jquery.js"></script>
-<script type="application/javascript" src="/public/js/jsrender.js"></script>
 <script type="application/javascript" src="/public/js/leaflet.js"></script>
 <script type="application/javascript" src="/public/js/proj4.js"></script>
 <script type="application/javascript" src="/public/js/leaflet.proj4.js"></script>
 <script type="application/javascript" src="/public/js/turf.js"></script>
 <script type="application/javascript" src="/public/js/leaflet.NonTiledLayer.js"></script>
-<script>const mobile_flag = true;</script>
-<script type="application/javascript" src="/public/js/geodata_map.js"></script>
+<script>
+    var view_mode = 'mobile';
+</script>
+<script type="application/javascript" src="/public/js/geodata.js"></script>
 
 </html>

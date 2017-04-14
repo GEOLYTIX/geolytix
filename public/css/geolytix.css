@@ -472,64 +472,61 @@ p {
     font-family: ffmark_bold, sans-serif;
 }
 
-.geodata__select > .pricing {
+#pricing {
     margin-top: 50px;
 }
 
 .geodata__info {
-    width: 300px;
+    width: 350px;
     float: left;
     overflow: hidden;
 }
 
-.geodata__scrolly {
-    position: relative;
-    width: 350px;
-    height: 619px;
-    font-size: 15px;
-    overflow-y: hidden;
-}
-
-.geodata__scrolly > div {
-    height: 619px;
-    width: 290px;
-}
-
-.geodata__infobox {
+/*geodata__infobox*/
+.infobox {
     border-left: 1px solid #079e00;
-    padding-left: 10px;
+    padding: 0 10px;
+    font-size: 18px;
 }
 
-.geodata__infobox > p:nth-of-type(1) {
+.infobox > p:nth-of-type(1) {
     margin-bottom: 20px;
 }
 
-.geodata__infobox a {
+.infobox a {
     color: #079e00;
 }
 
-.geodata__infobox .docu_link{
+.infobox__docu_link{
     line-height: 3;
     margin-left: -4px;
 }
 
-.geodata__infobox .attribution{
+.infobox__attribution{
     margin-top: 20px;
     line-height: 2;
     font-size: 12px;
 }
 
-.geodata__infobox .infotable{
+.infobox__table{
     font-family: monospace;
+    font-size: 16px;
     width: 100%;
 }
 
-.geodata__infobox .infotable tr:first-of-type{
+.infobox__table tr:first-of-type{
     font-weight: 700;
 }
 
-.geodata__infobox .infotable td,
-.leaflet-popup-content td{
+.infobox__table td:first-child {
+    width: 110px;
+}
+
+.infobox__table td {
+    vertical-align: top !important;
+}
+
+.leaflet-popup-content td {
     vertical-align: top !important;
 }
 
@@ -549,12 +546,8 @@ p {
     font-family: monospace;
 }
 
-.geodata__infobox .infotable td:first-child {
-    width: 110px;
-}
-
 .geodata__content {
-    width: calc(100% - 500px);
+    width: calc(100% - 550px);
     float: left;
 }
 
@@ -566,9 +559,8 @@ p {
 .mapButton {
     position: absolute;
     z-index: 999;
-    opacity: 0.9;
     background: #fff;
-    color: #000;
+    color: #079e00;
     border-radius: 50%;
     height: 50px;
     width: 50px;
@@ -594,17 +586,17 @@ p {
 
 .geodata__content > .btnZoomIn {
     top: 10px;
-    left: 10px;
+    left: -10px;
 }
 
 .geodata__content > .btnZoomOut {
     top: 70px;
-    left: 10px;
+    left: -10px;
 }
 
 .geodata__content > .btnFullScreen {
     top: 130px;
-    left: 10px;
+    left: -10px;
 }
 
 /* geodata faq*/

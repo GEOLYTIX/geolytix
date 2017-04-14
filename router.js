@@ -13,15 +13,19 @@ router.get('/mobile', function (req, res) {
 
 router.get('/map_mobile', function (req, res) {
     var dataset = req.originalUrl.substring(req.originalUrl.indexOf('?') + 1);
-    var tmpl = jsr.templates('./views/map_mobile.html');
-    var html = tmpl.render({gd_tmpl: './public/tmpl/gd_' + dataset + '.html'});
+    var tmpl = jsr.templates('./views/gd_map_m.html');
+    var html = tmpl.render({
+        gd_tmpl: './public/tmpl/gd_' + dataset + '.html'
+    });
     res.send(html);
 });
 
 router.get('/map', function (req, res) {
     var dataset = req.originalUrl.substring(req.originalUrl.indexOf('?') + 1);
-    var tmpl = jsr.templates('./views/map.html');
-    var html = tmpl.render({gd_tmpl: './public/tmpl/gd_' + dataset + '.html'});
+    var tmpl = jsr.templates('./views/gd_map.html');
+    var html = tmpl.render({
+        gd_tmpl: './public/tmpl/gd_' + dataset + '.html'
+    });
     res.send(html);
 });
 

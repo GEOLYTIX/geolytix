@@ -15,7 +15,6 @@ function setHeader() {
     distanceY > 300 ? header.addClass('header__smaller') : header.removeClass('header__smaller');
     distanceY > header__image.clientHeight - 80 ? header.addClass('header__main') : header.removeClass('header__main');
 }
-
 setHeader();
 
 window.onscroll = function () {
@@ -23,7 +22,6 @@ window.onscroll = function () {
     var shift = 100 - ((parallax_team_photo.offsetTop - window.pageYOffset) / window.innerHeight * 100);
     if (shift > 0 && shift < 100) parallax_team_photo.style.backgroundPosition = "50% " + shift + "%";
 };
-
 
 
 //menu control
@@ -46,7 +44,6 @@ function scrollTo(section) {
                     section === 'contact' ? body.animate({scrollTop: section_contact.offset().top - 70}) :
                         null;
 }
-
 
 
 // services cards
@@ -73,7 +70,6 @@ service_cards.click(function () {
 section_services.find('.network_strategy').first().trigger('click');
 
 
-
 // case studies
 var case_studies_container = section_case_studies.find('.container').first(),
     case_studies__table = case_studies_container.find('table').first();
@@ -83,7 +79,6 @@ section_case_studies.find('.strip > .logo').click(function () {
     $(this).addClass('active');
     case_studies__table.animate({'marginLeft': case_studies_container.width() * -$(this).index()}, 1000);
 });
-
 
 
 // team cards
@@ -111,7 +106,6 @@ team_cards.click(function (e, trigger) {
 });
 
 section_team.find('.blair').first().trigger('click', [true]);
-
 
 
 // contact

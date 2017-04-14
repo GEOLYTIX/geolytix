@@ -12,16 +12,14 @@
     <link rel="stylesheet" href="/public/css/fontello_embedded.css"/>
     <link rel="stylesheet" href="/public/css/leaflet.css"/>
     <link rel="stylesheet" href="/public/css/jscrollpane.css"/>
-    <link rel="stylesheet" href="/public/css/geodata_map.css"/>
+    <link rel="stylesheet" href="/public/css/gd_map.css"/>
 
 </head>
 
 <body>
 
 <div class="geodata__info">
-
     {{include tmpl=gd_tmpl /}}
-
 </div>
 
 <div class="geodata__content">
@@ -45,13 +43,14 @@
 <script type="application/javascript" src="/public/js/jquery.js"></script>
 <script type="application/javascript" src="/public/js/jquery.mousewheel.js"></script>
 <script type="application/javascript" src="/public/js/jquery.jscrollpane.js"></script>
-<script type="application/javascript" src="/public/js/jsrender.js"></script>
 <script type="application/javascript" src="/public/js/leaflet.js"></script>
 <script type="application/javascript" src="/public/js/proj4.js"></script>
 <script type="application/javascript" src="/public/js/leaflet.proj4.js"></script>
 <script type="application/javascript" src="/public/js/turf.js"></script>
 <script type="application/javascript" src="/public/js/leaflet.NonTiledLayer.js"></script>
-<script>const mobile_flag = false;</script>
-<script type="application/javascript" src="/public/js/geodata_map.js"></script>
+<script>
+    var view_mode = 'desktop';
+</script>
+<script type="application/javascript" src="/public/js/geodata.js"></script>
 
 </html>
