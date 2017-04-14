@@ -98,9 +98,15 @@ function seamless_locales() {
         }).addTo(map),
         infotable = document.querySelector('#gd_seamless_locales .infobox__table');
 
-    map.on('mousemove', function (e) {
-        hoverSelect(e, map, layer, infotable)
-    });
+    if (view_mode === 'mobile') {
+        map.on('click', function (e) {
+            hoverSelect(e, map, layer, infotable)
+        });
+    } else {
+        map.on('mousemove', function (e) {
+            hoverSelect(e, map, layer, infotable)
+        });
+    }
 }
 
 function retail_points() {
@@ -300,9 +306,15 @@ function town_suburb(){
         }).addTo(map),
         infotable = document.querySelector('#gd_town_suburb .infobox__table');
 
-    map.on('mousemove', function (e) {
-        hoverSelect(e, map, layer, infotable)
-    });
+    if (view_mode === 'mobile') {
+        map.on('click', function (e) {
+            hoverSelect(e, map, layer, infotable)
+        });
+    } else {
+        map.on('mousemove', function (e) {
+            hoverSelect(e, map, layer, infotable)
+        });
+    }
 }
 
 function education(){
@@ -453,19 +465,23 @@ function residential(){
             ]
         };
 
-    var layer;
+    var layer = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+        version: '1.3',
+        layers: 'residential_lsoa',
+        format: 'image/png',
+        transparent: true,
+        styles: 'residential_lsoa',
+        minZoom: 14
+    }).addTo(map);
+
+    map.on('click', function(e){
+        if (map.getZoom() > 14) clickSelect(e, map, layer, "id>0")
+    });
 
     getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
 
     map.on('zoomend', function () {
         getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
-        var z = map.getZoom();
-        if (z > 14) {
-            residential_lsoa()
-        } else {
-            map.removeLayer(layer);
-            map.off('click');
-        }
     });
 
     map.on('moveend', function () {
@@ -473,20 +489,6 @@ function residential(){
     });
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
-
-    function residential_lsoa(){
-        layer = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-            version: '1.3',
-            layers: 'residential_lsoa',
-            format: 'image/png',
-            transparent: true,
-            styles: 'residential_lsoa'
-        }).addTo(map);
-
-        map.on('click', function(e){
-            clickSelect(e, map, layer, "id>0")
-        });
-    }
 }
 
 function uk_admin(){
