@@ -48,6 +48,7 @@ if (view_mode === 'integrated') {
     window[$('.infobox').attr('id').substring(3)]();
 }
 
+if (view_mode === 'desktop') $('.geodata__info').jScrollPane();
 
 $('.geodata__select > div').click(function () {
     selectGeodata($(this));
@@ -839,7 +840,8 @@ function getFeatureInfoUrl(map, layer, latlng, params) {
             width: size.x,
             layers: layer.options.layers,
             query_layers: layer.options.layers,
-            info_format: 'application/json'
+            info_format: 'application/json',
+            buffer: 10
         };
     params = L.Util.extend(defaultParams, params || {});
     params[params.version === '1.3' ? 'i' : 'x'] = point.x;
