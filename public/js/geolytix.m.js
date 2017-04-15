@@ -117,3 +117,25 @@ for (var i = 0; i < imgLoadArray.length; i++) {
 function imgLoad(_imgDOM, _imgID){
     _imgDOM.setAttribute('style', 'background-image: url(/public/images/load/' + _imgID + '.jpg)');
 }
+
+// contact
+var mapZoom_contact = 14,
+    map_contact = L.map('map_contact', {
+        scrollWheelZoom: false,
+        zoomControl: false,
+        minZoom: 4,
+        maxZoom: 18
+    })
+        .setView([51.52733, -0.11525], mapZoom_contact)
+        .addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
+
+new L.Marker(
+    [51.52733, -0.11525],
+    {
+        icon: L.icon({
+            iconUrl: '/public/images/leaflet/marker.svg',
+            iconSize: [80, 40],
+            iconAnchor: [40, 40]
+        })
+    })
+    .addTo(map_contact);

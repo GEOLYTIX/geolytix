@@ -475,7 +475,10 @@ p {
     background-image: url(/public/images/awards/award_sla.jpg);
 }
 
-
+#map_contact {
+    width: 100%;
+    height: 200px;
+}
 
 /* FOOTER */
 #footer {
