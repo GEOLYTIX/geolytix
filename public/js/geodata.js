@@ -35,6 +35,7 @@ geodata__btnZoomOut.click(function() {
 });
 
 var xhr,
+    xhr_grid,
     layerHover,
     featureHover,
     layerGrid,
@@ -687,9 +688,9 @@ function divStyle(_f, _arrayColor, _arraySize, _arrayStyle){
 }
 
 function getGridData(_bounds, _layer, _o){
-    if (xhr && xhr.readyState != 4) xhr.abort();
+    if (xhr_grid && xhr_grid.readyState != 4) xhr_grid.abort();
     if (layerGrid) map.removeLayer(layerGrid);
-    xhr = $.ajax({
+    xhr_grid = $.ajax({
         url: '/grid_query',
         dataType: 'json',
         data: {
