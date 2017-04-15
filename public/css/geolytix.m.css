@@ -475,6 +475,10 @@ p {
     background-image: url(/public/images/awards/award_sla.jpg);
 }
 
+.leaflet-control-attribution {
+    display: none;
+}
+
 #map_contact {
     width: 100%;
     height: 200px;
