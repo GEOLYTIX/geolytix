@@ -141,6 +141,10 @@ a {
     height: 100%;
 }
 
+button {
+    border: none;
+}
+
 .mapButton {
     position: absolute;
     z-index: 999;
@@ -159,22 +163,22 @@ a {
     line-height: 1.7;
 }
 
-.disabled {
+.mapButton:disabled {
     opacity: 0.3;
 }
 
-.mapButton:hover:not(.disabled) {
+.mapButton:hover:enabled {
     background: #079e00;
     color: #fff;
     cursor: pointer;
 }
 
-.geodata__content > .btnZoomIn {
+#btnZoomIn {
     top: 10px;
     left: -10px;
 }
 
-.geodata__content > .btnZoomOut {
+#btnZoomOut {
     top: 70px;
     left: -10px;
 }

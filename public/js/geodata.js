@@ -1,37 +1,37 @@
-var map = L.map('map_geodata', {
+var mapZoom = 13,
+    map = L.map('map_geodata', {
         renderer: L.svg(),
         scrollWheelZoom: view_mode === 'integrated' ? false : true,
         zoomControl: false,
         maxBounds: L.latLngBounds(L.latLng(51.35, -0.4), L.latLng(51.65, 0.2)),
         minZoom: 12,
         maxZoom: 17
-    }).setView([51.50, -0.1], 13);
+    }).setView([51.50, -0.1], mapZoom);
 
 map.createPane('labels');
 map.getPane('labels').style.zIndex = 650;
 map.getPane('labels').style.pointerEvents = 'none';
 
-var geodata__btnZoomIn = $('.geodata__content > .btnZoomIn'),
-    geodata__btnZoomOut = $('.geodata__content > .btnZoomOut');
+var btnZoomIn = document.getElementById('btnZoomIn'),
+    btnZoomOut = document.getElementById('btnZoomOut');
 
-geodata__btnZoomIn.click(function() {
-    var z = map.getZoom() + 1;
-    if (z < 18) {
-        geodata__btnZoomOut.removeClass('disabled');
-        map.setZoom(z);
-    } else {
-        geodata__btnZoomIn.addClass('disabled');
-    }
+function chkZoomBtn(){
+    mapZoom < 17 ? btnZoomIn.disabled = false : btnZoomIn.disabled = true;
+    mapZoom > 12 ? btnZoomOut.disabled = false : btnZoomOut.disabled = true;
+}
+
+btnZoomIn.addEventListener('click', function () {
+    if (this.disabled) return;
+    mapZoom++;
+    map.setZoom(mapZoom);
+    chkZoomBtn();
 });
 
-geodata__btnZoomOut.click(function() {
-    var z = map.getZoom() - 1;
-    if (z > 11) {
-        geodata__btnZoomIn.removeClass('disabled');
-        map.setZoom(z);
-    } else {
-        geodata__btnZoomOut.addClass('disabled');
-    }
+btnZoomOut.addEventListener('click', function(){
+    if (this.disabled) return;
+    mapZoom--;
+    map.setZoom(mapZoom);
+    chkZoomBtn();
 });
 
 var xhr,
@@ -41,7 +41,6 @@ var xhr,
     layerGrid,
     proj_4326 = proj4.Proj('EPSG:4326'),
     proj_3857 = proj4.Proj('EPSG:3857');
-
 
 if (view_mode === 'integrated') {
     selectGeodata($('#seamless_locales'));
@@ -69,11 +68,28 @@ function selectGeodata(_this){
     map.off('zoomend');
     map.off('moveend');
 
+    map.on('movestart', function () {
+        if (layerGrid) map.removeLayer(layerGrid);
+    });
+
+    map.on('moveend', function () {
+        mapZoom = map.getZoom();
+        chkZoomBtn();
+    });
+
+    map.on('zoomend', function () {
+        mapZoom = map.getZoom();
+        chkZoomBtn();
+    });
+
     var dataset = _this.attr('id');
 
-    $('.btnFullScreen').click(function() {
-        window.location = '/map?' + dataset;
-    });
+    if (view_mode === 'integrated'){
+        var btnFullScreen = document.getElementById('btnFullScreen');
+        btnFullScreen.addEventListener('click', function() {
+            window.location = '/map?' + dataset;
+        });
+    }
 
     $.when($.get('/public/tmpl/gd_' + dataset + '.html'))
         .done(function (_tmpl) {

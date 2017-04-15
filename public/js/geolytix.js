@@ -109,11 +109,14 @@ section_team.find('.blair').first().trigger('click', [true]);
 
 
 // contact
-var map_contact = L.map('map_contact', {
+var mapZoom_contact = 14,
+map_contact = L.map('map_contact', {
     scrollWheelZoom: false,
-    zoomControl: false
+    zoomControl: false,
+    minZoom: 4,
+    maxZoom: 18
 })
-    .setView([51.52733, -0.11525], 14)
+    .setView([51.52733, -0.11525], mapZoom_contact)
     .addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
 
 new L.Marker(
@@ -127,14 +130,36 @@ new L.Marker(
     })
     .addTo(map_contact);
 
-var contact__btnZoomIn = $('.contact__limiter > .btnZoomIn');
-contact__btnZoomIn.click(function() {
-    map_contact.setZoom(map_contact.getZoom() + 1);
+var btnZoomIn_contact = document.getElementById('btnZoomIn_contact'),
+    btnZoomOut_contact = document.getElementById('btnZoomOut_contact');
+
+function chkZoomBtn_contact(){
+    mapZoom_contact < 18 ? btnZoomIn_contact.disabled = false : btnZoomIn_contact.disabled = true;
+    mapZoom_contact > 4 ? btnZoomOut_contact.disabled = false : btnZoomOut_contact.disabled = true;
+}
+
+btnZoomIn_contact.addEventListener('click', function () {
+    if (this.disabled) return;
+    mapZoom_contact++;
+    map_contact.setZoom(mapZoom_contact);
+    chkZoomBtn_contact();
 });
 
-var contact__btnZoomOut = $('.contact__limiter > .btnZoomOut');
-contact__btnZoomOut.click(function() {
-    map_contact.setZoom(map_contact.getZoom() - 1);
+btnZoomOut_contact.addEventListener('click', function(){
+    if (this.disabled) return;
+    mapZoom_contact--;
+    map_contact.setZoom(mapZoom_contact);
+    chkZoomBtn_contact();
+});
+
+map_contact.on('moveend', function () {
+    mapZoom_contact = map_contact.getZoom();
+    chkZoomBtn_contact();
+});
+
+map_contact.on('zoomend', function () {
+    mapZoom_contact = map_contact.getZoom();
+    chkZoomBtn_contact();
 });
 
 // resize window

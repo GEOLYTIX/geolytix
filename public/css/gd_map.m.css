@@ -71,6 +71,10 @@ a {
     z-index: 998;
 }
 
+button {
+    border: none;
+}
+
 .mapButton {
     position: fixed;
     z-index: 998;
@@ -85,12 +89,12 @@ a {
     cursor: default;
 }
 
-.btnZoomIn {
+#btnZoomIn {
     top: 10px;
     left: 10px;
 }
 
-.btnZoomOut {
+#btnZoomOut {
     top: 70px;
     left: 10px;
 }
@@ -101,7 +105,7 @@ a {
     color: #079e00;
 }
 
-.disabled {
+.mapButton:disabled {
     opacity: 0.3;
 }
 
