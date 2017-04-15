@@ -99,6 +99,19 @@ function selectGeodata(_this){
         });
 }
 
+map.on('movestart', function () {
+    if (layerGrid) map.removeLayer(layerGrid);
+});
+
+map.on('moveend', function () {
+    mapZoom = map.getZoom();
+    chkZoomBtn();
+});
+
+map.on('zoomend', function () {
+    mapZoom = map.getZoom();
+    chkZoomBtn();
+});
 
 function seamless_locales() {
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
@@ -382,8 +395,8 @@ function workplace() {
 
     map.on('zoomend', function () {
         getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
-        var z = map.getZoom();
-        if (z > 14) {
+        mapZoom = map.getZoom();
+        if (mapZoom > 14) {
             workplace_hz()
         } else {
             map.removeLayer(layer);
@@ -393,6 +406,13 @@ function workplace() {
 
     map.on('moveend', function () {
         getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions)
+        mapZoom = map.getZoom();
+        if (mapZoom > 14) {
+            workplace_hz()
+        } else {
+            map.removeLayer(layer);
+            map.off('click');
+        }
     });
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
@@ -403,7 +423,9 @@ function workplace() {
             layers: 'workplace_hz',
             format: 'image/png',
             transparent: true,
-            styles: 'workplace_hz'
+            styles: 'workplace_hz',
+            minZoom: 14,
+            maxZoom: 17
         }).addTo(map);
 
         map.on('click', function(e){
