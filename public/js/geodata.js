@@ -847,8 +847,8 @@ function getFeatureInfoUrl(map, layer, latlng, params) {
             buffer: 10
         };
     params = L.Util.extend(defaultParams, params || {});
-    params[params.version === '1.3' ? 'i' : 'x'] = point.x;
-    params[params.version === '1.3' ? 'j' : 'y'] = point.y;
+    params[params.version === '1.3' ? 'i' : 'x'] = parseInt(point.x);
+    params[params.version === '1.3' ? 'j' : 'y'] = parseInt(point.y);
     return url + L.Util.getParamString(params, url, true);
 }
 
