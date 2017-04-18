@@ -558,6 +558,7 @@ p {
 
 button {
     border: none;
+    outline: none;
 }
 
 .mapButton {

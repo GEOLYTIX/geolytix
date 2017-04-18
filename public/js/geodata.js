@@ -376,16 +376,16 @@ function workplace() {
             queryValue: 'w15_w11_diff',
             oValue: {maximumFractionDigits: 0},
             arrayStyle: [
-                'circle_d73027',
-                'circle_f46d43',
-                'circle_fdae61',
-                'circle_fee08b',
-                'circle_ffffbf',
-                'circle_d9ef8b',
-                'circle_a6d96a',
-                'circle_66bd63',
-                'circle_1a9850',
-                'circle_null'
+                '/public/images/map_icons/dot_d73027.svg',
+                '/public/images/map_icons/dot_f46d43.svg',
+                '/public/images/map_icons/dot_fdae61.svg',
+                '/public/images/map_icons/dot_fee08b.svg',
+                '/public/images/map_icons/dot_ffffbf.svg',
+                '/public/images/map_icons/dot_d9ef8b.svg',
+                '/public/images/map_icons/dot_a6d96a.svg',
+                '/public/images/map_icons/dot_66bd63.svg',
+                '/public/images/map_icons/dot_1a9850.svg',
+                '/public/images/map_icons/dot_null.svg'
             ]
         };
 
@@ -396,42 +396,28 @@ function workplace() {
     map.on('zoomend', function () {
         getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
         mapZoom = map.getZoom();
-        if (mapZoom > 14) {
-            workplace_hz()
-        } else {
-            map.removeLayer(layer);
-            map.off('click');
-        }
     });
 
     map.on('moveend', function () {
         getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions)
         mapZoom = map.getZoom();
-        if (mapZoom > 14) {
-            workplace_hz()
-        } else {
-            map.removeLayer(layer);
-            map.off('click');
-        }
     });
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
 
-    function workplace_hz(){
-        layer = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-            version: '1.3',
-            layers: 'workplace_hz',
-            format: 'image/png',
-            transparent: true,
-            styles: 'workplace_hz',
-            minZoom: 14,
-            maxZoom: 17
-        }).addTo(map);
+    var layer = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+        version: '1.3',
+        layers: 'workplace_hz',
+        format: 'image/png',
+        transparent: true,
+        styles: 'workplace_hz',
+        minZoom: 14,
+        maxZoom: 17
+    }).addTo(map);
 
-        map.on('click', function(e){
-            clickSelect(e, map, layer, "id>0")
-        });
-    }
+    map.on('click', function (e) {
+        clickSelect(e, map, layer, "id>0")
+    });
 }
 
 
@@ -491,16 +477,16 @@ function residential(){
             queryValue: 'growth',
             oValue: {maximumFractionDigits: 2},
             arrayStyle: [
-                'circle_d73027',
-                'circle_f46d43',
-                'circle_fdae61',
-                'circle_fee08b',
-                'circle_ffffbf',
-                'circle_d9ef8b',
-                'circle_a6d96a',
-                'circle_66bd63',
-                'circle_1a9850',
-                'circle_null'
+                '/public/images/map_icons/dot_d73027.svg',
+                '/public/images/map_icons/dot_f46d43.svg',
+                '/public/images/map_icons/dot_fdae61.svg',
+                '/public/images/map_icons/dot_fee08b.svg',
+                '/public/images/map_icons/dot_ffffbf.svg',
+                '/public/images/map_icons/dot_d9ef8b.svg',
+                '/public/images/map_icons/dot_a6d96a.svg',
+                '/public/images/map_icons/dot_66bd63.svg',
+                '/public/images/map_icons/dot_1a9850.svg',
+                '/public/images/map_icons/dot_null.svg'
             ]
         };
 
@@ -587,16 +573,16 @@ function property(){
             queryValue: 'price_paid',
             oValue: {maximumFractionDigits: 0},
             arrayStyle: [
-                'circle_1a9850',
-                'circle_66bd63',
-                'circle_a6d96a',
-                'circle_d9ef8b',
-                'circle_ffffbf',
-                'circle_fee08b',
-                'circle_fdae61',
-                'circle_f46d43',
-                'circle_d73027',
-                'circle_null'
+                '/public/images/map_icons/dot_1a9850.svg',
+                '/public/images/map_icons/dot_66bd63.svg',
+                '/public/images/map_icons/dot_a6d96a.svg',
+                '/public/images/map_icons/dot_d9ef8b.svg',
+                '/public/images/map_icons/dot_ffffbf.svg',
+                '/public/images/map_icons/dot_fee08b.svg',
+                '/public/images/map_icons/dot_fdae61.svg',
+                '/public/images/map_icons/dot_f46d43.svg',
+                '/public/images/map_icons/dot_d73027.svg',
+                '/public/images/map_icons/dot_null.svg'
             ]
         };
 
@@ -643,16 +629,16 @@ function media_com(){
             queryValue: 'avg_dwload',
             oValue: {maximumFractionDigits: 2},
             arrayStyle: [
-                'circle_c51b7d',
-                'circle_de77ae',
-                'circle_f1b6da',
-                'circle_fde0ef',
-                'circle_f7f7f7',
-                'circle_e6f5d0',
-                'circle_b8e186',
-                'circle_7fbc41',
-                'circle_4d9221',
-                'circle_eeff41'
+                '/public/images/map_icons/dot_c51b7d.svg',
+                '/public/images/map_icons/dot_de77ae.svg',
+                '/public/images/map_icons/dot_f1b6da.svg',
+                '/public/images/map_icons/dot_fde0ef.svg',
+                '/public/images/map_icons/dot_f7f7f7.svg',
+                '/public/images/map_icons/dot_e6f5d0.svg',
+                '/public/images/map_icons/dot_b8e186.svg',
+                '/public/images/map_icons/dot_7fbc41.svg',
+                '/public/images/map_icons/dot_4d9221.svg',
+                '/public/images/map_icons/dot_eeff41.svg'
             ]
         };
 
@@ -696,16 +682,16 @@ function physical(){
 function divStyle(_f, _arrayColor, _arraySize, _arrayStyle){
     var c = _f.properties.c,
         v = _f.properties.v,
-        s = c < _arraySize[0] ? 4 :
-            c < _arraySize[1] ? 4.5 :
-                c < _arraySize[2] ? 5 :
-                    c < _arraySize[3] ? 5.5 :
-                        c < _arraySize[4] ? 6 :
-                            c < _arraySize[5] ? 6.5 :
-                                c < _arraySize[6] ? 7 :
-                                    c < _arraySize[7] ? 7.5 :
-                                        8.5,
-        circle_colour = v < _arrayColor[0] ? _arrayStyle[0] :
+        s = c < _arraySize[0] ? 7 :
+            c < _arraySize[1] ? 8 :
+                c < _arraySize[2] ? 9 :
+                    c < _arraySize[3] ? 10 :
+                        c < _arraySize[4] ? 11 :
+                            c < _arraySize[5] ? 12 :
+                                c < _arraySize[6] ? 13 :
+                                    c < _arraySize[7] ? 14 :
+                                        15,
+        dot = v < _arrayColor[0] ? _arrayStyle[0] :
             v < _arrayColor[1] ? _arrayStyle[1] :
                 v < _arrayColor[2] ? _arrayStyle[2] :
                     v < _arrayColor[3] ? _arrayStyle[3] :
@@ -715,10 +701,10 @@ function divStyle(_f, _arrayColor, _arraySize, _arrayStyle){
                                     v < _arrayColor[7] ? _arrayStyle[7] :
                                         _arrayStyle[8];
 
-    if (v == null) circle_colour = _arrayStyle[9];
+    if (v == null) dot = _arrayStyle[9];
     return {
-        icon: L.divIcon({
-            className: circle_colour,
+        icon: L.icon({
+            iconUrl: dot,
             iconSize: [s, s]
         }),
         interactive: false
