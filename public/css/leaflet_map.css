@@ -91,19 +91,6 @@ button {
     outline: none;
 }
 
-.mapButton {
-    position: fixed;
-    z-index: 999;
-    background: #fff;
-    color: #079e00;
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
-    text-align: center;
-    cursor: default;
-}
-
 .mapButton > i {
     font-size: 30px;
     line-height: 1.7;
