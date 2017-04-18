@@ -1,0 +1,120 @@
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.cursor:hover {
+    cursor: pointer;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.leaflet-control-attribution {
+    display: none;
+}
+
+/*infobox*/
+.infobox {
+    padding: 0 10px;
+    font-size: 18px;
+    text-align: left;
+}
+
+.infobox > p:nth-of-type(1) {
+    margin-bottom: 20px;
+}
+
+.infobox a {
+    color: #079e00;
+}
+
+.infobox__docu_link{
+    line-height: 3;
+    margin-left: -4px;
+}
+
+.infobox__attribution{
+    margin-top: 20px;
+    line-height: 2;
+    font-size: 12px;
+}
+
+.infobox__table{
+    font-family: monospace;
+    font-size: 16px;
+    width: 100%;
+}
+
+.infobox__table tr:first-of-type{
+    font-weight: 700;
+}
+
+.infobox__table td:first-child {
+    width: 110px;
+}
+
+.infobox__table td {
+    vertical-align: top !important;
+}
+
+/*popup*/
+.leaflet-popup-content td {
+    vertical-align: top !important;
+}
+
+.leaflet-popup-close-button {
+    color: #079e00 !important;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 0;
+}
+
+.leaflet-popup-content table td:first-child{
+    font-weight: 700;
+}
+
+.leaflet-popup-content table td:nth-child(2){
+    font-family: monospace;
+}
+
+/*buttons*/
+button {
+    border: none;
+    outline: none;
+}
+
+.mapButton {
+    position: fixed;
+    z-index: 999;
+    background: #fff;
+    color: #079e00;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
+    text-align: center;
+    cursor: default;
+}
+
+.mapButton > i {
+    font-size: 30px;
+    line-height: 1.7;
+}
+
+.mapButton:disabled {
+    opacity: 0.3;
+}
+
+.mapButton:hover:enabled {
+    background: #079e00;
+    color: #fff;
+    cursor: pointer;
+}

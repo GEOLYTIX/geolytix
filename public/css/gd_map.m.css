@@ -22,24 +22,6 @@ body {
     font-family: ffmark, sans-serif;
 }
 
-.noselect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-a {
-    color: #000;
-    text-decoration: none;
-    background-color: transparent;
-}
-
-.leaflet-control-attribution {
-    display: none;
-}
-
 #map_geodata {
     position: fixed;
     width: 100%;
@@ -72,25 +54,6 @@ a {
 
 }
 
-button {
-    border: none;
-    outline: none;
-}
-
-.mapButton {
-    position: fixed;
-    z-index: 998;
-    opacity: 0.9;
-    background: #fff;
-    color: #000;
-    border-radius: 50%;
-    height: 50px;
-    width: 50px;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .12);
-    text-align: center;
-    cursor: default;
-}
-
 #btnZoomIn {
     top: 10px;
     left: 10px;
@@ -106,16 +69,6 @@ button {
     left: 10px;
 }
 
-.mapButton > i {
-    font-size: 30px;
-    line-height: 1.7;
-    color: #079e00;
-}
-
-.mapButton:disabled {
-    opacity: 0.3;
-}
-
 .geodata__info {
     z-index: 999;
     position: absolute;
@@ -125,69 +78,4 @@ button {
     /*border-top: 2px solid whitesmoke;*/
     box-shadow: 0px 0px 10px slategrey;
     text-align: center;
-}
-
-
-/*geodata__infobox*/
-.infobox {
-    padding: 0 10px;
-    font-size: 18px;
-    text-align: left;
-}
-
-.infobox > p:nth-of-type(1) {
-    margin-bottom: 20px;
-}
-
-.infobox a {
-    color: #079e00;
-}
-
-.infobox__docu_link{
-    line-height: 3;
-    margin-left: -4px;
-}
-
-.infobox__attribution{
-    margin-top: 20px;
-    line-height: 2;
-    font-size: 12px;
-}
-
-.infobox__table{
-    font-family: monospace;
-    font-size: 16px;
-    width: 100%;
-}
-
-.infobox__table tr:first-of-type{
-    font-weight: 700;
-}
-
-.infobox__table td:first-child {
-    width: 110px;
-}
-
-.infobox__table td {
-    vertical-align: top !important;
-}
-
-.leaflet-popup-content td {
-    vertical-align: top !important;
-}
-
-.leaflet-popup-close-button {
-    color: #079e00 !important;
-}
-
-.leaflet-popup-content-wrapper {
-    border-radius: 0;
-}
-
-.leaflet-popup-content table td:first-child{
-    font-weight: 700;
-}
-
-.leaflet-popup-content table td:nth-child(2){
-    font-family: monospace;
 }
