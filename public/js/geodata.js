@@ -54,6 +54,13 @@ $('.geodata__select > div').click(function () {
     selectGeodata($(this));
 });
 
+if (view_mode === 'mobile'){
+    var btnDesktop = document.getElementById('btnDesktop');
+    btnDesktop.addEventListener('click', function() {
+        window.location = '/map?' + window.location.search.substring(1);
+    });
+}
+
 function selectGeodata(_this){
     $('.geodata__pricing').hide();
     $('.geodata__faq').hide();

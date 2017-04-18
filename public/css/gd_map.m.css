@@ -1,5 +1,4 @@
 /* FONTS */
-
 @font-face {
     font-family: ffmark_black;
     src: url('/public/fonts/MarkWeb-Black.woff') format('woff');
@@ -69,6 +68,8 @@ a {
     font-size: 40px;
     text-shadow: 4px 0px 2px white;
     z-index: 998;
+    text-shadow: 0 10px 0 rgba(0,150,0,.1), 10px 0 rgba(0,0,0,.1);
+
 }
 
 button {
@@ -97,6 +98,11 @@ button {
 
 #btnZoomOut {
     top: 70px;
+    left: 10px;
+}
+
+#btnDesktop {
+    top: 130px;
     left: 10px;
 }
 
