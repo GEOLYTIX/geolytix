@@ -9,13 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <script type="application/javascript">
-        //change to mobile view
-        if (/MSIE (\d+\.\d+);/.test(navigator.userAgent)) {
-            if (Number(RegExp.$1) <= 7) {
-                window.location = "//blog.geolytix.net";
-            }
-        }
-
         //google analytics
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -287,9 +280,9 @@
         <button id="btnZoomOut" class="mapButton noselect">
             <i class="material-icons">remove</i>
         </button>
-        <button id="btnFullScreen" class="mapButton noselect">
+        <a id="btnFullScreen" class="mapButton noselect" href="/map?seamless_locales">
             <i class="material-icons">launch</i>
-        </button>
+        </a>
     </div>
 
     <div class="geodata__pricing">

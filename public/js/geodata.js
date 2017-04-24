@@ -42,26 +42,49 @@ var xhr,
     proj_4326 = proj4.Proj('EPSG:4326'),
     proj_3857 = proj4.Proj('EPSG:3857');
 
-if (view_mode === 'integrated') {
-    selectGeodata($('#seamless_locales'));
-} else {
-    window[$('.infobox').attr('id').substring(3)]();
-}
-
 if (view_mode === 'desktop') $('.geodata__info').jScrollPane();
 
 $('.geodata__select > div').click(function () {
+    var _id = $(this).attr('id');
+    history.pushState({so: 'glx'}, _id, '?' + _id);
     selectGeodata($(this));
 });
 
-if (view_mode === 'mobile'){
-    var btnDesktop = document.getElementById('btnDesktop');
-    btnDesktop.addEventListener('click', function() {
-        window.location = '/map?' + window.location.search.substring(1);
-    });
+// if (view_mode === 'mobile'){
+//     var btnDesktop = document.getElementById('btnDesktop');
+//     btnDesktop.addEventListener('click', function() {
+//         window.location = '/map?' + window.location.search.substring(1);
+//     });
+// }
+
+hookGeodata(window.location.search.substring(1));
+
+function hookGeodata(hook){
+
+    if (view_mode !== 'integrated') {
+        return window[hook]();
+    }
+
+    hook === 'seamless_locales' ? selectGeodata($('#seamless_locales')) :
+        hook === 'retail_points' ? selectGeodata($('#retail_points')) :
+            hook === 'retail_places' ? selectGeodata($('#retail_places')) :
+                hook === 'public_transport' ? selectGeodata($('#public_transport')) :
+                    hook === 'postal_geom' ? selectGeodata($('#postal_geom')) :
+                        hook === 'town_suburb' ? selectGeodata($('#town_suburb')) :
+                            hook === 'education' ? selectGeodata($('#education')) :
+                                hook === 'workplace' ? selectGeodata($('#workplace')) :
+                                    hook === 'poi' ? selectGeodata($('#poi')) :
+                                        hook === 'residential' ? selectGeodata($('#residential')) :
+                                            hook === 'uk_admin' ? selectGeodata($('#uk_admin')) :
+                                                hook === 'property' ? selectGeodata($('#property')) :
+                                                    hook === 'road_network' ? selectGeodata($('#road_network')) :
+                                                        hook === 'media_com' ? selectGeodata($('#media_com')) :
+                                                            hook === 'physical' ? selectGeodata($('#physical')) :
+                                                                selectGeodata($('#seamless_locales'));
 }
 
 function selectGeodata(_this){
+
     $('.geodata__pricing').hide();
     $('.geodata__faq').hide();
     _this.siblings().removeClass('selected');
@@ -91,12 +114,7 @@ function selectGeodata(_this){
 
     var dataset = _this.attr('id');
 
-    if (view_mode === 'integrated'){
-        var btnFullScreen = document.getElementById('btnFullScreen');
-        btnFullScreen.addEventListener('click', function() {
-            window.location = '/map?' + dataset;
-        });
-    }
+    document.getElementById('btnFullScreen').href = '/map?' + dataset;
 
     $.when($.get('/public/tmpl/gd_' + dataset + '.html'))
         .done(function (_tmpl) {

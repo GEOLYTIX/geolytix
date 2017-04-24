@@ -30,6 +30,12 @@ function scrollTo(section){
                     section == 'contact' ? $('.inner').animate({scrollTop: $('#footer').offset().top},600) : null;
 }
 
+$('.map_link').click(function () {
+    // var _id = $(this).attr('id');
+    // history.pushState({so: 'glx'}, _id, '?' + _id);
+    history.pushState({so: 'glx'}, 'geodata', '?geodata');
+});
+
 // preload images
 var img = new Image();
 var section_intro = document.getElementById('intro__section');
