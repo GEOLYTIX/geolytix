@@ -14,7 +14,13 @@
     src: url('/public/fonts/MarkWebPro-Bold.woff') format('woff');
 }
 
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
 body {
+    overflow: auto;
     position: absolute;
     height: 100%;
     width: 100%;
