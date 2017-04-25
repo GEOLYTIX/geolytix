@@ -23,11 +23,29 @@ function orientation() {
 scrollTo(window.location.search.substring(1));
 function scrollTo(section){
     console.log();
-    section == 'services' ? $('.inner').animate({scrollTop: $('#services__section').offset().top},600) :
-        section == 'case_studies' ? $('.inner').animate({scrollTop: $('#case_studies__section').offset().top},600) :
-            section == 'geodata' ? $('.inner').animate({scrollTop: $('.geodata__section').offset().top - 50},600) :
-                section == 'team' ? $('.inner').animate({scrollTop: $('#team__section').offset().top},600) :
-                    section == 'contact' ? $('.inner').animate({scrollTop: $('#footer').offset().top},600) : null;
+    var inner = $('.inner'),
+        geodata_section = $('.geodata__section');
+    section === 'services' ? inner.animate({scrollTop: $('#services__section').offset().top}, 600) :
+        section === 'case_studies' ? inner.animate({scrollTop: $('#case_studies__section').offset().top}, 600) :
+            section === 'geodata' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                section === 'team' ? inner.animate({scrollTop: $('#team__section').offset().top}, 600) :
+                    section === 'contact' ? inner.animate({scrollTop: $('#footer').offset().top}, 600) :
+                        section === 'seamless_locales' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                            section === 'retail_points' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                section === 'retail_places' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                    section === 'public_transport' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                        section === 'postal_geom' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                            section === 'town_suburb' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                                section === 'education' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                                    section === 'workplace' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                                        section === 'poi' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                                            section === 'residential' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                                                section === 'uk_admin' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                                                    section === 'property' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                                                        section === 'road_network' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                                                            section === 'media_com' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                                                                section === 'physical' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+                                                                                    null;
 }
 
 $('.map_link').click(function () {
