@@ -60,30 +60,32 @@ $('.geodata__select > div').click(function () {
 hookGeodata(window.location.search.substring(1));
 
 function hookGeodata(hook){
-
     if (view_mode !== 'integrated') {
         return window[hook]();
     }
-
-    hook === 'seamless_locales' ? selectGeodata($('#seamless_locales')) :
-        hook === 'retail_points' ? selectGeodata($('#retail_points')) :
-            hook === 'retail_places' ? selectGeodata($('#retail_places')) :
-                hook === 'public_transport' ? selectGeodata($('#public_transport')) :
-                    hook === 'postal_geom' ? selectGeodata($('#postal_geom')) :
-                        hook === 'town_suburb' ? selectGeodata($('#town_suburb')) :
-                            hook === 'education' ? selectGeodata($('#education')) :
-                                hook === 'workplace' ? selectGeodata($('#workplace')) :
-                                    hook === 'poi' ? selectGeodata($('#poi')) :
-                                        hook === 'residential' ? selectGeodata($('#residential')) :
-                                            hook === 'uk_admin' ? selectGeodata($('#uk_admin')) :
-                                                hook === 'property' ? selectGeodata($('#property')) :
-                                                    hook === 'road_network' ? selectGeodata($('#road_network')) :
-                                                        hook === 'media_com' ? selectGeodata($('#media_com')) :
-                                                            hook === 'physical' ? selectGeodata($('#physical')) :
+    hook === 'seamless_locales' ? selectGeodata($('#seamless_locales'), true) :
+        hook === 'retail_points' ? selectGeodata($('#retail_points'), true) :
+            hook === 'retail_places' ? selectGeodata($('#retail_places'), true) :
+                hook === 'public_transport' ? selectGeodata($('#public_transport'), true) :
+                    hook === 'postal_geom' ? selectGeodata($('#postal_geom'), true) :
+                        hook === 'town_suburb' ? selectGeodata($('#town_suburb'), true) :
+                            hook === 'education' ? selectGeodata($('#education'), true) :
+                                hook === 'workplace' ? selectGeodata($('#workplace'), true) :
+                                    hook === 'poi' ? selectGeodata($('#poi'), true) :
+                                        hook === 'residential' ? selectGeodata($('#residential'), true) :
+                                            hook === 'uk_admin' ? selectGeodata($('#uk_admin'), true) :
+                                                hook === 'property' ? selectGeodata($('#property'), true) :
+                                                    hook === 'road_network' ? selectGeodata($('#road_network'), true) :
+                                                        hook === 'media_com' ? selectGeodata($('#media_com'), true) :
+                                                            hook === 'physical' ? selectGeodata($('#physical'), true) :
                                                                 selectGeodata($('#seamless_locales'));
 }
 
-function selectGeodata(_this){
+function selectGeodata(_this, scroll){
+    if (view_mode === 'integrated' && scroll === true) {
+        var body = $('html, body');
+        body.animate({scrollTop: section_geodata.offset().top - 80});
+    }
 
     $('.geodata__pricing').hide();
     $('.geodata__faq').hide();
@@ -183,6 +185,7 @@ function retail_points() {
     map.on('click', function(e){clickSelect(e, map, layer, cqlFilter)});
 
     $('.infobox__legend span').click(function () {
+        map.closePopup();
         $(this).toggleClass('active');
         if ($(this).hasClass('active')) {
             cqlFilterArray.push("brand='" + $(this).attr('id') + "'");
@@ -208,20 +211,20 @@ function retail_points() {
 function retail_places(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
-    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-        layers: 'retailplaces_point',
-        format: 'image/png',
-        transparent: true,
-        styles: 'retailplaces_point',
-        maxZoom: 12
-    }).addTo(map);
+    // L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+    //     layers: 'retailplaces_point',
+    //     format: 'image/png',
+    //     transparent: true,
+    //     minZoom: 12,
+    //     maxZoom: 13
+    // }).addTo(map);
 
     L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'retailplaces_outline',
         format: 'image/png',
         transparent: true,
         styles: 'retailplaces_outline',
-        minZoom: 13,
+        minZoom: 12,
         maxZoom: 15
     }).addTo(map);
 
@@ -465,6 +468,7 @@ function poi(){
     map.on('click', function(e){clickSelect(e, map, layer, cqlFilter)});
 
     $('.infobox__legend span').click(function () {
+        map.closePopup();
         $(this).toggleClass('active');
         if ($(this).hasClass('active')) {
             cqlFilterArray.push("poi_type='" + $(this).attr('id') + "'");
