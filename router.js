@@ -29,11 +29,11 @@ router.get('/map', function (req, res) {
     var ua = req.headers['user-agent'];
     var _md = new md(ua);
     var _md_mobile = _md.mobile();
-    var _md_phone = _md.phone();
+    // var _md_phone = _md.phone();
     var _md_tablet = _md.tablet();
 
     var tmpl;
-    if ((_md_mobile === null && _md_phone === null) || _md_tablet !== null) {
+    if (_md_mobile === null || _md_tablet !== null) {
         tmpl = jsr.templates('./views/gd_map.html');
     } else {
         tmpl = jsr.templates('./views/gd_map_m.html');
