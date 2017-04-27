@@ -19,6 +19,16 @@ function orientation() {
     }
 }
 
+$('#intro__burger').click(function(){
+    $('#intro__menu').toggle(200);
+});
+
+$('#intro__menu > div').click(function () {
+    $('#intro__menu').toggle(200);
+    var loc = $(this).attr('id');
+    history.pushState({so: 'glx'}, loc, '?' + loc);
+    scrollTo(loc);
+});
 
 scrollTo(window.location.search.substring(1));
 function scrollTo(section){

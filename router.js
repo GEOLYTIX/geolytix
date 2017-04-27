@@ -9,7 +9,6 @@ router.get('/', function (req, res) {
     var ua = req.headers['user-agent'];
     var _md = new md(ua);
     var _md_mobile = _md.mobile();
-    // var _md_phone = _md.phone();
     var _md_tablet = _md.tablet();
 
     // if (/MSIE (\d+\.\d+);/.test(ua)) {
@@ -29,7 +28,6 @@ router.get('/map', function (req, res) {
     var ua = req.headers['user-agent'];
     var _md = new md(ua);
     var _md_mobile = _md.mobile();
-    // var _md_phone = _md.phone();
     var _md_tablet = _md.tablet();
 
     var tmpl;

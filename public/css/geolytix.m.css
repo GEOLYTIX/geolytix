@@ -98,24 +98,51 @@ p {
 }
 
 #intro__section > span {
-    position: absolute;
     color: #000;
     text-align: left;
-
     -webkit-transition: color 0.5s linear;
     -moz-transition: color 0.5s linear;
     -o-transition: color 0.5s linear;
     transition: color 0.5s linear;
 }
 
+#intro__menu {
+    display: none;
+    width: 100%;
+    background-color: white;
+    border-bottom: 5px solid #079e00;
+}
+
+#intro__menu a {
+    color: #079e00;
+}
+
+#intro__menu > div {
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+    color: #079e00;
+}
+
+#intro__burger {
+    position: absolute;
+    right: 10px;
+    margin-top: 10px;
+    font-size: 30px;
+    color: #079e00;
+}
+
 #intro__logo {
     font-family: ffmark_black, sans-serif;
-    top: 10px;
+    position: absolute;
     left: 10px;
+    margin-top: 10px;
     font-size: 60px;
 }
 
 #intro__text {
+    position: absolute;
     font-family: ffmark_bold, sans-serif;
     bottom: 10px;
     left: 10px;
