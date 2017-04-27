@@ -149,6 +149,15 @@ p {
     font-size: 40px;
 }
 
+@media screen and (max-width: 350px) {
+    #intro__logo {
+        font-size: 50px;
+    }
+
+    #intro__text {
+        font-size: 30px;
+    }
+}
 
 
 /* SERVICES */
