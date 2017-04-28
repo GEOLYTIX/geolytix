@@ -157,6 +157,7 @@ var mapZoom_contact = 14,
     map_contact = L.map('map_contact', {
         scrollWheelZoom: false,
         zoomControl: false,
+        maxBounds: L.latLngBounds(L.latLng(51.52733, -0.11525), L.latLng(51.52733, -0.11525)),
         minZoom: 4,
         maxZoom: 18
     })
