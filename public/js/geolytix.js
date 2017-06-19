@@ -72,12 +72,39 @@ section_services.find('.network_strategy').first().trigger('click');
 
 // case studies
 var case_studies_container = section_case_studies.find('.container').first(),
-    case_studies__table = case_studies_container.find('table').first();
+    case_studies__strip = section_case_studies.find('.strip').first(),
+    case_studies__logos = section_case_studies.find('.logo'),
+    case_studies__table = case_studies_container.find('.container_table').first();
 
-section_case_studies.find('.strip > .logo').click(function () {
+section_case_studies.find('.logo').click(function () {
     $(this).siblings().removeClass('active');
     $(this).addClass('active');
-    case_studies__table.animate({'marginLeft': case_studies_container.width() * -$(this).index()}, 1000);
+
+
+    var index = $(this).index();
+    index -= 1;
+    case_studies__strip.animate({'marginLeft': '-' + index * 20 + '%'}, 400);
+    if (index > 7) {
+        index -= 7;
+        var logo = case_studies__logos.get([index+1]);
+        logo.className += " active";
+        case_studies__strip.animate({'marginLeft': '-' + index * 20 + '%'}, 0);
+    }
+    if (index < 0) {
+        index += 7;
+        var logo = case_studies__logos.get([index+1]);
+        logo.className += " active";
+        case_studies__strip.animate({'marginLeft': '-' + index * 20 + '%'}, 0);
+    }
+
+    console.log(index);
+
+    index++;
+    if (index >= 7) index -= 7;
+
+    console.log(index);
+
+    case_studies__table.animate({'marginLeft': '-' + index * 100 + '%'}, 1000);
 });
 
 

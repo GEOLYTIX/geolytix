@@ -31,6 +31,7 @@ body {
     margin: 0;
     font-family: ffmark, sans-serif;
     min-width: 799px;
+    overflow-x: hidden;
 }
 
 .cursor:hover {
@@ -317,14 +318,23 @@ p {
     font-size: 150%;
 }
 
-.case_studies__limiter > .strip {
+.case_studies__limiter > .container_strip {
     width: 100%;
-    height: 170px;
     border-bottom: 1px solid #fff;
 }
 
-.case_studies__limiter > .strip > .active:after,
-.case_studies__limiter > .strip > .active:before {
+.case_studies__limiter > .container_strip > .strip {
+    width: 280%;
+    height: 170px;
+    margin-left: -100%;
+}
+
+.case_studies__limiter .strip .logo {
+    position: relative;
+}
+
+.case_studies__limiter .strip .active:after,
+.case_studies__limiter .strip .active:before {
     position: absolute;
     bottom: -1px;
     left: 50%;
@@ -335,46 +345,45 @@ p {
     pointer-events: none;
 }
 
-.case_studies__limiter > .strip > .active:before {
+.case_studies__limiter .strip .active:before {
     border-bottom-color: #fff;
     border-width: 17px;
     margin-left: -17px;
 }
 
-.case_studies__limiter > .strip > .active:after {
+.case_studies__limiter .strip .active:after {
     border-bottom-color: #079e00;
     border-width: 15px;
     margin-left: -15px;
     z-index: 999;
 }
 
-.case_studies__limiter > .strip > .logo {
-    width: 16.666%;
-    position: relative;
-}
-
-.case_studies__limiter > .strip > .arco {
+.strip .arco {
     background-image: url(/public/images/clients/arco_logo_white.png);
 }
 
-.case_studies__limiter > .strip > .asda {
+.strip .asda {
     background-image: url(/public/images/clients/asda_logo_white.png);
 }
 
-.case_studies__limiter > .strip > .camelot {
+.strip .camelot {
     background-image: url(/public/images/clients/camelot_logo_white.png);
 }
 
-.case_studies__limiter > .strip > .johnlewis {
+.strip .johnlewis {
     background-image: url(/public/images/clients/johnlewis_logo_white.png);
 }
 
-.case_studies__limiter > .strip > .onthemarket {
+.strip .onthemarket {
     background-image: url(/public/images/clients/onthemarket_logo_white.png);
 }
 
-.case_studies__limiter > .strip > .totalfitness {
+.strip .totalfitness {
     background-image: url(/public/images/clients/totalfitness_logo_white.png);
+}
+
+.strip .swinton {
+    background-image: url(/public/images/clients/swinton_logo_white.png);
 }
 
 .case_studies__limiter > .container {
@@ -384,8 +393,9 @@ p {
 }
 
 .case_studies__limiter > .container > table {
-    width: 600%;
+    width: 700%;
     table-layout: fixed;
+    margin-left: -600%;
 }
 
 .case_studies__limiter > .container > table td {
