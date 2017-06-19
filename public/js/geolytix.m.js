@@ -83,7 +83,7 @@ var csInfo = document.getElementById('case_studies__info');
 var csLogos = document.getElementById('case_studies__logos');
 var csInfoTable = document.getElementById('case_studies__logos__table');
 csLogos.addEventListener('scroll', debounce(function(){
-    var swapy = csInfoTable.offsetWidth / 6;
+    var swapy = csInfoTable.offsetWidth / 7;
     var scrolly = csLogos.scrollLeft;
     removeClass(document.querySelectorAll('#case_studies__info .active'), 'active');
     scrolly < (swapy/2) ? addClass(document.querySelectorAll('#case_studies__info .camelot'), 'active') :
@@ -91,7 +91,8 @@ csLogos.addEventListener('scroll', debounce(function(){
             scrolly < swapy * 2 + (swapy/2) ? addClass(document.querySelectorAll('#case_studies__info .onthemarket'), 'active') :
                 scrolly < swapy * 3 + (swapy/2) ? addClass(document.querySelectorAll('#case_studies__info .arco'), 'active') :
                     scrolly < swapy * 4 + (swapy/2) ? addClass(document.querySelectorAll('#case_studies__info .totalfitness'), 'active') :
-                        addClass(document.querySelectorAll('#case_studies__info .asda'), 'active');
+                        scrolly < swapy * 5 + (swapy/2) ? addClass(document.querySelectorAll('#case_studies__info .asda'), 'active') :
+                            addClass(document.querySelectorAll('#case_studies__info .swinton'), 'active');
     csInfo.scrollLeft = 0;
 },300));
 

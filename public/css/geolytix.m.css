@@ -294,6 +294,10 @@ p {
     background-image: url(/public/images/clients/asda_logo_white.png);
 }
 
+#case_studies__logos .swinton {
+    background-image: url(/public/images/clients/swinton_logo_white.png);
+}
+
 #case_studies__info > .scroll__container {
     width: 250%;
     table-layout: fixed;
