@@ -399,7 +399,8 @@ p {
 }
 
 .case_studies__limiter > .container > table td {
-    padding-right: 30px;
+    padding-right: 15px;
+    padding-left: 10px;
     vertical-align: top;
     line-height: 1.5em;
 }
@@ -765,6 +766,14 @@ button {
 
 .donna > .li_card__img {
     background-image: url(/public/images/team/donna_.jpg);
+}
+
+.agata > .li_card__img {
+    background-image: url(/public/images/team/agata_.jpg);
+}
+
+.dan > .li_card__img {
+    background-image: url(/public/images/team/dan_.jpg);
 }
 
 
