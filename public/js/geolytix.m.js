@@ -83,7 +83,7 @@ var csInfo = document.getElementById('case_studies__info');
 var csLogos = document.getElementById('case_studies__logos');
 var csInfoTable = document.getElementById('case_studies__logos__table');
 csLogos.addEventListener('scroll', debounce(function(){
-    var swapy = csInfoTable.offsetWidth / 7;
+    var swapy = csInfoTable.offsetWidth / 8;
     var scrolly = csLogos.scrollLeft;
     removeClass(document.querySelectorAll('#case_studies__info .active'), 'active');
     scrolly < (swapy/2) ? addClass(document.querySelectorAll('#case_studies__info .camelot'), 'active') :
