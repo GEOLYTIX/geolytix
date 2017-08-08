@@ -92,7 +92,8 @@ csLogos.addEventListener('scroll', debounce(function(){
                 scrolly < swapy * 3 + (swapy/2) ? addClass(document.querySelectorAll('#case_studies__info .arco'), 'active') :
                     scrolly < swapy * 4 + (swapy/2) ? addClass(document.querySelectorAll('#case_studies__info .totalfitness'), 'active') :
                         scrolly < swapy * 5 + (swapy/2) ? addClass(document.querySelectorAll('#case_studies__info .asda'), 'active') :
-                            addClass(document.querySelectorAll('#case_studies__info .swinton'), 'active');
+                            scrolly < swapy * 6 + (swapy/2) ? addClass(document.querySelectorAll('#case_studies__info .swinton'), 'active') :
+                                addClass(document.querySelectorAll('#case_studies__info .marks_and_spencer'), 'active');
     csInfo.scrollLeft = 0;
 },300));
 

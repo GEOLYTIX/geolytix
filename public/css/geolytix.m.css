@@ -262,7 +262,7 @@ p {
 }
 
 #case_studies__logos > .scroll__container {
-    width: 500%;
+    width: 570%;
     height: 100px;
 }
 
@@ -296,6 +296,10 @@ p {
 
 #case_studies__logos .swinton {
     background-image: url(/public/images/clients/swinton_logo_white.png);
+}
+
+#case_studies__logos .marks_and_spencer {
+    background-image: url(/public/images/clients/marks_and_spencer_logo_white.png);
 }
 
 #case_studies__info > .scroll__container {

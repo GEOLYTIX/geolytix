@@ -84,25 +84,21 @@ section_case_studies.find('.logo').click(function () {
     var index = $(this).index();
     index -= 1;
     case_studies__strip.animate({'marginLeft': '-' + index * 20 + '%'}, 400);
-    if (index > 7) {
-        index -= 7;
+    if (index > 8) {
+        index -= 8;
         var logo = case_studies__logos.get([index+1]);
         logo.className += " active";
         case_studies__strip.animate({'marginLeft': '-' + index * 20 + '%'}, 0);
     }
     if (index < 0) {
-        index += 7;
+        index += 8;
         var logo = case_studies__logos.get([index+1]);
         logo.className += " active";
         case_studies__strip.animate({'marginLeft': '-' + index * 20 + '%'}, 0);
     }
 
-    console.log(index);
-
     index++;
-    if (index >= 7) index -= 7;
-
-    console.log(index);
+    if (index >= 8) index -= 8;
 
     case_studies__table.animate({'marginLeft': '-' + index * 100 + '%'}, 1000);
 });
