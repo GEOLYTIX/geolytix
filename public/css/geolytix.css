@@ -780,6 +780,10 @@ button {
     background-image: url(/public/images/team/dan_.jpg);
 }
 
+.danny > .li_card__img {
+    background-image: url(/public/images/team/danny_.jpg);
+}
+
 
 /* CONTACT */
 
