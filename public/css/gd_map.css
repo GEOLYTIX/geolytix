@@ -78,3 +78,33 @@ body {
         display: none;
     }
 }
+
+#ctrl_content {
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    padding-left: 5px;
+}
+
+#ctrl_scrollbar_container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    width: 10px;
+    background-color: lightgrey;
+}
+
+#ctrl_scrollbar {
+    position: absolute;
+    width: 10px;
+    background: #079e00;
+}
+
+#ctrl_scrollbar:hover {
+    cursor: ns-resize;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}

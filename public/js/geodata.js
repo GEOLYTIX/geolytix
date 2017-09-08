@@ -42,7 +42,7 @@ var xhr,
     proj_4326 = proj4.Proj('EPSG:4326'),
     proj_3857 = proj4.Proj('EPSG:3857');
 
-if (view_mode === 'desktop') $('.geodata__info').jScrollPane();
+// if (view_mode === 'desktop') $('.geodata__info').jScrollPane();
 
 $('.geodata__select > div').click(function () {
     var _id = $(this).attr('id');
@@ -121,9 +121,46 @@ function selectGeodata(_this, scroll){
     $.when($.get('/public/tmpl/gd_' + dataset + '.html'))
         .done(function (_tmpl) {
             var t = $(_tmpl).render();
-            $('.geodata__info').html(t);
+            $('#geodata__info__content').html(t);
+            if (view_mode === 'integrated') scrolly();
             window[dataset]();
         });
+}
+
+
+function scrolly(){
+    let content = document.getElementById('geodata__info__content'),
+        path = document.getElementById('ctrl_scrollbar_container'),
+        scrollBar = document.getElementById('ctrl_scrollbar'),
+        scrollEvent = new Event('scroll');
+
+    content.addEventListener('scroll', function () {
+        scrollBar.style.height = path.clientHeight * content.clientHeight / content.scrollHeight + 'px';
+        scrollBar.style.top = path.clientHeight * content.scrollTop / content.scrollHeight + 'px';
+    });
+
+    window.addEventListener('resize', content.dispatchEvent.bind(content, scrollEvent));
+    content.dispatchEvent(scrollEvent);
+
+    scrollBar.addEventListener('mousedown', function (eDown) {
+        eDown.preventDefault();
+        let scrollBar_offsetTop = scrollBar.offsetTop,
+            eDown_pageY = eDown.pageY,
+            onMove = function (eMove) {
+                scrollBar.style.top = Math.min(
+                        path.clientHeight - scrollBar.clientHeight,
+                        Math.max(
+                            0,
+                            scrollBar_offsetTop + eMove.pageY - eDown_pageY
+                        )
+                    ) + 'px';
+                content.scrollTop = (content.scrollHeight * scrollBar.offsetTop / path.clientHeight);
+            };
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', function () {
+            document.removeEventListener('mousemove', onMove);
+        });
+    });
 }
 
 map.on('movestart', function () {
@@ -211,15 +248,7 @@ function retail_points() {
 function retail_places(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
-    // L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-    //     layers: 'retailplaces_point',
-    //     format: 'image/png',
-    //     transparent: true,
-    //     minZoom: 12,
-    //     maxZoom: 13
-    // }).addTo(map);
-
-    L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+    var layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'retailplaces_outline',
         format: 'image/png',
         transparent: true,
@@ -227,6 +256,18 @@ function retail_places(){
         minZoom: 12,
         maxZoom: 15
     }).addTo(map);
+
+    infotable = document.querySelector('#gd_retail_places .infobox__table');
+
+    if (view_mode === 'mobile') {
+        map.on('click', function (e) {
+            hoverSelect(e, map, layer, infotable)
+        });
+    } else {
+        map.on('mousemove', function (e) {
+            hoverSelect(e, map, layer, infotable)
+        });
+    }
 
     L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'retailplaces_shopping',
@@ -247,10 +288,10 @@ function retail_places(){
     }).addTo(map);
 
     L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-        layers: 'retailplaces_pitch',
+        layers: 'retailplaces_hx_pitch_bounds',
         format: 'image/png',
         transparent: true,
-        styles: 'retailplaces_pitch',
+        styles: 'retailplaces_hx_pitch_bounds',
         minZoom: 16,
         maxZoom: 17
     }).addTo(map);
@@ -911,8 +952,10 @@ function wmsGetHoverFeatureInfo(url, infoTable){
     xhr = $.ajax({
         url: url,
         success: function (data) {
-            createHoverFeature(data.features[0].properties.geoj);
-            populateInfoTable(JSON.parse(data.features[0].properties.infoj), infoTable);
+            if (data.features.length > 0){
+                createHoverFeature(data.features[0].properties.geoj);
+                populateInfoTable(JSON.parse(data.features[0].properties.infoj), infoTable);
+            }
         }
     });
 }

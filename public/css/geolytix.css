@@ -499,7 +499,7 @@ p {
 
 /*geodata__infobox*/
 .infobox {
-    border-left: 1px solid #079e00;
+    /*border-left: 1px solid #079e00;*/
     padding: 0 10px;
     font-size: 18px;
 }
@@ -987,4 +987,35 @@ button {
     body {
         font-size: 140%
     }
+}
+
+
+#geodata__info__content {
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    padding-left: 5px;
+}
+
+#ctrl_scrollbar_container {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    width: 2px;
+    background-color: lightgrey;
+}
+
+#ctrl_scrollbar {
+    position: absolute;
+    width: 2px;
+    background: #079e00;
+}
+
+#ctrl_scrollbar:hover {
+    cursor: ns-resize;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

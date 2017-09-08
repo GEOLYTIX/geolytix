@@ -35,7 +35,7 @@
 <body>
 
 <div class="header header__smaller header__main">
-    <a id="home" class="cursor" href="/">GEOLYTIX</a>
+    <a id="home" class="cursor" href="/" style="color: red;">GEOLYTIX</a>
     <div class="header__text">Better decisions where location matters</div>
     <div class="header__menu">
         <div id="contact" class="cursor">Contact</div>
@@ -322,7 +322,14 @@
         <div id="faq" class="cursor">FAQ</div>
     </div>
 
-    <div class="geodata__info"></div>
+    <div class="geodata__info">
+        <div id="ctrl_scrollbar_container">
+            <div id="ctrl_scrollbar"></div>
+        </div>
+        <div id="geodata__info__content">
+
+        </div>
+    </div>
 
     <div class="geodata__content">
         <div id="map_geodata"></div>
@@ -332,7 +339,7 @@
         <button id="btnZoomOut" class="mapButton noselect">
             <i class="material-icons">remove</i>
         </button>
-        <a id="btnFullScreen" class="mapButton noselect" href="/map?seamless_locales">
+        <a id="btnFullScreen" class="mapButton noselect" href="/map?seamless_locales" title="Open Geodata map in fullscreen view">
             <i class="material-icons">launch</i>
         </a>
     </div>
@@ -741,7 +748,10 @@
 <script type="application/javascript" src="/public/js/leaflet.NonTiledLayer.js"></script>
 <script type="application/javascript" src="/public/js/geolytix.js"></script>
 <script>
-    var view_mode = 'integrated';
+    let view_mode = 'integrated';
+
+
+
 </script>
 <script type="application/javascript" src="/public/js/geodata.js"></script>
 

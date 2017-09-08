@@ -1,27 +1,28 @@
-var express = require('express');
-var router = express.Router();
-var queries = require('./queries');
-var jsr = require('jsrender');
-var fs = require('fs');
-var md = require('mobile-detect');
+let express = require('express');
+let router = express.Router();
+let queries = require('./queries');
+let jsr = require('jsrender');
+let fs = require('fs');
+let md = require('mobile-detect');
 
 router.get('/', function (req, res) {
-    var ua = req.headers['user-agent'];
-    var _md = new md(ua);
-    var _md_mobile = _md.mobile();
-    var _md_tablet = _md.tablet();
-
     // if (/MSIE (\d+\.\d+);/.test(ua)) {
     //     if (Number(RegExp.$1) <= 7) {
     //         res.redirect('https://blog.geolytix.net');
     //     }
     // }
 
-    if (_md_mobile === null || _md_tablet !== null) {
-        res.render('index');
-    } else {
-        res.render('mobile');
-    }
+
+    console.log(req.headers.host.includes('.cn'));
+
+
+    let _md = new md(req.headers['user-agent']),
+        tmpl = (_md.mobile() === null || _md.tablet() !== null) ?
+            jsr.templates(req.headers.host.includes('.cn') ? './views/index_cn.html' : './views/index.html') : jsr.templates('./views/mobile.html');
+
+    res.send(tmpl.render());
+
+
 });
 
 router.get('/map', function (req, res) {
