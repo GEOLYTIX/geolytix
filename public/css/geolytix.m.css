@@ -22,6 +22,27 @@
 
 
 /* GLOBAL */
+.flag_link {
+    width: 28px;
+    height: 21px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 1px solid black;
+}
+
+#flag_cn {
+    background-image: url(/public/images/cn.svg);
+}
+
+#flag_jp {
+    background-image: url(/public/images/jp.svg);
+}
+
+#flag_gb {
+    background-image: url(/public/images/gb.svg);
+}
+
 html {
     overflow: hidden;
     height: 100%;
