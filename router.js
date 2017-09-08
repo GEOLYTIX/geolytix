@@ -18,7 +18,12 @@ router.get('/', function (req, res) {
 
     let _md = new md(req.headers['user-agent']),
         tmpl = (_md.mobile() === null || _md.tablet() !== null) ?
-            jsr.templates(req.headers.host.includes('.cn') ? './views/index_cn.html' : './views/index.html') : jsr.templates('./views/mobile.html');
+            jsr.templates(req.headers.host.includes('.cn') ?
+                './views/index_cn.html' : req.headers.host.includes('.jp') ?
+                    './views/index_jp.html' : './views/index.html') :
+            jsr.templates(req.headers.host.includes('.cn') ?
+                './views/mobile_cn.html' : req.headers.host.includes('.jp') ?
+                    './views/mobile_jp.html' : './views/mobile.html');
 
     res.send(tmpl.render());
 
