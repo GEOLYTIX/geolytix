@@ -23,7 +23,6 @@
 
 
 /* GLOBAL */
-
 body {
     position: absolute;
     height: 100%;
@@ -187,6 +186,30 @@ p {
     float: right;
     margin-left: 35px;
     padding: 7px 0 7px 0;
+}
+
+.header__menu > .flag {
+    margin-left: 20px;
+}
+
+.flag_link {
+    width: 28px;
+    height: 22px;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#flag_cn {
+    background-image: url(/public/images/cn.svg);
+}
+
+#flag_jp {
+    background-image: url(/public/images/jp.svg);
+}
+
+#flag_gb {
+    background-image: url(/public/images/gb.svg);
 }
 
 .header__menu > div:hover {

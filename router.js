@@ -1,9 +1,7 @@
-let express = require('express');
-let router = express.Router();
-let queries = require('./queries');
+let router = require('express').Router();
 let jsr = require('jsrender');
-let fs = require('fs');
 let md = require('mobile-detect');
+let queries = require('./queries');
 
 router.get('/', function (req, res) {
     // if (/MSIE (\d+\.\d+);/.test(ua)) {
@@ -11,48 +9,32 @@ router.get('/', function (req, res) {
     //         res.redirect('https://blog.geolytix.net');
     //     }
     // }
-
-
-    console.log(req.headers.host.includes('.cn'));
-
-
     let _md = new md(req.headers['user-agent']),
         tmpl = (_md.mobile() === null || _md.tablet() !== null) ?
             jsr.templates(req.headers.host.includes('.cn') ?
-                './views/index_cn.html' : req.headers.host.includes('.jp') ?
-                    './views/index_jp.html' : './views/index.html') :
+                './views/index_cn.html' :
+                req.headers.host.includes('.jp') ?
+                    './views/index_jp.html' :
+                    './views/index.html') :
             jsr.templates(req.headers.host.includes('.cn') ?
-                './views/mobile_cn.html' : req.headers.host.includes('.jp') ?
-                    './views/mobile_jp.html' : './views/mobile.html');
+                './views/mobile_cn.html' :
+                req.headers.host.includes('.jp') ?
+                    './views/mobile_jp.html' :
+                    './views/mobile.html');
 
     res.send(tmpl.render());
-
-
 });
 
 router.get('/map', function (req, res) {
-    var ua = req.headers['user-agent'];
-    var _md = new md(ua);
-    var _md_mobile = _md.mobile();
-    var _md_tablet = _md.tablet();
+    let _md = new md(req.headers['user-agent']),
+        dataset = req.originalUrl.substring(req.originalUrl.indexOf('?') + 1),
+        tmpl = (_md.mobile() === null || _md.tablet() !== null) ?
+            jsr.templates('./views/gd_map.html') :
+            jsr.templates('./views/gd_map_m.html');
 
-    var tmpl;
-    if (_md_mobile === null || _md_tablet !== null) {
-        tmpl = jsr.templates('./views/gd_map.html');
-    } else {
-        tmpl = jsr.templates('./views/gd_map_m.html');
-    }
-
-    var dataset = req.originalUrl.substring(req.originalUrl.indexOf('?') + 1);
-
-    if (fs.existsSync('./public/tmpl/gd_' + dataset + '.html')){
-        var html = tmpl.render({
-            gd_tmpl: './public/tmpl/gd_' + dataset + '.html'
-        });
-        res.send(html);
-    } else {
+    require('fs').existsSync('./public/tmpl/gd_' + dataset + '.html') ?
+        res.send(tmpl.render({gd_tmpl: './public/tmpl/gd_' + dataset + '.html'})):
         res.send(jsr.renderFile('./views/error.html'));
-    }
 });
 
 router.get('/grid_query', queries.grid_query);
