@@ -58,7 +58,7 @@ body {
     overflow: auto;
 }
 
-.inner {
+#inner {
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -132,6 +132,10 @@ p {
     width: 100%;
     background-color: white;
     border-bottom: 5px solid #079e00;
+}
+
+.intro__menu_show {
+    display: block !important;
 }
 
 #intro__menu a {
@@ -369,29 +373,29 @@ p {
 
 
 /* GEODATA */
-.geodata__section {
+#geodata__section {
     width: 100%;
 }
 
-.geodata__section > p:nth-of-type(1){
+#geodata__section > p:nth-of-type(1){
     font-family: ffmark_bold, sans-serif;
     font-size: 35px;
     padding: 50px 10px 0 10px;
 }
 
-.geodata__section > p:nth-of-type(2){
+#geodata__section > p:nth-of-type(2){
     color: #079e00;
     font-family: ffmark_bold, sans-serif;
     font-size: 25px;
     padding: 20px 10px 10px 10px;
 }
 
-.geodata__section > p:nth-of-type(3){
+#geodata__section > p:nth-of-type(3){
     font-size: 20px;
     padding: 0 10px 30px 10px;
 }
 
-.geodata__section > .scroll__x {
+#geodata__section > .scroll__x {
     padding-left: 10px;
     width: 100%;
 }

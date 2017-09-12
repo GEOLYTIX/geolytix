@@ -1,4 +1,4 @@
-var mapZoom = 13,
+let mapZoom = 13,
     map = L.map('map_geodata', {
         renderer: L.svg(),
         scrollWheelZoom: view_mode === 'integrated' ? false : true,
@@ -12,7 +12,7 @@ map.createPane('labels');
 map.getPane('labels').style.zIndex = 650;
 map.getPane('labels').style.pointerEvents = 'none';
 
-var btnZoomIn = document.getElementById('btnZoomIn'),
+let btnZoomIn = document.getElementById('btnZoomIn'),
     btnZoomOut = document.getElementById('btnZoomOut');
 
 function chkZoomBtn(){
@@ -34,7 +34,7 @@ btnZoomOut.addEventListener('click', function(){
     chkZoomBtn();
 });
 
-var xhr,
+let xhr,
     xhr_grid,
     layerHover,
     featureHover,
@@ -42,55 +42,44 @@ var xhr,
     proj_4326 = proj4.Proj('EPSG:4326'),
     proj_3857 = proj4.Proj('EPSG:3857');
 
-// if (view_mode === 'desktop') $('.geodata__info').jScrollPane();
-
-$('.geodata__select > div').click(function () {
-    var _id = $(this).attr('id');
-    history.pushState({so: 'glx'}, _id, '?' + _id);
-    selectGeodata($(this));
-});
-
-// if (view_mode === 'mobile'){
-//     var btnDesktop = document.getElementById('btnDesktop');
-//     btnDesktop.addEventListener('click', function() {
-//         window.location = '/map?' + window.location.search.substring(1);
-//     });
-// }
+if (view_mode === 'integrated') {
+    document.querySelector('.geodata__select').addEventListener('click', function(){
+        let id = event.target.id;
+        history.pushState({so: 'glx'}, id, '?' + id);
+        selectGeodata(event.target);
+    });
+}
 
 hookGeodata(window.location.search.substring(1));
 
 function hookGeodata(hook){
-    if (view_mode !== 'integrated') {
-        return window[hook]();
-    }
-    hook === 'seamless_locales' ? selectGeodata($('#seamless_locales'), true) :
-        hook === 'retail_points' ? selectGeodata($('#retail_points'), true) :
-            hook === 'retail_places' ? selectGeodata($('#retail_places'), true) :
-                hook === 'public_transport' ? selectGeodata($('#public_transport'), true) :
-                    hook === 'postal_geom' ? selectGeodata($('#postal_geom'), true) :
-                        hook === 'town_suburb' ? selectGeodata($('#town_suburb'), true) :
-                            hook === 'education' ? selectGeodata($('#education'), true) :
-                                hook === 'workplace' ? selectGeodata($('#workplace'), true) :
-                                    hook === 'poi' ? selectGeodata($('#poi'), true) :
-                                        hook === 'residential' ? selectGeodata($('#residential'), true) :
-                                            hook === 'uk_admin' ? selectGeodata($('#uk_admin'), true) :
-                                                hook === 'property' ? selectGeodata($('#property'), true) :
-                                                    hook === 'road_network' ? selectGeodata($('#road_network'), true) :
-                                                        hook === 'media_com' ? selectGeodata($('#media_com'), true) :
-                                                            hook === 'physical' ? selectGeodata($('#physical'), true) :
-                                                                selectGeodata($('#seamless_locales'));
+    if (view_mode !== 'integrated') return window[hook]();
+    hook === 'seamless_locales' ? selectGeodata(document.getElementById('seamless_locales')) :
+        hook === 'retail_points' ? selectGeodata(document.getElementById('retail_points')) :
+            hook === 'retail_places' ? selectGeodata(document.getElementById('retail_places')) :
+                hook === 'public_transport' ? selectGeodata(document.getElementById('public_transport')) :
+                    hook === 'postal_geom' ? selectGeodata(document.getElementById('postal_geom')) :
+                        hook === 'town_suburb' ? selectGeodata(document.getElementById('town_suburb')) :
+                            hook === 'education' ? selectGeodata(document.getElementById('education')) :
+                                hook === 'workplace' ? selectGeodata(document.getElementById('workplace')) :
+                                    hook === 'poi' ? selectGeodata(document.getElementById('poi')) :
+                                        hook === 'residential' ? selectGeodata(document.getElementById('residential')) :
+                                            hook === 'uk_admin' ? selectGeodata(document.getElementById('uk_admin')) :
+                                                hook === 'property' ? selectGeodata(document.getElementById('property')) :
+                                                    hook === 'road_network' ? selectGeodata(document.getElementById('road_network')) :
+                                                        hook === 'media_com' ? selectGeodata(document.getElementById('media_com')) :
+                                                            hook === 'physical' ? selectGeodata(document.getElementById('physical')) :
+                                                                hook === 'pricing' ? selectGeodata(document.getElementById('pricing')) :
+                                                                    hook === 'faq' ? selectGeodata(document.getElementById('faq')) :
+                                                                        selectGeodata(document.getElementById('seamless_locales'));
 }
 
-function selectGeodata(_this, scroll){
-    if (view_mode === 'integrated' && scroll === true) {
-        var body = $('html, body');
-        body.animate({scrollTop: section_geodata.offset().top - 80});
-    }
+function selectGeodata(_this){
+    document.querySelector('.geodata__pricing').style.display = 'none';
+    document.querySelector('.geodata__faq').style.display = 'none';
 
-    $('.geodata__pricing').hide();
-    $('.geodata__faq').hide();
-    _this.siblings().removeClass('selected');
-    _this.addClass('selected');
+    removeClass(document.querySelector('.geodata__select .selected'), 'selected');
+    addClass(_this, 'selected');
 
     map.eachLayer(function (layer) {
         map.removeLayer(layer);
@@ -114,19 +103,49 @@ function selectGeodata(_this, scroll){
         chkZoomBtn();
     });
 
-    var dataset = _this.attr('id');
+    document.getElementById('btnFullScreen').href = '/map?' + _this.id;
 
-    document.getElementById('btnFullScreen').href = '/map?' + dataset;
-
-    $.when($.get('/public/tmpl/gd_' + dataset + '.html'))
-        .done(function (_tmpl) {
-            var t = $(_tmpl).render();
-            $('#geodata__info__content').html(t);
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', '/public/tmpl/gd_' + _this.id + '.html');
+    xhr.setRequestHeader('Content-Type', 'text/html');
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            document.getElementById('geodata__info__content').innerHTML = window.jsrender.templates(xhr.responseText).render();
             if (view_mode === 'integrated') scrolly();
-            window[dataset]();
-        });
+            window[_this.id]();
+        }
+    };
+    xhr.send();
+
 }
 
+function pricing(){
+    document.querySelector('.geodata__pricing').style.display = 'block';
+    let selectedPacks = 4,
+        priceTable = ['£ null', '£ 3,000', '£ 5,500', '£ 8,000' , '£ 10,000', '£ 12,000', '£ 14,000', '£ 16,000', '£ 18,000', '£ 20,000','£ 22,000', '£ 24,000' , '£ 25,000'],
+        pricetags = document.querySelectorAll('.pricetag');
+
+    for (let i = 0; i < pricetags.length; i++) {
+        pricetags[i].addEventListener('click', function () {
+            toggleClass(this, 'active');
+            let n = this.innerHTML === '£ 5500 (2 Packs)' ? 2 : 1;
+            selectedPacks += hasClass(this, 'active') ? +n : -n;
+            document.querySelector('.p_pricing__all').style.display = selectedPacks < 12 ? 'block' : 'none';
+            document.querySelector('.p_pricing__first').style.display = selectedPacks < 12 ? 'block' : 'none';
+            document.querySelector('.p_pricing__first_all').style.display = selectedPacks >= 12 ? 'block' : 'none';
+            document.querySelector('.p_pricing__first_select').style.display = selectedPacks === 0 ? 'block' : 'none';
+            document.querySelector('.p_pricing__three').style.display = selectedPacks < 3 && selectedPacks >= 1 ? 'block' : 'none';
+            document.querySelector('.p_pricing__six').style.display = selectedPacks < 6 && selectedPacks >= 3 ? 'block' : 'none';
+            document.querySelector('.p_pricing__nine').style.display = selectedPacks < 9 && selectedPacks >= 6 ? 'block' : 'none';
+            document.querySelector('.p_pricing__current').style.display = selectedPacks > 0 ? 'block' : 'none';
+            document.getElementById('p_pricing__current').innerHTML = priceTable[selectedPacks] || '£ 25,000';
+        });
+    }
+}
+
+function faq(){
+    document.querySelector('.geodata__faq').style.display = 'block';
+}
 
 function scrolly(){
     let content = document.getElementById('geodata__info__content'),
@@ -180,7 +199,7 @@ map.on('zoomend', function () {
 function seamless_locales() {
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
-    var layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+    let layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             version: '1.3',
             opacity: 1.0,
             layers: 'seamless_locales',
@@ -206,7 +225,7 @@ function seamless_locales() {
 function retail_points() {
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
-    var cqlFilterArray = ["brand='asda'", "brand='morrisons'", "brand='sainsburys'", "brand='tesco'"],
+    let cqlFilterArray = ["brand='asda'", "brand='morrisons'", "brand='sainsburys'", "brand='tesco'"],
         cqlFilter = cqlFilterArray.join(' OR '),
         layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             version: '1.3',
@@ -221,34 +240,38 @@ function retail_points() {
 
     map.on('click', function(e){clickSelect(e, map, layer, cqlFilter)});
 
-    $('.infobox__legend span').click(function () {
-        map.closePopup();
-        $(this).toggleClass('active');
-        if ($(this).hasClass('active')) {
-            cqlFilterArray.push("brand='" + $(this).attr('id') + "'");
-        } else {
-            cqlFilterArray.splice($.inArray("brand='" + $(this).attr('id') + "'", cqlFilterArray), 1);
-        }
-        cqlFilter = cqlFilterArray.join(' OR ');
+    let legend_classes = document.querySelectorAll('#gd_retail_points .infobox__legend span');
+    for (let i = 0; i < legend_classes.length; i++) {
+        legend_classes[i].addEventListener('click', function () {
+            map.closePopup();
+            if (hasClass(this, 'active')) {
+                removeClass(this, 'active');
+                cqlFilterArray.splice(cqlFilterArray.indexOf("brand='" + this.id + "'"), 1);
+            } else {
+                addClass(this, 'active');
+                cqlFilterArray.push("brand='" + this.id + "'");
+            }
+            cqlFilter = cqlFilterArray.join(' OR ');
 
-        map.removeLayer(layer);
-        if (cqlFilter.length > 0) {
-            layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-                version: '1.3',
-                layers: 'retailpoints',
-                format: 'image/png',
-                transparent: true,
-                styles: 'retailpoints',
-                CQL_FILTER: cqlFilter
-            }).addTo(map);
-        }
-    });
+            map.removeLayer(layer);
+            if (cqlFilter.length > 0) {
+                layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+                    version: '1.3',
+                    layers: 'retailpoints',
+                    format: 'image/png',
+                    transparent: true,
+                    styles: 'retailpoints',
+                    CQL_FILTER: cqlFilter
+                }).addTo(map);
+            }
+        });
+    }
 }
 
 function retail_places(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
-    var layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+    let layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         layers: 'retailplaces_outline',
         format: 'image/png',
         transparent: true,
@@ -393,7 +416,7 @@ function postal_geom(){
 function town_suburb(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
-    var layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+    let layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             version: '1.3',
             opacity: 1.0,
             layers: 'town_suburb',
@@ -432,7 +455,7 @@ function education(){
 function workplace() {
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
-    var arrayZoom = {
+    let arrayZoom = {
             12: 'workplace_pc_hx800',
             13: 'workplace_pc_hx400',
             14: 'workplace_pc_hx200',
@@ -458,8 +481,6 @@ function workplace() {
             ]
         };
 
-    var layer;
-
     getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
 
     map.on('zoomend', function () {
@@ -474,7 +495,7 @@ function workplace() {
 
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
 
-    var layer = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+    let layer = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         version: '1.3',
         layers: 'workplace_hz',
         format: 'image/png',
@@ -493,7 +514,7 @@ function workplace() {
 function poi(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
-    var cqlFilterArray = ["poi_type='carpark'"],
+    let cqlFilterArray = ["poi_type='carpark'"],
         cqlFilter = cqlFilterArray[0],
         layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             version: '1.3',
@@ -508,33 +529,37 @@ function poi(){
 
     map.on('click', function(e){clickSelect(e, map, layer, cqlFilter)});
 
-    $('.infobox__legend span').click(function () {
-        map.closePopup();
-        $(this).toggleClass('active');
-        if ($(this).hasClass('active')) {
-            cqlFilterArray.push("poi_type='" + $(this).attr('id') + "'");
-        } else {
-            cqlFilterArray.splice($.inArray("poi_type='" + $(this).attr('id') + "'", cqlFilterArray), 1);
-        }
-        cqlFilter = cqlFilterArray.join(' OR ');
+    let legend_classes = document.querySelectorAll('#gd_poi .infobox__legend span');
+    for (let i = 0; i < legend_classes.length; i++) {
+        legend_classes[i].addEventListener('click', function () {
+            map.closePopup();
+            if (hasClass(this, 'active')) {
+                removeClass(this, 'active');
+                cqlFilterArray.splice(cqlFilterArray.indexOf("poi_type='" + this.id + "'"), 1);
+            } else {
+                addClass(this, 'active');
+                cqlFilterArray.push("poi_type='" + this.id + "'");
+            }
+            cqlFilter = cqlFilterArray.join(' OR ');
 
-        map.removeLayer(layer);
-        if (cqlFilter.length > 0) {
-            layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-                layers: 'poi',
-                format: 'image/png',
-                transparent: true,
-                styles: 'poi',
-                CQL_FILTER: cqlFilter
-            }).addTo(map);
-        }
-    });
+            map.removeLayer(layer);
+            if (cqlFilter.length > 0) {
+                layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+                    layers: 'poi',
+                    format: 'image/png',
+                    transparent: true,
+                    styles: 'poi',
+                    CQL_FILTER: cqlFilter
+                }).addTo(map);
+            }
+        });
+    }
 }
 
 function residential(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
-    var arrayZoom = {
+    let arrayZoom = {
             12: 'residential_oa_hx800',
             13: 'residential_oa_hx400',
             14: 'residential_oa_hx200',
@@ -560,7 +585,7 @@ function residential(){
             ]
         };
 
-    var layer = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+    let layer = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
         version: '1.3',
         layers: 'residential_lsoa',
         format: 'image/png',
@@ -630,7 +655,7 @@ function uk_admin(){
 function property(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
-    var arrayZoom = {
+    let arrayZoom = {
             12: 'property_hx800',
             13: 'property_hx400',
             14: 'property_hx200',
@@ -686,7 +711,7 @@ function road_network(){
 function media_com(){
     L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
-    var arrayZoom = {
+    let arrayZoom = {
             12: 'media_bb_hx800',
             13: 'media_bb_hx400',
             14: 'media_bb_hx200',
@@ -750,7 +775,7 @@ function physical(){
 
 
 function divStyle(_f, _arrayColor, _arraySize, _arrayStyle){
-    var c = _f.properties.c,
+    let c = _f.properties.c,
         v = _f.properties.v,
         s = c < _arraySize[0] ? 7 :
             c < _arraySize[1] ? 8 :
@@ -781,13 +806,12 @@ function divStyle(_f, _arrayColor, _arraySize, _arrayStyle){
     };
 }
 
+let xhr_getGridData = new XMLHttpRequest();
 function getGridData(_bounds, _layer, _o){
-    if (xhr_grid && xhr_grid.readyState != 4) xhr_grid.abort();
+    xhr_getGridData.abort();
     if (layerGrid) map.removeLayer(layerGrid);
-    xhr_grid = $.ajax({
-        url: '/grid_query',
-        dataType: 'json',
-        data: {
+    xhr_getGridData = new XMLHttpRequest();
+    let requestURL = paramString({
             c: _o.queryCount,
             v: _o.queryValue,
             layer: _layer,
@@ -795,101 +819,107 @@ function getGridData(_bounds, _layer, _o){
             south: _bounds.getSouth(),
             east: _bounds.getEast(),
             north: _bounds.getNorth()
-        },
-        success: function (data) {
-            var avg_c = 0,
-                avg_v = 0,
-                arrayColor = [],
-                arraySize = [],
-                n = data.length,
-                dots = {
-                    type: "FeatureCollection",
-                    features: []
-                };
+        });
+    xhr_getGridData.open('GET', '/grid_query?' + requestURL);
+    xhr_getGridData.setRequestHeader('Content-Type', 'application/json');
+    xhr_getGridData.onload = function () {
+        if (xhr_getGridData.status === 200) drawGridData(JSON.parse(xhr_getGridData.responseText), _o);
+    };
+    xhr_getGridData.send();
+}
 
-            for (var i = 0; i < n; i++) {
-                var c = data[i].c,
-                    v = data[i].v,
-                    g = {
-                        "type": "Point",
-                        "coordinates": [data[i].lon, data[i].lat]
-                    },
-                    p = {
-                        "c": c,
-                        "v": v
-                    };
+function drawGridData(data, _o){
+    let avg_c = 0,
+        avg_v = 0,
+        arrayColor = [],
+        arraySize = [],
+        n = data.length,
+        dots = {
+            type: "FeatureCollection",
+            features: []
+        };
 
-                avg_c += c;
-                avg_v += v;
+    for (let i = 0; i < n; i++) {
+        let c = data[i].c,
+            v = data[i].v,
+            g = {
+                "type": "Point",
+                "coordinates": [data[i].lon, data[i].lat]
+            },
+            p = {
+                "c": c,
+                "v": v
+            };
 
-                dots.features.push({
-                    "geometry": g,
-                    "type": "Feature",
-                    "properties": p
-                });
-            }
+        avg_c += c;
+        avg_v += v;
 
-            var min = getMath(data, 'c', 'min'),
-                max = getMath(data, 'c', 'max'),
-                avg = avg_c / n,
-                step_lower = (avg - min) / 5,
-                step_upper = (max - avg) / 4;
+        dots.features.push({
+            "geometry": g,
+            "type": "Feature",
+            "properties": p
+        });
+    }
 
-            var legend_text_c = document.getElementsByClassName('legend_text_c');
-            legend_text_c[0].innerHTML = max.toLocaleString('en-GB', {maximumFractionDigits: 0});
-            legend_text_c[1].innerHTML = avg.toLocaleString('en-GB', {maximumFractionDigits: 0});
-            legend_text_c[2].innerHTML = min.toLocaleString('en-GB', {maximumFractionDigits: 0});
+    let min = getMath(data, 'c', 'min'),
+        max = getMath(data, 'c', 'max'),
+        avg = avg_c / n,
+        step_lower = (avg - min) / 5,
+        step_upper = (max - avg) / 4;
 
-            arraySize[0] = min + step_lower;
-            arraySize[1] = min + (step_lower * 2);
-            arraySize[2] = min + (step_lower * 3);
-            arraySize[3] = min + (step_lower * 4);
-            arraySize[4] = avg;
-            arraySize[5] = avg + step_upper;
-            arraySize[6] = avg + (step_upper * 2);
-            arraySize[7] = avg + (step_upper * 3);
+    let legend_text_c = document.getElementsByClassName('legend_text_c');
+    legend_text_c[0].innerHTML = max.toLocaleString('en-GB', {maximumFractionDigits: 0});
+    legend_text_c[1].innerHTML = avg.toLocaleString('en-GB', {maximumFractionDigits: 0});
+    legend_text_c[2].innerHTML = min.toLocaleString('en-GB', {maximumFractionDigits: 0});
 
-            min = getMath(data, 'v', 'min');
-            max = getMath(data, 'v', 'max');
-            avg = avg_v / n;
-            step_lower = (avg - min) / 5;
-            step_upper = (max - avg) / 4;
+    arraySize[0] = min + step_lower;
+    arraySize[1] = min + (step_lower * 2);
+    arraySize[2] = min + (step_lower * 3);
+    arraySize[3] = min + (step_lower * 4);
+    arraySize[4] = avg;
+    arraySize[5] = avg + step_upper;
+    arraySize[6] = avg + (step_upper * 2);
+    arraySize[7] = avg + (step_upper * 3);
 
-            arrayColor[0] = min + step_lower;
-            arrayColor[1] = min + (step_lower * 2);
-            arrayColor[2] = min + (step_lower * 3);
-            arrayColor[3] = min + (step_lower * 4);
-            arrayColor[4] = avg;
-            arrayColor[5] = avg + step_upper;
-            arrayColor[6] = avg + (step_upper * 2);
-            arrayColor[7] = avg + (step_upper * 3);
+    min = getMath(data, 'v', 'min');
+    max = getMath(data, 'v', 'max');
+    avg = avg_v / n;
+    step_lower = (avg - min) / 5;
+    step_upper = (max - avg) / 4;
 
-            var legend_text_v = document.getElementsByClassName('legend_text_v');
-            legend_text_v[0].innerHTML = arrayColor[0].toLocaleString('en-GB', _o.oValue);
-            legend_text_v[1].innerHTML = arrayColor[1].toLocaleString('en-GB', _o.oValue);
-            legend_text_v[2].innerHTML = arrayColor[2].toLocaleString('en-GB', _o.oValue);
-            legend_text_v[3].innerHTML = arrayColor[3].toLocaleString('en-GB', _o.oValue);
-            legend_text_v[4].innerHTML = arrayColor[4].toLocaleString('en-GB', _o.oValue);
-            legend_text_v[5].innerHTML = arrayColor[5].toLocaleString('en-GB', _o.oValue);
-            legend_text_v[6].innerHTML = arrayColor[6].toLocaleString('en-GB', _o.oValue);
-            legend_text_v[7].innerHTML = arrayColor[7].toLocaleString('en-GB', _o.oValue);
-            legend_text_v[8].innerHTML = arrayColor[7].toLocaleString('en-GB', _o.oValue);
+    arrayColor[0] = min + step_lower;
+    arrayColor[1] = min + (step_lower * 2);
+    arrayColor[2] = min + (step_lower * 3);
+    arrayColor[3] = min + (step_lower * 4);
+    arrayColor[4] = avg;
+    arrayColor[5] = avg + step_upper;
+    arrayColor[6] = avg + (step_upper * 2);
+    arrayColor[7] = avg + (step_upper * 3);
 
-            $('.grid_legend').fadeIn();
+    let legend_text_v = document.getElementsByClassName('legend_text_v');
+    legend_text_v[0].innerHTML = arrayColor[0].toLocaleString('en-GB', _o.oValue);
+    legend_text_v[1].innerHTML = arrayColor[1].toLocaleString('en-GB', _o.oValue);
+    legend_text_v[2].innerHTML = arrayColor[2].toLocaleString('en-GB', _o.oValue);
+    legend_text_v[3].innerHTML = arrayColor[3].toLocaleString('en-GB', _o.oValue);
+    legend_text_v[4].innerHTML = arrayColor[4].toLocaleString('en-GB', _o.oValue);
+    legend_text_v[5].innerHTML = arrayColor[5].toLocaleString('en-GB', _o.oValue);
+    legend_text_v[6].innerHTML = arrayColor[6].toLocaleString('en-GB', _o.oValue);
+    legend_text_v[7].innerHTML = arrayColor[7].toLocaleString('en-GB', _o.oValue);
+    legend_text_v[8].innerHTML = arrayColor[7].toLocaleString('en-GB', _o.oValue);
 
-            layerGrid = new L.geoJson(dots, {
-                pointToLayer: function (feature, latlng) {
-                    return L.marker(latlng, divStyle(feature, arrayColor, arraySize, _o.arrayStyle));
-                }
-                //onEachFeature: onEachDot
-            }).addTo(map);
+    document.querySelector('.grid_legend').style.display = 'block';
+
+    layerGrid = new L.geoJson(dots, {
+        pointToLayer: function (feature, latlng) {
+            return L.marker(latlng, divStyle(feature, arrayColor, arraySize, _o.arrayStyle));
         }
-    })
+        //onEachFeature: onEachDot
+    }).addTo(map);
 }
 
 
 function hoverSelect(e, map, layer, infoTable) {
-    var pHover = turf.point([e.latlng.lng, e.latlng.lat]);
+    let pHover = turf.point([e.latlng.lng, e.latlng.lat]);
     if (!featureHover || !turf.inside(pHover, featureHover)) {
         wmsGetHoverFeatureInfo(
             getFeatureInfoUrl(
@@ -921,7 +951,7 @@ function clickSelect(e, map, layer, cqlFilter) {
 
 
 function getFeatureInfoUrl(map, layer, latlng, params) {
-    var url = layer._wmsUrl || layer._url,
+    let url = layer._wmsUrl || layer._url,
         point = map.latLngToContainerPoint(latlng, map.getZoom()),
         size = map.getSize(),
         bounds = map.getBounds(),
@@ -946,18 +976,22 @@ function getFeatureInfoUrl(map, layer, latlng, params) {
     return url + L.Util.getParamString(params, url, true);
 }
 
-
+let xhr_wmsGetHoverFeatureInfo = new XMLHttpRequest();
 function wmsGetHoverFeatureInfo(url, infoTable){
-    if (xhr && xhr.readyState != 4) xhr.abort();
-    xhr = $.ajax({
-        url: url,
-        success: function (data) {
-            if (data.features.length > 0){
+    xhr_wmsGetHoverFeatureInfo.abort();
+    xhr_wmsGetHoverFeatureInfo = new XMLHttpRequest();
+    xhr_wmsGetHoverFeatureInfo.open('GET', url);
+    xhr_wmsGetHoverFeatureInfo.setRequestHeader('Content-Type', 'application/json');
+    xhr_wmsGetHoverFeatureInfo.onload = function () {
+        if (xhr_wmsGetHoverFeatureInfo.status === 200 && xhr_wmsGetHoverFeatureInfo.responseText !== '') {
+            let data = JSON.parse(xhr_wmsGetHoverFeatureInfo.responseText);
+            if (data.features[0]) {
                 createHoverFeature(data.features[0].properties.geoj);
                 populateInfoTable(JSON.parse(data.features[0].properties.infoj), infoTable);
             }
         }
-    });
+    };
+    xhr_wmsGetHoverFeatureInfo.send();
 }
 
 
@@ -982,7 +1016,7 @@ function createHoverFeature(geom) {
 
 function populateInfoTable(infoj, infoTable){
     infoTable.innerHTML = '';
-    var r = infoTable.insertRow(infoTable.rows.length);
+    let r = infoTable.insertRow(infoTable.rows.length);
     r.insertCell(0).innerHTML = 'Info';
     Object.keys(infoj).map(function(Okey) {
         if (infoj[Okey]) {
@@ -994,13 +1028,17 @@ function populateInfoTable(infoj, infoTable){
 }
 
 
+let xhr_wmsGetClickFeatureInfo = new XMLHttpRequest();
 function wmsGetClickFeatureInfo(url){
-    if (xhr && xhr.readyState != 4) xhr.abort();
-    xhr = $.ajax({
-        url: url,
-        success: function (data) {
-            if (data.features.length > 0) {
-                var infoj = JSON.parse(data.features[0].properties.infoj);
+    xhr_wmsGetClickFeatureInfo.abort();
+    xhr_wmsGetClickFeatureInfo = new XMLHttpRequest();
+    xhr_wmsGetClickFeatureInfo.open('GET', url);
+    xhr_wmsGetClickFeatureInfo.setRequestHeader('Content-Type', 'application/json');
+    xhr_wmsGetClickFeatureInfo.onload = function () {
+        if (xhr_wmsGetClickFeatureInfo.status === 200 && xhr_wmsGetClickFeatureInfo.responseText !== '') {
+            let data = JSON.parse(xhr_wmsGetClickFeatureInfo.responseText);
+            if (data.features[0]) {
+                let infoj = JSON.parse(data.features[0].properties.infoj);
                 if (infoj){
                     L.popup()
                         .setLatLng(JSON.parse(data.features[0].properties.latlonj))
@@ -1009,15 +1047,16 @@ function wmsGetClickFeatureInfo(url){
                 }
             }
         }
-    });
+    };
+    xhr_wmsGetClickFeatureInfo.send();
 }
 
 
 function buildHtmlTable(infoj) {
-    var table = document.createElement('table');
+    let table = document.createElement('table');
     Object.keys(infoj).map(function(Okey) {
         if (infoj[Okey]) {
-            var r = table.insertRow(table.rows.length);
+            let r = table.insertRow(table.rows.length);
             r.insertCell(0).innerHTML = Okey;
             r.insertCell(1).innerHTML = infoj[Okey];
         }
@@ -1030,4 +1069,13 @@ function getMath(arr, key, type) {
     return Math[type].apply(null, arr.map(function (obj) {
         return obj[key];
     }))
+}
+
+function paramString(uri_param){
+    let encodedString = '';
+    Object.keys(uri_param).map(function (key) {
+        if (encodedString.length > 0) encodedString += '&';
+        encodedString += encodeURI(key + "=" + uri_param[key]);
+    });
+    return encodedString;
 }

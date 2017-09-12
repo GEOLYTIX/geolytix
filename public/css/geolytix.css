@@ -2,22 +2,22 @@
 
 @font-face {
     font-family: ffmark_black;
-    src: url('/public/fonts/MarkWeb-Black.woff') format('woff');
+    src: url('/fonts/MarkWeb-Black.woff') format('woff');
 }
 
 @font-face {
     font-family: ffmark;
-    src: url('/public/fonts/MarkWebPro.woff') format('woff');
+    src: url('/fonts/MarkWebPro.woff') format('woff');
 }
 
 @font-face {
     font-family: ffmark_bold;
-    src: url('/public/fonts/MarkWebPro-Bold.woff') format('woff');
+    src: url('/fonts/MarkWebPro-Bold.woff') format('woff');
 }
 
 @font-face {
     font-family: ffmark_italic;
-    src: url('/public/fonts/MarkWebPro-Italic.woff') format('woff');
+    src: url('/fonts/MarkWebPro-Italic.woff') format('woff');
 }
 
 
@@ -31,6 +31,7 @@ body {
     font-family: ffmark, sans-serif;
     min-width: 799px;
     overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .cursor:hover {
@@ -119,6 +120,31 @@ p {
     z-index: 999;
 }
 
+.li_card__expanded:after,
+.li_card__expanded:before {
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    height: 0;
+    width: 0;
+    border: solid transparent;
+    content: " ";
+    pointer-events: none;
+}
+
+.li_card__expanded:before {
+    border-bottom-color: #000;
+    border-width: 16px;
+    margin-left: -16px;
+}
+
+.li_card__expanded:after {
+    border-bottom-color: #fff;
+    border-width: 15px;
+    margin-left: -15px;
+    z-index: 999;
+}
+
 .li_expander {
     position: absolute;
     top: auto;
@@ -129,9 +155,15 @@ p {
     visibility: hidden;
 }
 
+.li_expander_visible {
+    visibility: visible;
+}
+
 .li_expander > .li_card__content {
     padding: 15px 0;
 }
+
+
 
 
 
@@ -201,15 +233,15 @@ p {
 }
 
 #flag_cn {
-    background-image: url(/public/images/cn.svg);
+    background-image: url(/images/cn.svg);
 }
 
 #flag_jp {
-    background-image: url(/public/images/jp.svg);
+    background-image: url(/images/jp.svg);
 }
 
 #flag_gb {
-    background-image: url(/public/images/gb.svg);
+    background-image: url(/images/gb.svg);
 }
 
 .header__menu > div:hover {
@@ -238,7 +270,7 @@ p {
 #header__image {
     height: 100%;
     background:
-            url(/public/images/intro_geolytix.jpg)
+            url(/images/intro_geolytix.jpg)
             center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -299,19 +331,19 @@ p {
 }
 
 .network_strategy > .li_card__img {
-    background-image: url(/public/images/services/network_strategy.png);
+    background-image: url(/images/services/network_strategy.png);
 }
 
 .location_planning > .li_card__img {
-    background-image: url(/public/images/services/location_planning.png);
+    background-image: url(/images/services/location_planning.png);
 }
 
 .omnichannel_retailing > .li_card__img {
-    background-image: url(/public/images/services/omnichannel_retailing.png);
+    background-image: url(/images/services/omnichannel_retailing.png);
 }
 
 .spatial_modelling > .li_card__img {
-    background-image: url(/public/images/services/spatial_modelling.png);
+    background-image: url(/images/services/spatial_modelling.png);
 }
 
 
@@ -382,35 +414,35 @@ p {
 }
 
 .strip .arco {
-    background-image: url(/public/images/clients/arco_logo_white.png);
+    background-image: url(/images/clients/arco_logo_white.png);
 }
 
 .strip .asda {
-    background-image: url(/public/images/clients/asda_logo_white.png);
+    background-image: url(/images/clients/asda_logo_white.png);
 }
 
 .strip .camelot {
-    background-image: url(/public/images/clients/camelot_logo_white.png);
+    background-image: url(/images/clients/camelot_logo_white.png);
 }
 
 .strip .johnlewis {
-    background-image: url(/public/images/clients/johnlewis_logo_white.png);
+    background-image: url(/images/clients/johnlewis_logo_white.png);
 }
 
 .strip .onthemarket {
-    background-image: url(/public/images/clients/onthemarket_logo_white.png);
+    background-image: url(/images/clients/onthemarket_logo_white.png);
 }
 
 .strip .totalfitness {
-    background-image: url(/public/images/clients/totalfitness_logo_white.png);
+    background-image: url(/images/clients/totalfitness_logo_white.png);
 }
 
 .strip .swinton {
-    background-image: url(/public/images/clients/swinton_logo_white.png);
+    background-image: url(/images/clients/swinton_logo_white.png);
 }
 
 .strip .marks_and_spencer {
-    background-image: url(/public/images/clients/marks_and_spencer_logo_white.png);
+    background-image: url(/images/clients/marks_and_spencer_logo_white.png);
 }
 
 .case_studies__limiter > .container {
@@ -453,6 +485,9 @@ p {
     margin-bottom: 16px;
 }
 
+.case_studies__limiter table {
+    transition: all 0.5s;
+}
 
 
 /* GEODATA */
@@ -685,7 +720,7 @@ button {
 /* TEAM */
 #team_photo {
     background:
-            url(/public/images/team/glx_team.jpg)
+            url(images/team/glx_team.jpg)
             50% 100%;
     margin: 100px 0;
     width: 100%;
@@ -744,67 +779,67 @@ button {
 }
 
 .blair > .li_card__img {
-    background-image: url(/public/images/team/blair_.jpg);
+    background-image: url(/images/team/blair_.jpg);
 }
 
 .christoph > .li_card__img {
-    background-image: url(/public/images/team/christoph_.jpg);
+    background-image: url(/images/team/christoph_.jpg);
 }
 
 .dennis > .li_card__img {
-    background-image: url(/public/images/team/dennis_.jpg);
+    background-image: url(/images/team/dennis_.jpg);
 }
 
 .jasmin > .li_card__img {
-    background-image: url(/public/images/team/jasmin_.jpg);
+    background-image: url(/images/team/jasmin_.jpg);
 }
 
 .louise > .li_card__img {
-    background-image: url(/public/images/team/louise_.jpg);
+    background-image: url(/images/team/louise_.jpg);
 }
 
 .neil > .li_card__img {
-    background-image: url(/public/images/team/neil_.jpg);
+    background-image: url(/images/team/neil_.jpg);
 }
 
 .samantha > .li_card__img {
-    background-image: url(/public/images/team/samantha_.jpg);
+    background-image: url(/images/team/samantha_.jpg);
 }
 
 .sarah > .li_card__img {
-    background-image: url(/public/images/team/sarah_.jpg);
+    background-image: url(/images/team/sarah_.jpg);
 }
 
 .simon > .li_card__img {
-    background-image: url(/public/images/team/simon_.jpg);
+    background-image: url(/images/team/simon_.jpg);
 }
 
 .alana > .li_card__img {
-    background-image: url(/public/images/team/alana_.jpg);
+    background-image: url(/images/team/alana_.jpg);
 }
 
 .martin > .li_card__img {
-    background-image: url(/public/images/team/martin_.jpg);
+    background-image: url(/images/team/martin_.jpg);
 }
 
 .kerst > .li_card__img {
-    background-image: url(/public/images/team/kerst_.jpg);
+    background-image: url(/images/team/kerst_.jpg);
 }
 
 .donna > .li_card__img {
-    background-image: url(/public/images/team/donna_.jpg);
+    background-image: url(/images/team/donna_.jpg);
 }
 
 .agata > .li_card__img {
-    background-image: url(/public/images/team/agata_.jpg);
+    background-image: url(/images/team/agata_.jpg);
 }
 
 .dan > .li_card__img {
-    background-image: url(/public/images/team/dan_.jpg);
+    background-image: url(/images/team/dan_.jpg);
 }
 
 .danny > .li_card__img {
-    background-image: url(/public/images/team/danny_.jpg);
+    background-image: url(/images/team/danny_.jpg);
 }
 
 
@@ -894,15 +929,15 @@ button {
 }
 
 .awards > .strip:nth-of-type(1) > a:nth-of-type(1) {
-    background-image: url(/public/images/awards/award_qa.jpg);
+    background-image: url(/images/awards/award_qa.jpg);
 }
 
 .awards > .strip:nth-of-type(1) > a:nth-of-type(2) {
-    background-image: url(/public/images/awards/award_odi.jpg);
+    background-image: url(/images/awards/award_odi.jpg);
 }
 
 .awards > .strip:nth-of-type(1) > a:nth-of-type(3) {
-    background-image: url(/public/images/awards/award_fsb.jpg);
+    background-image: url(/images/awards/award_fsb.jpg);
 }
 
 .awards > .strip:nth-of-type(2) {
@@ -920,11 +955,11 @@ button {
 }
 
 .awards > .strip:nth-of-type(2) > a:nth-of-type(2) {
-    background-image: url(/public/images/awards/award_nba.jpg);
+    background-image: url(/images/awards/award_nba.jpg);
 }
 
 .awards > .strip:nth-of-type(2) > a:nth-of-type(3) {
-    background-image: url(/public/images/awards/award_sla.jpg);
+    background-image: url(/images/awards/award_sla.jpg);
 }
 
 .awards > .strip:nth-of-type(2) > a:nth-of-type(4):hover {
@@ -1039,6 +1074,6 @@ button {
     cursor: ns-resize;
 }
 
-::-webkit-scrollbar {
+#geodata__info__content::-webkit-scrollbar {
     display: none;
 }

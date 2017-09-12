@@ -1,5 +1,5 @@
-var intro__logo = document.getElementById('intro__logo');
-var intro__text = document.getElementById('intro__text');
+let intro__logo = document.getElementById('intro__logo');
+let intro__text = document.getElementById('intro__text');
 
 orientation();
 
@@ -19,54 +19,53 @@ function orientation() {
     }
 }
 
-$('#intro__burger').click(function(){
-    $('#intro__menu').toggle(200);
+document.getElementById('intro__burger').addEventListener('click', function(){
+    toggleClass(document.getElementById('intro__menu'),'intro__menu_show');
 });
 
-$('#intro__menu > div').click(function () {
-    $('#intro__menu').toggle(200);
-    var loc = $(this).attr('id');
+document.getElementById('intro__menu').addEventListener('click', function(event){
+    toggleClass(document.getElementById('intro__menu'),'intro__menu_show');
+    let loc = event.target.id;
     history.pushState({so: 'glx'}, loc, '?' + loc);
     scrollTo(loc);
 });
 
 scrollTo(window.location.search.substring(1));
 function scrollTo(section){
-    console.log();
-    var inner = $('.inner'),
-        geodata_section = $('.geodata__section');
-    section === 'services' ? inner.animate({scrollTop: $('#services__section').offset().top}, 600) :
-        section === 'case_studies' ? inner.animate({scrollTop: $('#case_studies__section').offset().top}, 600) :
-            section === 'geodata' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                section === 'team' ? inner.animate({scrollTop: $('#team__section').offset().top}, 600) :
-                    section === 'contact' ? inner.animate({scrollTop: $('#footer').offset().top}, 600) :
-                        section === 'seamless_locales' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                            section === 'retail_points' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                                section === 'retail_places' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                                    section === 'public_transport' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                                        section === 'postal_geom' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                                            section === 'town_suburb' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                                                section === 'education' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                                                    section === 'workplace' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                                                        section === 'poi' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                                                            section === 'residential' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                                                                section === 'uk_admin' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                                                                    section === 'property' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                                                                        section === 'road_network' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                                                                            section === 'media_com' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
-                                                                                section === 'physical' ? inner.animate({scrollTop: geodata_section.offset().top - 50}, 600) :
+    section === 'services' ? scrollElement(document.getElementById('inner'), document.getElementById('services__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+        section === 'case_studies' ? scrollElement(document.getElementById('inner'), document.getElementById('case_studies__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+            section === 'geodata' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                section === 'team' ? scrollElement(document.getElementById('inner'), document.getElementById('team__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                    section === 'contact' ? scrollElement(document.getElementById('inner'), document.getElementById('footer').getBoundingClientRect().top + window.pageYOffset, 400) :
+                        section === 'seamless_locales' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                            section === 'retail_points' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                                section === 'retail_places' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                                    section === 'public_transport' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                                        section === 'postal_geom' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                                            section === 'town_suburb' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                                                section === 'education' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                                                    section === 'workplace' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                                                        section === 'poi' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                                                            section === 'residential' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                                                                section === 'uk_admin' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                                                                    section === 'property' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                                                                        section === 'road_network' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                                                                            section === 'media_com' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
+                                                                                section === 'physical' ? scrollElement(document.getElementById('inner'), document.getElementById('geodata__section').getBoundingClientRect().top + window.pageYOffset, 400) :
                                                                                     null;
 }
 
-$('.map_link').click(function () {
-    // var _id = $(this).attr('id');
-    // history.pushState({so: 'glx'}, _id, '?' + _id);
-    history.pushState({so: 'glx'}, 'geodata', '?geodata');
-});
+let map_links = document.querySelectorAll('.map_link');
+for (let i = 0; i < map_links.length; i++) {
+    map_links[i].addEventListener('click', function() {
+        history.pushState({so: 'glx'}, 'geodata', '?geodata');
+    });
+}
+
 
 // preload images
-var img = new Image();
-var section_intro = document.getElementById('intro__section');
+let img = new Image();
+let section_intro = document.getElementById('intro__section');
 img.addEventListener('load', function(){
     section_intro.setAttribute('style', 'background-image: url(/public/images/intro_geolytix_m.jpg)');
     intro__logo.setAttribute('style', 'color: #fff');
@@ -79,12 +78,13 @@ img.addEventListener('error', function(){
 });
 img.src = '/public/images/intro_geolytix_m.jpg';
 
-var csInfo = document.getElementById('case_studies__info');
-var csLogos = document.getElementById('case_studies__logos');
-var csInfoTable = document.getElementById('case_studies__logos__table');
+
+let csInfo = document.getElementById('case_studies__info');
+let csLogos = document.getElementById('case_studies__logos');
+let csInfoTable = document.getElementById('case_studies__logos__table');
 csLogos.addEventListener('scroll', debounce(function(){
-    var swapy = csInfoTable.offsetWidth / 8;
-    var scrolly = csLogos.scrollLeft;
+    let swapy = csInfoTable.offsetWidth / 8;
+    let scrolly = csLogos.scrollLeft;
     removeClass(document.querySelectorAll('#case_studies__info .active'), 'active');
     scrolly < (swapy/2) ? addClass(document.querySelectorAll('#case_studies__info .camelot'), 'active') :
         scrolly < swapy + (swapy/2) ? addClass(document.querySelectorAll('#case_studies__info .johnlewis'), 'active') :
@@ -98,56 +98,30 @@ csLogos.addEventListener('scroll', debounce(function(){
 },300));
 
 function debounce(func, wait, immediate) {
-    var timeout;
+    let timeout;
     return function() {
-        var context = this, args = arguments;
-        var later = function() {
+        let context = this, args = arguments;
+        let later = function() {
             timeout = null;
             if (!immediate) func.apply(context, args);
         };
-        var callNow = immediate && !timeout;
+        let callNow = immediate && !timeout;
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
         if (callNow) func.apply(context, args);
     };
 }
 
-function hasClass(elem, className) {
-        return new RegExp(' ' + className + ' ').test(' ' + elem.className + ' ');
-}
-
-function addClass(elems, className) {
-    for (var i = 0; i < elems.length; i++) {
-        var elem = elems[i];
-        if (!hasClass(elem, className)) {
-            elem.className += ' ' + className;
-        }
-    }
-}
-
-function removeClass(elems, className) {
-    for (var i = 0; i < elems.length; i++) {
-        var elem = elems[i];
-        var newClass = ' ' + elem.className.replace(/[\t\r\n]/g, ' ') + ' ';
-        if (hasClass(elem, className)) {
-            while (newClass.indexOf(' ' + className + ' ') >= 0) {
-                newClass = newClass.replace(' ' + className + ' ', ' ');
-            }
-            elem.className = newClass.replace(/^\s+|\s+$/g, '');
-        }
-    }
-}
-
 
 
 // preload images
-var imgLoadArray = document.querySelectorAll('.img__load');
-for (var i = 0; i < imgLoadArray.length; i++) {
-    var imgDOM = imgLoadArray[i];
-    var imgID = imgDOM.getAttribute('id');
-    var img = new Image();
-    img.onload = imgLoad(imgDOM, imgID);
-    img.src = '/public/images/load/' + imgID + '.jpg';
+let imgLoadArray = document.querySelectorAll('.img__load');
+for (let i = 0; i < imgLoadArray.length; i++) {
+    let imgDOM = imgLoadArray[i];
+    let imgID = imgDOM.getAttribute('id');
+    let _img = new Image();
+    _img.onload = imgLoad(imgDOM, imgID);
+    _img.src = '/public/images/load/' + imgID + '.jpg';
 }
 
 function imgLoad(_imgDOM, _imgID){
@@ -155,7 +129,7 @@ function imgLoad(_imgDOM, _imgID){
 }
 
 // contact
-var mapZoom_contact = 14,
+let mapZoom_contact = 14,
     map_contact = L.map('map_contact', {
         scrollWheelZoom: false,
         zoomControl: false,
@@ -176,3 +150,97 @@ new L.Marker(
         })
     })
     .addTo(map_contact);
+
+
+function scrollElement(element, to, duration) {
+    if (duration <= 0) return;
+    let difference = to - element.scrollTop,
+        perTick = difference / duration * 10;
+    setTimeout(function() {
+        element.scrollTop = element.scrollTop + perTick;
+        if (element.scrollTop === to) return;
+        scrollElement(element, to, duration - 10);
+    }, 10);
+}
+
+function addClass(elements, myClass) {
+    if (!elements) return;
+
+    // if we have a selector, get the chosen elements
+    if (typeof(elements) === 'string') {
+        elements = document.querySelectorAll(elements);
+    } else if (elements.tagName) {
+        elements = [elements];
+    }
+
+    // add class to all chosen elements
+    for (let i = 0; i < elements.length; i++) {
+        if ((' ' + elements[i].className + ' ').indexOf(' ' + myClass + ' ') < 0) elements[i].className += ' ' + myClass;
+    }
+}
+
+function removeClass(elements, myClass) {
+    if (!elements) return;
+
+    // if we have a selector, get the chosen elements
+    if (typeof(elements) === 'string') {
+        elements = document.querySelectorAll(elements);
+    } else if (elements.tagName) { elements=[elements]; }
+
+    // create pattern to find class name
+    let reg = new RegExp('(^| )'+myClass+'($| )','g');
+
+    // remove class from all chosen elements
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].className = elements[i].className.replace(reg, ' ');
+    }
+}
+
+function toggleClass(elements, myClass) {
+    if (!elements) return;
+
+    // if we have a selector, get the chosen elements
+    if (typeof(elements) === 'string') {
+        elements = document.querySelectorAll(elements);
+    } else if (elements.tagName) { elements=[elements]; }
+
+    // create pattern to find class name
+    let reg = new RegExp('(^| )'+myClass+'($| )','g');
+
+    for (let i = 0; i < elements.length; i++) {
+        if ((' ' + elements[i].className + ' ').indexOf(' ' + myClass + ' ') > 0) {
+            elements[i].className = elements[i].className.replace(reg, ' ');
+        } else {
+            elements[i].className += ' ' + myClass;
+        }
+    }
+}
+
+function hasClass(elements, myClass) {
+    if (!elements) return;
+
+    // if we have a selector, get the chosen elements
+    if (typeof(elements) === 'string') {
+        elements = document.querySelectorAll(elements);
+    } else if (elements.tagName) {
+        elements = [elements];
+    }
+
+    // add class to all chosen elements
+    let n = 0;
+    for (let i = 0; i < elements.length; i++) {
+        if ((' ' + elements[i].className + ' ').indexOf(' ' + myClass + ' ') > 0) n++;
+    }
+
+    return n === elements.length;
+}
+
+function indexInParent(node) {
+    let children = node.parentNode.childNodes,
+        num = 0;
+    for (let i = 0; i < children.length; i++) {
+        if (children[i] === node) return num;
+        if (children[i].nodeType === 1) num++;
+    }
+    return -1;
+}

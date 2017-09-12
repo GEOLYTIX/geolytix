@@ -7,9 +7,8 @@
     <meta name="description" content="Experts in providing data and services for location, demographic, customer and market analysis for retailers and investors in the UK, Europe and America."/>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="google-site-verification" content="WzDKN0jC9LpNGDtUIOw7qxzuykgOEO4JhZ1NxwTktV8" />
 
-    <script type="application/javascript">
+    <!--<script type="application/javascript">
         //google analytics
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
@@ -23,12 +22,12 @@
         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
         ga('create', 'UA-82852467-4', 'auto');
         ga('send', 'pageview');
-    </script>
+    </script>-->
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-    <link rel="stylesheet" href="/public/css/fontello_embedded.css"/>
-    <link rel="stylesheet" href="/public/css/leaflet.css"/>
-    <link rel="stylesheet" href="/public/css/geolytix.css"/>
+    <link rel="stylesheet" href="css/fontello_embedded.css"/>
+    <link rel="stylesheet" href="css/leaflet.css"/>
+    <link rel="stylesheet" href="css/geolytix.css"/>
 
 </head>
 
@@ -51,7 +50,7 @@
 
 <div id="header__image"></div>
 
-<div class="services">
+<div id="section_services" class="services">
     <p>Since the day Geolytix came into being, we've been telling our customers where to go; how many stores, who to acquire, where to open and how to optimise home delivery and click & collect operations.</p>
     <p>Investing in stores and online is expensive</p>
     <p>We'll help you spend your money wisely</p>
@@ -106,7 +105,7 @@
 </div>
 
 
-<div class="case_studies">
+<div id="section_case_studies" class="case_studies">
     <div class="case_studies__limiter">
         <p>Case Studies</p>
         <p>We build close, on-going relationships with our customers and will become your trusted advisers.</p>
@@ -299,7 +298,7 @@
 </div>
 
 
-<div class="geodata">
+<div id='section_geodata' class="geodata">
     <p>GeoData</p>
     <p>Where people live, work, study and shop</p>
     <p>We create novel datasets using Open Data as inputs, to help with your network strategy and location based decisions.</p>
@@ -408,7 +407,7 @@
 <div id="team_photo"></div>
 
 
-<div class="team">
+<div id="section_team" class="team">
     <p>Meet the team</p>
     <p>We understand the likely challenges you will face.</p>
 
@@ -666,7 +665,7 @@
 </div>
 
 
-<div class="contact">
+<div id="section_contact" class="contact">
     <div class="contact__limiter">
         <button id="btnZoomIn_contact" class="mapButton noselect">
             <i class="material-icons">add</i>
@@ -712,7 +711,7 @@
         <li>
             <div class="li_card">
                 <a href="http://theodi.org/" target="_blank">
-                    <img src="/public/images/logo_odi_supporter.png"/>
+                    <img src="/images/logo_odi_supporter.png"/>
                 </a>
             </div>
         </li>
@@ -742,14 +741,14 @@
 </body>
 
 <script>const view_mode = 'integrated';</script>
-<script type="application/javascript" src="/public/js/jquery.js"></script>
-<script type="application/javascript" src="/public/js/jsrender.js"></script>
-<script type="application/javascript" src="/public/js/leaflet.js"></script>
-<script type="application/javascript" src="/public/js/proj4.js"></script>
-<script type="application/javascript" src="/public/js/leaflet.proj4.js"></script>
-<script type="application/javascript" src="/public/js/turf.js"></script>
-<script type="application/javascript" src="/public/js/leaflet.NonTiledLayer.js"></script>
-<script type="application/javascript" src="/public/js/geolytix.js"></script>
-<script type="application/javascript" src="/public/js/geodata.js"></script>
+
+<script type="application/javascript" src="js/jsrender.js"></script>
+<script type="application/javascript" src="js/leaflet.js"></script>
+<script type="application/javascript" src="js/proj4.js"></script>
+<script type="application/javascript" src="js/leaflet.proj4.js"></script>
+<script type="application/javascript" src="js/turf.js"></script>
+<script type="application/javascript" src="js/leaflet.NonTiledLayer.js"></script>
+<script type="application/javascript" src="js/build/geolytix_bundle.js"></script>
+<!--<script type="application/javascript" src="/public/js/geodata.js"></script>-->
 
 </html>
