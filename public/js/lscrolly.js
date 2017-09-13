@@ -1,7 +1,7 @@
 module.exports = function(scrolly) {
 
     let content = document.getElementById(scrolly + '_content'),
-        path = document.getElementById(scrolly + '_scrollbar-container'),
+        path = document.getElementById(scrolly + '_scrollbar_container'),
         scrollBar = document.getElementById(scrolly + '_scrollbar'),
         scrollEvent = new Event('scroll');
 

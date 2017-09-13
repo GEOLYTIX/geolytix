@@ -1,17 +1,17 @@
 /* FONTS */
 @font-face {
     font-family: ffmark_black;
-    src: url('/public/fonts/MarkWeb-Black.woff') format('woff');
+    src: url('/fonts/MarkWeb-Black.woff') format('woff');
 }
 
 @font-face {
     font-family: ffmark;
-    src: url('/public/fonts/MarkWebPro.woff') format('woff');
+    src: url('/fonts/MarkWebPro.woff') format('woff');
 }
 
 @font-face {
     font-family: ffmark_bold;
-    src: url('/public/fonts/MarkWebPro-Bold.woff') format('woff');
+    src: url('/fonts/MarkWebPro-Bold.woff') format('woff');
 }
 
 body {
@@ -79,14 +79,14 @@ body {
     }
 }
 
-#ctrl_content {
+#geodata__info_content {
     height: 100%;
     width: 100%;
     overflow-y: scroll;
     padding-left: 5px;
 }
 
-#ctrl_scrollbar_container {
+#geodata__info_scrollbar_container {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -95,13 +95,13 @@ body {
     background-color: lightgrey;
 }
 
-#ctrl_scrollbar {
+#geodata__info_scrollbar {
     position: absolute;
     width: 10px;
     background: #079e00;
 }
 
-#ctrl_scrollbar:hover {
+#geodata__info_scrollbar:hover {
     cursor: ns-resize;
 }
 

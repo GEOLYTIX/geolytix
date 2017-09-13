@@ -720,7 +720,7 @@ button {
 /* TEAM */
 #team_photo {
     background:
-            url(images/team/glx_team.jpg)
+            url(/images/team/glx_team.jpg)
             50% 100%;
     margin: 100px 0;
     width: 100%;
@@ -1048,14 +1048,14 @@ button {
 }
 
 
-#geodata__info__content {
+#geodata__info_content {
     height: 100%;
     width: 100%;
     overflow-y: scroll;
     padding-left: 5px;
 }
 
-#ctrl_scrollbar_container {
+#geodata__info_scrollbar_container {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -1064,16 +1064,16 @@ button {
     background-color: lightgrey;
 }
 
-#ctrl_scrollbar {
+#geodata__info_scrollbar {
     position: absolute;
     width: 2px;
     background: #079e00;
 }
 
-#ctrl_scrollbar:hover {
+#geodata__info_scrollbar:hover {
     cursor: ns-resize;
 }
 
-#geodata__info__content::-webkit-scrollbar {
+#geodata__info_content::-webkit-scrollbar {
     display: none;
 }

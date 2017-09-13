@@ -7,19 +7,19 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-    <link rel="stylesheet" href="/public/css/fontello_embedded.css"/>
-    <link rel="stylesheet" href="/public/css/leaflet.css"/>
-    <link rel="stylesheet" href="/public/css/leaflet_map.css"/>
-    <link rel="stylesheet" href="/public/css/gd_map.css"/>
+    <link rel="stylesheet" href="/css/fontello_embedded.css"/>
+    <link rel="stylesheet" href="/css/leaflet.css"/>
+    <link rel="stylesheet" href="/css/leaflet_map.css"/>
+    <link rel="stylesheet" href="/css/gd_map.css"/>
 </head>
 
 <body>
 
 <div class="geodata__info">
-    <div id="ctrl_scrollbar_container">
-        <div id="ctrl_scrollbar"></div>
+    <div id="geodata__info_scrollbar_container">
+        <div id="geodata__info_scrollbar"></div>
     </div>
-    <div id="ctrl_content">
+    <div id="geodata__info_content">
     {{include tmpl=gd_tmpl /}}
     </div>
 </div>
@@ -42,51 +42,6 @@
 
 </body>
 
-<script type="application/javascript" src="/public/js/leaflet.js"></script>
-<script type="application/javascript" src="/public/js/proj4.js"></script>
-<script type="application/javascript" src="/public/js/leaflet.proj4.js"></script>
-<script type="application/javascript" src="/public/js/turf.js"></script>
-<script type="application/javascript" src="/public/js/leaflet.NonTiledLayer.js"></script>
-<script>
-    let view_mode = 'desktop';
-
-
-    let content = document.getElementById('ctrl_content'),
-        path = document.getElementById('ctrl_scrollbar_container'),
-        scrollBar = document.getElementById('ctrl_scrollbar'),
-        scrollEvent = new Event('scroll');
-
-    content.addEventListener('scroll', function () {
-        scrollBar.style.height = path.clientHeight * content.clientHeight / content.scrollHeight + 'px';
-        scrollBar.style.top = path.clientHeight * content.scrollTop / content.scrollHeight + 'px';
-    });
-
-    window.addEventListener('resize', content.dispatchEvent.bind(content, scrollEvent));
-    content.dispatchEvent(scrollEvent);
-
-    scrollBar.addEventListener('mousedown', function (eDown) {
-        eDown.preventDefault();
-        let scrollBar_offsetTop = scrollBar.offsetTop,
-            eDown_pageY = eDown.pageY,
-            onMove = function (eMove) {
-                scrollBar.style.top = Math.min(
-                        path.clientHeight - scrollBar.clientHeight,
-                        Math.max(
-                            0,
-                            scrollBar_offsetTop + eMove.pageY - eDown_pageY
-                        )
-                    ) + 'px';
-                content.scrollTop = (content.scrollHeight * scrollBar.offsetTop / path.clientHeight);
-            };
-        document.addEventListener('mousemove', onMove);
-        document.addEventListener('mouseup', function () {
-            document.removeEventListener('mousemove', onMove);
-        });
-    });
-
-
-
-</script>
-<script type="application/javascript" src="/public/js/geodata.js"></script>
+<script type="application/javascript" src="js/build/gd_map_bundle.js"></script>
 
 </html>
