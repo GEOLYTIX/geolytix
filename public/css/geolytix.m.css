@@ -1,22 +1,22 @@
 /* FONTS */
 @font-face {
     font-family: ffmark_black;
-    src: url('/public/fonts/MarkWeb-Black.woff') format('woff');
+    src: url('/fonts/MarkWeb-Black.woff') format('woff');
 }
 
 @font-face {
     font-family: ffmark;
-    src: url('/public/fonts/MarkWebPro.woff') format('woff');
+    src: url('/fonts/MarkWebPro.woff') format('woff');
 }
 
 @font-face {
     font-family: ffmark_bold;
-    src: url('/public/fonts/MarkWebPro-Bold.woff') format('woff');
+    src: url('/fonts/MarkWebPro-Bold.woff') format('woff');
 }
 
 @font-face {
     font-family: ffmark_italic;
-    src: url('/public/fonts/MarkWebPro-Italic.woff') format('woff');
+    src: url('/fonts/MarkWebPro-Italic.woff') format('woff');
 }
 
 
@@ -29,18 +29,6 @@
     background-repeat: no-repeat;
     background-size: contain;
     border: 1px solid black;
-}
-
-#flag_cn {
-    background-image: url(/public/images/cn.svg);
-}
-
-#flag_jp {
-    background-image: url(/public/images/jp.svg);
-}
-
-#flag_gb {
-    background-image: url(/public/images/gb.svg);
 }
 
 html {
@@ -246,22 +234,6 @@ p {
     background-position: 40% 0;
 }
 
-.network_strategy {
-    background-image: url(/public/images/services/network_strategy.png);
-}
-
-.location_planning {
-    background-image: url(/public/images/services/location_planning.png);
-}
-
-.omnichannel_retailing {
-    background-image: url(/public/images/services/omnichannel_retailing.png);
-}
-
-.spatial_targeting {
-    background-image: url(/public/images/services/spatial_modelling.png);
-}
-
 
 
 /* CASE STUDIES */
@@ -293,38 +265,6 @@ p {
 
 #case_studies__logos .img__contain {
     background-position: center center;
-}
-
-#case_studies__logos .camelot {
-    background-image: url(/public/images/clients/camelot_logo_white.png);
-}
-
-#case_studies__logos .johnlewis {
-    background-image: url(/public/images/clients/johnlewis_logo_white.png);
-}
-
-#case_studies__logos .onthemarket {
-    background-image: url(/public/images/clients/onthemarket_logo_white.png);
-}
-
-#case_studies__logos .arco {
-    background-image: url(/public/images/clients/arco_logo_white.png);
-}
-
-#case_studies__logos .totalfitness {
-    background-image: url(/public/images/clients/totalfitness_logo_white.png);
-}
-
-#case_studies__logos .asda {
-    background-image: url(/public/images/clients/asda_logo_white.png);
-}
-
-#case_studies__logos .swinton {
-    background-image: url(/public/images/clients/swinton_logo_white.png);
-}
-
-#case_studies__logos .marks_and_spencer {
-    background-image: url(/public/images/clients/marks_and_spencer_logo_white.png);
 }
 
 #case_studies__info > .scroll__container {
@@ -529,25 +469,8 @@ p {
     background-position: center center;
 }
 
-#awards__section .strip:nth-of-type(1) > div:nth-of-type(1) {
-    background-image: url(/public/images/awards/award_qa.jpg);
-}
-
-#awards__section .strip:nth-of-type(1) > div:nth-of-type(2) {
-    background-image: url(/public/images/awards/award_odi.jpg);
-}
-
-#awards__section .strip:nth-of-type(1) > div:nth-of-type(3) {
-    background-image: url(/public/images/awards/award_fsb.jpg);
-}
-
 #awards__section .strip:nth-of-type(2) > div:nth-of-type(1) {
     margin-left: 150px;
-    background-image: url(/public/images/awards/award_nba.jpg);
-}
-
-#awards__section .strip:nth-of-type(2) > div:nth-of-type(2) {
-    background-image: url(/public/images/awards/award_sla.jpg);
 }
 
 .leaflet-control-attribution {
@@ -565,10 +488,22 @@ p {
     text-align: center;
 }
 
+.footer__top {
+    margin-bottom: 20px;
+}
+
+.footer__bottom {
+    margin-top: 20px;
+}
+
+#logo_odi_supporter {
+    background-position: center;
+}
+
 #footer .footer__half {
     width: 49%;
-    margin: 20px 0;
     display: inline-block;
+    min-height: 100px;
 }
 
 #footer p, #footer a {

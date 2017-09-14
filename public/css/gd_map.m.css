@@ -1,17 +1,17 @@
 /* FONTS */
 @font-face {
     font-family: ffmark_black;
-    src: url('/public/fonts/MarkWeb-Black.woff') format('woff');
+    src: url('/fonts/MarkWeb-Black.woff') format('woff');
 }
 
 @font-face {
     font-family: ffmark;
-    src: url('/public/fonts/MarkWebPro.woff') format('woff');
+    src: url('/fonts/MarkWebPro.woff') format('woff');
 }
 
 @font-face {
     font-family: ffmark_bold;
-    src: url('/public/fonts/MarkWebPro-Bold.woff') format('woff');
+    src: url('/fonts/MarkWebPro-Bold.woff') format('woff');
 }
 
 html {

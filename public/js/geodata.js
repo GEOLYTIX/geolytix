@@ -103,7 +103,7 @@ module.exports = function(map) {
             maxZoom: 15
         }).addTo(map);
 
-        infotable = document.querySelector('#gd_retail_places .infobox__table');
+        let infotable = document.querySelector('#gd_retail_places .infobox__table');
 
         if (view_mode === 'mobile') {
             map.on('click', function (e) {
@@ -895,7 +895,7 @@ module.exports = function(map) {
         return encodedString;
     }
 
-    let datasets = {
+    return {
         seamless_locales: seamless_locales,
         retail_points: retail_points,
         retail_places: retail_places,
@@ -911,10 +911,5 @@ module.exports = function(map) {
         road_network: road_network,
         media_com: media_com,
         physical: physical
-    };
-
-    return {
-        datasets: datasets
     }
-
 };

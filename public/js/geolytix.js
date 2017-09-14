@@ -1,11 +1,25 @@
 const helper = require('./helper');
 const L = require('leaflet');
 
-//window control
-let body = document.querySelector('html, body'),
-    parallax_team_photo = document.getElementById('team_photo');
 
+
+//image gd
+const parallax_team_photo = document.getElementById('team_photo');
 parallax_team_photo.style.height = parallax_team_photo.offsetWidth * 0.47 + 'px';
+
+const imgLoadArray = document.querySelectorAll('.img__load');
+for (let i = 0; i < imgLoadArray.length; i++) {
+    let img = new Image();
+    img.onload = function(){
+        imgLoadArray[i].style['background-image'] = 'url(/images/' + imgLoadArray[i].dataset.src +')';
+    };
+    img.src = '/images/' + imgLoadArray[i].dataset.src;
+}
+
+
+
+//window control
+let body = document.querySelector('html, body');
 
 function setHeader() {
     let distanceY = window.pageYOffset || document.documentElement.scrollTop;
@@ -35,9 +49,8 @@ document.getElementById('home').addEventListener('click',
 );
 
 document.querySelector('.header__menu').addEventListener('click', function(event){
-    let loc = event.target.id;
-    history.pushState({so: 'glx'}, loc, '?' + loc);
-    scrollTo(loc);
+    history.pushState({so: 'glx'}, event.target.id, '?' + event.target.id);
+    scrollTo(event.target.id);
 });
 
 const sections = {
@@ -138,7 +151,7 @@ btnZoomOut.addEventListener('click', function(){
 
 const geodata = require('./geodata')(map);
 
-geodata.datasets.pricing = function() {
+geodata.pricing = function() {
     document.querySelector('.geodata__pricing').style.display = 'block';
     let selectedPacks = 4,
         priceTable = ['£ null', '£ 3,000', '£ 5,500', '£ 8,000', '£ 10,000', '£ 12,000', '£ 14,000', '£ 16,000', '£ 18,000', '£ 20,000', '£ 22,000', '£ 24,000', '£ 25,000'],
@@ -162,7 +175,7 @@ geodata.datasets.pricing = function() {
     }
 };
 
-geodata.datasets.faq = function() {
+geodata.faq = function() {
     document.querySelector('.geodata__faq').style.display = 'block';
 };
 
@@ -213,14 +226,14 @@ function selectGeodata(_this) {
         if (xhr.status === 200) {
             document.getElementById('geodata__info_content').innerHTML = window.jsrender.templates(xhr.responseText).render();
             scrolly('geodata__info');
-            geodata.datasets[_this.id]();
+            geodata[_this.id]();
         }
     };
     xhr.send();
 }
 
 (function(dataset){
-    if (geodata.datasets[dataset]) {
+    if (geodata[dataset]) {
         selectGeodata(document.getElementById(dataset));
         helper.scrollElement(body, document.getElementById('section_geodata').getBoundingClientRect().top + window.pageYOffset - 80, 400);
     } else {

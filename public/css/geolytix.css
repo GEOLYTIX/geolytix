@@ -184,6 +184,9 @@ p {
     color: #000;
     background-color: #fff;
     height: 75px;
+    -webkit-box-shadow: 1px 1px 5px #777;
+    -moz-box-shadow: 1px 1px 5px #777;
+    box-shadow: 1px 1px 5px #777;
 }
 
 .header a {
@@ -230,18 +233,9 @@ p {
     display: block;
     background-repeat: no-repeat;
     background-size: contain;
-}
-
-#flag_cn {
-    background-image: url(/images/cn.svg);
-}
-
-#flag_jp {
-    background-image: url(/images/jp.svg);
-}
-
-#flag_gb {
-    background-image: url(/images/gb.svg);
+    -webkit-box-shadow: 1px 1px 3px #000;
+    -moz-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
 }
 
 .header__menu > div:hover {
@@ -269,9 +263,7 @@ p {
 
 #header__image {
     height: 100%;
-    background:
-            url(/images/intro_geolytix.jpg)
-            center center;
+    background-position: center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -328,22 +320,6 @@ p {
 
 .services .ul_grid > li > .li_card {
     height: 300px;
-}
-
-.network_strategy > .li_card__img {
-    background-image: url(/images/services/network_strategy.png);
-}
-
-.location_planning > .li_card__img {
-    background-image: url(/images/services/location_planning.png);
-}
-
-.omnichannel_retailing > .li_card__img {
-    background-image: url(/images/services/omnichannel_retailing.png);
-}
-
-.spatial_modelling > .li_card__img {
-    background-image: url(/images/services/spatial_modelling.png);
 }
 
 
@@ -411,38 +387,6 @@ p {
     border-width: 15px;
     margin-left: -15px;
     z-index: 999;
-}
-
-.strip .arco {
-    background-image: url(/images/clients/arco_logo_white.png);
-}
-
-.strip .asda {
-    background-image: url(/images/clients/asda_logo_white.png);
-}
-
-.strip .camelot {
-    background-image: url(/images/clients/camelot_logo_white.png);
-}
-
-.strip .johnlewis {
-    background-image: url(/images/clients/johnlewis_logo_white.png);
-}
-
-.strip .onthemarket {
-    background-image: url(/images/clients/onthemarket_logo_white.png);
-}
-
-.strip .totalfitness {
-    background-image: url(/images/clients/totalfitness_logo_white.png);
-}
-
-.strip .swinton {
-    background-image: url(/images/clients/swinton_logo_white.png);
-}
-
-.strip .marks_and_spencer {
-    background-image: url(/images/clients/marks_and_spencer_logo_white.png);
 }
 
 .case_studies__limiter > .container {
@@ -719,9 +663,8 @@ button {
 
 /* TEAM */
 #team_photo {
-    background:
-            url(/images/team/glx_team.jpg)
-            50% 100%;
+    /*background-image: url(/images/team/glx_team.jpg);*/
+    background-position: 50% 100%;
     margin: 100px 0;
     width: 100%;
     max-height: 1000px;
@@ -778,69 +721,6 @@ button {
     font-size: 80%;
 }
 
-.blair > .li_card__img {
-    background-image: url(/images/team/blair_.jpg);
-}
-
-.christoph > .li_card__img {
-    background-image: url(/images/team/christoph_.jpg);
-}
-
-.dennis > .li_card__img {
-    background-image: url(/images/team/dennis_.jpg);
-}
-
-.jasmin > .li_card__img {
-    background-image: url(/images/team/jasmin_.jpg);
-}
-
-.louise > .li_card__img {
-    background-image: url(/images/team/louise_.jpg);
-}
-
-.neil > .li_card__img {
-    background-image: url(/images/team/neil_.jpg);
-}
-
-.samantha > .li_card__img {
-    background-image: url(/images/team/samantha_.jpg);
-}
-
-.sarah > .li_card__img {
-    background-image: url(/images/team/sarah_.jpg);
-}
-
-.simon > .li_card__img {
-    background-image: url(/images/team/simon_.jpg);
-}
-
-.alana > .li_card__img {
-    background-image: url(/images/team/alana_.jpg);
-}
-
-.martin > .li_card__img {
-    background-image: url(/images/team/martin_.jpg);
-}
-
-.kerst > .li_card__img {
-    background-image: url(/images/team/kerst_.jpg);
-}
-
-.donna > .li_card__img {
-    background-image: url(/images/team/donna_.jpg);
-}
-
-.agata > .li_card__img {
-    background-image: url(/images/team/agata_.jpg);
-}
-
-.dan > .li_card__img {
-    background-image: url(/images/team/dan_.jpg);
-}
-
-.danny > .li_card__img {
-    background-image: url(/images/team/danny_.jpg);
-}
 
 
 /* CONTACT */
@@ -928,18 +808,6 @@ button {
     width: 33%;
 }
 
-.awards > .strip:nth-of-type(1) > a:nth-of-type(1) {
-    background-image: url(/images/awards/award_qa.jpg);
-}
-
-.awards > .strip:nth-of-type(1) > a:nth-of-type(2) {
-    background-image: url(/images/awards/award_odi.jpg);
-}
-
-.awards > .strip:nth-of-type(1) > a:nth-of-type(3) {
-    background-image: url(/images/awards/award_fsb.jpg);
-}
-
 .awards > .strip:nth-of-type(2) {
     margin-top: 40px;
     width: 100%;
@@ -954,14 +822,6 @@ button {
     cursor: default;
 }
 
-.awards > .strip:nth-of-type(2) > a:nth-of-type(2) {
-    background-image: url(/images/awards/award_nba.jpg);
-}
-
-.awards > .strip:nth-of-type(2) > a:nth-of-type(3) {
-    background-image: url(/images/awards/award_sla.jpg);
-}
-
 .awards > .strip:nth-of-type(2) > a:nth-of-type(4):hover {
     cursor: default;
 }
@@ -973,6 +833,11 @@ button {
 .footer {
     background-color: #222;
     padding-top: 30px;
+}
+
+#logo_odi_supporter {
+    height: 100px;
+    display: block;
 }
 
 .privacy_policy,

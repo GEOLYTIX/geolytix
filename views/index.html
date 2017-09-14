@@ -25,9 +25,9 @@
     </script>-->
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-    <link rel="stylesheet" href="css/fontello_embedded.css"/>
-    <link rel="stylesheet" href="css/leaflet.css"/>
-    <link rel="stylesheet" href="css/geolytix.css"/>
+    <link rel="stylesheet" href="/css/fontello_embedded.css"/>
+    <link rel="stylesheet" href="/css/leaflet.css"/>
+    <link rel="stylesheet" href="/css/geolytix.css"/>
 
 </head>
 
@@ -37,8 +37,8 @@
     <a id="home" class="cursor" href="/">GEOLYTIX</a>
     <div class="header__text">Better decisions where location matters</div>
     <div class="header__menu">
-        <div class="flag cursor"><a id="flag_cn" class="flag_link" href="http://atap.geolytix.cn"></a></div>
-        <div class="flag cursor"><a id="flag_jp" class="flag_link" href="http://atap.geolytix.jp"></a></div>
+        <div class="flag cursor"><a class="flag_link img__load" data-src="cn.svg" href="http://atap.geolytix.cn"></a></div>
+        <div class="flag cursor"><a class="flag_link img__load" data-src="jp.svg" href="http://atap.geolytix.jp"></a></div>
         <div id="contact" class="cursor">Contact</div>
         <div id="team" class="cursor">Team</div>
         <div id="blog" class="cursor"><a href="http://blog.geolytix.net">Blog</a></div>
@@ -48,7 +48,7 @@
     </div>
 </div>
 
-<div id="header__image"></div>
+<div id="header__image" class="img__load" data-src="intro_geolytix.jpg"></div>
 
 <div id="section_services" class="services">
     <p>Since the day Geolytix came into being, we've been telling our customers where to go; how many stores, who to acquire, where to open and how to optimise home delivery and click & collect operations.</p>
@@ -58,7 +58,7 @@
     <ul class="ul_grid">
         <li>
             <div class="li_card network_strategy cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="services/network_strategy.png"></div>
                 <div class="li_card__title">Network Strategy</div>
             </div>
             <div class="li_expander">
@@ -69,7 +69,7 @@
         </li>
         <li>
             <div class="li_card location_planning cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="services/location_planning.png"></div>
                 <div class="li_card__title">Location Planning</div>
             </div>
             <div class="li_expander">
@@ -80,7 +80,7 @@
         </li>
         <li>
             <div class="li_card omnichannel_retailing cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="services/omnichannel_retailing.png"></div>
                 <div class="li_card__title">Omnichannel Retailing</div>
             </div>
             <div class="li_expander">
@@ -91,7 +91,7 @@
         </li>
         <li>
             <div class="li_card spatial_modelling cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="services/spatial_modelling.png"></div>
                 <div class="li_card__title">Spatial Modelling</div>
             </div>
             <div class="li_expander">
@@ -112,22 +112,22 @@
 
         <div class="container_strip">
             <table class="strip" cellpadding="0" cellspacing="0">
-                <td class="cursor img__contain logo camelot"></td>
-                <td class="cursor img__contain logo johnlewis"></td>
-                <td class="cursor img__contain logo onthemarket"></td>
-                <td class="cursor img__contain logo arco"></td>
-                <td class="cursor img__contain logo totalfitness"></td>
-                <td class="cursor img__contain logo asda"></td>
-                <td class="cursor img__contain logo swinton"></td>
-                <td class="cursor img__contain logo marks_and_spencer active"></td>
-                <td class="cursor img__contain logo camelot"></td>
-                <td class="cursor img__contain logo johnlewis"></td>
-                <td class="cursor img__contain logo onthemarket"></td>
-                <td class="cursor img__contain logo arco"></td>
-                <td class="cursor img__contain logo totalfitness"></td>
-                <td class="cursor img__contain logo asda"></td>
-                <td class="cursor img__contain logo swinton"></td>
-                <td class="cursor img__contain logo marks_and_spencer"></td>
+                <td class="cursor img__contain logo camelot img__load" data-src="clients/camelot_logo_white.png"></td>
+                <td class="cursor img__contain logo johnlewis img__load" data-src="clients/johnlewis_logo_white.png"></td>
+                <td class="cursor img__contain logo onthemarket img__load" data-src="clients/onthemarket_logo_white.png"></td>
+                <td class="cursor img__contain logo arco img__load" data-src="clients/arco_logo_white.png"></td>
+                <td class="cursor img__contain logo totalfitness img__load" data-src="clients/totalfitness_logo_white.png"></td>
+                <td class="cursor img__contain logo asda img__load" data-src="clients/asda_logo_white.png"></td>
+                <td class="cursor img__contain logo swinton img__load" data-src="clients/swinton_logo_white.png"></td>
+                <td class="cursor img__contain logo marks_and_spencer img__load active" data-src="clients/marks_and_spencer_logo_white.png"></td>
+                <td class="cursor img__contain logo camelot img__load" data-src="clients/camelot_logo_white.png"></td>
+                <td class="cursor img__contain logo johnlewis img__load" data-src="clients/johnlewis_logo_white.png"></td>
+                <td class="cursor img__contain logo onthemarket img__load" data-src="clients/onthemarket_logo_white.png"></td>
+                <td class="cursor img__contain logo arco img__load" data-src="clients/arco_logo_white.png"></td>
+                <td class="cursor img__contain logo totalfitness img__load" data-src="clients/totalfitness_logo_white.png"></td>
+                <td class="cursor img__contain logo asda img__load" data-src="clients/asda_logo_white.png"></td>
+                <td class="cursor img__contain logo swinton img__load" data-src="clients/swinton_logo_white.png"></td>
+                <td class="cursor img__contain logo marks_and_spencer img__load" data-src="clients/marks_and_spencer_logo_white.png"></td>
             </table>
         </div>
 
@@ -404,7 +404,7 @@
 </div>
 
 
-<div id="team_photo"></div>
+<div id="team_photo" class="img__load" data-src="team/glx_team.jpg"></div>
 
 
 <div id="section_team" class="team">
@@ -414,7 +414,7 @@
     <ul class="ul_grid">
         <li>
             <div class="li_card blair cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/blair_.jpg"></div>
                 <div class="li_card__title">
                     <span>Blair Freebairn</span><br>
                     <span>Chief Executive</span>
@@ -429,7 +429,7 @@
         </li>
         <li>
             <div class="li_card sarah cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/sarah_.jpg"></div>
                 <div class="li_card__title">
                     <span>Sarah Hitchcock</span><br>
                     <span>Chief Operating Officer</span>
@@ -444,7 +444,7 @@
         </li>
         <li>
             <div class="li_card neil cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/neil_.jpg"></div>
                 <div class="li_card__title">
                     <span>Neil Farricker</span><br>
                     <span>Director of Data Science</span>
@@ -459,7 +459,7 @@
         </li>
         <li>
             <div class="li_card samantha cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/samantha_.jpg"></div>
                 <div class="li_card__title">
                     <span>Samantha Colebatch</span><br>
                     <span>Commercial Director</span>
@@ -474,7 +474,7 @@
         </li>
         <li>
             <div class="li_card simon cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/simon_.jpg"></div>
                 <div class="li_card__title">
                     <span>Simon Dixon</span><br>
                     <span>Technical Director</span>
@@ -489,7 +489,7 @@
         </li>
         <li>
             <div class="li_card louise cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/louise_.jpg"></div>
                 <div class="li_card__title">
                     <span>Louise Cross</span><br>
                     <span>Data Scientist</span>
@@ -505,7 +505,7 @@
         </li>
         <li>
             <div class="li_card christoph cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/christoph_.jpg"></div>
                 <div class="li_card__title">
                     <span>Christoph Mülligann</span><br>
                     <span>Data Scientist</span>
@@ -520,7 +520,7 @@
         </li>
         <li>
             <div class="li_card jasmin cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/jasmin_.jpg"></div>
                 <div class="li_card__title">
                     <span>Jasmin Fitzpatrick</span><br>
                     <span>Associate</span>
@@ -535,7 +535,7 @@
         </li>
         <li>
             <div class="li_card dennis cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/dennis_.jpg"></div>
                 <div class="li_card__title">
                     <span>Dennis Bauszus</span><br>
                     <span>Web Solutions Engineer</span>
@@ -556,7 +556,7 @@
         </li>
         <li>
             <div class="li_card martin cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/martin_.jpg"></div>
                 <div class="li_card__title">
                     <span>Martin Bregazzi</span><br>
                     <span>Associate</span>
@@ -571,7 +571,7 @@
         </li>
         <li>
             <div class="li_card alana cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/alana_.jpg"></div>
                 <div class="li_card__title">
                     <span>Alana Sutton</span><br>
                     <span>Location Analyst</span>
@@ -587,7 +587,7 @@
         </li>
         <li>
             <div class="li_card kerst cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/kerst_.jpg"></div>
                 <div class="li_card__title">
                     <span>Kerst Mattner</span><br>
                     <span>Data Scientist</span>
@@ -602,7 +602,7 @@
         </li>
         <li>
             <div class="li_card donna cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/donna_.jpg"></div>
                 <div class="li_card__title">
                     <span>Donna Kirton</span><br>
                     <span>Office Support</span>
@@ -618,7 +618,7 @@
         </li>
         <li>
             <div class="li_card dan cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/dan_.jpg"></div>
                 <div class="li_card__title">
                     <span>Dan Dungate</span><br>
                     <span>Data Scientist</span>
@@ -633,7 +633,7 @@
         </li>
         <li>
             <div class="li_card agata cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/agata_.jpg"></div>
                 <div class="li_card__title">
                     <span>Agata Brok</span><br>
                     <span>Developer</span>
@@ -647,7 +647,7 @@
         </li>
         <li>
             <div class="li_card danny cursor">
-                <div class="li_card__img img__contain"></div>
+                <div class="li_card__img img__contain img__load" data-src="team/danny_.jpg"></div>
                 <div class="li_card__title">
                     <span>Danny Hart</span><br>
                     <span>Data Scientist</span>
@@ -690,15 +690,15 @@
 <div class="awards">
 
     <div class="strip">
-        <a class="img__contain" href="http://blog.geolytix.net/2016/07/01/data-analytics-firm-geolytix-win-queens-award-for-enterprise" target="_blank"></a>
-        <a class="img__contain" href="https://theodi.org/news/first-odi-open-data-awards-presented-by-sir-tim-berners-lee-and-sir-nigel-shadbolt" target="_blank"></a>
-        <a class="img__contain" href="http://businessawardslondon.co.uk" target="_blank"></a>
+        <a class="img__contain img__load" data-src="awards/award_qa.jpg" href="http://blog.geolytix.net/2016/07/01/data-analytics-firm-geolytix-win-queens-award-for-enterprise" target="_blank"></a>
+        <a class="img__contain img__load" data-src="awards/award_odi.jpg" href="https://theodi.org/news/first-odi-open-data-awards-presented-by-sir-tim-berners-lee-and-sir-nigel-shadbolt" target="_blank"></a>
+        <a class="img__contain img__load" data-src="awards/award_fsb.jpg" href="http://businessawardslondon.co.uk" target="_blank"></a>
     </div>
 
     <div class="strip">
         <a class="img__contain"></a>
-        <a class="img__contain" href="https://blog.geolytix.net/2014/07/25/national-business-awards-double-finalists" target="_blank"></a>
-        <a class="img__contain" href="http://www.thesla.org/previous-winners" target="_blank"></a>
+        <a class="img__contain img__load" data-src="awards/award_nba.jpg" href="https://blog.geolytix.net/2014/07/25/national-business-awards-double-finalists" target="_blank"></a>
+        <a class="img__contain img__load" data-src="awards/award_sla.jpg" href="http://www.thesla.org/previous-winners" target="_blank"></a>
         <a class="img__contain"></a>
     </div>
 
@@ -709,11 +709,7 @@
     <ul class="ul_grid">
 
         <li>
-            <div class="li_card">
-                <a href="http://theodi.org/" target="_blank">
-                    <img src="/images/logo_odi_supporter.png"/>
-                </a>
-            </div>
+            <a id="logo_odi_supporter" class="li_card img__contain img__load" data-src="logo_odi_supporter.png" href="http://theodi.org/" target="_blank"></a>
         </li>
 
         <li>
@@ -740,7 +736,8 @@
 
 </body>
 
-<script type="application/javascript" src="js/jsrender.js"></script>
-<script type="application/javascript" src="js/build/geolytix_bundle.js"></script>
+<script>const view_mode = 'desktop';</script>
+<script type="application/javascript" src="/js/jsrender.js"></script>
+<script type="application/javascript" src="/js/build/geolytix_bundle.js"></script>
 
 </html>

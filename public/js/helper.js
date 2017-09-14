@@ -96,12 +96,29 @@ module.exports = (function () {
         return -1;
     };
 
+    function debounce(func, wait, immediate) {
+        let timeout;
+        return function () {
+            let context = this,
+                args = arguments,
+                later = function () {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                },
+                callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+    }
+
     return {
         scrollElement:scrollElement,
         addClass:addClass,
         removeClass:removeClass,
         toggleClass:toggleClass,
         hasClass:hasClass,
-        indexInParent:indexInParent
+        indexInParent:indexInParent,
+        debounce: debounce
     };
 })();

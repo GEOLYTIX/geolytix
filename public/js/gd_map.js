@@ -43,5 +43,4 @@ map.on('zoomend', function () {
 });
 
 const geodata = require('./geodata')(map);
-geodata.datasets[window.location.search.substring(1)]();
-require('./lscrolly')('geodata__info');
+geodata[window.location.search.substring(1)]();
