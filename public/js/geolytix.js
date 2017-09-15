@@ -3,7 +3,7 @@ const L = require('leaflet');
 
 
 
-//image gd
+//images
 const parallax_team_photo = document.getElementById('team_photo');
 parallax_team_photo.style.height = parallax_team_photo.offsetWidth * 0.47 + 'px';
 
@@ -19,7 +19,7 @@ for (let i = 0; i < imgLoadArray.length; i++) {
 
 
 //window control
-let body = document.querySelector('html, body');
+const body = document.querySelector('html, body');
 
 function setHeader() {
     let distanceY = window.pageYOffset || document.documentElement.scrollTop;
@@ -45,6 +45,7 @@ document.getElementById('home').addEventListener('click',
     function (e) {
         e.preventDefault();
         helper.scrollElement(body, 0, 400);
+        history.pushState({so: 'glx'}, this.id, '?');
     }
 );
 
@@ -68,50 +69,51 @@ function scrollTo(section) {
 
 
 // card controls
-let section_services = document.getElementById('section_services'),
-    service_cards = section_services.querySelectorAll('.ul_grid .li_card');
+const section_services = document.getElementById('section_services');
+const service_cards = section_services.querySelectorAll('.ul_grid .li_card');
 for (let i = 0; i < service_cards.length; i++) {
     service_cards[i].addEventListener('click', function() {
         expandCard(section_services, this)
     });
 }
-expandCard(section_services, section_services.querySelector('.network_strategy'));
+expandCard(section_services, section_services.querySelector('.li_card'));
 
-let section_team = document.getElementById('section_team'),
-    team_cards = section_team.querySelectorAll('.ul_grid .li_card');
+const section_team = document.getElementById('section_team');
+const team_cards = section_team.querySelectorAll('.ul_grid .li_card');
 for (let i = 0; i < team_cards.length; i++) {
     team_cards[i].addEventListener('click', function() {
         expandCard(section_team, this);
         helper.scrollElement(body, this.getBoundingClientRect().top + window.pageYOffset - 80, 400)
     });
 }
-expandCard(section_team, section_team.querySelector('.blair'));
+expandCard(section_team, section_team.querySelector('.li_card'));
 
 function expandCard(section, _this) {
-    helper.removeClass(section.querySelector('.li_expander_visible'), 'li_expander_visible');
-    if (section.querySelector('.li_card__expanded')) section.querySelector('.li_card__expanded').parentNode.removeAttribute('style');
-    helper.removeClass(section.querySelector('.li_card__expanded'), 'li_card__expanded');
-    helper.addClass(_this, 'li_card__expanded');
-    _this.parentNode.style.height = (_this.parentNode.querySelector('.li_card').offsetHeight + _this.parentNode.querySelector('.li_card__content').offsetHeight + 50) + 'px';
-    helper.addClass(_this.nextElementSibling, 'li_expander_visible');
+    helper.removeClass(section.querySelector('.visible'), 'visible');
+    if (section.querySelector('.expanded')) section.querySelector('.expanded').parentNode.removeAttribute('style');
+    helper.removeClass(section.querySelector('.expanded'), 'expanded');
+    helper.addClass(_this, 'expanded');
+    _this.parentNode.style.height = (_this.parentNode.querySelector('.li_card').offsetHeight + _this.parentNode.querySelector('.li_expander').offsetHeight + 50) + 'px';
+    helper.addClass(_this.nextElementSibling, 'visible');
 }
 
 
 
 // case studies
-let section_case_studies = document.getElementById('section_case_studies');
-section_case_studies.querySelector('.strip').addEventListener('click', function(event){
+const section_case_studies = document.getElementById('section_case_studies');
+const case_studies_strip = section_case_studies.querySelector('#case_studies_strip > table');
+case_studies_strip.addEventListener('click', function(event){
     helper.removeClass(section_case_studies.querySelector('.active'), 'active');
     helper.addClass(event.target, 'active');
     let index = helper.indexInParent(event.target) - 1;
-    section_case_studies.querySelector('.strip').style['marginLeft'] = '-' + index * 20 + '%';
+    case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
     if (index > 8) index -= 8;
     if (index < 0) index += 8;
     helper.addClass(section_case_studies.querySelectorAll('.logo')[index+1], 'active');
-    section_case_studies.querySelector('.strip').style['marginLeft'] = '-' + index * 20 + '%';
+    case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
     index++;
     if (index >= 8) index -= 8;
-    section_case_studies.querySelector('.container_table').style['marginLeft'] = '-' + index * 100 + '%';
+    section_case_studies.querySelector('#case_studies_container > table').style['marginLeft'] = '-' + index * 100 + '%';
 });
 
 
@@ -179,7 +181,7 @@ geodata.faq = function() {
     document.querySelector('.geodata__faq').style.display = 'block';
 };
 
-const scrolly = require('./lscrolly');
+require('./lscrolly')(document.querySelector('.geodata__info'));
 
 document.querySelector('.geodata__select').addEventListener('click', function(){
     let id = event.target.id;
@@ -203,10 +205,6 @@ function selectGeodata(_this) {
     map.off('zoomend');
     map.off('moveend');
 
-    // map.on('movestart', function () {
-    //     if (layerGrid) map.removeLayer(layerGrid);
-    // });
-
     map.on('moveend', function () {
         mapZoom = map.getZoom();
         chkZoomBtn();
@@ -224,8 +222,7 @@ function selectGeodata(_this) {
     xhr.setRequestHeader('Content-Type', 'text/html');
     xhr.onload = function () {
         if (xhr.status === 200) {
-            document.getElementById('geodata__info_content').innerHTML = window.jsrender.templates(xhr.responseText).render();
-            scrolly('geodata__info');
+            document.querySelector('.geodata__info > .content').innerHTML = window.jsrender.templates(xhr.responseText).render();
             geodata[_this.id]();
         }
     };

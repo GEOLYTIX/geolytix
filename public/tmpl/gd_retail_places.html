@@ -1,269 +1,323 @@
-<div>
+<style>
+    .infobox__legend .box {
+        width: 30px;
+        height: 15px;
+    }
 
-    <style>
-        .infobox__legend .box {
-            width: 30px;
-            height: 15px;
-        }
+    #major_city_centre {
+        background-color: #ff0000;
+        opacity: 0.7;
+        border: 2px solid #980000;
+    }
 
-        #major_city_centre {
-            background-color: #ff0000;
-            opacity: 0.7;
-            border: 2px solid #980000;
-        }
+    #city_centre {
+        background-color: #ff0000;
+        opacity: 0.65;
+        border: 2px solid #980000;
+    }
 
-        #city_centre {
-            background-color: #ff0000;
-            opacity: 0.65;
-            border: 2px solid #980000;
-        }
+    #large_town_centre {
+        background-color: #ff0000;
+        opacity: 0.6;
+        border: 2px solid #980000;
+    }
 
-        #large_town_centre {
-            background-color: #ff0000;
-            opacity: 0.6;
-            border: 2px solid #980000;
-        }
+    #major_urban_centre {
+        background-color: #ff0000;
+        opacity: 0.55;
+        border: 2px solid #980000;
+    }
 
-        #major_urban_centre {
-            background-color: #ff0000;
-            opacity: 0.55;
-            border: 2px solid #980000;
-        }
+    #town_centre {
+        background-color: #ff0000;
+        opacity: 0.45;
+        border: 2px solid #980000;
+    }
 
-        #town_centre {
-            background-color: #ff0000;
-            opacity: 0.45;
-            border: 2px solid #980000;
-        }
+    #urban_centre {
+        background-color: #ff0000;
+        opacity: 0.4;
+        border: 2px solid #980000;
+    }
 
-        #urban_centre {
-            background-color: #ff0000;
-            opacity: 0.4;
-            border: 2px solid #980000;
-        }
+    #small_town_centre {
+        background-color: #ff0000;
+        opacity: 0.35;
+        border: 2px solid #980000;
+    }
 
-        #small_town_centre {
-            background-color: #ff0000;
-            opacity: 0.35;
-            border: 2px solid #980000;
-        }
+    #village_centre {
+        background-color: #ff0000;
+        opacity: 0.3;
+        border: 2px solid #980000;
+    }
 
-        #village_centre {
-            background-color: #ff0000;
-            opacity: 0.3;
-            border: 2px solid #980000;
-        }
+    #regional_sc {
+        background-color: #ff7f00;
+        opacity: 0.7;
+        border: 2px solid #cb6200;
+    }
 
-        #regional_sc {
-            background-color: #ff7f00;
-            opacity: 0.7;
-            border: 2px solid #cb6200;
-        }
+    #outlet_centre {
+        background-color: #ff7f00;
+        opacity: 0.6;
+        border: 2px solid #cb6200;
+    }
 
-        #outlet_centre {
-            background-color: #ff7f00;
-            opacity: 0.6;
-            border: 2px solid #cb6200;
-        }
+    #shopping_park {
+        background-color: #ff7f00;
+        opacity: 0.5;
+        border: 2px solid #cb6200;
+    }
 
-        #shopping_park {
-            background-color: #ff7f00;
-            opacity: 0.5;
-            border: 2px solid #cb6200;
-        }
+    #retail_park {
+        background-color: #ff7f00;
+        opacity: 0.4;
+        border: 2px solid #cb6200;
+    }
 
-        #retail_park {
-            background-color: #ff7f00;
-            opacity: 0.4;
-            border: 2px solid #cb6200;
-        }
+    #leisure_park {
+        background-color: #ff7f00;
+        opacity: 0.3;
+        border: 2px solid #cb6200;
+    }
 
-        #leisure_park {
-            background-color: #ff7f00;
-            opacity: 0.3;
-            border: 2px solid #cb6200;
-        }
+    #local_hub {
+        background-color: #faf43e;
+        opacity: 0.7;
+        border: 2px solid #d0bc2f;
+    }
 
-        #local_hub {
-            background-color: #faf43e;
-            opacity: 0.7;
-            border: 2px solid #d0bc2f;
-        }
+    #large_parade {
+        background-color: #faf43e;
+        opacity: 0.6;
+        border: 2px solid #d0bc2f;
+    }
 
-        #large_parade {
-            background-color: #faf43e;
-            opacity: 0.6;
-            border: 2px solid #d0bc2f;
-        }
+    #parade {
+        background-color: #faf43e;
+        opacity: 0.5;
+        border: 2px solid #d0bc2f;
+    }
 
-        #parade {
-            background-color: #faf43e;
-            opacity: 0.5;
-            border: 2px solid #d0bc2f;
-        }
+    #weak_parade {
+        background-color: #faf43e;
+        opacity: 0.4;
+        border: 2px solid #d0bc2f;
+    }
 
-        #weak_parade {
-            background-color: #faf43e;
-            opacity: 0.4;
-            border: 2px solid #d0bc2f;
-        }
+    .infobox__legend td:nth-of-type(2),
+    .infobox__legend td:nth-of-type(4) {
+        width: 100px;
+    }
 
-        .infobox__legend td:nth-of-type(2),
-        .infobox__legend td:nth-of-type(4) {
-            width: 100px;
-        }
+    .infobox__legend {
+        font-family: ffmark;
+        font-size: 12px;
+    }
 
-        .infobox__legend {
-            font-family: ffmark;
-            font-size: 12px;
-        }
+    .infobox__legend .active {
+        font-family: ffmark_bold, sans-serif;
+    }
 
-        .infobox__legend .active {
-            font-family: ffmark_bold, sans-serif;
-        }
+    .pitch_score {
+        width: 100%;
+        border-collapse: collapse;
+    }
 
-        .pitch_score {
-            width: 100%;
-            border-collapse: collapse;
-        }
+    .pitch_score .hex {
+        height: 30px;
+        width: 30px;
+    }
 
-        .pitch_score .hex {
-            height: 30px;
-            width: 30px;
-        }
+    .pitch_score .hex_dc2520 {
+        background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%23dc2520%22%20opacity%3D%220.5%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
+        background-size: contain;
+    }
 
-        .pitch_score .hex_dc2520 {
-            background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%23dc2520%22%20opacity%3D%220.5%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
-            background-size: contain;
-        }
+    .pitch_score .hex_c1203c {
+        background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%23c1203c%22%20opacity%3D%220.45%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
+        background-size: contain;
+    }
 
-        .pitch_score .hex_c1203c {
-            background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%23c1203c%22%20opacity%3D%220.45%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
-            background-size: contain;
-        }
+    .pitch_score .hex_a51b58 {
+        background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%23a51b58%22%20opacity%3D%220.4%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
+        background-size: contain;
+    }
 
-        .pitch_score .hex_a51b58 {
-            background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%23a51b58%22%20opacity%3D%220.4%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
-            background-size: contain;
-        }
+    .pitch_score .hex_8a1774 {
+        background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%238a1774%22%20opacity%3D%220.35%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
+        background-size: contain;
+    }
 
-        .pitch_score .hex_8a1774 {
-            background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%238a1774%22%20opacity%3D%220.35%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
-            background-size: contain;
-        }
+    .pitch_score .hex_6e1290 {
+        background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%236e1290%22%20opacity%3D%220.3%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
+        background-size: contain;
+    }
 
-        .pitch_score .hex_6e1290 {
-            background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%236e1290%22%20opacity%3D%220.3%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
-            background-size: contain;
-        }
+    .pitch_score .hex_520dac {
+        background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%23520dac%22%20opacity%3D%220.25%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
+        background-size: contain;
+    }
 
-        .pitch_score .hex_520dac {
-            background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%23520dac%22%20opacity%3D%220.25%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
-            background-size: contain;
-        }
+    .pitch_score .hex_3709c8 {
+        background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%233709c8%22%20opacity%3D%220.2%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
+        background-size: contain;
+    }
 
-        .pitch_score .hex_3709c8 {
-            background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%233709c8%22%20opacity%3D%220.2%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
-            background-size: contain;
-        }
+    .pitch_score .hex_1b04e4 {
+        background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%231b04e4%22%20opacity%3D%220.15%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
+        background-size: contain;
+    }
 
-        .pitch_score .hex_1b04e4 {
-            background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%231b04e4%22%20opacity%3D%220.15%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
-            background-size: contain;
-        }
+    .pitch_score .hex_0000ff {
+        background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%230000ff%22%20opacity%3D%220.1%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
+        background-size: contain;
+    }
 
-        .pitch_score .hex_0000ff {
-            background: url(data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22100%22%20height%3D%22100%22%3E%0A%3Cpath%20fill%3D%22%230000ff%22%20opacity%3D%220.1%22%20d%3D%22M50%2010L85%2030L85%2070L50%2090L15%2070L15%2030Z%22%3E%3C/path%3E%0A%3C/svg%3E);
-            background-size: contain;
-        }
+</style>
 
-    </style>
+<div id="gd_retail_places" class="infobox">
+    <p>More than 20k scored, profiled and named polygons detailing where people shop in the UK, and catchment area
+        demographics. Ideal for locating new sites and understanding micro location performance. Additionally pitch can
+        be purchased along side this pack.</p>
+    <p><a href="https://drive.google.com/open?id=0B5UPsNN3XERXUjgtNW1GTFFZSUU"
+          target="_blank">Download a sub-set of four hundred centres; scored, profiled and named polygons detailing
+        where people shop in the UK. Note that the Open version requires attribution of the Ordnance Survey, Royal Mail,
+        and GEOLYTIX.</a></p>
 
-    <div id="gd_retail_places" class="infobox">
-        <p>More than 20k scored, profiled and named polygons detailing where people shop in the UK, and catchment area demographics. Ideal for locating new sites and understanding micro location performance. Additionally pitch can be purchased along side this pack.</p>
-        <p><a href="https://drive.google.com/open?id=0B5UPsNN3XERXUjgtNW1GTFFZSUU"
-              target="_blank">Download a sub-set of four hundred centres; scored, profiled and named polygons detailing where people shop in the UK. Note that the Open version requires attribution of the Ordnance Survey, Royal Mail, and GEOLYTIX.</a></p>
+    <p><a class="docu_link"
+          href="https://drive.google.com/open?id=0B1GCK8cPXzg-OWE4Q3Nrdzk3d2M"
+          target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
 
-        <p><a class="infobox__docu_link"
-              href="https://drive.google.com/open?id=0B1GCK8cPXzg-OWE4Q3Nrdzk3d2M"
-              target="_blank"><i class="icon-file-pdf"></i> Documentation</a></p>
-
-        <table class="infobox__legend">
+    <table class="infobox__legend">
         <tr>
-            <td><div id="major_city_centre" class="box"></div></td>
+            <td>
+                <div id="major_city_centre" class="box"></div>
+            </td>
             <td><span>Major City Centre</span></td>
-            <td><div id="city_centre" class="box"></div></td>
+            <td>
+                <div id="city_centre" class="box"></div>
+            </td>
             <td><span>City Centre</span></td>
         </tr>
         <tr>
-            <td><div id="large_town_centre" class="box"></div></td>
+            <td>
+                <div id="large_town_centre" class="box"></div>
+            </td>
             <td><span>Large Town Centre</span></td>
-            <td><div id="major_urban_centre" class="box"></div></td>
+            <td>
+                <div id="major_urban_centre" class="box"></div>
+            </td>
             <td><span>Major Urban Centre</span></td>
         </tr>
         <tr>
-            <td><div id="town_centre" class="box"></div></td>
+            <td>
+                <div id="town_centre" class="box"></div>
+            </td>
             <td><span>Town Centre</span></td>
-            <td><div id="urban_centre" class="box"></div></td>
+            <td>
+                <div id="urban_centre" class="box"></div>
+            </td>
             <td><span>Urban Centre</span></td>
         </tr>
         <tr>
-            <td><div id="small_town_centre" class="box"></div></td>
+            <td>
+                <div id="small_town_centre" class="box"></div>
+            </td>
             <td><span>Small Town Centre</span></td>
-            <td><div id="village_centre" class="box"></div></td>
+            <td>
+                <div id="village_centre" class="box"></div>
+            </td>
             <td><span>Village Centre</span></td>
         </tr>
         <tr>
-            <td><div id="regional_sc" class="box"></div></td>
+            <td>
+                <div id="regional_sc" class="box"></div>
+            </td>
             <td><span>Regional SC</span></td>
-            <td><div id="outlet_centre" class="box"></div></td>
+            <td>
+                <div id="outlet_centre" class="box"></div>
+            </td>
             <td><span>Outlet Centre</span></td>
         </tr>
         <tr>
-            <td><div id="shopping_park" class="box"></div></td>
+            <td>
+                <div id="shopping_park" class="box"></div>
+            </td>
             <td><span>Shopping Park</span></td>
-            <td><div id="retail_park" class="box"></div></td>
+            <td>
+                <div id="retail_park" class="box"></div>
+            </td>
             <td><span>Retail Park</span></td>
         </tr>
         <tr>
-            <td><div id="leisure_park" class="box"></div></td>
+            <td>
+                <div id="leisure_park" class="box"></div>
+            </td>
             <td><span>Leisure Park</span></td>
-            <td><div id="local_hub" class="box"></div></td>
+            <td>
+                <div id="local_hub" class="box"></div>
+            </td>
             <td><span>Local Hub</span></td>
         </tr>
         <tr>
-            <td><div id="large_parade" class="box"></div></td>
+            <td>
+                <div id="large_parade" class="box"></div>
+            </td>
             <td><span>Large Parade</span></td>
-            <td><div id="parade" class="box"></div></td>
+            <td>
+                <div id="parade" class="box"></div>
+            </td>
             <td><span>Parade</span></td>
         </tr>
         <tr>
-            <td><div id="weak_parade" class="box"></div></td>
+            <td>
+                <div id="weak_parade" class="box"></div>
+            </td>
             <td><span>Weak Parade</span></td>
-            <td><div class="box"></div></td>
+            <td>
+                <div class="box"></div>
+            </td>
             <td><span></span></td>
         </tr>
-        </table>
+    </table>
 
-        <span>Pitch Score</span>
-        <table class="pitch_score">
-            <td><div class="hex hex_dc2520"></div></td>
-            <td><div class="hex hex_c1203c"></div></td>
-            <td><div class="hex hex_a51b58"></div></td>
-            <td><div class="hex hex_8a1774"></div></td>
-            <td><div class="hex hex_6e1290"></div></td>
-            <td><div class="hex hex_520dac"></div></td>
-            <td><div class="hex hex_3709c8"></div></td>
-            <td><div class="hex hex_1b04e4"></div></td>
-            <td><div class="hex hex_0000ff"></div></td>
-        </table>
+    <span>Pitch Score</span>
+    <table class="pitch_score">
+        <td>
+            <div class="hex hex_dc2520"></div>
+        </td>
+        <td>
+            <div class="hex hex_c1203c"></div>
+        </td>
+        <td>
+            <div class="hex hex_a51b58"></div>
+        </td>
+        <td>
+            <div class="hex hex_8a1774"></div>
+        </td>
+        <td>
+            <div class="hex hex_6e1290"></div>
+        </td>
+        <td>
+            <div class="hex hex_520dac"></div>
+        </td>
+        <td>
+            <div class="hex hex_3709c8"></div>
+        </td>
+        <td>
+            <div class="hex hex_1b04e4"></div>
+        </td>
+        <td>
+            <div class="hex hex_0000ff"></div>
+        </td>
+    </table>
 
-        <table class="infobox__table"></table>
+    <table class="infobox__table"></table>
 
-        <div class="infobox__attribution">
-            <p>Map data - OpenStreetMap</p>
-            <p>Tiles from CartoDB</p>
-        </div>
+    <div class="attribution">
+        <p>Map data - OpenStreetMap</p>
+        <p>Tiles from CartoDB</p>
     </div>
-
 </div>

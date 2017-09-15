@@ -11,25 +11,23 @@ router.get('/', function (req, res) {
     // }
     let _md = new md(req.headers['user-agent']),
         tmpl = (_md.mobile() === null || _md.tablet() !== null) ?
-            jsr.templates(req.headers.host.includes('.cn') ?
-                './views/index_cn.html' :
-                req.headers.host.includes('.jp') ?
-                    './views/index_jp.html' :
-                    './views/index.html') :
-            jsr.templates(req.headers.host.includes('.cn') ?
-                './views/mobile_cn.html' :
-                req.headers.host.includes('.jp') ?
-                    './views/mobile_jp.html' :
-                    './views/mobile.html');
+            jsr.templates('./views/index.html') : jsr.templates('./views/mobile.html'),
+        flags = req.headers.host.includes('.cn') ?
+            '<a class="flag_link img__load" data-src="gb.svg" href="http://atap.geolytix.net"></a>' :
+            req.headers.host.includes('.jp') ?
+                '<a class="flag_link img__load" data-src="gb.svg" href="http://atap.geolytix.net"></a>' :
+                '<a class="flag_link img__load" data-src="cn.svg" href="http://atap.geolytix.cn"></a><a class="flag_link img__load" data-src="jp.svg" href="http://atap.geolytix.jp"></a>';
 
-    res.send(tmpl.render());
+    res.send(tmpl.render({
+        flags: flags
+    }));
 });
 
 router.get('/map', function (req, res) {
     let _md = new md(req.headers['user-agent']),
         dataset = req.originalUrl.substring(req.originalUrl.indexOf('?') + 1),
         tmpl = (_md.mobile() === null || _md.tablet() !== null) ?
-            jsr.templates('./views/gd_map.html') :
+            jsr.templates('./views/gd_map_d.html') :
             jsr.templates('./views/gd_map_m.html');
 
     require('fs').existsSync('./public/tmpl/gd_' + dataset + '.html') ?

@@ -1,9 +1,10 @@
 const L = require('leaflet');
+if (view_mode === 'desktop') require('./lscrolly')(document.querySelector('.geodata__info'));
 
 let mapZoom = 13;
 const map = L.map('map_geodata', {
     renderer: L.svg(),
-    scrollWheelZoom: false,
+    scrollWheelZoom: true,
     zoomControl: false,
     maxBounds: L.latLngBounds(L.latLng(51.35, -0.4), L.latLng(51.65, 0.2)),
     minZoom: 12,

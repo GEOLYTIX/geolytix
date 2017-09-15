@@ -1,8 +1,8 @@
 module.exports = function(scrolly) {
 
-    let content = document.getElementById(scrolly + '_content'),
-        path = document.getElementById(scrolly + '_scrollbar_container'),
-        scrollBar = document.getElementById(scrolly + '_scrollbar'),
+    let content = scrolly.querySelector('.content'),
+        path = scrolly.querySelector('.scrollbar_container'),
+        scrollBar = scrolly.querySelector('.scrollbar'),
         scrollEvent = new Event('scroll');
 
     content.addEventListener('scroll', function () {

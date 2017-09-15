@@ -101,7 +101,7 @@
         var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null);
 
         L.NonTiledLayer = (L.Layer || L.Class).extend({
-            includes: L.Evented.prototype || L.Mixin.Events,
+            includes: L.Evented || L.Mixin.Events,
 
             emptyImageUrl: 'data:image/gif;base64,R0lGODlhAQABAHAAACH5BAUAAAAALAAAAAABAAEAAAICRAEAOw==', //1px transparent GIF
 

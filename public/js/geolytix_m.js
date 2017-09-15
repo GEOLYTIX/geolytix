@@ -20,11 +20,11 @@ orientation();
 
 //menu
 document.getElementById('intro__burger').addEventListener('click', function(){
-    helper.toggleClass(document.getElementById('intro__menu'),'intro__menu_show');
+    helper.toggleClass(document.getElementById('intro__menu'),'show');
 });
 
 document.getElementById('intro__menu').addEventListener('click', function(event){
-    helper.toggleClass(document.getElementById('intro__menu'),'intro__menu_show');
+    helper.toggleClass(document.getElementById('intro__menu'),'show');
     history.pushState({so: 'glx'}, event.target.id, '?' + event.target.id);
     scrollTo(event.target.id);
 });

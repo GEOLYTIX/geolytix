@@ -1,0 +1,42 @@
+#footer {
+  background-color: #222;
+  padding-top: 30px;
+
+  .logo_odi_supporter {
+    height: 100px;
+    display: block;
+  }
+
+  .privacy_policy,
+  .terms_conditions {
+    display: block;
+  }
+
+  i {
+    margin: -10px;
+  }
+
+  > .ul_grid > li {
+    width: 32%;
+    padding-bottom: 20px;
+    text-align: center;
+  }
+
+  .social_media__icons > a {
+    margin: -30px 5px 10px 5px;
+    font-size: 50px;
+
+    &:hover {
+      cursor: pointer;
+      color: $glxlightgreen;
+    }
+  }
+
+  p,
+  a {
+    margin: 0;
+    line-height: 1.5em;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+  }
+}
