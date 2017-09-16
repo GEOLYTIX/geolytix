@@ -14,7 +14,6 @@ for (let i = 0; i < imgLoadArray.length; i++) {
         imgLoadArray[i].style['background-image'] = 'url(/images/' + imgLoadArray[i].dataset.src +')';
         if (imgLoadArray[i].id === 'header__image') {
             helper.removeClass(document.querySelectorAll('.black'),'black');
-            document.getElementById('intro__text').setAttribute('style', 'color: #fff');
         }
     };
     img.src = '/images/' + imgLoadArray[i].dataset.src;
