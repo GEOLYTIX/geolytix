@@ -1,7 +1,7 @@
-let router = require('express').Router();
-let jsr = require('jsrender');
-let md = require('mobile-detect');
-let queries = require('./queries');
+const router = require('express').Router();
+const jsr = require('jsrender');
+const md = require('mobile-detect');
+const queries = require('./queries');
 
 router.get('/', function (req, res) {
     // if (/MSIE (\d+\.\d+);/.test(ua)) {
@@ -9,18 +9,40 @@ router.get('/', function (req, res) {
     //         res.redirect('https://blog.geolytix.net');
     //     }
     // }
-    let _md = new md(req.headers['user-agent']),
-        tmpl = (_md.mobile() === null || _md.tablet() !== null) ?
-            jsr.templates('./views/index.html') : jsr.templates('./views/mobile.html'),
-        flags = req.headers.host.includes('.cn') ?
-            '<a class="flag_link img__load" data-src="gb.svg" href="http://atap.geolytix.net"></a>' :
-            req.headers.host.includes('.jp') ?
-                '<a class="flag_link img__load" data-src="gb.svg" href="http://atap.geolytix.net"></a>' :
-                '<a class="flag_link img__load" data-src="cn.svg" href="http://atap.geolytix.cn"></a><a class="flag_link img__load" data-src="jp.svg" href="http://atap.geolytix.jp"></a>';
+    let _md = new md(req.headers['user-agent']);
 
-    res.send(tmpl.render({
-        flags: flags
-    }));
+    let o = (_md.mobile() === null || _md.tablet() !== null) ?
+        {
+            tmpl: jsr.templates('./views/index.html'),
+            platform: './public/tmpl/desktop/'
+        } : {
+            tmpl: jsr.templates('./views/mobile.html'),
+            platform: './public/tmpl/mobile/'
+        };
+
+    let locales = {
+        uk: {
+            header: o.platform + 'uk_header.html',
+            case_studies: o.platform + 'uk_case_studies.html',
+            team: o.platform + 'uk_team.html',
+            geodata: o.platform + 'uk_geodata.html'
+        },
+        cn: {
+            header: o.platform + 'cn_header.html',
+            team: o.platform + 'cn_team.html',
+            geodata: o.platform + 'cn_geodata.html'
+        },
+        jp: {
+            header: o.platform + 'jp_header.html',
+            team: o.platform + 'jp_team.html',
+            geodata: o.platform + 'jp_geodata.html'
+        }
+    };
+
+    req.headers.host.includes('.cn') ?
+        res.send(o.tmpl.render(locales.cn)) : req.headers.host.includes('.jp') ?
+        res.send(o.tmpl.render(locales.jp)) : res.send(o.tmpl.render(locales.uk));
+
 });
 
 router.get('/map', function (req, res) {

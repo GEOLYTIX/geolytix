@@ -5,7 +5,38 @@ require('./leaflet.NonTiledLayer-src');
 const turf_point = require('turf-point');
 const turf_inside = require('@turf/inside');
 
-module.exports = function(map) {
+module.exports = function() {
+    let mapZoom = 13,
+        minZoom = 12,
+        maxZoom = 17;
+
+    const map = L.map('map_geodata', {
+        renderer: L.svg(),
+        scrollWheelZoom: false,
+        zoomControl: false
+    });
+
+    const btnZoomIn = document.getElementById('btnZoomIn');
+    const btnZoomOut = document.getElementById('btnZoomOut');
+
+    function chkZoomBtn(){
+        mapZoom < maxZoom ? btnZoomIn.disabled = false : btnZoomIn.disabled = true;
+        mapZoom > minZoom ? btnZoomOut.disabled = false : btnZoomOut.disabled = true;
+    }
+
+    btnZoomIn.addEventListener('click', function () {
+        if (this.disabled) return;
+        mapZoom++;
+        map.setZoom(mapZoom);
+        chkZoomBtn();
+    });
+
+    btnZoomOut.addEventListener('click', function(){
+        if (this.disabled) return;
+        mapZoom--;
+        map.setZoom(mapZoom);
+        chkZoomBtn();
+    });
 
     map.createPane('labels');
     map.getPane('labels').style.zIndex = 650;
@@ -17,7 +48,60 @@ module.exports = function(map) {
         proj_4326 = proj4.Proj('EPSG:4326'),
         proj_3857 = proj4.Proj('EPSG:3857');
 
+    function setMap(minZ, maxZ, LL, minLL, maxLL){
+        map.eachLayer(function (layer) {
+            map.removeLayer(layer);
+        });
+        map.off('movestart');
+        map.off('mousemove');
+        map.off('click');
+        map.off('zoomend');
+        map.off('moveend');
+
+        map.on('moveend', function () {
+            mapZoom = map.getZoom();
+            chkZoomBtn();
+        });
+
+        map.on('zoomend', function () {
+            mapZoom = map.getZoom();
+            chkZoomBtn();
+        });
+
+        minZoom = minZ;
+        map.setMinZoom(minZoom);
+        maxZoom = maxZ;
+        map.setMaxZoom(maxZoom);
+        map.setMaxBounds(L.latLngBounds(L.latLng(minLL), L.latLng(maxLL)));
+        map.setView(LL, minZoom);
+    }
+
+    function japan() {
+        setMap(5, 15, [39, 136], [25, 125], [50, 155]);
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+    }
+
+    function tokyo() {
+        setMap(10, 17, [35.7, 139.7], [35, 139], [37, 141]);
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+    }
+
+    function china() {
+        setMap(4, 14, [35, 108], [0, 68], [58, 143]);
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+    }
+
+    function shanghai() {
+        setMap(9, 17, [31.3, 121.4], [30, 120], [33, 123]);
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+    }
+
     function seamless_locales() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         let layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
@@ -44,6 +128,7 @@ module.exports = function(map) {
     }
 
     function retail_points() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         let cqlFilterArray = ["brand='asda'", "brand='morrisons'", "brand='sainsburys'", "brand='tesco'"],
@@ -92,6 +177,7 @@ module.exports = function(map) {
     }
 
     function retail_places() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         let layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
@@ -146,6 +232,7 @@ module.exports = function(map) {
     }
 
     function public_transport() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
@@ -173,6 +260,7 @@ module.exports = function(map) {
     }
 
     function postal_geom() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
@@ -237,6 +325,7 @@ module.exports = function(map) {
     }
 
     function town_suburb() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         let layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
@@ -276,6 +365,7 @@ module.exports = function(map) {
     }
 
     function workplace() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         let arrayZoom = {
@@ -334,6 +424,7 @@ module.exports = function(map) {
     }
 
     function poi() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         let cqlFilterArray = ["poi_type='carpark'"],
@@ -381,6 +472,7 @@ module.exports = function(map) {
     }
 
     function residential() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         let arrayZoom = {
@@ -436,6 +528,7 @@ module.exports = function(map) {
     }
 
     function uk_admin() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
@@ -477,6 +570,7 @@ module.exports = function(map) {
     }
 
     function property() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         let arrayZoom = {
@@ -519,6 +613,7 @@ module.exports = function(map) {
     }
 
     function road_network() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
@@ -532,6 +627,7 @@ module.exports = function(map) {
     }
 
     function media_com() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         let arrayZoom = {
@@ -574,6 +670,7 @@ module.exports = function(map) {
     }
 
     function physical() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
@@ -896,6 +993,10 @@ module.exports = function(map) {
     }
 
     return {
+        japan: japan,
+        tokyo: tokyo,
+        china: china,
+        shanghai: shanghai,
         seamless_locales: seamless_locales,
         retail_points: retail_points,
         retail_places: retail_places,

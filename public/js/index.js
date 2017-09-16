@@ -100,58 +100,60 @@ function expandCard(section, _this) {
 
 
 // case studies
-const section_case_studies = document.getElementById('section_case_studies');
-const case_studies_strip = section_case_studies.querySelector('#case_studies_strip > table');
-case_studies_strip.addEventListener('click', function(event){
-    helper.removeClass(section_case_studies.querySelector('.active'), 'active');
-    helper.addClass(event.target, 'active');
-    let index = helper.indexInParent(event.target) - 1;
-    case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
-    if (index > 8) index -= 8;
-    if (index < 0) index += 8;
-    helper.addClass(section_case_studies.querySelectorAll('.logo')[index+1], 'active');
-    case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
-    index++;
-    if (index >= 8) index -= 8;
-    section_case_studies.querySelector('#case_studies_container > table').style['marginLeft'] = '-' + index * 100 + '%';
-});
+if (document.getElementById('section_case_studies')){
+    const section_case_studies = document.getElementById('section_case_studies');
+    const case_studies_strip = section_case_studies.querySelector('#case_studies_strip > table');
+    case_studies_strip.addEventListener('click', function(event){
+        helper.removeClass(section_case_studies.querySelector('.active'), 'active');
+        helper.addClass(event.target, 'active');
+        let index = helper.indexInParent(event.target) - 1;
+        case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
+        if (index > 8) index -= 8;
+        if (index < 0) index += 8;
+        helper.addClass(section_case_studies.querySelectorAll('.logo')[index+1], 'active');
+        case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
+        index++;
+        if (index >= 8) index -= 8;
+        section_case_studies.querySelector('#case_studies_container > table').style['marginLeft'] = '-' + index * 100 + '%';
+    });
+}
 
 
 
 // geodata
-let mapZoom = 13;
-const map = L.map('map_geodata', {
-    renderer: L.svg(),
-    scrollWheelZoom: false,
-    zoomControl: false,
-    maxBounds: L.latLngBounds(L.latLng(51.35, -0.4), L.latLng(51.65, 0.2)),
-    minZoom: 12,
-    maxZoom: 17
-}).setView([51.50, -0.1], mapZoom);
+// let mapZoom = 13;
+// const map = L.map('map_geodata', {
+//     renderer: L.svg(),
+//     scrollWheelZoom: false,
+//     zoomControl: false,
+//     maxBounds: L.latLngBounds(L.latLng(51.35, -0.4), L.latLng(51.65, 0.2)),
+//     minZoom: 12,
+//     maxZoom: 17
+// }).setView([51.50, -0.1], mapZoom);
+//
+// const btnZoomIn = document.getElementById('btnZoomIn');
+// const btnZoomOut = document.getElementById('btnZoomOut');
+//
+// function chkZoomBtn(){
+//     mapZoom < 17 ? btnZoomIn.disabled = false : btnZoomIn.disabled = true;
+//     mapZoom > 12 ? btnZoomOut.disabled = false : btnZoomOut.disabled = true;
+// }
+//
+// btnZoomIn.addEventListener('click', function () {
+//     if (this.disabled) return;
+//     mapZoom++;
+//     map.setZoom(mapZoom);
+//     chkZoomBtn();
+// });
+//
+// btnZoomOut.addEventListener('click', function(){
+//     if (this.disabled) return;
+//     mapZoom--;
+//     map.setZoom(mapZoom);
+//     chkZoomBtn();
+// });
 
-const btnZoomIn = document.getElementById('btnZoomIn');
-const btnZoomOut = document.getElementById('btnZoomOut');
-
-function chkZoomBtn(){
-    mapZoom < 17 ? btnZoomIn.disabled = false : btnZoomIn.disabled = true;
-    mapZoom > 12 ? btnZoomOut.disabled = false : btnZoomOut.disabled = true;
-}
-
-btnZoomIn.addEventListener('click', function () {
-    if (this.disabled) return;
-    mapZoom++;
-    map.setZoom(mapZoom);
-    chkZoomBtn();
-});
-
-btnZoomOut.addEventListener('click', function(){
-    if (this.disabled) return;
-    mapZoom--;
-    map.setZoom(mapZoom);
-    chkZoomBtn();
-});
-
-const geodata = require('./geodata')(map);
+const geodata = require('./geodata')();
 
 geodata.pricing = function() {
     document.querySelector('.geodata__pricing').style.display = 'block';
@@ -196,25 +198,6 @@ function selectGeodata(_this) {
     helper.removeClass(document.querySelector('.geodata__select .selected'), 'selected');
     helper.addClass(_this, 'selected');
 
-    map.eachLayer(function (layer) {
-        map.removeLayer(layer);
-    });
-    map.off('movestart');
-    map.off('mousemove');
-    map.off('click');
-    map.off('zoomend');
-    map.off('moveend');
-
-    map.on('moveend', function () {
-        mapZoom = map.getZoom();
-        chkZoomBtn();
-    });
-
-    map.on('zoomend', function () {
-        mapZoom = map.getZoom();
-        chkZoomBtn();
-    });
-
     document.getElementById('btnFullScreen').href = '/map?' + _this.id;
 
     let xhr = new XMLHttpRequest();
@@ -234,14 +217,14 @@ function selectGeodata(_this) {
         selectGeodata(document.getElementById(dataset));
         helper.scrollElement(body, document.getElementById('section_geodata').getBoundingClientRect().top + window.pageYOffset - 80, 400);
     } else {
-        selectGeodata(document.getElementById('seamless_locales'));
+        selectGeodata(document.querySelector('.geodata__select > div'));
     }
 })(window.location.search.substring(1));
 
 
 
 // contact map
-let mapZoom_contact = 14;
+let mapZoom_contact = 10;
 
 const map_contact = L.map('map_contact', {
     scrollWheelZoom: false,

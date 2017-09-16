@@ -1,7 +1,7 @@
 module.exports = {
     entry: {
-        geolytix: './public/js/geolytix.js',
-        geolytix_m: './public/js/geolytix_m.js',
+        index: './public/js/index.js',
+        mobile: './public/js/mobile.js',
         gd_map: './public/js/gd_map.js'
     },
     output: {
