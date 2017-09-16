@@ -822,6 +822,9 @@
   opacity: 0;
   transition: visibility 0.3s, opacity 0.3s linear; }
 
+.black {
+  color: black !important; }
+
 #section_services {
   margin: 0 auto 60px auto;
   padding: 0 50px;
