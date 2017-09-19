@@ -1150,10 +1150,7 @@
         line-height: 2; }
       #section_contact > div .contact__text > p:nth-of-type(3) {
         margin-top: 50px; }
-      #section_contact > div .contact__text > p:nth-of-type(3),
-      #section_contact > div .contact__text > p:nth-of-type(4),
-      #section_contact > div .contact__text > p:nth-of-type(5),
-      #section_contact > div .contact__text > p:nth-of-type(6) {
+      #section_contact > div .contact__text .contact_address > p {
         font-size: 100%;
         line-height: 1.3; }
 

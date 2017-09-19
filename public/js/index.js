@@ -196,60 +196,80 @@ function selectGeodata(_this) {
 
 
 // contact map
-let mapZoom_contact = 10;
-
 const map_contact = L.map('map_contact', {
     scrollWheelZoom: false,
-    zoomControl: false,
-    minZoom: 4,
-    maxZoom: 18
+    zoomControl: false
 })
-    .setView([51.52733, -0.11525], mapZoom_contact)
+    .setView([52, 43], 2)
     .addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
 
-new L.Marker(
+const marker = L.icon({
+    iconUrl: '/images/leaflet/marker.svg',
+    iconSize: [80, 40],
+    iconAnchor: [40, 40]
+});
+
+const marker_alt = L.icon({
+    iconUrl: '/images/leaflet/marker_alt.svg',
+    iconSize: [80, 40],
+    iconAnchor: [40, 40]
+});
+
+const London = new L.Marker(
     [51.52733, -0.11525],
     {
-        icon: L.icon({
-            iconUrl: '/images/leaflet/marker.svg',
-            iconSize: [80, 40],
-            iconAnchor: [40, 40]
-        })
+        icon: marker,
+        title: 'London'
+    })
+    .on('click', function(e){
+        Leeds.setIcon(marker_alt);
+        document.getElementById('contact_leeds').style['display'] = 'none';
+        Tokyo.setIcon(marker_alt);
+        document.getElementById('contact_tokyo').style['display'] = 'none';
+        document.getElementById('contact_london').style['display'] = 'block';
+        e.target.setIcon(marker);
     })
     .addTo(map_contact);
 
-const btnZoomIn_contact = document.getElementById('btnZoomIn_contact');
-const btnZoomOut_contact = document.getElementById('btnZoomOut_contact');
+const Leeds = new L.Marker(
+    [53.79664,-1.53385],
+    {
+        icon: marker_alt,
+        title: 'Leeds'
+    })
+    .on('click', function(e){
+        London.setIcon(marker_alt);
+        document.getElementById('contact_london').style['display'] = 'none';
+        Tokyo.setIcon(marker_alt);
+        document.getElementById('contact_tokyo').style['display'] = 'none';
+        document.getElementById('contact_leeds').style['display'] = 'block';
+        e.target.setIcon(marker);
+    })
+    .addTo(map_contact);
 
-function chkZoomBtn_contact(){
-    mapZoom_contact < 18 ? btnZoomIn_contact.disabled = false : btnZoomIn_contact.disabled = true;
-    mapZoom_contact > 4 ? btnZoomOut_contact.disabled = false : btnZoomOut_contact.disabled = true;
-}
+const Tokyo = new L.Marker(
+    [35.65652,139.6974],
+    {
+        icon: marker_alt,
+        title: 'Tokyo'
+    })
+    .on('click', function(e){
+        London.setIcon(marker_alt);
+        document.getElementById('contact_london').style['display'] = 'none';
+        Leeds.setIcon(marker_alt);
+        document.getElementById('contact_leeds').style['display'] = 'none';
+        document.getElementById('contact_tokyo').style['display'] = 'block';
+        e.target.setIcon(marker);
+    })
+    .addTo(map_contact);
 
-btnZoomIn_contact.addEventListener('click', function () {
-    if (this.disabled) return;
-    mapZoom_contact++;
-    map_contact.setZoom(mapZoom_contact);
-    chkZoomBtn_contact();
+document.getElementById('btnZoomIn_contact').addEventListener('click', function () {
+    map_contact.setZoom(map_contact.getZoom() + 1);
 });
 
 btnZoomOut_contact.addEventListener('click', function(){
-    if (this.disabled) return;
-    mapZoom_contact--;
-    map_contact.setZoom(mapZoom_contact);
-    chkZoomBtn_contact();
+    map_contact.setZoom(map_contact.getZoom() - 1);
 });
-
-map_contact.on('moveend', function () {
-    mapZoom_contact = map_contact.getZoom();
-    chkZoomBtn_contact();
-});
-
-map_contact.on('zoomend', function () {
-    mapZoom_contact = map_contact.getZoom();
-    chkZoomBtn_contact();
-});
-
 
 
 //url hook scroll

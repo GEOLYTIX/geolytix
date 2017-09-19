@@ -108,21 +108,45 @@ if (document.getElementById('case_studies__logos')){
 let mapZoom_contact = 14;
 const map_contact = L.map('map_contact', {
     scrollWheelZoom: false,
-    zoomControl: false,
-    maxBounds: L.latLngBounds(L.latLng(51.52733, -0.11525), L.latLng(51.52733, -0.11525)),
-    minZoom: 4,
-    maxZoom: 18
-})
-    .setView([51.52733, -0.11525], mapZoom_contact)
-    .addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
+    zoomControl: false
+}).addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
 
-new L.Marker(
-    [51.52733, -0.11525],
-    {
-        icon: L.icon({
-            iconUrl: '/images/leaflet/marker.svg',
-            iconSize: [80, 40],
-            iconAnchor: [40, 40]
+const marker = L.icon({
+    iconUrl: '/images/leaflet/marker.svg',
+    iconSize: [80, 40],
+    iconAnchor: [40, 40]
+});
+
+const marker_alt = L.icon({
+    iconUrl: '/images/leaflet/marker_alt.svg',
+    iconSize: [80, 40],
+    iconAnchor: [40, 40]
+});
+
+if (locale === 'uk'){
+    map_contact.setView([53.2,-0.7], 5);
+    new L.Marker(
+        [51.52733, -0.11525],
+        {
+            icon: marker
         })
-    })
-    .addTo(map_contact);
+        .addTo(map_contact);
+    new L.Marker(
+        [53.79664,-1.53385],
+        {
+            icon: marker_alt
+        })
+        .addTo(map_contact);
+}
+
+if (locale === 'jp'){
+    map_contact.setView([35.65652,139.6974], 10);
+    new L.Marker(
+        [35.65652,139.6974],
+        {
+            icon: marker
+        })
+        .addTo(map_contact);
+}
+
+if (locale === 'cn') document.getElementById('map_contact').style['display'] = 'none';

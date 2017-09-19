@@ -22,6 +22,7 @@ router.get('/', function (req, res) {
 
     let locales = {
         uk: {
+            locale: 'uk',
             header: o.platform + 'uk_header.html',
             case_studies: o.platform + 'uk_case_studies.html',
             team: o.platform + 'uk_team.html',
@@ -29,12 +30,14 @@ router.get('/', function (req, res) {
             footer: o.platform + 'uk_footer.html'
         },
         cn: {
+            locale: 'cn',
             header: o.platform + 'cn_header.html',
             team: o.platform + 'cn_team.html',
             geodata: o.platform + 'cn_geodata.html',
             footer: o.platform + 'cn_footer.html'
         },
         jp: {
+            locale: 'jp',
             header: o.platform + 'jp_header.html',
             team: o.platform + 'jp_team.html',
             geodata: o.platform + 'jp_geodata.html',
