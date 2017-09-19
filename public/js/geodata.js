@@ -352,6 +352,7 @@ module.exports = function() {
     }
 
     function education() {
+        setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
