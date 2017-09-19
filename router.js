@@ -25,23 +25,26 @@ router.get('/', function (req, res) {
             header: o.platform + 'uk_header.html',
             case_studies: o.platform + 'uk_case_studies.html',
             team: o.platform + 'uk_team.html',
-            geodata: o.platform + 'uk_geodata.html'
+            geodata: o.platform + 'uk_geodata.html',
+            footer: o.platform + 'uk_footer.html'
         },
         cn: {
             header: o.platform + 'cn_header.html',
             team: o.platform + 'cn_team.html',
-            geodata: o.platform + 'cn_geodata.html'
+            geodata: o.platform + 'cn_geodata.html',
+            footer: o.platform + 'cn_footer.html'
         },
         jp: {
             header: o.platform + 'jp_header.html',
             team: o.platform + 'jp_team.html',
-            geodata: o.platform + 'jp_geodata.html'
+            geodata: o.platform + 'jp_geodata.html',
+            footer: o.platform + 'jp_footer.html'
         }
     };
 
     req.headers.host.includes('.cn') ?
         res.send(o.tmpl.render(locales.cn)) : req.headers.host.includes('.jp') ?
-        res.send(o.tmpl.render(locales.jp)) : res.send(o.tmpl.render(locales.uk));
+        res.send(o.tmpl.render(locales.jp)) : res.send(o.tmpl.render(locales.cn));
 
 });
 

@@ -161,6 +161,8 @@ document.querySelector('.geodata__select').addEventListener('click', function(){
     selectGeodata(event.target);
 });
 
+
+const jsr = require('jsrender')();
 function selectGeodata(_this) {
     document.querySelector('.geodata__pricing').style.display = 'none';
     document.querySelector('.geodata__faq').style.display = 'none';
@@ -175,7 +177,7 @@ function selectGeodata(_this) {
     xhr.setRequestHeader('Content-Type', 'text/html');
     xhr.onload = function () {
         if (xhr.status === 200) {
-            document.querySelector('.geodata__info > .content').innerHTML = window.jsrender.templates(xhr.responseText).render();
+            document.querySelector('.geodata__info > .content').innerHTML = jsr.templates(xhr.responseText).render();
             geodata[_this.id]();
         }
     };
