@@ -59,7 +59,7 @@ const sections = {
     physical: 'geodata__section'
 };
 function scrollTo(section){
-    if (sections[section]) helper.scrollElement(document.getElementById('inner'), document.getElementById(sections[section]).getBoundingClientRect().top + window.pageYOffset, 400);
+    if (sections[section]) helper.scrollElement(document.getElementById('inner'), document.getElementById(sections[section]).getBoundingClientRect().top + document.getElementById('inner').scrollTop, 400);
 }
 scrollTo(window.location.search.substring(1));
 
