@@ -123,30 +123,65 @@ const marker_alt = L.icon({
     iconAnchor: [40, 40]
 });
 
+const London = new L.Marker(
+    [51.52733, -0.11525],
+    {
+        icon: marker,
+        title: 'London'
+    })
+    .on('click', function(e){
+        Leeds.setIcon(marker_alt);
+        document.getElementById('contact_leeds').style['display'] = 'none';
+        Tokyo.setIcon(marker_alt);
+        document.getElementById('contact_tokyo').style['display'] = 'none';
+        document.getElementById('contact_london').style['display'] = 'inline-block';
+        e.target.setIcon(marker);
+    })
+    .addTo(map_contact);
+
+const Leeds = new L.Marker(
+    [53.79664,-1.53385],
+    {
+        icon: marker_alt,
+        title: 'Leeds'
+    })
+    .on('click', function(e){
+        London.setIcon(marker_alt);
+        document.getElementById('contact_london').style['display'] = 'none';
+        Tokyo.setIcon(marker_alt);
+        document.getElementById('contact_tokyo').style['display'] = 'none';
+        document.getElementById('contact_leeds').style['display'] = 'inline-block';
+        e.target.setIcon(marker);
+    })
+    .addTo(map_contact);
+
+const Tokyo = new L.Marker(
+    [35.65652,139.6974],
+    {
+        icon: marker_alt,
+        title: 'Tokyo'
+    })
+    .on('click', function(e){
+        London.setIcon(marker_alt);
+        document.getElementById('contact_london').style['display'] = 'none';
+        Leeds.setIcon(marker_alt);
+        document.getElementById('contact_leeds').style['display'] = 'none';
+        document.getElementById('contact_tokyo').style['display'] = 'inline-block';
+        e.target.setIcon(marker);
+    })
+    .addTo(map_contact);
+
 if (locale === 'uk'){
     map_contact.setView([53.2,-0.7], 5);
-    new L.Marker(
-        [51.52733, -0.11525],
-        {
-            icon: marker
-        })
-        .addTo(map_contact);
-    new L.Marker(
-        [53.79664,-1.53385],
-        {
-            icon: marker_alt
-        })
-        .addTo(map_contact);
 }
 
-if (locale === 'jp'){
-    map_contact.setView([35.65652,139.6974], 10);
-    new L.Marker(
-        [35.65652,139.6974],
-        {
-            icon: marker
-        })
-        .addTo(map_contact);
+if (locale === 'jp') {
+    map_contact.setView([35.65652,139.6974], 5);
+    London.setIcon(marker_alt);
+    Leeds.setIcon(marker_alt);
+    Tokyo.setIcon(marker);
 }
 
-if (locale === 'cn') document.getElementById('map_contact').style['display'] = 'none';
+if (locale === 'cn') {
+    map_contact.setView([52, 48], 1);
+}

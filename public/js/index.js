@@ -263,11 +263,20 @@ const Tokyo = new L.Marker(
     })
     .addTo(map_contact);
 
+if (locale === 'jp') {
+    London.setIcon(marker_alt);
+    document.getElementById('contact_london').style['display'] = 'none';
+    Leeds.setIcon(marker_alt);
+    document.getElementById('contact_leeds').style['display'] = 'none';
+    Tokyo.setIcon(marker);
+    document.getElementById('contact_tokyo').style['display'] = 'block';
+}
+
 document.getElementById('btnZoomIn_contact').addEventListener('click', function () {
     map_contact.setZoom(map_contact.getZoom() + 1);
 });
 
-btnZoomOut_contact.addEventListener('click', function(){
+document.getElementById('btnZoomOut_contact').addEventListener('click', function(){
     map_contact.setZoom(map_contact.getZoom() - 1);
 });
 

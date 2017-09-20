@@ -91,6 +91,8 @@ p {
 }
 
 #intro__menu {
+    position: fixed;
+    z-index: 999;
     display: none;
     width: 100%;
     background-color: white;
@@ -124,11 +126,18 @@ p {
 }
 
 #intro__burger {
-    position: absolute;
-    right: 10px;
-    margin-top: 10px;
-    font-size: 30px;
+    position: fixed;
+    right: 0;
+    margin: 5px;
+    z-index: 999;
+    font-size: 35px;
     color: $glxgreen;
+    background-color: white;
+    border-radius: 20%;
+    opacity: 0.8;
+    line-height: 0.8;
+    text-shadow: 1px 1px 2px grey;
+    box-shadow: 1px 1px 2px grey;
 }
 
 #intro__logo {
@@ -485,6 +494,7 @@ p {
         width: 49%;
         display: inline-block;
         min-height: 100px;
+        vertical-align: top;
     }
 
     p, a {

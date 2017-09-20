@@ -775,6 +775,8 @@ p {
     transition: color 0.5s linear; }
 
 #intro__menu {
+  position: fixed;
+  z-index: 999;
   display: none;
   width: 100%;
   background-color: white;
@@ -799,11 +801,18 @@ p {
     display: block !important; }
 
 #intro__burger {
-  position: absolute;
-  right: 10px;
-  margin-top: 10px;
-  font-size: 30px;
-  color: #079e00; }
+  position: fixed;
+  right: 0;
+  margin: 5px;
+  z-index: 999;
+  font-size: 35px;
+  color: #079e00;
+  background-color: white;
+  border-radius: 20%;
+  opacity: 0.8;
+  line-height: 0.8;
+  text-shadow: 1px 1px 2px grey;
+  box-shadow: 1px 1px 2px grey; }
 
 #intro__logo {
   font-family: ffmark_black, sans-serif;
@@ -1030,7 +1039,8 @@ p {
   #footer .footer__half {
     width: 49%;
     display: inline-block;
-    min-height: 100px; }
+    min-height: 100px;
+    vertical-align: top; }
   #footer p, #footer a {
     line-height: 1.5em;
     color: white;
