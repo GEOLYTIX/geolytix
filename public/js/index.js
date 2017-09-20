@@ -107,7 +107,7 @@ if (document.getElementById('section_case_studies')){
     const section_case_studies = document.getElementById('section_case_studies');
     const case_studies_strip = section_case_studies.querySelector('#case_studies_strip > table');
     case_studies_strip.addEventListener('click', function(event){
-        helper.removeClass(section_case_studies.querySelector('.active'), 'active');
+        helper.removeClass(section_case_studies.querySelectorAll('.active'), 'active');
         helper.addClass(event.target, 'active');
         let index = helper.indexInParent(event.target) - 1;
         case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
