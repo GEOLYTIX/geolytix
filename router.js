@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
 
     let o = (_md.mobile() === null || _md.tablet() !== null) ?
         {
-            tmpl: jsr.templates('./views/index.html'),
+            tmpl: jsr.templates('./views/desktop.html'),
             platform: './public/tmpl/desktop/'
         } : {
             tmpl: jsr.templates('./views/mobile.html'),
@@ -27,6 +27,7 @@ router.get('/', function (req, res) {
             case_studies: o.platform + 'uk_case_studies.html',
             team: o.platform + 'uk_team.html',
             geodata: o.platform + 'uk_geodata.html',
+            photo: o.platform + 'uk_team_photo.html',
             footer: o.platform + 'uk_footer.html'
         },
         cn: {
@@ -34,6 +35,7 @@ router.get('/', function (req, res) {
             header: o.platform + 'cn_header.html',
             team: o.platform + 'cn_team.html',
             geodata: o.platform + 'cn_geodata.html',
+            photo: o.platform + 'cn_team_photo.html',
             footer: o.platform + 'cn_footer.html'
         },
         jp: {
@@ -46,8 +48,11 @@ router.get('/', function (req, res) {
     };
 
     req.headers.host.includes('.cn') ?
-        res.send(o.tmpl.render(locales.cn)) : req.headers.host.includes('.jp') ?
-        res.send(o.tmpl.render(locales.jp)) : res.send(o.tmpl.render(locales.uk));
+        res.send(o.tmpl.render(locales.cn)) : res.send(o.tmpl.render(locales.uk));
+
+    // req.headers.host.includes('.cn') ?
+    //     res.send(o.tmpl.render(locales.cn)) : req.headers.host.includes('.jp') ?
+    //     res.send(o.tmpl.render(locales.jp)) : res.send(o.tmpl.render(locales.uk));
 
 });
 

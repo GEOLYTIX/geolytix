@@ -937,7 +937,6 @@ p {
     width: 100%; }
 
 .geodata__table {
-  width: 1300%;
   table-layout: fixed; }
   .geodata__table td {
     vertical-align: top;
@@ -986,7 +985,6 @@ p {
     padding-left: 5px;
     width: 100%; }
   #team__section .team__table {
-    width: 1350%;
     table-layout: fixed; }
     #team__section .team__table td {
       vertical-align: top;
@@ -1034,8 +1032,11 @@ p {
     margin-bottom: 20px; }
   #footer .footer__bottom {
     margin-top: 20px; }
-  #footer .logo_odi_supporter {
-    background-position: center; }
+  #footer .logo {
+    background-position: center;
+    display: block;
+    height: 60px;
+    padding: 20px 0; }
   #footer .footer__half {
     width: 49%;
     display: inline-block;

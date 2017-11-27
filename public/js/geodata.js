@@ -5,16 +5,12 @@ require('./leaflet.NonTiledLayer-src');
 const turf_point = require('turf-point');
 const turf_inside = require('@turf/inside');
 
-module.exports = function() {
+module.exports = function(scrollWheel) {
     let mapZoom = 13,
         minZoom = 12,
         maxZoom = 17;
 
-    const map = L.map('map_geodata', {
-        renderer: L.svg(),
-        scrollWheelZoom: false,
-        zoomControl: false
-    });
+    let map;
 
     const btnZoomIn = document.getElementById('btnZoomIn');
     const btnZoomOut = document.getElementById('btnZoomOut');
@@ -38,10 +34,6 @@ module.exports = function() {
         chkZoomBtn();
     });
 
-    map.createPane('labels');
-    map.getPane('labels').style.zIndex = 650;
-    map.getPane('labels').style.pointerEvents = 'none';
-
     let layerHover,
         featureHover,
         layerGrid,
@@ -49,14 +41,20 @@ module.exports = function() {
         proj_3857 = proj4.Proj('EPSG:3857');
 
     function setMap(minZ, maxZ, LL, minLL, maxLL){
-        map.eachLayer(function (layer) {
-            map.removeLayer(layer);
+        if (typeof map != 'undefined') map.remove();
+        map = L.map('map_geodata', {
+            renderer: L.svg(),
+            scrollWheelZoom: scrollWheel,
+            zoomControl: false,
+            minZoom: minZ,
+            maxZoom: maxZ,
+            maxBounds: L.latLngBounds(L.latLng(minLL), L.latLng(maxLL)),
+            center: LL,
+            zoom: minZ
         });
-        map.off('movestart');
-        map.off('mousemove');
-        map.off('click');
-        map.off('zoomend');
-        map.off('moveend');
+        map.createPane('labels');
+        map.getPane('labels').style.zIndex = 650;
+        map.getPane('labels').style.pointerEvents = 'none';
 
         map.on('moveend', function () {
             mapZoom = map.getZoom();
@@ -69,40 +67,120 @@ module.exports = function() {
         });
 
         minZoom = minZ;
-        map.setMinZoom(minZoom);
+        mapZoom = minZ;
         maxZoom = maxZ;
-        map.setMaxZoom(maxZoom);
-        map.setMaxBounds(L.latLngBounds(L.latLng(minLL), L.latLng(maxLL)));
-        map.setView(LL, minZoom);
+        chkZoomBtn();
     }
 
     function japan() {
         setMap(5, 15, [39, 136], [25, 125], [50, 155]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
     }
 
     function tokyo() {
         setMap(10, 17, [35.7, 139.7], [35, 139], [37, 141]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
     }
 
     function china() {
-        setMap(4, 14, [35, 108], [0, 68], [58, 143]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+        setMap(4, 13, [35, 108], [0, 68], [58, 143]);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+
+        let arrayZoom = {
+                "4": "cj_hx_256k",
+                "5": "cj_hx_128k",
+                "6": "cj_hx_64k",
+                "7": "cj_hx_32k",
+                "8": "cj_hx_16k",
+                "9": "cj_hx_8k",
+                "10": "cj_hx_4k",
+                "11": "cj_hx_2k",
+                "12": "cj_hx_1k",
+                "13": "cj_hx_500"
+            },
+            gridOptions = {
+                queryCount: 'pop',
+                queryValue: 'pop',
+                database: 'ghs',
+                geom: 'geomcntr',
+                oValue: {maximumFractionDigits: 0},
+                arrayStyle: [
+                    '/images/map_icons/dot_d73027.svg',
+                    '/images/map_icons/dot_f46d43.svg',
+                    '/images/map_icons/dot_fdae61.svg',
+                    '/images/map_icons/dot_fee08b.svg',
+                    '/images/map_icons/dot_ffffbf.svg',
+                    '/images/map_icons/dot_d9ef8b.svg',
+                    '/images/map_icons/dot_a6d96a.svg',
+                    '/images/map_icons/dot_66bd63.svg',
+                    '/images/map_icons/dot_1a9850.svg',
+                    '/images/map_icons/dot_null.svg'
+                ]
+            };
+
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+
+        map.on('zoomend', function () {
+            getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+            mapZoom = map.getZoom();
+        });
+
+        map.on('moveend', function () {
+            getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+            mapZoom = map.getZoom();
+        });
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
     }
 
     function shanghai() {
-        setMap(9, 17, [31.3, 121.4], [30, 120], [33, 123]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+        setMap(13, 16, [31.23, 121.45], [30, 120], [33, 123]);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ')
+            .addTo(map);
+
+        new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+            version: '1.3',
+            opacity: 1.0,
+            layers: 'shanghai_retail_places',
+            format: 'image/png',
+            transparent: true,
+            pane: 'tilePane',
+            zIndex: 3,
+            styles: 'shanghai_retail_places'
+        }).addTo(map);
+
+        let layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
+                version: '1.3',
+                opacity: 1.0,
+                layers: 'shanghai_retail_venues',
+                format: 'image/png',
+                transparent: true,
+                pane: 'tilePane',
+                zIndex: 3,
+                styles: 'shanghai_retail_venues'
+            }).addTo(map),
+            infotable = document.querySelector('#gd_shanghai .infobox__table');
+
+        if (view_mode === 'mobile') {
+            map.on('click', function (e) {
+                hoverSelect(e, map, layer, infotable)
+            });
+        } else {
+            map.on('mousemove', function (e) {
+                hoverSelect(e, map, layer, infotable)
+            });
+        }
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ')
+            .addTo(map);
     }
 
     function seamless_locales() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         let layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
                 version: '1.3',
@@ -129,7 +207,7 @@ module.exports = function() {
 
     function retail_points() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         let cqlFilterArray = ["brand='asda'", "brand='morrisons'", "brand='sainsburys'", "brand='tesco'"],
             cqlFilter = cqlFilterArray.join(' OR '),
@@ -142,7 +220,7 @@ module.exports = function() {
                 CQL_FILTER: cqlFilter
             }).addTo(map);
 
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
 
         map.on('click', function (e) {
             clickSelect(e, map, layer, cqlFilter)
@@ -178,7 +256,7 @@ module.exports = function() {
 
     function retail_places() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         let layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             layers: 'retailplaces_outline',
@@ -202,24 +280,6 @@ module.exports = function() {
         }
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-            layers: 'retailplaces_shopping',
-            format: 'image/png',
-            transparent: true,
-            styles: 'retailplaces_shopping',
-            minZoom: 14,
-            maxZoom: 17
-        }).addTo(map);
-
-        L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
-            layers: 'retailplaces_build',
-            format: 'image/png',
-            transparent: true,
-            styles: 'retailplaces_build',
-            minZoom: 14,
-            maxZoom: 17
-        }).addTo(map);
-
-        L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             layers: 'retailplaces_hx_pitch_bounds',
             format: 'image/png',
             transparent: true,
@@ -228,12 +288,16 @@ module.exports = function() {
             maxZoom: 17
         }).addTo(map);
 
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cjackgsl84dmh2ro26eaz8qf5/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
     }
 
     function public_transport() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ')
+            .addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             layers: 'transport_bus',
@@ -256,12 +320,14 @@ module.exports = function() {
             styles: 'transport_tube'
         }).addTo(map);
 
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ')
+            .addTo(map);
+
     }
 
     function postal_geom() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             opacity: 1.0,
@@ -326,7 +392,7 @@ module.exports = function() {
 
     function town_suburb() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         let layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
                 version: '1.3',
@@ -353,7 +419,7 @@ module.exports = function() {
 
     function education() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             layers: 'university_building',
@@ -362,12 +428,12 @@ module.exports = function() {
             styles: 'university_building'
         }).addTo(map);
 
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
     }
 
     function workplace() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         let arrayZoom = {
                 12: 'workplace_pc_hx800',
@@ -380,6 +446,8 @@ module.exports = function() {
             gridOptions = {
                 queryCount: 'w15',
                 queryValue: 'w15_w11_diff',
+                database: 'gs',
+                geom: 'geom',
                 oValue: {maximumFractionDigits: 0},
                 arrayStyle: [
                     '/images/map_icons/dot_d73027.svg',
@@ -407,7 +475,7 @@ module.exports = function() {
             mapZoom = map.getZoom();
         });
 
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
 
         let layer = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             version: '1.3',
@@ -426,7 +494,7 @@ module.exports = function() {
 
     function poi() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         let cqlFilterArray = ["poi_type='carpark'"],
             cqlFilter = cqlFilterArray[0],
@@ -439,7 +507,7 @@ module.exports = function() {
                 CQL_FILTER: cqlFilter
             }).addTo(map);
 
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
 
         map.on('click', function (e) {
             clickSelect(e, map, layer, cqlFilter)
@@ -474,7 +542,7 @@ module.exports = function() {
 
     function residential() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         let arrayZoom = {
                 12: 'residential_oa_hx800',
@@ -487,6 +555,8 @@ module.exports = function() {
             gridOptions = {
                 queryCount: 'pop_21',
                 queryValue: 'growth',
+                database: 'gs',
+                geom: 'geom',
                 oValue: {maximumFractionDigits: 2},
                 arrayStyle: [
                     '/images/map_icons/dot_d73027.svg',
@@ -525,12 +595,12 @@ module.exports = function() {
             getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions)
         });
 
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
     }
 
     function uk_admin() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             layers: 'admin_uk_oa',
@@ -572,7 +642,7 @@ module.exports = function() {
 
     function property() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         let arrayZoom = {
                 12: 'property_hx800',
@@ -585,6 +655,8 @@ module.exports = function() {
             gridOptions = {
                 queryCount: 'n',
                 queryValue: 'price_paid',
+                database: 'gs',
+                geom: 'geom',
                 oValue: {maximumFractionDigits: 0},
                 arrayStyle: [
                     '/images/map_icons/dot_1a9850.svg',
@@ -602,7 +674,7 @@ module.exports = function() {
 
         getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
 
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
 
         map.on('zoomend', function () {
             getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
@@ -615,7 +687,7 @@ module.exports = function() {
 
     function road_network() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             layers: 'osm_roads',
@@ -624,12 +696,12 @@ module.exports = function() {
             styles: 'osm_roads'
         }).addTo(map);
 
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
     }
 
     function media_com() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         let arrayZoom = {
                 12: 'media_bb_hx800',
@@ -642,6 +714,8 @@ module.exports = function() {
             gridOptions = {
                 queryCount: 'connections',
                 queryValue: 'avg_dwload',
+                database: 'gs',
+                geom: 'geom',
                 oValue: {maximumFractionDigits: 2},
                 arrayStyle: [
                     '/images/map_icons/dot_c51b7d.svg',
@@ -659,7 +733,7 @@ module.exports = function() {
 
         getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
 
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
 
         map.on('zoomend', function () {
             getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions)
@@ -672,7 +746,7 @@ module.exports = function() {
 
     function physical() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_nolabels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             version: '1.3',
@@ -690,7 +764,7 @@ module.exports = function() {
             styles: 'physical_line'
         }).addTo(map);
 
-        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_only_labels/{z}/{x}/{y}.png').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
     }
 
 
@@ -735,6 +809,8 @@ module.exports = function() {
         let requestURL = paramString({
             c: _o.queryCount,
             v: _o.queryValue,
+            database: _o.database,
+            geom: _o.geom,
             layer: _layer,
             west: _bounds.getWest(),
             south: _bounds.getSouth(),
@@ -761,8 +837,8 @@ module.exports = function() {
             };
 
         for (let i = 0; i < n; i++) {
-            let c = data[i].c,
-                v = data[i].v,
+            let c = Number(data[i].c),
+                v = Number(data[i].v),
                 g = {
                     "type": "Point",
                     "coordinates": [data[i].lon, data[i].lat]
@@ -914,18 +990,17 @@ module.exports = function() {
 
     function createHoverFeature(geom) {
         if (layerHover) map.removeLayer(layerHover);
-        featureHover = {
+        layerHover = L.geoJson({
             'type': 'Feature',
             'properties': {},
             'geometry': JSON.parse(geom)
-        };
-        layerHover = L.geoJson(featureHover, {
-            style: function () {
-                return {
-                    color: '#079e00',
-                    fillOpacity: 0.1,
-                    interactive: false
-                };
+        }, {
+            style: {
+                stroke: true,
+                color: '#090',
+                weight: 3,
+                fillOpacity: 0,
+                interactive: false
             }
         }).addTo(map);
     }
@@ -935,11 +1010,11 @@ module.exports = function() {
         let r = infoTable.insertRow(infoTable.rows.length);
         r.insertCell(0).innerHTML = 'Info';
         Object.keys(infoj).map(function (Okey) {
-            if (infoj[Okey]) {
+            //if (infoj[Okey]) {
                 r = infoTable.insertRow(infoTable.rows.length);
                 r.insertCell(0).innerHTML = Okey;
                 r.insertCell(1).innerHTML = infoj[Okey];
-            }
+            //}
         })
     }
 

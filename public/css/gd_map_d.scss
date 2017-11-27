@@ -44,13 +44,9 @@ a {
 
     .content {
         height: 100%;
-        width: 100%;
+        width: calc(100% + 30px);
         overflow-y: scroll;
         padding-left: 5px;
-
-        &::-webkit-scrollbar {
-            display: none;
-        }
     }
 
     .scrollbar_container {
@@ -74,7 +70,7 @@ a {
 }
 
 .infobox {
-    padding: 0 10px;
+    padding: 0 30px 0 10px;
     font-size: 18px;
 
     > p:nth-of-type(1) {
@@ -90,10 +86,19 @@ a {
         margin-left: -4px;
     }
 
-    .attribution {
-        margin-top: 20px;
-        line-height: 2;
-        font-size: 12px;
+    .legend_title {
+        font-family: 'PT Mono', monospace;
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .legend_text {
+        font-family: 'PT Mono', monospace;
+        font-size: 14px;
+    }
+
+    .float_right {
+        float: right;
     }
 
     .infobox__table {
@@ -129,7 +134,7 @@ a {
     font-family: ffmark_black, sans-serif;
     font-size: 60px;
     z-index: 999;
-    text-shadow: 0 10px 0 rgba(0,150,0,.1), 10px 0 rgba(0,0,0,.1);
+    text-shadow: 0 10px 0 rgba(0,150,0,0.2), 10px 0 rgba(0,0,0,0.2);
 }
 
 #map_geodata {

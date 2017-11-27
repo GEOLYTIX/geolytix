@@ -735,11 +735,9 @@ a {
   overflow: hidden; }
   .geodata__info .content {
     height: 100%;
-    width: 100%;
+    width: calc(100% + 30px);
     overflow-y: scroll;
     padding-left: 5px; }
-    .geodata__info .content::-webkit-scrollbar {
-      display: none; }
   .geodata__info .scrollbar_container {
     position: absolute;
     left: 0;
@@ -755,7 +753,7 @@ a {
         cursor: ns-resize; }
 
 .infobox {
-  padding: 0 10px;
+  padding: 0 30px 0 10px;
   font-size: 18px; }
   .infobox > p:nth-of-type(1) {
     margin-bottom: 20px; }
@@ -764,10 +762,15 @@ a {
   .infobox .docu_link {
     line-height: 3;
     margin-left: -4px; }
-  .infobox .attribution {
-    margin-top: 20px;
-    line-height: 2;
-    font-size: 12px; }
+  .infobox .legend_title {
+    font-family: 'PT Mono', monospace;
+    font-weight: 700;
+    font-size: 16px; }
+  .infobox .legend_text {
+    font-family: 'PT Mono', monospace;
+    font-size: 14px; }
+  .infobox .float_right {
+    float: right; }
   .infobox .infobox__table {
     font-family: 'PT Mono', monospace;
     font-size: 16px;
@@ -792,7 +795,7 @@ a {
   font-family: ffmark_black, sans-serif;
   font-size: 60px;
   z-index: 999;
-  text-shadow: 0 10px 0 rgba(0, 150, 0, 0.1), 10px 0 rgba(0, 0, 0, 0.1); }
+  text-shadow: 0 10px 0 rgba(0, 150, 0, 0.2), 10px 0 rgba(0, 0, 0, 0.2); }
 
 #map_geodata {
   width: 100%;

@@ -747,7 +747,7 @@ a {
   font-family: ffmark_black, sans-serif;
   font-size: 40px;
   z-index: 998;
-  text-shadow: 0 10px 0 rgba(0, 150, 0, 0.1), 10px 0 rgba(0, 0, 0, 0.1); }
+  text-shadow: 0 10px 0 rgba(0, 150, 0, 0.2), 10px 0 rgba(0, 0, 0, 0.2); }
 
 button {
   border: none;
@@ -798,10 +798,15 @@ button {
   .infobox .docu_link {
     line-height: 3;
     margin-left: -4px; }
-  .infobox .attribution {
-    margin-top: 20px;
-    line-height: 2;
-    font-size: 12px; }
+  .infobox .legend_title {
+    font-family: 'PT Mono', monospace;
+    font-weight: 700;
+    font-size: 16px; }
+  .infobox .legend_text {
+    font-family: 'PT Mono', monospace;
+    font-size: 14px; }
+  .infobox .float_right {
+    float: right; }
   .infobox .infobox__table {
     font-family: 'PT Mono', monospace;
     font-size: 16px;

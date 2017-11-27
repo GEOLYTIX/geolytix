@@ -1,8 +1,65 @@
-<div id="gd_shanghai" class="infobox">
-    <p>This is a template for Chinese data.</p>
+<style>
+    .legend_table {
+        border-spacing: 0 10px;
+        font-family: 'PT Mono', monospace;
+        font-size: 12px;
+    }
 
-    <div class="attribution">
-        <p>Map data - OpenStreetMap</p>
-        <p>Tiles from CartoDB</p>
-    </div>
+    .legend_table .box {
+        width: 80px;
+        height: 30px;
+    }
+
+    .legend_table .legend_text {
+        padding-left: 20px;
+    }
+
+    .legend_table .mass {
+        background-color: #01ff23;
+        box-shadow: 5px 5px 0 #00bf1a;
+    }
+    .legend_table .mass_pl {
+        background-color: #fffb01;
+        box-shadow: 5px 5px 0 #c0bd00;
+    }
+    .legend_table .premium {
+        background-color: #ff7f00;
+        box-shadow: 5px 5px 0 #bf5c00;
+    }
+    .legend_table .luxury {
+        background-color: #ff0100;
+        box-shadow: 5px 5px 0 #c00000;
+    }
+    .legend_table .na {
+        background-color: #01ffea;
+        box-shadow: 5px 5px 0 #00beae;
+    }
+
+</style>
+<div id="gd_shanghai" class="infobox">
+    <p>Pinpoint profiled shopping venues (e.g. malls) in addition to aggregated, larger shopping destinations (e.g. trade zones) across China. Ideal for targeting new sites, but also for better understanding your existing network and micro location performance.</p>
+    <p class="legend_title">Retail Places</p>
+    <table class="legend_table">
+        <tr>
+            <td class="box mass"></td>
+            <td class="legend_text">Mass</td>
+        </tr>
+        <tr>
+            <td class="box mass_pl"></td>
+            <td class="legend_text">Mass+</td>
+        </tr>
+        <tr>
+            <td class="box premium"></td>
+            <td class="legend_text">Premium</td>
+        </tr>
+        <tr>
+            <td class="box luxury"></td>
+            <td class="legend_text">Luxury</td>
+        </tr>
+        <tr>
+            <td class="box na"></td>
+            <td class="legend_text">n/a</td>
+        </tr>
+    </table>
+    <table class="infobox__table"></table>
 </div>

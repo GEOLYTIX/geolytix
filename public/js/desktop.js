@@ -123,7 +123,7 @@ if (document.getElementById('section_case_studies')){
 
 
 // geodata
-const geodata = require('./geodata')();
+const geodata = require('./geodata')(false);
 
 geodata.pricing = function() {
     document.querySelector('.geodata__pricing').style.display = 'block';
@@ -155,7 +155,7 @@ geodata.faq = function() {
 
 require('./lscrolly')(document.querySelector('.geodata__info'));
 
-document.querySelector('.geodata__select').addEventListener('click', function(){
+document.querySelector('.geodata__select').addEventListener('click', function(event){
     let id = event.target.id;
     history.pushState({so: 'glx'}, id, '?' + id);
     selectGeodata(event.target);

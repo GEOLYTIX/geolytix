@@ -335,7 +335,6 @@ p {
 }
 
 .geodata__table {
-    width: 1300%;
     table-layout: fixed;
 
     td {
@@ -405,7 +404,6 @@ p {
     }
 
     .team__table {
-        width: 1350%;
         table-layout: fixed;
 
         td {
@@ -486,8 +484,11 @@ p {
         margin-top: 20px;
     }
 
-    .logo_odi_supporter {
+    .logo {
         background-position: center;
+        display: block;
+        height: 60px;
+        padding: 20px 0;
     }
 
     .footer__half {

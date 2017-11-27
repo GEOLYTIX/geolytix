@@ -1,5 +1,5 @@
 module.exports = (function () {
-    let scrollElement = function (element, to, duration) {
+    function scrollElement(element, to, duration) {
         if (duration <= 0) return;
         let difference = to - element.scrollTop,
             perTick = difference / duration * 10;
@@ -8,9 +8,9 @@ module.exports = (function () {
             if (element.scrollTop === to) return;
             scrollElement(element, to, duration - 10);
         }, 10);
-    };
+    }
 
-    let addClass = function (elements, myClass) {
+    function addClass(elements, myClass) {
         if (!elements) return;
 
         // if we have a selector, get the chosen elements
@@ -24,9 +24,9 @@ module.exports = (function () {
         for (let i = 0; i < elements.length; i++) {
             if ((' ' + elements[i].className + ' ').indexOf(' ' + myClass + ' ') < 0) elements[i].className += ' ' + myClass;
         }
-    };
+    }
 
-    let removeClass = function (elements, myClass) {
+    function removeClass(elements, myClass) {
         if (!elements) return;
 
         // if we have a selector, get the chosen elements
@@ -43,9 +43,9 @@ module.exports = (function () {
         for (let i = 0; i < elements.length; i++) {
             elements[i].className = elements[i].className.replace(reg, ' ');
         }
-    };
+    }
 
-    let toggleClass = function (elements, myClass) {
+    function toggleClass(elements, myClass) {
         if (!elements) return;
 
         // if we have a selector, get the chosen elements
@@ -65,9 +65,9 @@ module.exports = (function () {
                 elements[i].className += ' ' + myClass;
             }
         }
-    };
+    }
 
-    let hasClass = function (elements, myClass) {
+    function hasClass(elements, myClass) {
         if (!elements) return;
 
         // if we have a selector, get the chosen elements
@@ -84,9 +84,9 @@ module.exports = (function () {
         }
 
         return n === elements.length;
-    };
+    }
 
-    let indexInParent = function (node) {
+    function indexInParent(node) {
         let children = node.parentNode.childNodes,
             num = 0;
         for (let i = 0; i < children.length; i++) {
@@ -94,21 +94,16 @@ module.exports = (function () {
             if (children[i].nodeType === 1) num++;
         }
         return -1;
-    };
+    }
 
-    function debounce(func, wait, immediate) {
+    function debounce(func, wait) {
         let timeout;
         return function () {
-            let context = this,
-                args = arguments,
-                later = function () {
-                    timeout = null;
-                    if (!immediate) func.apply(context, args);
-                },
-                callNow = immediate && !timeout;
             clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-            if (callNow) func.apply(context, args);
+            timeout = setTimeout(function () {
+                timeout = null;
+                func.apply(this, arguments);
+            }, wait);
         };
     }
 

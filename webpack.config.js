@@ -1,6 +1,6 @@
 module.exports = {
     entry: {
-        index: './public/js/index.js',
+        desktop: './public/js/desktop.js',
         mobile: './public/js/mobile.js',
         gd_map: './public/js/gd_map.js'
     },

@@ -24,7 +24,7 @@
         ga('send', 'pageview');
     </script>-->
 
-    <link rel="stylesheet" href="/css/index.css"/>
+    <link rel="stylesheet" href="/css/desktop.css"/>
 
 </head>
 
@@ -75,14 +75,13 @@
             </div>
         </li>
     </ul>
-
 </div>
 
 {{include tmpl=case_studies /}}
 
 {{include tmpl=geodata /}}
 
-<div id="team_photo" class="img__load" data-src="team/glx_team.jpg"></div>
+{{include tmpl=photo /}}
 
 {{include tmpl=team /}}
 
@@ -159,6 +158,6 @@
 </body>
 
 <script>const view_mode = 'desktop'; const locale = '{{:locale}}'</script>
-<script type="application/javascript" src="/js/build/index_bundle.js"></script>
+<script type="application/javascript" src="/js/build/desktop_bundle.js"></script>
 
 </html>
