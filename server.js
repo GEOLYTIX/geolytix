@@ -1,9 +1,10 @@
-var port = process.env.PORT || 3000;
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var app = express();
+const port = process.env.PORT || 3000;
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const app = express();
+const router = require('./router');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -14,8 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use('/', express.static(path.join(__dirname, 'public')));
-// app.use('/public', express.static(path.join(__dirname + '/public')));
-app.use('/', require('./router'));
+app.use('/', router);
 
 app.listen(port);
 console.log('The magic happens on port ' + port);
