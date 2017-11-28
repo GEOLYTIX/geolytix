@@ -2,8 +2,10 @@ const pgp = require('pg-promise')({
     promiseLib: require('bluebird'),
     noWarnings: true});
 const databases = {
-    gs: pgp(process.env.POSTGRES_GEOSERVER),
-    ghs: pgp(process.env.POSTGRES_GHS)
+    // gs: pgp(process.env.POSTGRES_GEOSERVER),
+    // ghs: pgp(process.env.POSTGRES_GHS)
+    gs: pgp('postgres://postgres:sabL6eHeD3aIrRg9GHJw@pg.glx.geolytix.net:5432/geoserver'),
+    ghs: pgp('postgres://node:I53rruYXBWfQPS1QvskU@46.101.174.150:5432/ghs')
 };
 
 function grid_query(req, res) {
