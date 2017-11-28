@@ -1,7 +1,7 @@
-const router = require('express').Router();
-const jsr = require('jsrender');
-const md = require('mobile-detect');
-let queries = require('./queries');
+var router = require('express').Router();
+var jsr = require('jsrender');
+var Md = require('mobile-detect');
+var queries = require('./queries');
 
 router.get('/', function (req, res) {
     // if (/MSIE (\d+\.\d+);/.test(ua)) {
@@ -9,9 +9,9 @@ router.get('/', function (req, res) {
     //         res.redirect('https://blog.geolytix.net');
     //     }
     // }
-    let _md = new md(req.headers['user-agent']);
+    let md = new Md(req.headers['user-agent']);
 
-    let o = (_md.mobile() === null || _md.tablet() !== null) ?
+    let o = (md.mobile() === null || md.tablet() !== null) ?
         {
             tmpl: jsr.templates('./views/desktop.html'),
             platform: './public/tmpl/desktop/'
