@@ -4,7 +4,6 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
-const router = require('./router');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -15,7 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use('/', express.static(path.join(__dirname, 'public')));
-app.use('/', router);
+app.use('/', require('./router'));
 
 app.listen(port);
 console.log('The magic happens on port ' + port);

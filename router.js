@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const jsr = require('jsrender');
 const md = require('mobile-detect');
-const queries = require('./queries');
+let queries = require('./queries');
 
 router.get('/', function (req, res) {
     // if (/MSIE (\d+\.\d+);/.test(ua)) {
