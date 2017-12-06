@@ -132,8 +132,8 @@ const London = new L.Marker(
     .on('click', function(e){
         Leeds.setIcon(marker_alt);
         document.getElementById('contact_leeds').style['display'] = 'none';
-        Tokyo.setIcon(marker_alt);
-        document.getElementById('contact_tokyo').style['display'] = 'none';
+        // Tokyo.setIcon(marker_alt);
+        // document.getElementById('contact_tokyo').style['display'] = 'none';
         document.getElementById('contact_london').style['display'] = 'inline-block';
         e.target.setIcon(marker);
     })
@@ -148,28 +148,28 @@ const Leeds = new L.Marker(
     .on('click', function(e){
         London.setIcon(marker_alt);
         document.getElementById('contact_london').style['display'] = 'none';
-        Tokyo.setIcon(marker_alt);
-        document.getElementById('contact_tokyo').style['display'] = 'none';
+        // Tokyo.setIcon(marker_alt);
+        // document.getElementById('contact_tokyo').style['display'] = 'none';
         document.getElementById('contact_leeds').style['display'] = 'inline-block';
         e.target.setIcon(marker);
     })
     .addTo(map_contact);
 
-const Tokyo = new L.Marker(
-    [35.65652,139.6974],
-    {
-        icon: marker_alt,
-        title: 'Tokyo'
-    })
-    .on('click', function(e){
-        London.setIcon(marker_alt);
-        document.getElementById('contact_london').style['display'] = 'none';
-        Leeds.setIcon(marker_alt);
-        document.getElementById('contact_leeds').style['display'] = 'none';
-        document.getElementById('contact_tokyo').style['display'] = 'inline-block';
-        e.target.setIcon(marker);
-    })
-    .addTo(map_contact);
+// const Tokyo = new L.Marker(
+//     [35.65652,139.6974],
+//     {
+//         icon: marker_alt,
+//         title: 'Tokyo'
+//     })
+//     .on('click', function(e){
+//         London.setIcon(marker_alt);
+//         document.getElementById('contact_london').style['display'] = 'none';
+//         Leeds.setIcon(marker_alt);
+//         document.getElementById('contact_leeds').style['display'] = 'none';
+//         document.getElementById('contact_tokyo').style['display'] = 'inline-block';
+//         e.target.setIcon(marker);
+//     })
+//     .addTo(map_contact);
 
 if (locale === 'uk'){
     map_contact.setView([53.2,-0.7], 5);

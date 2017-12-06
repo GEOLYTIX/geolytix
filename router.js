@@ -24,6 +24,7 @@ router.get('/', function (req, res) {
         uk: {
             locale: 'uk',
             header: o.platform + 'uk_header.html',
+            services: o.platform + 'uk_services.html',
             case_studies: o.platform + 'uk_case_studies.html',
             team: o.platform + 'uk_team.html',
             geodata: o.platform + 'uk_geodata.html',
@@ -33,6 +34,7 @@ router.get('/', function (req, res) {
         cn: {
             locale: 'cn',
             header: o.platform + 'cn_header.html',
+            services: o.platform + 'cn_services.html',
             team: o.platform + 'cn_team.html',
             geodata: o.platform + 'cn_geodata.html',
             photo: o.platform + 'cn_team_photo.html',
