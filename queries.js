@@ -16,7 +16,7 @@ function grid_query(req, res) {
         req.query.east + ', ' +
         req.query.north + ', 4326), ' + req.query.geom + ') LIMIT 10000';
 
-    console.log(q);
+    // console.log(q);
 
     databases[req.query.database].any(q)
         .then(function (data) {

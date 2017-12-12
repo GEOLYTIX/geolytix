@@ -14,38 +14,41 @@ router.get('/', function (req, res) {
     let o = (md.mobile() === null || md.tablet() !== null) ?
         {
             tmpl: jsr.templates('./views/desktop.html'),
-            platform: './public/tmpl/desktop/'
+            platform: 'desktop'
         } : {
             tmpl: jsr.templates('./views/mobile.html'),
-            platform: './public/tmpl/mobile/'
+            platform: 'mobile'
         };
 
     let locales = {
         uk: {
             locale: 'uk',
-            header: o.platform + 'uk_header.html',
-            services: o.platform + 'uk_services.html',
-            case_studies: o.platform + 'uk_case_studies.html',
-            team: o.platform + 'uk_team.html',
-            geodata: o.platform + 'uk_geodata.html',
-            photo: o.platform + 'uk_team_photo.html',
-            footer: o.platform + 'uk_footer.html'
+            header: './public/tmpl/' + o.platform + '/uk_header.html',
+            header_css: '<link rel="stylesheet" href="/css/' + o.platform + '_header_white.css"/>',
+            services: './public/tmpl/' + o.platform + '/uk_services.html',
+            case_studies: './public/tmpl/' + o.platform + '/uk_case_studies.html',
+            team: './public/tmpl/' + o.platform + '/uk_team.html',
+            geodata: './public/tmpl/' + o.platform + '/uk_geodata.html',
+            photo: './public/tmpl/' + o.platform + '/uk_team_photo.html',
+            footer: './public/tmpl/' + o.platform + '/uk_footer.html'
         },
         cn: {
             locale: 'cn',
-            header: o.platform + 'cn_header.html',
-            services: o.platform + 'cn_services.html',
-            team: o.platform + 'cn_team.html',
-            geodata: o.platform + 'cn_geodata.html',
-            photo: o.platform + 'cn_team_photo.html',
-            footer: o.platform + 'cn_footer.html'
+            header: './public/tmpl/' + o.platform + '/cn_header.html',
+            header_css: '<link rel="stylesheet" href="/css/' + o.platform + '_header_black.css"/>',
+            services: './public/tmpl/' + o.platform + '/cn_services.html',
+            team: './public/tmpl/' + o.platform + '/cn_team.html',
+            geodata: './public/tmpl/' + o.platform + '/cn_geodata.html',
+            photo: './public/tmpl/' + o.platform + '/cn_team_photo.html',
+            footer: './public/tmpl/' + o.platform + '/cn_footer.html'
         },
         jp: {
             locale: 'jp',
-            header: o.platform + 'jp_header.html',
-            team: o.platform + 'jp_team.html',
-            geodata: o.platform + 'jp_geodata.html',
-            footer: o.platform + 'jp_footer.html'
+            header: './public/tmpl/' + o.platform + '/jp_header.html',
+            header_css: '<link rel="stylesheet" href="/css/' + o.platform + '_header_black.css"/>',
+            team: './public/tmpl/' + o.platform + '/jp_team.html',
+            geodata: './public/tmpl/' + o.platform + '/jp_geodata.html',
+            footer: './public/tmpl/' + o.platform + '/jp_footer.html'
         }
     };
 
