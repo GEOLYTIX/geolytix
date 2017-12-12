@@ -24,7 +24,7 @@ router.get('/', function (req, res) {
         uk: {
             locale: 'uk',
             header: './public/tmpl/' + o.platform + '/uk_header.html',
-            header_css: '<link rel="stylesheet" href="/css/' + o.platform + '_header_white.css"/>',
+            header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_white.css"/>',
             services: './public/tmpl/' + o.platform + '/uk_services.html',
             case_studies: './public/tmpl/' + o.platform + '/uk_case_studies.html',
             team: './public/tmpl/' + o.platform + '/uk_team.html',
@@ -35,7 +35,7 @@ router.get('/', function (req, res) {
         cn: {
             locale: 'cn',
             header: './public/tmpl/' + o.platform + '/cn_header.html',
-            header_css: '<link rel="stylesheet" href="/css/' + o.platform + '_header_black.css"/>',
+            header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
             services: './public/tmpl/' + o.platform + '/cn_services.html',
             team: './public/tmpl/' + o.platform + '/cn_team.html',
             geodata: './public/tmpl/' + o.platform + '/cn_geodata.html',
@@ -45,7 +45,7 @@ router.get('/', function (req, res) {
         jp: {
             locale: 'jp',
             header: './public/tmpl/' + o.platform + '/jp_header.html',
-            header_css: '<link rel="stylesheet" href="/css/' + o.platform + '_header_black.css"/>',
+            header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
             team: './public/tmpl/' + o.platform + '/jp_team.html',
             geodata: './public/tmpl/' + o.platform + '/jp_geodata.html',
             footer: './public/tmpl/' + o.platform + '/jp_footer.html'
