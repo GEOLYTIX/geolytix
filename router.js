@@ -62,9 +62,9 @@ router.get('/', function (req, res) {
 });
 
 router.get('/map', function (req, res) {
-    let _md = new md(req.headers['user-agent']),
+    let md = new Md(req.headers['user-agent']),
         dataset = req.originalUrl.substring(req.originalUrl.indexOf('?') + 1),
-        tmpl = (_md.mobile() === null || _md.tablet() !== null) ?
+        tmpl = (md.mobile() === null || md.tablet() !== null) ?
             jsr.templates('./views/gd_map_d.html') :
             jsr.templates('./views/gd_map_m.html');
 
