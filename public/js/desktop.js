@@ -173,7 +173,8 @@ function selectGeodata(_this) {
     document.getElementById('btnFullScreen').href = '/map?' + _this.id;
 
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', '/tmpl/gd_' + _this.id + '.html');
+    let loc = locale === 'cn'? 'cn_': '';
+    xhr.open('GET', '/tmpl/' + loc + 'gd_' + _this.id + '.html');
     xhr.setRequestHeader('Content-Type', 'text/html');
     xhr.onload = function () {
         if (xhr.status === 200) {

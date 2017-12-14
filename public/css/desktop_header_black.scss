@@ -76,6 +76,21 @@
     -moz-box-shadow: 1px 1px 3px #000;
     box-shadow: 1px 1px 3px #000;
   }
+
+  .translate_link {
+    display: block;
+    float: right;
+    margin: 3px 0 0 15px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    z-index: 999;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    box-shadow: 2px 3px 3px 0 rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
 }
 
 .header__main > .header__menu > div:hover {
@@ -87,7 +102,8 @@
   top: 250px;
   left: 50px;
   //color: #fff;
-  font-family: ffmark_bold, sans-serif;
+  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  font-weight: 700;
   font-size: 250%;
 }
 
