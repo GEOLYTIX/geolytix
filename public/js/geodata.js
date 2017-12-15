@@ -84,6 +84,9 @@ module.exports = function(scrollWheel) {
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
     }
 
+    // function cn_china() {
+    //     china()
+    // }
     function china() {
         setMap(4, 13, [35, 108], [0, 68], [58, 143]);
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
@@ -135,6 +138,9 @@ module.exports = function(scrollWheel) {
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
     }
 
+    // function cn_shanghai() {
+    //     shanghai()
+    // }
     function shanghai() {
         setMap(13, 16, [31.23, 121.45], [30, 120], [33, 123]);
 
@@ -1071,7 +1077,9 @@ module.exports = function(scrollWheel) {
     return {
         japan: japan,
         tokyo: tokyo,
+        cn_china: china,
         china: china,
+        cn_shanghai: shanghai,
         shanghai: shanghai,
         seamless_locales: seamless_locales,
         retail_points: retail_points,
