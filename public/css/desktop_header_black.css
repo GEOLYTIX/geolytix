@@ -83,6 +83,9 @@
   font-weight: 700;
   font-size: 250%; }
 
+.text__shadow {
+  text-shadow: 2px 2px white; }
+
 .header__smaller > .header__text {
   visibility: hidden;
   opacity: 0;

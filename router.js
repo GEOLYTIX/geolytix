@@ -3,7 +3,7 @@ const jsr = require('jsrender');
 const Md = require('mobile-detect');
 const queries = require('./queries');
 
-router.get('/en/', function (req, res) {
+router.get('/en', function (req, res) {
     // if (/MSIE (\d+\.\d+);/.test(ua)) {
     //     if (Number(RegExp.$1) <= 7) {
     //         res.redirect('https://blog.geolytix.net');
@@ -63,7 +63,7 @@ router.get('/en/', function (req, res) {
     };
 
     req.headers.host.includes('.cn') ?
-        res.send(o.tmpl.render(locales.cn)) : res.send(o.tmpl.render(locales.uk));
+        res.send(o.tmpl.render(locales.cn_en)) : res.send(o.tmpl.render(locales.uk));
 
     // req.headers.host.includes('.cn') ?
     //     res.send(o.tmpl.render(locales.cn)) : req.headers.host.includes('.jp') ?
