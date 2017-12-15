@@ -710,7 +710,7 @@ html {
 
 body {
   position: fixed;
-  font-family: ffmark, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
   font-size: 20px;
   margin: 0;
   height: 100%;
@@ -797,6 +797,15 @@ p {
     background-size: contain;
     border: 1px solid black;
     margin: 0 5px; }
+  #intro__menu .translate_link {
+    display: inline-block;
+    margin-left: 10px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: white;
+    height: 25px;
+    width: 25px;
+    text-align: center; }
   #intro__menu.show {
     display: block !important; }
 
@@ -823,10 +832,14 @@ p {
 
 #intro__text {
   position: absolute;
-  font-family: ffmark_bold, sans-serif;
+  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+  font-weight: 700;
   bottom: 10px;
   left: 10px;
   font-size: 40px; }
+
+.text__shadow {
+  text-shadow: 2px 2px white; }
 
 @media screen and (max-width: 350px) {
   #intro__logo {
@@ -844,7 +857,8 @@ p {
   #services__section > p:nth-of-type(1) {
     font-size: 25px; }
   #services__section > p:nth-of-type(2) {
-    font-family: ffmark_bold, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-weight: 700;
     font-size: 30px; }
   #services__section > p:nth-of-type(3) {
     font-size: 30px;
@@ -862,7 +876,8 @@ p {
     #services__section .services__table tr:nth-of-type(1) {
       height: 150px; }
     #services__section .services__table tr:nth-of-type(2) {
-      font-family: ffmark_bold, sans-serif; }
+      font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+      font-weight: 700; }
     #services__section .services__table tr:nth-of-type(2) td {
       padding: 20px 0; }
     #services__section .services__table tr:nth-of-type(3) {
@@ -878,7 +893,8 @@ p {
   padding-bottom: 30px; }
   #case_studies__section > p:nth-of-type(1) {
     font-size: 35px;
-    font-family: ffmark_bold, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-weight: 700;
     padding: 30px 10px 0 10px; }
   #case_studies__section > p:nth-of-type(2) {
     padding: 20px 10px 20px 10px; }
@@ -903,13 +919,14 @@ p {
   padding-left: 10px; }
 #case_studies__info tr:nth-of-type(1) {
   height: 50px;
-  font-family: ffmark_bold, sans-serif;
+  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+  font-weight: 700;
   font-size: 25px; }
 #case_studies__info tr:nth-of-type(2) td {
   font-size: 18px;
   padding-right: 20px; }
 #case_studies__info .quote {
-  font-family: ffmark_italic, sans-serif;
+  font-family: ffmark_italic, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
   margin-bottom: 16px; }
 #case_studies__info ul {
   padding-left: 18px;
@@ -921,12 +938,14 @@ p {
 #geodata__section {
   width: 100%; }
   #geodata__section > p:nth-of-type(1) {
-    font-family: ffmark_bold, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-weight: 700;
     font-size: 35px;
     padding: 50px 10px 0 10px; }
   #geodata__section > p:nth-of-type(2) {
     color: #079e00;
-    font-family: ffmark_bold, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-weight: 700;
     font-size: 25px;
     padding: 20px 10px 10px 10px; }
   #geodata__section > p:nth-of-type(3) {
@@ -944,7 +963,8 @@ p {
     border-top: 2px solid white;
     border-bottom: 2px solid white; }
   .geodata__table tr:nth-of-type(1) {
-    font-family: ffmark_bold, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-weight: 700;
     font-size: 25px; }
   .geodata__table tr:nth-of-type(2) {
     height: 300px; }
@@ -963,7 +983,8 @@ p {
     text-shadow: 1px 1px 2px grey; }
 
 #blog__link {
-  font-family: ffmark_bold, sans-serif;
+  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+  font-weight: 700;
   margin: 30px 0 120px 100px;
   border-top: 10px solid #079e00;
   padding-top: 10px; }
@@ -974,11 +995,13 @@ p {
   margin-bottom: 80px; }
   #team__section > p:nth-of-type(1) {
     color: #079e00;
-    font-family: ffmark_bold, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-weight: 700;
     font-size: 35px;
     padding: 30px 10px 0 10px; }
   #team__section > p:nth-of-type(2) {
-    font-family: ffmark_bold, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-weight: 700;
     font-size: 25px;
     padding: 20px 10px 40px 10px; }
   #team__section > .scroll__x {
@@ -992,7 +1015,8 @@ p {
     #team__section .team__table tr:nth-of-type(1) {
       height: 150px; }
     #team__section .team__table tr:nth-of-type(2) td {
-      font-family: ffmark_bold, sans-serif;
+      font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+      font-weight: 700;
       padding-top: 10px; }
     #team__section .team__table tr:nth-of-type(4) td {
       padding-top: 10px; }

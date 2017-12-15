@@ -14,7 +14,7 @@ html {
 
 body {
     position: fixed;
-    font-family: ffmark, sans-serif;
+    font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-size: 20px;
     margin: 0;
     height: 100%;
@@ -120,6 +120,17 @@ p {
         margin: 0 5px;
     }
 
+    .translate_link {
+        display: inline-block;
+        margin-left: 10px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-color: white;
+        height: 25px;
+        width: 25px;
+        text-align: center;
+    }
+
     &.show {
         display: block !important;
     }
@@ -150,10 +161,15 @@ p {
 
 #intro__text {
     position: absolute;
-    font-family: ffmark_bold, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+    font-weight: 700;
     bottom: 10px;
     left: 10px;
     font-size: 40px;
+}
+
+.text__shadow {
+    text-shadow: 2px 2px white;
 }
 
 @media screen and (max-width: 350px) {
@@ -182,7 +198,8 @@ p {
     }
 
     > p:nth-of-type(2){
-        font-family: ffmark_bold, sans-serif;
+        font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+        font-weight: 700;
         font-size: 30px;
     }
 
@@ -211,7 +228,8 @@ p {
         }
 
         tr:nth-of-type(2) {
-            font-family: ffmark_bold, sans-serif;
+            font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+            font-weight: 700;
         }
 
         tr:nth-of-type(2) td {
@@ -238,7 +256,8 @@ p {
 
     > p:nth-of-type(1){
         font-size: 35px;
-        font-family: ffmark_bold, sans-serif;
+        font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+        font-weight: 700;
         padding: 30px 10px 0 10px;
     }
 
@@ -281,7 +300,8 @@ p {
 
     tr:nth-of-type(1) {
         height: 50px;
-        font-family: ffmark_bold, sans-serif;
+        font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+        font-weight: 700;
         font-size: 25px;
     }
 
@@ -291,7 +311,7 @@ p {
     }
 
     .quote {
-        font-family: ffmark_italic, sans-serif;
+        font-family: ffmark_italic, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
         margin-bottom: 16px;
     }
 
@@ -311,14 +331,16 @@ p {
     width: 100%;
 
     > p:nth-of-type(1){
-        font-family: ffmark_bold, sans-serif;
+        font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+        font-weight: 700;
         font-size: 35px;
         padding: 50px 10px 0 10px;
     }
 
     > p:nth-of-type(2){
         color: $glxgreen;
-        font-family: ffmark_bold, sans-serif;
+        font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+        font-weight: 700;
         font-size: 25px;
         padding: 20px 10px 10px 10px;
     }
@@ -345,7 +367,8 @@ p {
     }
 
     tr:nth-of-type(1) {
-        font-family: ffmark_bold, sans-serif;
+        font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+        font-weight: 700;
         font-size: 25px;
     }
 
@@ -373,7 +396,8 @@ p {
 
 
 #blog__link {
-    font-family: ffmark_bold, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+    font-weight: 700;
     margin: 30px 0 120px 100px;
     border-top: 10px solid $glxgreen;
     padding-top: 10px;
@@ -387,13 +411,15 @@ p {
 
     > p:nth-of-type(1){
         color: $glxgreen;
-        font-family: ffmark_bold, sans-serif;
+        font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+        font-weight: 700;
         font-size: 35px;
         padding: 30px 10px 0 10px;
     }
 
     > p:nth-of-type(2){
-        font-family: ffmark_bold, sans-serif;
+        font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+        font-weight: 700;
         font-size: 25px;
         padding: 20px 10px 40px 10px;
     }
@@ -416,7 +442,8 @@ p {
         }
 
         tr:nth-of-type(2) td {
-            font-family: ffmark_bold, sans-serif;
+            font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+            font-weight: 700;
             padding-top: 10px;
         }
 

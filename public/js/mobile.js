@@ -11,10 +11,12 @@ window.addEventListener('orientationchange', function() {
 });
 
 function orientation() {
-    document.getElementById('intro__text').innerHTML = (window.innerWidth || screen.height < window.innerWidth || screen.width) ?
+    document.getElementById('intro__text').innerHTML = locale === 'cn'? '我们的网点规划专家为您带来优化的选址策略服务': (window.innerWidth || screen.height < window.innerWidth || screen.width) ?
         'better decisions<br>where location matters' : 'better<br>decisions<br>where<br>location<br>matters';
 }
+
 orientation();
+
 
 
 
@@ -178,10 +180,10 @@ if (locale === 'uk'){
 if (locale === 'jp') {
     map_contact.setView([35.65652,139.6974], 5);
     London.setIcon(marker_alt);
-    Leeds.setIcon(marker_alt);
+    Leeds.setIcon(marker_alt);ls -l
     Tokyo.setIcon(marker);
 }
 
-if (locale === 'cn') {
+if (locale === 'cn' || locale === 'cn_en') {
     map_contact.setView([52, 48], 1);
 }

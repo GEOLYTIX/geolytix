@@ -63,7 +63,7 @@ router.get('/en/', function (req, res) {
     };
 
     req.headers.host.includes('.cn') ?
-        res.send(o.tmpl.render(locales.cn)) : res.send(o.tmpl.render(locales.cn_en));
+        res.send(o.tmpl.render(locales.cn)) : res.send(o.tmpl.render(locales.uk));
 
     // req.headers.host.includes('.cn') ?
     //     res.send(o.tmpl.render(locales.cn)) : req.headers.host.includes('.jp') ?
@@ -131,7 +131,7 @@ router.get('/', function (req, res) {
     };
 
     req.headers.host.includes('.cn') ?
-        res.send(o.tmpl.render(locales.cn)) : res.send(o.tmpl.render(locales.cn));
+        res.send(o.tmpl.render(locales.cn)) : res.send(o.tmpl.render(locales.uk));
 
     // req.headers.host.includes('.cn') ?
     //     res.send(o.tmpl.render(locales.cn)) : req.headers.host.includes('.jp') ?
