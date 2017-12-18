@@ -11,7 +11,7 @@ window.addEventListener('orientationchange', function() {
 });
 
 function orientation() {
-    document.getElementById('intro__text').innerHTML = locale === 'cn'? '我们的网点规划专家为您带来优化的选址策略服务': (window.innerWidth || screen.height < window.innerWidth || screen.width) ?
+    document.getElementById('intro__text').innerHTML = locale === 'cn'? '优化选址决策': (window.innerWidth || screen.height < window.innerWidth || screen.width) ?
         'better decisions<br>where location matters' : 'better<br>decisions<br>where<br>location<br>matters';
 }
 

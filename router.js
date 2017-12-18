@@ -21,29 +21,9 @@ router.get('/en', function (req, res) {
         };
 
     let locales = {
-        uk: {
-            locale: 'uk',
-            header: './public/tmpl/' + o.platform + '/uk_header.html',
-            header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_white.css"/>',
-            services: './public/tmpl/' + o.platform + '/uk_services.html',
-            case_studies: './public/tmpl/' + o.platform + '/uk_case_studies.html',
-            team: './public/tmpl/' + o.platform + '/uk_team.html',
-            geodata: './public/tmpl/' + o.platform + '/uk_geodata.html',
-            photo: './public/tmpl/' + o.platform + '/uk_team_photo.html',
-            footer: './public/tmpl/' + o.platform + '/uk_footer.html'
-        },
-        cn: {
-            locale: 'cn',
-            header: './public/tmpl/' + o.platform + '/cn_header.html',
-            header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
-            services: './public/tmpl/' + o.platform + '/cn_services.html',
-            team: './public/tmpl/' + o.platform + '/cn_team.html',
-            geodata: './public/tmpl/' + o.platform + '/cn_geodata.html',
-            photo: './public/tmpl/' + o.platform + '/cn_team_photo.html',
-            footer: './public/tmpl/' + o.platform + '/cn_footer.html'
-        },
         cn_en: {
             locale: 'cn_en',
+            meta: 'Experts in providing data and services for location, demographic, customer and market analysis for retailers and investors in the UK, Europe and America.',
             header: './public/tmpl/' + o.platform + '/cn_en_header.html',
             header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
             services: './public/tmpl/' + o.platform + '/cn_en_services.html',
@@ -51,14 +31,6 @@ router.get('/en', function (req, res) {
             geodata: './public/tmpl/' + o.platform + '/cn_en_geodata.html',
             photo: './public/tmpl/' + o.platform + '/cn_team_photo.html',
             footer: './public/tmpl/' + o.platform + '/cn_footer.html'
-        },
-        jp: {
-            locale: 'jp',
-            header: './public/tmpl/' + o.platform + '/jp_header.html',
-            header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
-            team: './public/tmpl/' + o.platform + '/jp_team.html',
-            geodata: './public/tmpl/' + o.platform + '/jp_geodata.html',
-            footer: './public/tmpl/' + o.platform + '/jp_footer.html'
         }
     };
 
@@ -91,6 +63,7 @@ router.get('/', function (req, res) {
     let locales = {
         uk: {
             locale: 'uk',
+            meta: 'Experts in providing data and services for location, demographic, customer and market analysis for retailers and investors in the UK, Europe and America.',
             header: './public/tmpl/' + o.platform + '/uk_header.html',
             header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_white.css"/>',
             services: './public/tmpl/' + o.platform + '/uk_services.html',
@@ -102,6 +75,7 @@ router.get('/', function (req, res) {
         },
         cn: {
             locale: 'cn',
+            meta: '为英国，欧洲及美洲的零售商及投资者提供门店选址，人口统计资料分析，客户及市场洞察的数据及专业服务。',
             header: './public/tmpl/' + o.platform + '/cn_header.html',
             header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
             services: './public/tmpl/' + o.platform + '/cn_services.html',
@@ -112,6 +86,7 @@ router.get('/', function (req, res) {
         },
         cn_en: {
             locale: 'cn_en',
+            meta: 'Experts in providing data and services for location, demographic, customer and market analysis for retailers and investors in the UK, Europe and America.',
             header: './public/tmpl/' + o.platform + '/cn_en_header.html',
             header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
             services: './public/tmpl/' + o.platform + '/cn_en_services.html',
