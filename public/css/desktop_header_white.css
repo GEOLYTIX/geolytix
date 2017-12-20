@@ -67,10 +67,15 @@
 .header__text {
   position: absolute;
   top: 250px;
-  left: 50px;
   color: #fff;
   font-family: ffmark_bold, sans-serif;
   font-size: 250%; }
+
+.intro__text_left {
+  left: 50px; }
+
+.intro__text_right {
+  right: 10px; }
 
 .header__smaller > .header__text {
   visibility: hidden;
@@ -80,4 +85,4 @@
 .black {
   color: black !important; }
 
-/*# sourceMappingURL=desktop_header_white.csshite.css.map */
+/*# sourceMappingURL=desktop_header_white.css.map */

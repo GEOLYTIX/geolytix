@@ -78,10 +78,15 @@
 .header__text {
   position: absolute;
   top: 250px;
-  left: 50px;
   font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
   font-weight: 700;
   font-size: 250%; }
+
+.intro__text_left {
+  left: 50px; }
+
+.intro__text_right {
+  right: 10px; }
 
 .text__shadow {
   text-shadow: 2px 2px white; }
