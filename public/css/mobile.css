@@ -768,7 +768,6 @@ p {
   margin-bottom: 30px; }
   .intro__section > span {
     color: black;
-    text-align: left;
     -webkit-transition: color 0.5s linear;
     -moz-transition: color 0.5s linear;
     -o-transition: color 0.5s linear;
@@ -838,10 +837,12 @@ p {
   font-size: 40px; }
 
 .intro__text_left {
-  left: 10px; }
+  left: 10px;
+  text-align: left; }
 
 .intro__text_right {
-  right: 10px; }
+  right: 10px;
+  text-align: right; }
 
 .text__shadow {
   text-shadow: 2px 2px white; }

@@ -82,7 +82,6 @@ p {
 
     > span {
         color: black;
-        text-align: left;
         -webkit-transition: color 0.5s linear;
         -moz-transition: color 0.5s linear;
         -o-transition: color 0.5s linear;
@@ -169,10 +168,12 @@ p {
 
 .intro__text_left {
     left: 10px;
+    text-align: left;
 }
 
 .intro__text_right {
     right: 10px;
+    text-align: right;
 }
 
 .text__shadow {
