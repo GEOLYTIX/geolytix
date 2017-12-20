@@ -38,6 +38,7 @@
 #home {
   float: left;
   font-family: ffmark_black, sans-serif;
+  text-shadow: 2px 2px white;
   margin-top: 120px;
   font-size: 120px;
   transition: all 0.3s;
@@ -53,6 +54,7 @@
   top: 10px;
   right: 50px;
   font-size: 120%;
+  text-shadow: 1px 1px 1px white;
 
   div {
     float: right;
