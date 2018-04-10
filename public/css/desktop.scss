@@ -6,7 +6,6 @@ $glxlightgreen: #ccff90;
 @import 'fonts';
 @import 'leaflet';
 @import 'ul_grid';
-//@import 'header';
 @import 'services';
 @import 'case_studies';
 @import 'geodata';
@@ -96,7 +95,7 @@ button {
 /* RESIZE */
 @media screen and (max-width: 1175px) {
   .header__smaller > #home {
-    font-size: 24px;
+    font-size: 24px !important;
   }
 }
 

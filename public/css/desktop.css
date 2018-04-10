@@ -56,63 +56,63 @@
 .icon-resize-full:before {
   content: '\e800'; }
 
-/* '¯áÇ' */
+/* '' */
 .icon-linkedin-squared:before {
   content: '\e801'; }
 
-/* '¯áü' */
+/* '' */
 .icon-paper-plane:before {
   content: '\e802'; }
 
-/* '¯áé' */
+/* '' */
 .icon-reply:before {
   content: '\e803'; }
 
-/* '¯áâ' */
+/* '' */
 .icon-stackoverflow:before {
   content: '\e804'; }
 
-/* '¯áä' */
+/* '' */
 .icon-twitter-squared:before {
   content: '\e805'; }
 
-/* '¯áà' */
+/* '' */
 .icon-github:before {
   content: '\e806'; }
 
-/* '¯áå' */
+/* '' */
 .icon-blogger:before {
   content: '\e807'; }
 
-/* '¯áç' */
+/* '' */
 .icon-stackexchange:before {
   content: '\e808'; }
 
-/* '¯áê' */
+/* '' */
 .icon-cancel:before {
   content: '\e809'; }
 
-/* '¯áë' */
+/* '' */
 .icon-file-pdf:before {
   content: '\e80a'; }
 
-/* '¯áè' */
+/* '' */
 .icon-wordpress:before {
   content: '\e80b'; }
 
-/* '¯áï' */
+/* '' */
 .icon-resize-small:before {
   content: '\e80c'; }
 
-/* '¯áî' */
+/* '' */
 .icon-export-alt:before {
   content: '\e80d'; }
 
-/* '¯áì' */
+/* '' */
 .icon-download:before {
   content: '\e80e'; }
 
-/* '¯áÄ' */
+/* '' */
 /* required styles */
 .leaflet-pane,
 .leaflet-tile,
@@ -754,7 +754,7 @@
     font-size: 150%;
     text-align: center;
     margin-bottom: 20px;
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700; }
   #section_services > p:nth-of-type(3) {
     font-size: 200%;
@@ -770,7 +770,7 @@
     width: 100%;
     top: 240px;
     text-align: center;
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700; }
   #section_services .ul_grid > li {
     width: 24%; }
@@ -859,13 +859,13 @@
   height: 750px;
   width: 100%; }
   #section_geodata > p:nth-of-type(1) {
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700;
     font-size: 300%;
     margin-bottom: 10px; }
   #section_geodata > p:nth-of-type(2) {
     color: #079e00;
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700;
     font-size: 200%;
     margin-bottom: 10px; }
@@ -889,7 +889,7 @@
   .geodata__select > div:hover {
     border-bottom: 10px solid black; }
   .geodata__select > .selected {
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700; }
   .geodata__select #pricing {
     margin-top: 50px; }
@@ -934,7 +934,7 @@
   .geodata__faq > table td:first-child {
     padding-right: 30px; }
   .geodata__faq > table .title {
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700;
     padding-bottom: 10px; }
 
@@ -1050,12 +1050,12 @@
   box-sizing: border-box; }
   #section_team > p:nth-of-type(1) {
     font-size: 300%;
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700;
     color: #079e00; }
   #section_team > p:nth-of-type(2) {
     font-size: 150%;
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700;
     padding: 10px 0 20px 0; }
   #section_team .li_card__img {
@@ -1069,7 +1069,7 @@
     background-color: #fff;
     text-align: center; }
     #section_team .li_card__title span:nth-of-type(1) {
-      font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+      font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
       font-weight: 700; }
     #section_team .li_card__title span:nth-of-type(2) {
       font-size: 80%; }
@@ -1178,7 +1178,7 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
-  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   min-width: 799px;
   overflow-x: hidden; }
 
@@ -1239,7 +1239,7 @@ button {
 /* RESIZE */
 @media screen and (max-width: 1175px) {
   .header__smaller > #home {
-    font-size: 24px; } }
+    font-size: 24px !important; } }
 @media screen and (max-width: 975px) {
   .header__smaller > #home {
     display: none; } }

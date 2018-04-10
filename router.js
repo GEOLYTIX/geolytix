@@ -23,7 +23,7 @@ router.get('/en', function (req, res) {
     let locales = {
         cn_en: {
             locale: 'cn_en',
-            meta: 'Experts in providing data and services for location, demographic, customer and market analysis for retailers and investors in the UK, Europe and America.',
+            meta: 'Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers.',
             header: './public/tmpl/' + o.platform + '/cn_en_header.html',
             header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
             services: './public/tmpl/' + o.platform + '/cn_en_services.html',
@@ -63,7 +63,7 @@ router.get('/', function (req, res) {
     let locales = {
         uk: {
             locale: 'uk',
-            meta: 'Experts in providing data and services for location, demographic, customer and market analysis for retailers and investors in the UK, Europe and America.',
+            meta: 'Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers.',
             header: './public/tmpl/' + o.platform + '/uk_header.html',
             header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_white.css"/>',
             services: './public/tmpl/' + o.platform + '/uk_services.html',
@@ -86,7 +86,7 @@ router.get('/', function (req, res) {
         },
         cn_en: {
             locale: 'cn_en',
-            meta: 'Experts in providing data and services for location, demographic, customer and market analysis for retailers and investors in the UK, Europe and America.',
+            meta: 'Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers.',
             header: './public/tmpl/' + o.platform + '/cn_en_header.html',
             header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
             services: './public/tmpl/' + o.platform + '/cn_en_services.html',
