@@ -22,8 +22,6 @@ for (let i = 0; i < imgLoadArray.length; i++) {
 
 
 //window control
-const body = document.querySelector('html, body');
-
 function setHeader() {
     let distanceY = window.pageYOffset || document.documentElement.scrollTop;
     distanceY > 300 ? helper.addClass('.header','header__smaller') : helper.removeClass('.header','header__smaller');
@@ -47,7 +45,7 @@ window.onresize = function () {
 document.getElementById('home').addEventListener('click',
     function (e) {
         e.preventDefault();
-        helper.scrollElement(body, 0, 400);
+        helper.scrollBody(0, 400);
         history.pushState({so: 'glx'}, this.id, '?');
     }
 );
@@ -66,7 +64,7 @@ const sections = {
 };
 
 function scrollTo(section) {
-    if (sections[section]) helper.scrollElement(body, document.getElementById('section_' + section).getBoundingClientRect().top + window.pageYOffset - sections[section], 400);
+    if (sections[section]) helper.scrollBody(document.getElementById('section_' + section).getBoundingClientRect().top + window.pageYOffset - sections[section], 400);
 }
 
 
@@ -86,7 +84,7 @@ const team_cards = section_team.querySelectorAll('.ul_grid .li_card');
 for (let i = 0; i < team_cards.length; i++) {
     team_cards[i].addEventListener('click', function() {
         expandCard(section_team, this);
-        helper.scrollElement(body, this.getBoundingClientRect().top + window.pageYOffset - 80, 400)
+        helper.scrollBody(this.getBoundingClientRect().top + window.pageYOffset - 80, 400)
     });
 }
 expandCard(section_team, section_team.querySelector('.li_card'));
@@ -187,7 +185,7 @@ function selectGeodata(_this) {
 (function(dataset){
     if (geodata[dataset]) {
         selectGeodata(document.getElementById(dataset));
-        helper.scrollElement(body, document.getElementById('section_geodata').getBoundingClientRect().top + window.pageYOffset - 80, 400);
+        helper.scrollBody(document.getElementById('section_geodata').getBoundingClientRect().top + window.pageYOffset - 80, 400);
     } else {
         selectGeodata(document.querySelector('.geodata__select > div'));
     }

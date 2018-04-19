@@ -4,10 +4,23 @@ module.exports = (function () {
         let difference = to - element.scrollTop,
             perTick = difference / duration * 10;
         setTimeout(function () {
-            //Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
-            element.scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + perTick;
-            if (Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) === to) return;
+            element.scrollTop = element.scrollTop + perTick;
+            if (element.scrollTop === to) return;
             scrollElement(element, to, duration - 10);
+        }, 10);
+    }
+
+    function scrollBody(to, duration) {
+        if (duration <= 0) return;
+        let difference = to - Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop),
+            perTick = difference / duration * 10;
+        setTimeout(function () {
+            let scroll = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + perTick;
+            window.pageYOffset = scroll;
+            document.documentElement.scrollTop = scroll;
+            document.body.scrollTop = scroll;
+            if (scroll === to) return;
+            scrollBody(to, duration - 10);
         }, 10);
     }
 
@@ -110,6 +123,7 @@ module.exports = (function () {
 
     return {
         scrollElement:scrollElement,
+        scrollBody: scrollBody,
         addClass:addClass,
         removeClass:removeClass,
         toggleClass:toggleClass,
