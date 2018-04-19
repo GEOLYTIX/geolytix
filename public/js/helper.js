@@ -4,8 +4,9 @@ module.exports = (function () {
         let difference = to - element.scrollTop,
             perTick = difference / duration * 10;
         setTimeout(function () {
-            element.scrollTop = element.scrollTop + perTick;
-            if (element.scrollTop === to) return;
+            //Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop)
+            element.scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + perTick;
+            if (Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) === to) return;
             scrollElement(element, to, duration - 10);
         }, 10);
     }
