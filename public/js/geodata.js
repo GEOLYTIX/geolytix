@@ -74,14 +74,14 @@ module.exports = function(scrollWheel) {
 
     function japan() {
         setMap(5, 15, [39, 136], [25, 125], [50, 155]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', {pane: 'labels'}).addTo(map);
     }
 
     function tokyo() {
         setMap(10, 17, [35.7, 139.7], [35, 139], [37, 141]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', {pane: 'labels'}).addTo(map);
     }
 
     // function cn_china() {
@@ -89,7 +89,7 @@ module.exports = function(scrollWheel) {
     // }
     function china() {
         setMap(4, 13, [35, 108], [0, 68], [58, 143]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         let arrayZoom = {
                 "4": "cj_hx_256k",
@@ -135,7 +135,7 @@ module.exports = function(scrollWheel) {
             mapZoom = map.getZoom();
         });
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', {pane: 'labels'}).addTo(map);
     }
 
     // function cn_shanghai() {
@@ -144,7 +144,7 @@ module.exports = function(scrollWheel) {
     function shanghai() {
         setMap(13, 16, [31.23, 121.45], [30, 120], [33, 123]);
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ')
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg')
             .addTo(map);
 
         new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
@@ -180,13 +180,13 @@ module.exports = function(scrollWheel) {
             });
         }
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ')
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg')
             .addTo(map);
     }
 
     function seamless_locales() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         let layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
                 version: '1.3',
@@ -213,7 +213,7 @@ module.exports = function(scrollWheel) {
 
     function retail_points() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         let cqlFilterArray = ["brand='asda'", "brand='morrisons'", "brand='sainsburys'", "brand='tesco'"],
             cqlFilter = cqlFilterArray.join(' OR '),
@@ -226,7 +226,7 @@ module.exports = function(scrollWheel) {
                 CQL_FILTER: cqlFilter
             }).addTo(map);
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', {pane: 'labels'}).addTo(map);
 
         map.on('click', function (e) {
             clickSelect(e, map, layer, cqlFilter)
@@ -262,7 +262,7 @@ module.exports = function(scrollWheel) {
 
     function retail_places() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         let layer = L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             layers: 'retailplaces_outline',
@@ -294,15 +294,15 @@ module.exports = function(scrollWheel) {
             maxZoom: 17
         }).addTo(map);
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cjackgsl84dmh2ro26eaz8qf5/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cjackgsl84dmh2ro26eaz8qf5/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
     }
 
     function public_transport() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ')
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg')
             .addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
@@ -326,14 +326,14 @@ module.exports = function(scrollWheel) {
             styles: 'transport_tube'
         }).addTo(map);
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ')
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg')
             .addTo(map);
 
     }
 
     function postal_geom() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             opacity: 1.0,
@@ -398,7 +398,7 @@ module.exports = function(scrollWheel) {
 
     function town_suburb() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         let layer = new L.NonTiledLayer.WMS("https://gsx.geolytix.net/geoserver/geolytix/wms", {
                 version: '1.3',
@@ -425,7 +425,7 @@ module.exports = function(scrollWheel) {
 
     function education() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             layers: 'university_building',
@@ -434,12 +434,12 @@ module.exports = function(scrollWheel) {
             styles: 'university_building'
         }).addTo(map);
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
     }
 
     function workplace() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         let arrayZoom = {
                 12: 'workplace_pc_hx800',
@@ -481,7 +481,7 @@ module.exports = function(scrollWheel) {
             mapZoom = map.getZoom();
         });
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', {pane: 'labels'}).addTo(map);
 
         let layer = new L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             version: '1.3',
@@ -500,7 +500,7 @@ module.exports = function(scrollWheel) {
 
     function poi() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         let cqlFilterArray = ["poi_type='carpark'"],
             cqlFilter = cqlFilterArray[0],
@@ -513,7 +513,7 @@ module.exports = function(scrollWheel) {
                 CQL_FILTER: cqlFilter
             }).addTo(map);
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', {pane: 'labels'}).addTo(map);
 
         map.on('click', function (e) {
             clickSelect(e, map, layer, cqlFilter)
@@ -548,7 +548,7 @@ module.exports = function(scrollWheel) {
 
     function residential() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         let arrayZoom = {
                 12: 'residential_oa_hx800',
@@ -601,12 +601,12 @@ module.exports = function(scrollWheel) {
             getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions)
         });
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', {pane: 'labels'}).addTo(map);
     }
 
     function uk_admin() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             layers: 'admin_uk_oa',
@@ -648,7 +648,7 @@ module.exports = function(scrollWheel) {
 
     function property() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         let arrayZoom = {
                 12: 'property_hx800',
@@ -680,7 +680,7 @@ module.exports = function(scrollWheel) {
 
         getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', {pane: 'labels'}).addTo(map);
 
         map.on('zoomend', function () {
             getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
@@ -693,7 +693,7 @@ module.exports = function(scrollWheel) {
 
     function road_network() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             layers: 'osm_roads',
@@ -702,12 +702,12 @@ module.exports = function(scrollWheel) {
             styles: 'osm_roads'
         }).addTo(map);
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
     }
 
     function media_com() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         let arrayZoom = {
                 12: 'media_bb_hx800',
@@ -739,7 +739,7 @@ module.exports = function(scrollWheel) {
 
         getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ', {pane: 'labels'}).addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', {pane: 'labels'}).addTo(map);
 
         map.on('zoomend', function () {
             getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions)
@@ -752,7 +752,7 @@ module.exports = function(scrollWheel) {
 
     function physical() {
         setMap(12, 17, [51.50, -0.1], [51.35, -0.4], [51.65, 0.2]);
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
 
         L.tileLayer.wms("https://gsx.geolytix.net/geoserver/geolytix/wms", {
             version: '1.3',
@@ -770,7 +770,7 @@ module.exports = function(scrollWheel) {
             styles: 'physical_line'
         }).addTo(map);
 
-        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2lmZTkwbmE4MDBlaXRqa24yMXM3cDZnNiJ9.OQdpYn3jikzjvvOkqZy2bQ').addTo(map);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
     }
 
 
