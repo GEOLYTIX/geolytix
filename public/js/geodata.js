@@ -3,7 +3,7 @@ const L = require('leaflet');
 import proj4 from 'proj4';
 require('./leaflet.NonTiledLayer-src');
 const turf_point = require('turf-point');
-const turf_inside = require('@turf/inside');
+const turf_inside = require('@turf/boolean-point-in-polygon');
 
 module.exports = function(scrollWheel) {
     let mapZoom = 13,

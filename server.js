@@ -1,19 +1,21 @@
-const port = process.env.PORT || 3000;
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const app = express();
+const fastify = require('fastify')({
+    logger: {
+        level: 'error'
+    }
+});
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+fastify
+    .register(require('fastify-helmet'), { noCache: true })
+    .register(require('fastify-formbody'))
+    .register(require('fastify-static'), { root: require('path').join(__dirname, 'public') })
 
-app.use(require('helmet').noCache());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
-app.use('/', express.static(path.join(__dirname, 'public')));
-app.use('/', require('./router'));
+require('./routes')(fastify);
 
-app.listen(port);
-console.log('The magic happens on port ' + port);
+fastify.listen(process.env.PORT || 3000, '0.0.0.0', err => {
+    if (err) {
+        console.error(err)
+        process.exit(1)
+    }
+
+    console.log('...beep!');
+});
