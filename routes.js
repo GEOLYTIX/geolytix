@@ -6,13 +6,11 @@ module.exports = fastify => {
     // Set jsrender module for server-side templates.
     const jsr = require('jsrender');
 
-    fastify.get('/', (req, res) => {
+    fastify.get('/', (req, res) => getSite(req, res));
 
-        // if (/MSIE (\d+\.\d+);/.test(ua)) {
-        //     if (Number(RegExp.$1) <= 7) {
-        //         res.redirect('https://blog.geolytix.net');
-        //     }
-        // }
+    fastify.get('/en', (req, res) =>  getSite(req, res, true));
+
+    function getSite(req, res, translate){
 
         let md = new Md(req.headers['user-agent']);
 
@@ -28,6 +26,7 @@ module.exports = fastify => {
         let locales = {
             uk: {
                 locale: 'uk',
+                office: 0,
                 meta: 'Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers.',
                 header: './public/tmpl/' + o.platform + '/uk_header.html',
                 header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_white.css"/>',
@@ -40,83 +39,70 @@ module.exports = fastify => {
             },
             cn: {
                 locale: 'cn',
+                office: 2,
                 meta: '为英国，欧洲及美洲的零售商及投资者提供门店选址，人口统计资料分析，客户及市场洞察的数据及专业服务。',
                 header: './public/tmpl/' + o.platform + '/cn_header.html',
                 header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
                 services: './public/tmpl/' + o.platform + '/cn_services.html',
                 team: './public/tmpl/' + o.platform + '/cn_team.html',
                 geodata: './public/tmpl/' + o.platform + '/cn_geodata.html',
-                photo: './public/tmpl/' + o.platform + '/cn_team_photo.html',
+                photo: './public/tmpl/' + o.platform + '/no_team_photo.html',
                 footer: './public/tmpl/' + o.platform + '/cn_footer.html'
             },
             cn_en: {
                 locale: 'cn_en',
+                office: 2,
                 meta: 'Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers.',
                 header: './public/tmpl/' + o.platform + '/cn_en_header.html',
                 header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
-                services: './public/tmpl/' + o.platform + '/cn_en_services.html',
+                services: './public/tmpl/' + o.platform + '/uk_services.html',
                 team: './public/tmpl/' + o.platform + '/cn_en_team.html',
                 geodata: './public/tmpl/' + o.platform + '/cn_en_geodata.html',
-                photo: './public/tmpl/' + o.platform + '/cn_team_photo.html',
+                photo: './public/tmpl/' + o.platform + '/no_team_photo.html',
                 footer: './public/tmpl/' + o.platform + '/cn_footer.html'
             },
             jp: {
                 locale: 'jp',
+                office: 3,
+                meta: 'Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers.',
                 header: './public/tmpl/' + o.platform + '/jp_header.html',
                 header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
+                services: './public/tmpl/' + o.platform + '/jp_services.html',
                 team: './public/tmpl/' + o.platform + '/jp_team.html',
                 geodata: './public/tmpl/' + o.platform + '/jp_geodata.html',
-                footer: './public/tmpl/' + o.platform + '/jp_footer.html'
+                photo: './public/tmpl/' + o.platform + '/no_team_photo.html',
+                footer: './public/tmpl/' + o.platform + '/uk_footer.html'
+            },
+            jp_en: {
+                locale: 'jp',
+                office: 3,
+                meta: 'Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers.',
+                header: './public/tmpl/' + o.platform + '/jp_en_header.html',
+                header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
+                services: './public/tmpl/' + o.platform + '/uk_services.html',
+                team: './public/tmpl/' + o.platform + '/jp_team.html',
+                geodata: './public/tmpl/' + o.platform + '/jp_geodata.html',
+                photo: './public/tmpl/' + o.platform + '/no_team_photo.html',
+                footer: './public/tmpl/' + o.platform + '/uk_footer.html'
             }
         };
 
-        if (req.headers.host.includes('.cn'))
-            return res.type('text/html').send(o.tmpl.render(locales.cn));
+        //res.send(req.headers);
+
+        if (req.headers['x-forwarded-host'] && req.headers['x-forwarded-host'].includes('.cn') && translate)
+            return res.type('text/html').send(o.tmpl.render(locales.cn_en));
         
-        if (req.headers.host.includes('.jp'))
+        if (req.headers['x-forwarded-host'] && req.headers['x-forwarded-host'].includes('.cn'))
+            return res.type('text/html').send(o.tmpl.render(locales.cn));
+
+        if (req.headers['x-forwarded-host'] && req.headers['x-forwarded-host'].includes('.jp') && translate)
+            return res.type('text/html').send(o.tmpl.render(locales.cn_en));
+        
+        if (req.headers['x-forwarded-host'] && req.headers['x-forwarded-host'].includes('.jp'))
             return res.type('text/html').send(o.tmpl.render(locales.jp));
 
         res.type('text/html').send(o.tmpl.render(locales.uk));
-    });
-
-    fastify.get('/en', (req, res) => {
-
-        // if (/MSIE (\d+\.\d+);/.test(ua)) {
-        //     if (Number(RegExp.$1) <= 7) {
-        //         res.redirect('https://blog.geolytix.net');
-        //     }
-        // }
-
-        let md = new Md(req.headers['user-agent']);
-
-        let o = (md.mobile() === null || md.tablet() !== null) ?
-            {
-                tmpl: jsr.templates('./views/desktop.html'),
-                platform: 'desktop'
-            } : {
-                tmpl: jsr.templates('./views/mobile.html'),
-                platform: 'mobile'
-            };
-
-        let locales = {
-            cn_en: {
-                locale: 'cn_en',
-                meta: 'Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers.',
-                header: './public/tmpl/' + o.platform + '/cn_en_header.html',
-                header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
-                services: './public/tmpl/' + o.platform + '/cn_en_services.html',
-                team: './public/tmpl/' + o.platform + '/cn_en_team.html',
-                geodata: './public/tmpl/' + o.platform + '/cn_en_geodata.html',
-                photo: './public/tmpl/' + o.platform + '/cn_team_photo.html',
-                footer: './public/tmpl/' + o.platform + '/cn_footer.html'
-            }
-        };
-
-        if (req.headers.host.includes('.cn'))
-            return res.type('text/html').send(o.tmpl.render(locales.cn_en));
-        
-        res.type('text/html').send(o.tmpl.render(locales.uk));
-    });
+    }
 
     fastify.register(require('fastify-postgres'), {
         connectionString: process.env.POSTGRES_GEOSERVER,

@@ -100,7 +100,10 @@ button {
 }
 
 @media screen and (max-width: 975px) {
-  .header__smaller > #home {
+  // .header__smaller > #home {
+  //   display: none;
+  // }
+  .header__menu > div {
     display: none;
   }
 }

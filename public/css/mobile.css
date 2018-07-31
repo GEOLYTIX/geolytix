@@ -56,63 +56,63 @@
 .icon-resize-full:before {
   content: '\e800'; }
 
-/* '¯áÇ' */
+/* '' */
 .icon-linkedin-squared:before {
   content: '\e801'; }
 
-/* '¯áü' */
+/* '' */
 .icon-paper-plane:before {
   content: '\e802'; }
 
-/* '¯áé' */
+/* '' */
 .icon-reply:before {
   content: '\e803'; }
 
-/* '¯áâ' */
+/* '' */
 .icon-stackoverflow:before {
   content: '\e804'; }
 
-/* '¯áä' */
+/* '' */
 .icon-twitter-squared:before {
   content: '\e805'; }
 
-/* '¯áà' */
+/* '' */
 .icon-github:before {
   content: '\e806'; }
 
-/* '¯áå' */
+/* '' */
 .icon-blogger:before {
   content: '\e807'; }
 
-/* '¯áç' */
+/* '' */
 .icon-stackexchange:before {
   content: '\e808'; }
 
-/* '¯áê' */
+/* '' */
 .icon-cancel:before {
   content: '\e809'; }
 
-/* '¯áë' */
+/* '' */
 .icon-file-pdf:before {
   content: '\e80a'; }
 
-/* '¯áè' */
+/* '' */
 .icon-wordpress:before {
   content: '\e80b'; }
 
-/* '¯áï' */
+/* '' */
 .icon-resize-small:before {
   content: '\e80c'; }
 
-/* '¯áî' */
+/* '' */
 .icon-export-alt:before {
   content: '\e80d'; }
 
-/* '¯áì' */
+/* '' */
 .icon-download:before {
   content: '\e80e'; }
 
-/* '¯áÄ' */
+/* '' */
 /* required styles */
 .leaflet-pane,
 .leaflet-tile,
@@ -710,7 +710,7 @@ html {
 
 body {
   position: fixed;
-  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-size: 20px;
   margin: 0;
   height: 100%;
@@ -831,7 +831,7 @@ p {
 
 #intro__text {
   position: absolute;
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   bottom: 10px;
   font-size: 40px; }
@@ -863,7 +863,7 @@ p {
   #services__section > p:nth-of-type(1) {
     font-size: 25px; }
   #services__section > p:nth-of-type(2) {
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700;
     font-size: 30px; }
   #services__section > p:nth-of-type(3) {
@@ -882,7 +882,7 @@ p {
     #services__section .services__table tr:nth-of-type(1) {
       height: 150px; }
     #services__section .services__table tr:nth-of-type(2) {
-      font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+      font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
       font-weight: 700; }
     #services__section .services__table tr:nth-of-type(2) td {
       padding: 20px 0; }
@@ -899,7 +899,7 @@ p {
   padding-bottom: 30px; }
   #case_studies__section > p:nth-of-type(1) {
     font-size: 35px;
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700;
     padding: 30px 10px 0 10px; }
   #case_studies__section > p:nth-of-type(2) {
@@ -925,14 +925,14 @@ p {
   padding-left: 10px; }
 #case_studies__info tr:nth-of-type(1) {
   height: 50px;
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   font-size: 25px; }
 #case_studies__info tr:nth-of-type(2) td {
   font-size: 18px;
   padding-right: 20px; }
 #case_studies__info .quote {
-  font-family: ffmark_italic, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+  font-family: ffmark_italic, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   margin-bottom: 16px; }
 #case_studies__info ul {
   padding-left: 18px;
@@ -944,13 +944,13 @@ p {
 #geodata__section {
   width: 100%; }
   #geodata__section > p:nth-of-type(1) {
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700;
     font-size: 35px;
     padding: 50px 10px 0 10px; }
   #geodata__section > p:nth-of-type(2) {
     color: #079e00;
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700;
     font-size: 25px;
     padding: 20px 10px 10px 10px; }
@@ -969,7 +969,7 @@ p {
     border-top: 2px solid white;
     border-bottom: 2px solid white; }
   .geodata__table tr:nth-of-type(1) {
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700;
     font-size: 25px; }
   .geodata__table tr:nth-of-type(2) {
@@ -989,7 +989,7 @@ p {
     text-shadow: 1px 1px 2px grey; }
 
 #blog__link {
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   margin: 30px 0 120px 100px;
   border-top: 10px solid #079e00;
@@ -1001,12 +1001,12 @@ p {
   margin-bottom: 80px; }
   #team__section > p:nth-of-type(1) {
     color: #079e00;
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700;
     font-size: 35px;
     padding: 30px 10px 0 10px; }
   #team__section > p:nth-of-type(2) {
-    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+    font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700;
     font-size: 25px;
     padding: 20px 10px 40px 10px; }
@@ -1021,7 +1021,7 @@ p {
     #team__section .team__table tr:nth-of-type(1) {
       height: 150px; }
     #team__section .team__table tr:nth-of-type(2) td {
-      font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+      font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
       font-weight: 700;
       padding-top: 10px; }
     #team__section .team__table tr:nth-of-type(4) td {
@@ -1057,7 +1057,10 @@ p {
 /* FOOTER */
 #footer {
   background-color: #222;
-  text-align: center; }
+  text-align: center;
+  color: white; }
+  #footer #contact__text {
+    font-size: 16px; }
   #footer .footer__top {
     margin-bottom: 20px; }
   #footer .footer__bottom {

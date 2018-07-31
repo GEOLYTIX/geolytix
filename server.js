@@ -8,6 +8,10 @@ fastify
     .register(require('fastify-helmet'), { noCache: true })
     .register(require('fastify-formbody'))
     .register(require('fastify-static'), { root: require('path').join(__dirname, 'public') })
+    .setNotFoundHandler((req, res) => {
+        //res.code(404).send("I am not here. This isn't happening.");
+        res.sendFile('err.html');
+    });
 
 require('./routes')(fastify);
 

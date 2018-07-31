@@ -36420,8 +36420,10 @@ __webpack_require__(/*! ./lscrolly */ "./public/js/lscrolly.js")(document.queryS
 
 document.querySelector('.geodata__select').addEventListener('click', function (event) {
     var id = event.target.id;
-    history.pushState({ so: 'glx' }, id, '?' + id);
-    selectGeodata(event.target);
+    if (id) {
+        history.pushState({ so: 'glx' }, id, '?' + id);
+        selectGeodata(event.target);
+    }
 });
 
 var jsr = __webpack_require__(/*! jsrender */ "./node_modules/jsrender/jsrender.js")();
@@ -36459,7 +36461,7 @@ function selectGeodata(_this) {
 var map_contact = L.map('map_contact', {
     scrollWheelZoom: false,
     zoomControl: false
-}).setView([52, 43], 2).addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
+}).setView([0, 0], 2).addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
 
 var marker = L.icon({
     iconUrl: '/images/leaflet/marker.svg',
@@ -36473,54 +36475,50 @@ var marker_alt = L.icon({
     iconAnchor: [40, 40]
 });
 
-var London = new L.Marker([51.52733, -0.11525], {
-    icon: marker,
-    title: 'London'
-}).on('click', function (e) {
-    Leeds.setIcon(marker_alt);
-    document.getElementById('contact_leeds').style['display'] = 'none';
-    // Tokyo.setIcon(marker_alt);
-    // document.getElementById('contact_tokyo').style['display'] = 'none';
-    document.getElementById('contact_london').style['display'] = 'block';
-    e.target.setIcon(marker);
-}).addTo(map_contact);
+var locales = [{
+    title: 'London',
+    ll: [51.52733, -0.11525],
+    add: ['+44 (0)20 72 39 49 77', 'info@geolytix.co.uk', ' ', 'Phoenix Yard', '65 Kings Cross Road', 'London', 'WC1X 9LW']
+}, {
+    title: 'Leeds',
+    ll: [53.79664, -1.53385],
+    add: ['+44 (0)20 72 39 49 77', 'info@geolytix.co.uk', ' ', 'ODI Leeds', '3rd Floor', 'Munro House', 'Duke Street', 'Leeds', 'LS9 8AG']
+}, {
+    title: 'Shanghai',
+    ll: [31.22839, 121.45984],
+    add: ['+86 21 6237 8013', '上海市静安区泰兴路89号3楼', ' ', '3F', '#89 Taixing Road', 'Jing’an District', 'Shanghai']
+}, {
+    title: 'Tokyo',
+    ll: [35.65652, 139.6974],
+    add: ['+81 (0) 3 5456 7954', 'info@geolytix.com', ' ', '150-8512 東', '京都渋谷区桜ヶ丘町26-1', 'セルリアンタワー15階', ' ', '15F Cerulean Tower', '26-1 Sakuragaoka cho', 'Shibuya-ku', 'Tokyo', '150-8512']
+}];
 
-var Leeds = new L.Marker([53.79664, -1.53385], {
-    icon: marker_alt,
-    title: 'Leeds'
-}).on('click', function (e) {
-    London.setIcon(marker_alt);
-    document.getElementById('contact_london').style['display'] = 'none';
-    // Tokyo.setIcon(marker_alt);
-    // document.getElementById('contact_tokyo').style['display'] = 'none';
-    document.getElementById('contact_leeds').style['display'] = 'block';
-    e.target.setIcon(marker);
-}).addTo(map_contact);
+var contact__text = document.getElementById('contact__text');
 
-// const Tokyo = new L.Marker(
-//     [35.65652,139.6974],
-//     {
-//         icon: marker_alt,
-//         title: 'Tokyo'
-//     })
-//     .on('click', function(e){
-//         London.setIcon(marker_alt);
-//         document.getElementById('contact_london').style['display'] = 'none';
-//         Leeds.setIcon(marker_alt);
-//         document.getElementById('contact_leeds').style['display'] = 'none';
-//         document.getElementById('contact_tokyo').style['display'] = 'block';
-//         e.target.setIcon(marker);
-//     })
-//     .addTo(map_contact);
+var _loop2 = function _loop2(_i3) {
+    locales[_i3].marker = new L.Marker(locales[_i3].ll, {
+        icon: marker_alt,
+        title: locales[_i3].title
+    }).on('click', function (e) {
+        map_contact.setView(locales[_i3].ll);
+        contact__text.innerHTML = '';
+        for (var ii = 0; ii < locales.length; ii++) {
+            locales[ii].marker.setIcon(marker_alt);
+        }
+        e.target.setIcon(marker);
+        for (var iii = 0; iii < locales[_i3].add.length; iii++) {
+            var el = document.createElement('div');
+            el.textContent = locales[_i3].add[iii];
+            contact__text.appendChild(el);
+        }
+    }).addTo(map_contact);
+};
 
-if (locale === 'jp') {
-    London.setIcon(marker_alt);
-    document.getElementById('contact_london').style['display'] = 'none';
-    Leeds.setIcon(marker_alt);
-    document.getElementById('contact_leeds').style['display'] = 'none';
-    Tokyo.setIcon(marker);
-    document.getElementById('contact_tokyo').style['display'] = 'block';
+for (var _i3 = 0; _i3 < locales.length; _i3++) {
+    _loop2(_i3);
 }
+
+locales[parseInt(office)].marker.fireEvent('click');
 
 document.getElementById('btnZoomIn_contact').addEventListener('click', function () {
     map_contact.setZoom(map_contact.getZoom() + 1);
@@ -36626,8 +36624,41 @@ module.exports = function (scrollWheel) {
     }
 
     function japan() {
-        setMap(5, 15, [39, 136], [25, 125], [50, 155]);
+        setMap(5, 13, [39, 136], [25, 125], [50, 155]);
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
+
+        var arrayZoom = {
+            "5": "cj_hx_128k",
+            "6": "cj_hx_64k",
+            "7": "cj_hx_32k",
+            "8": "cj_hx_16k",
+            "9": "cj_hx_8k",
+            "10": "cj_hx_4k",
+            "11": "cj_hx_2k",
+            "12": "cj_hx_1k",
+            "13": "cj_hx_500"
+        },
+            gridOptions = {
+            queryCount: 'pop',
+            queryValue: 'pop',
+            database: 'ghs',
+            geom: 'geomcntr',
+            oValue: { maximumFractionDigits: 0 },
+            arrayStyle: ['/images/map_icons/dot_d73027.svg', '/images/map_icons/dot_f46d43.svg', '/images/map_icons/dot_fdae61.svg', '/images/map_icons/dot_fee08b.svg', '/images/map_icons/dot_ffffbf.svg', '/images/map_icons/dot_d9ef8b.svg', '/images/map_icons/dot_a6d96a.svg', '/images/map_icons/dot_66bd63.svg', '/images/map_icons/dot_1a9850.svg', '/images/map_icons/dot_null.svg']
+        };
+
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+
+        map.on('zoomend', function () {
+            getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+            mapZoom = map.getZoom();
+        });
+
+        map.on('moveend', function () {
+            getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+            mapZoom = map.getZoom();
+        });
+
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', { pane: 'labels' }).addTo(map);
     }
 
@@ -36637,9 +36668,6 @@ module.exports = function (scrollWheel) {
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', { pane: 'labels' }).addTo(map);
     }
 
-    // function cn_china() {
-    //     china()
-    // }
     function china() {
         setMap(4, 13, [35, 108], [0, 68], [58, 143]);
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
@@ -36680,9 +36708,6 @@ module.exports = function (scrollWheel) {
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', { pane: 'labels' }).addTo(map);
     }
 
-    // function cn_shanghai() {
-    //     shanghai()
-    // }
     function shanghai() {
         setMap(13, 16, [31.23, 121.45], [30, 120], [33, 123]);
 

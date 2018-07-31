@@ -33859,8 +33859,41 @@ module.exports = function (scrollWheel) {
     }
 
     function japan() {
-        setMap(5, 15, [39, 136], [25, 125], [50, 155]);
+        setMap(5, 13, [39, 136], [25, 125], [50, 155]);
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
+
+        var arrayZoom = {
+            "5": "cj_hx_128k",
+            "6": "cj_hx_64k",
+            "7": "cj_hx_32k",
+            "8": "cj_hx_16k",
+            "9": "cj_hx_8k",
+            "10": "cj_hx_4k",
+            "11": "cj_hx_2k",
+            "12": "cj_hx_1k",
+            "13": "cj_hx_500"
+        },
+            gridOptions = {
+            queryCount: 'pop',
+            queryValue: 'pop',
+            database: 'ghs',
+            geom: 'geomcntr',
+            oValue: { maximumFractionDigits: 0 },
+            arrayStyle: ['/images/map_icons/dot_d73027.svg', '/images/map_icons/dot_f46d43.svg', '/images/map_icons/dot_fdae61.svg', '/images/map_icons/dot_fee08b.svg', '/images/map_icons/dot_ffffbf.svg', '/images/map_icons/dot_d9ef8b.svg', '/images/map_icons/dot_a6d96a.svg', '/images/map_icons/dot_66bd63.svg', '/images/map_icons/dot_1a9850.svg', '/images/map_icons/dot_null.svg']
+        };
+
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+
+        map.on('zoomend', function () {
+            getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+            mapZoom = map.getZoom();
+        });
+
+        map.on('moveend', function () {
+            getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+            mapZoom = map.getZoom();
+        });
+
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', { pane: 'labels' }).addTo(map);
     }
 
@@ -33870,9 +33903,6 @@ module.exports = function (scrollWheel) {
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', { pane: 'labels' }).addTo(map);
     }
 
-    // function cn_china() {
-    //     china()
-    // }
     function china() {
         setMap(4, 13, [35, 108], [0, 68], [58, 143]);
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
@@ -33913,9 +33943,6 @@ module.exports = function (scrollWheel) {
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', { pane: 'labels' }).addTo(map);
     }
 
-    // function cn_shanghai() {
-    //     shanghai()
-    // }
     function shanghai() {
         setMap(13, 16, [31.23, 121.45], [30, 120], [33, 123]);
 
