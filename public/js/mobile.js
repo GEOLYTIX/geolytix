@@ -11,8 +11,12 @@ window.addEventListener('orientationchange', function() {
 });
 
 function orientation() {
-    document.getElementById('intro__text').innerHTML = locale === 'cn'? '优化选址决策': (window.innerWidth || screen.height < window.innerWidth || screen.width) ?
-        'better decisions<br>where location matters' : 'better<br>decisions<br>where<br>location<br>matters';
+    document.getElementById('intro__text').innerHTML =
+    locale === 'jp' ? 'より良い決断は、立地の意義するところにある' :
+        locale === 'cn' ? '优化选址决策' :
+            (window.innerWidth || screen.height < window.innerWidth || screen.width) ?
+                'better decisions<br>where location matters' :
+                'better<br>decisions<br>where<br>location<br>matters';
 }
 
 orientation();

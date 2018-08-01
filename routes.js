@@ -88,6 +88,7 @@ module.exports = fastify => {
         };
 
         //res.send(req.headers);
+        //return res.type('text/html').send(o.tmpl.render(locales.jp));
 
         if (req.headers['x-forwarded-host'] && req.headers['x-forwarded-host'].includes('.cn') && translate)
             return res.type('text/html').send(o.tmpl.render(locales.cn_en));
