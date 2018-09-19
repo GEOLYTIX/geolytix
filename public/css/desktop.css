@@ -799,7 +799,7 @@
   width: 100%;
   border-bottom: 1px solid #fff; }
   #case_studies_strip > table {
-    width: 320%;
+    width: 360%;
     height: 170px;
     margin-left: -100%; }
   #case_studies_strip .logo {
@@ -829,9 +829,9 @@
   width: 100%;
   overflow: hidden; }
   #case_studies_container > table {
-    width: 800%;
+    width: 900%;
     table-layout: fixed;
-    margin-left: -700%; }
+    margin-left: -800%; }
     #case_studies_container > table td {
       padding-right: 15px;
       padding-left: 10px;

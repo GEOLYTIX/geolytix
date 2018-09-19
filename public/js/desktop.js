@@ -109,12 +109,12 @@ if (document.getElementById('section_case_studies')){
         helper.addClass(event.target, 'active');
         let index = helper.indexInParent(event.target) - 1;
         case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
-        if (index > 8) index -= 8;
-        if (index < 0) index += 8;
+        if (index > 9) index -= 9;
+        if (index < 0) index += 9;
         helper.addClass(section_case_studies.querySelectorAll('.logo')[index+1], 'active');
         case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
         index++;
-        if (index >= 8) index -= 8;
+        if (index >= 9) index -= 9;
         section_case_studies.querySelector('#case_studies_container > table').style['marginLeft'] = '-' + index * 100 + '%';
     });
 }

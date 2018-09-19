@@ -90,19 +90,20 @@ for (let i = 0; i < imgLoadArray.length; i++) {
 //case studies
 if (document.getElementById('case_studies__logos')){
     document.getElementById('case_studies__logos').addEventListener('scroll', helper.debounce(function(){
-        let swapx = document.getElementById('case_studies__logos__table').offsetWidth / 8,
+        let swapx = document.getElementById('case_studies__logos__table').offsetWidth / 9,
             scrollx = document.getElementById('case_studies__logos').scrollLeft;
 
         helper.removeClass(document.querySelectorAll('#case_studies__info .active'), 'active');
 
-        scrollx < (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .camelot'), 'active') :
-            scrollx < swapx + (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .johnlewis'), 'active') :
-                scrollx < swapx * 2 + (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .onthemarket'), 'active') :
-                    scrollx < swapx * 3 + (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .arco'), 'active') :
-                        scrollx < swapx * 4 + (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .totalfitness'), 'active') :
-                            scrollx < swapx * 5 + (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .asda'), 'active') :
-                                scrollx < swapx * 6 + (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .swinton'), 'active') :
-                                    helper.addClass(document.querySelectorAll('#case_studies__info .marks_and_spencer'), 'active');
+        scrollx < (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .dominos'), 'active') :
+            scrollx < swapx + (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .camelot'), 'active') :
+                scrollx < swapx * 2 + (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .johnlewis'), 'active') :
+                    scrollx < swapx * 3 + (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .onthemarket'), 'active') :
+                        scrollx < swapx * 4 + (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .arco'), 'active') :
+                            scrollx < swapx * 5 + (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .totalfitness'), 'active') :
+                                scrollx < swapx * 6 + (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .asda'), 'active') :
+                                    scrollx < swapx * 7 + (swapx/2) ? helper.addClass(document.querySelectorAll('#case_studies__info .swinton'), 'active') :
+                                        helper.addClass(document.querySelectorAll('#case_studies__info .marks_and_spencer'), 'active');
 
         document.getElementById('case_studies__info').scrollLeft = 0;
     },300));
