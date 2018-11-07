@@ -76,7 +76,7 @@ module.exports = fastify => {
             jp_en: {
                 locale: 'jp',
                 office: 3,
-                meta: 'Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers.',
+                meta: '「ロケーション計画の専門家が、世界中の小売りおよび人口統計データを提供します。私達は、顧客の為に適したネットワーク戦略の解決策を見つけ出します。」',
                 header: './public/tmpl/' + o.platform + '/jp_en_header.html',
                 header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
                 services: './public/tmpl/' + o.platform + '/uk_services.html',
@@ -84,11 +84,39 @@ module.exports = fastify => {
                 geodata: './public/tmpl/' + o.platform + '/jp_geodata.html',
                 photo: './public/tmpl/' + o.platform + '/no_team_photo.html',
                 footer: './public/tmpl/' + o.platform + '/uk_footer.html'
+            },
+            de: {
+                locale: 'de',
+                office: 0,
+                meta: 'Experten',
+                header: './public/tmpl/' + o.platform + '/de_header.html',
+                header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
+                services: './public/tmpl/' + o.platform + '/de_services.html',
+                case_studies: './public/tmpl/' + o.platform + '/de_case_studies.html',
+                team: './public/tmpl/' + o.platform + '/de_team.html',
+                geodata: './public/tmpl/' + o.platform + '/de_geodata.html',
+                photo: './public/tmpl/' + o.platform + '/uk_team_photo.html',
+                footer: './public/tmpl/' + o.platform + '/uk_footer.html'
+            },
+            pl: {
+                locale: 'pl',
+                office: 0,
+                meta: 'Specjaliści w dziedzinie planowania lokalizacji, danych o handlu, usługach i demografii, strategii sieci dla naszych klientów dookoła świata.',
+                header: './public/tmpl/' + o.platform + '/pl_header.html',
+                header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
+                services: './public/tmpl/' + o.platform + '/pl_services.html',
+                case_studies: './public/tmpl/' + o.platform + '/pl_case_studies.html',
+                team: './public/tmpl/' + o.platform + '/pl_team.html',
+                geodata: './public/tmpl/' + o.platform + '/pl_geodata.html',
+                photo: './public/tmpl/' + o.platform + '/uk_team_photo.html',
+                footer: './public/tmpl/' + o.platform + '/uk_footer.html'
             }
         };
 
-        //res.send(req.headers);
-        //return res.type('text/html').send(o.tmpl.render(locales.jp));
+        
+
+        if (req.headers['x-forwarded-host'] && req.headers['x-forwarded-host'].includes('.de'))
+            return res.type('text/html').send(o.tmpl.render(locales.de));
 
         if (req.headers['x-forwarded-host'] && req.headers['x-forwarded-host'].includes('.cn') && translate)
             return res.type('text/html').send(o.tmpl.render(locales.cn_en));
@@ -102,7 +130,7 @@ module.exports = fastify => {
         if (req.headers['x-forwarded-host'] && req.headers['x-forwarded-host'].includes('.jp'))
             return res.type('text/html').send(o.tmpl.render(locales.jp));
 
-        res.type('text/html').send(o.tmpl.render(locales.uk));
+        res.type('text/html').send(o.tmpl.render(locales.de));
     }
 
     fastify.register(require('fastify-postgres'), {
