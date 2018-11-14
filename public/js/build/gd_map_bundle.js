@@ -34526,6 +34526,45 @@ module.exports = function (scrollWheel) {
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
     }
 
+    function euro_census() {
+        setMap(5, 13, [70, 16], [40, -5], [55, 3]);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
+
+        var arrayZoom = {
+            "5": "eu_hx_128k",
+            "6": "eu_hx_64k",
+            "7": "eu_hx_32k",
+            "8": "eu_hx_16k",
+            "9": "eu_hx_8k",
+            "10": "eu_hx_4k",
+            "11": "eu_hx_2k",
+            "12": "eu_hx_1k",
+            "13": "eu_hx_500"
+        },
+            gridOptions = {
+            queryCount: 'pop',
+            queryValue: 'pop',
+            database: 'ghs',
+            geom: 'geomcntr',
+            oValue: { maximumFractionDigits: 0 },
+            arrayStyle: ['/images/map_icons/dot_d73027.svg', '/images/map_icons/dot_f46d43.svg', '/images/map_icons/dot_fdae61.svg', '/images/map_icons/dot_fee08b.svg', '/images/map_icons/dot_ffffbf.svg', '/images/map_icons/dot_d9ef8b.svg', '/images/map_icons/dot_a6d96a.svg', '/images/map_icons/dot_66bd63.svg', '/images/map_icons/dot_1a9850.svg', '/images/map_icons/dot_null.svg']
+        };
+
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+
+        map.on('zoomend', function () {
+            getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+            mapZoom = map.getZoom();
+        });
+
+        map.on('moveend', function () {
+            getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+            mapZoom = map.getZoom();
+        });
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', { pane: 'labels' }).addTo(map);
+    }
+
     function divStyle(_f, _arrayColor, _arraySize, _arrayStyle) {
         var c = _f.properties.c,
             v = _f.properties.v,
@@ -34813,7 +34852,8 @@ module.exports = function (scrollWheel) {
         property: property,
         road_network: road_network,
         media_com: media_com,
-        physical: physical
+        physical: physical,
+        euro_census: euro_census
     };
 };
 
@@ -34830,6 +34870,26 @@ module.exports = function (scrollWheel) {
 
 
 module.exports = function () {
+
+    function scrollElementToTop(element, offset, duration) {
+
+        if (duration <= 0) return;
+
+        var difference = element.getBoundingClientRect().top + offset,
+            perTick = difference / duration * 10;
+
+        setTimeout(function () {
+
+            window.pageYOffset = window.pageYOffset + perTick;
+            document.documentElement.scrollTop = document.documentElement.scrollTop + perTick;
+            document.body.scrollTop = document.body.scrollTop + perTick;
+
+            if (element.getBoundingClientRect().top === offset) return;
+
+            scrollElementToTop(element, offset, duration - 10);
+        }, 10);
+    }
+
     function scrollElement(element, to, duration) {
         if (duration <= 0) return;
         var difference = to - element.scrollTop,
@@ -34842,9 +34902,12 @@ module.exports = function () {
     }
 
     function scrollBody(to, duration) {
+
         if (duration <= 0) return;
+
         var difference = to - Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop),
             perTick = difference / duration * 10;
+
         setTimeout(function () {
             var scroll = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + perTick;
             window.pageYOffset = scroll;
@@ -34953,6 +35016,7 @@ module.exports = function () {
     }
 
     return {
+        scrollElementToTop: scrollElementToTop,
         scrollElement: scrollElement,
         scrollBody: scrollBody,
         addClass: addClass,

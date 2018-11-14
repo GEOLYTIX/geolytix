@@ -24561,6 +24561,26 @@ module.exports = g;
 
 
 module.exports = function () {
+
+    function scrollElementToTop(element, offset, duration) {
+
+        if (duration <= 0) return;
+
+        var difference = element.getBoundingClientRect().top + offset,
+            perTick = difference / duration * 10;
+
+        setTimeout(function () {
+
+            window.pageYOffset = window.pageYOffset + perTick;
+            document.documentElement.scrollTop = document.documentElement.scrollTop + perTick;
+            document.body.scrollTop = document.body.scrollTop + perTick;
+
+            if (element.getBoundingClientRect().top === offset) return;
+
+            scrollElementToTop(element, offset, duration - 10);
+        }, 10);
+    }
+
     function scrollElement(element, to, duration) {
         if (duration <= 0) return;
         var difference = to - element.scrollTop,
@@ -24573,9 +24593,12 @@ module.exports = function () {
     }
 
     function scrollBody(to, duration) {
+
         if (duration <= 0) return;
+
         var difference = to - Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop),
             perTick = difference / duration * 10;
+
         setTimeout(function () {
             var scroll = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + perTick;
             window.pageYOffset = scroll;
@@ -24684,6 +24707,7 @@ module.exports = function () {
     }
 
     return {
+        scrollElementToTop: scrollElementToTop,
         scrollElement: scrollElement,
         scrollBody: scrollBody,
         addClass: addClass,
@@ -24720,7 +24744,7 @@ window.addEventListener('orientationchange', function () {
 });
 
 function orientation() {
-    document.getElementById('intro__text').innerHTML = locale === 'jp' ? 'より良い決断は、立地の意義するところにある' : locale === 'cn' ? '优化选址决策' : window.innerWidth || screen.height < window.innerWidth || screen.width ? 'better decisions<br>where location matters' : 'better<br>decisions<br>where<br>location<br>matters';
+    document.getElementById('intro__text').innerHTML = locale === 'jp' ? 'より良い決断は、立地の意義するところにある' : locale === 'cn' ? '优化选址决策' : locale === 'de' ? window.innerWidth || screen.height < window.innerWidth || screen.width ? 'Bessere Entscheidungen<br>am richtigen Ort.' : 'Bessere<br>Entscheidungen<br>am richtigen<br>location<br>Ort.' : window.innerWidth || screen.height < window.innerWidth || screen.width ? 'better decisions<br>where location matters' : 'better<br>decisions<br>where<br>location<br>matters';
 }
 
 orientation();
@@ -24838,6 +24862,10 @@ var locales = [{
     title: 'Tokyo',
     ll: [35.65652, 139.6974],
     add: ['+81 (0) 3 5456 7954', 'info@geolytix.com', ' ', '150-8512 東', '京都渋谷区桜ヶ丘町26-1', 'セルリアンタワー15階', ' ', '15F Cerulean Tower', '26-1 Sakuragaoka cho', 'Shibuya-ku', 'Tokyo', '150-8512']
+}, {
+    title: 'Dortmund',
+    ll: [51.5078, 7.33],
+    add: ['+44 (0)20 72 39 49 77', 'info@geolytix.co.uk', ' ', 'Phoenix Yard', '65 Kings Cross Road', 'London', 'WC1X 9LW']
 }];
 
 var contact__text = document.getElementById('contact__text');

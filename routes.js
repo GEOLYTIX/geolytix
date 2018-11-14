@@ -87,7 +87,7 @@ module.exports = fastify => {
             },
             de: {
                 locale: 'de',
-                office: 0,
+                office: 4,
                 meta: 'Experten',
                 header: './public/tmpl/' + o.platform + '/de_header.html',
                 header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
@@ -95,19 +95,6 @@ module.exports = fastify => {
                 case_studies: './public/tmpl/' + o.platform + '/de_case_studies.html',
                 team: './public/tmpl/' + o.platform + '/de_team.html',
                 geodata: './public/tmpl/' + o.platform + '/de_geodata.html',
-                photo: './public/tmpl/' + o.platform + '/uk_team_photo.html',
-                footer: './public/tmpl/' + o.platform + '/uk_footer.html'
-            },
-            pl: {
-                locale: 'pl',
-                office: 0,
-                meta: 'Specjaliści w dziedzinie planowania lokalizacji, danych o handlu, usługach i demografii, strategii sieci dla naszych klientów dookoła świata.',
-                header: './public/tmpl/' + o.platform + '/pl_header.html',
-                header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
-                services: './public/tmpl/' + o.platform + '/pl_services.html',
-                case_studies: './public/tmpl/' + o.platform + '/pl_case_studies.html',
-                team: './public/tmpl/' + o.platform + '/pl_team.html',
-                geodata: './public/tmpl/' + o.platform + '/pl_geodata.html',
                 photo: './public/tmpl/' + o.platform + '/uk_team_photo.html',
                 footer: './public/tmpl/' + o.platform + '/uk_footer.html'
             }
@@ -130,7 +117,7 @@ module.exports = fastify => {
         if (req.headers['x-forwarded-host'] && req.headers['x-forwarded-host'].includes('.jp'))
             return res.type('text/html').send(o.tmpl.render(locales.jp));
 
-        res.type('text/html').send(o.tmpl.render(locales.de));
+        res.type('text/html').send(o.tmpl.render(locales.uk));
     }
 
     fastify.register(require('fastify-postgres'), {

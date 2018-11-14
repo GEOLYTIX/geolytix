@@ -36297,7 +36297,7 @@ for (var i = 0; i < imgLoadArray.length; i++) {
 
 //window control
 function setHeader() {
-    var distanceY = window.pageYOffset || document.documentElement.scrollTop;
+    var distanceY = document.documentElement.scrollTop || document.body.scrollTop;
     distanceY > 300 ? helper.addClass('.header', 'header__smaller') : helper.removeClass('.header', 'header__smaller');
     distanceY > document.getElementById('header__image').clientHeight - 80 ? helper.addClass('.header', 'header__main') : helper.removeClass('.header', 'header__main');
 }
@@ -36316,7 +36316,8 @@ window.onresize = function () {
 //menu control
 document.getElementById('home').addEventListener('click', function (e) {
     e.preventDefault();
-    helper.scrollBody(0, 400);
+    //helper.scrollBody(0, 400);
+    helper.scrollElementToTop(document.getElementById('header__image'), 0, 400);
     history.pushState({ so: 'glx' }, this.id, '?');
 });
 
@@ -36352,7 +36353,8 @@ var team_cards = section_team.querySelectorAll('.ul_grid .li_card');
 for (var _i = 0; _i < team_cards.length; _i++) {
     team_cards[_i].addEventListener('click', function () {
         expandCard(section_team, this);
-        helper.scrollBody(this.getBoundingClientRect().top + window.pageYOffset - 80, 400);
+
+        helper.scrollElementToTop(this, -80, 400);
     });
 }
 expandCard(section_team, section_team.querySelector('.li_card'));
@@ -36390,6 +36392,7 @@ var geodata = __webpack_require__(/*! ./geodata */ "./public/js/geodata.js")(fal
 
 geodata.pricing = function () {
     document.querySelector('.geodata__pricing').style.display = 'block';
+
     var selectedPacks = 4,
         priceTable = ['£ null', '£ 3,000', '£ 5,500', '£ 8,000', '£ 10,000', '£ 12,000', '£ 14,000', '£ 16,000', '£ 18,000', '£ 20,000', '£ 22,000', '£ 24,000', '£ 25,000'],
         pricetags = document.querySelectorAll('.pricetag');
@@ -36398,6 +36401,9 @@ geodata.pricing = function () {
         pricetags[_i2].addEventListener('click', function () {
             helper.toggleClass(this, 'active');
             var n = this.innerHTML === '£ 5500 (2 Packs)' ? 2 : 1;
+
+            if (this.innerHTML === 'Free') n = 0;
+
             selectedPacks += helper.hasClass(this, 'active') ? +n : -n;
             document.querySelector('.p_pricing__all').style.display = selectedPacks < 12 ? 'block' : 'none';
             document.querySelector('.p_pricing__first').style.display = selectedPacks < 12 ? 'block' : 'none';
@@ -36427,11 +36433,15 @@ document.querySelector('.geodata__select').addEventListener('click', function (e
 });
 
 var jsr = __webpack_require__(/*! jsrender */ "./node_modules/jsrender/jsrender.js")();
+
 function selectGeodata(_this) {
+
     document.querySelector('.geodata__pricing').style.display = 'none';
+
     document.querySelector('.geodata__faq').style.display = 'none';
 
     helper.removeClass(document.querySelector('.geodata__select .selected'), 'selected');
+
     helper.addClass(_this, 'selected');
 
     document.getElementById('btnFullScreen').href = '/map?' + _this.id;
@@ -36491,6 +36501,10 @@ var locales = [{
     title: 'Tokyo',
     ll: [35.65652, 139.6974],
     add: ['+81 (0) 3 5456 7954', 'info@geolytix.com', ' ', '150-8512 東', '京都渋谷区桜ヶ丘町26-1', 'セルリアンタワー15階', ' ', '15F Cerulean Tower', '26-1 Sakuragaoka cho', 'Shibuya-ku', 'Tokyo', '150-8512']
+}, {
+    title: 'Dortmund',
+    ll: [51.5078, 7.33],
+    add: ['+44 (0)20 72 39 49 77', 'info@geolytix.co.uk', ' ', 'Phoenix Yard', '65 Kings Cross Road', 'London', 'WC1X 9LW']
 }];
 
 var contact__text = document.getElementById('contact__text');
@@ -37291,6 +37305,45 @@ module.exports = function (scrollWheel) {
         L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
     }
 
+    function euro_census() {
+        setMap(5, 13, [70, 16], [40, -5], [55, 3]);
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/ciozrimi3002bdsm8bjtn2v1y/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg').addTo(map);
+
+        var arrayZoom = {
+            "5": "eu_hx_128k",
+            "6": "eu_hx_64k",
+            "7": "eu_hx_32k",
+            "8": "eu_hx_16k",
+            "9": "eu_hx_8k",
+            "10": "eu_hx_4k",
+            "11": "eu_hx_2k",
+            "12": "eu_hx_1k",
+            "13": "eu_hx_500"
+        },
+            gridOptions = {
+            queryCount: 'pop',
+            queryValue: 'pop',
+            database: 'ghs',
+            geom: 'geomcntr',
+            oValue: { maximumFractionDigits: 0 },
+            arrayStyle: ['/images/map_icons/dot_d73027.svg', '/images/map_icons/dot_f46d43.svg', '/images/map_icons/dot_fdae61.svg', '/images/map_icons/dot_fee08b.svg', '/images/map_icons/dot_ffffbf.svg', '/images/map_icons/dot_d9ef8b.svg', '/images/map_icons/dot_a6d96a.svg', '/images/map_icons/dot_66bd63.svg', '/images/map_icons/dot_1a9850.svg', '/images/map_icons/dot_null.svg']
+        };
+
+        getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+
+        map.on('zoomend', function () {
+            getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+            mapZoom = map.getZoom();
+        });
+
+        map.on('moveend', function () {
+            getGridData(map.getBounds(), arrayZoom[map.getZoom()], gridOptions);
+            mapZoom = map.getZoom();
+        });
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/dbauszus/cj9puo8pr5o0c2sovhdwhkc7z/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGJhdXN6dXMiLCJhIjoiY2pnZG90enVrMnB6eDJ6czB3MGdoNnZ4NiJ9.IqR9l-Y9UFJXN8flBE2Nsg', { pane: 'labels' }).addTo(map);
+    }
+
     function divStyle(_f, _arrayColor, _arraySize, _arrayStyle) {
         var c = _f.properties.c,
             v = _f.properties.v,
@@ -37578,7 +37631,8 @@ module.exports = function (scrollWheel) {
         property: property,
         road_network: road_network,
         media_com: media_com,
-        physical: physical
+        physical: physical,
+        euro_census: euro_census
     };
 };
 
@@ -37595,6 +37649,26 @@ module.exports = function (scrollWheel) {
 
 
 module.exports = function () {
+
+    function scrollElementToTop(element, offset, duration) {
+
+        if (duration <= 0) return;
+
+        var difference = element.getBoundingClientRect().top + offset,
+            perTick = difference / duration * 10;
+
+        setTimeout(function () {
+
+            window.pageYOffset = window.pageYOffset + perTick;
+            document.documentElement.scrollTop = document.documentElement.scrollTop + perTick;
+            document.body.scrollTop = document.body.scrollTop + perTick;
+
+            if (element.getBoundingClientRect().top === offset) return;
+
+            scrollElementToTop(element, offset, duration - 10);
+        }, 10);
+    }
+
     function scrollElement(element, to, duration) {
         if (duration <= 0) return;
         var difference = to - element.scrollTop,
@@ -37607,9 +37681,12 @@ module.exports = function () {
     }
 
     function scrollBody(to, duration) {
+
         if (duration <= 0) return;
+
         var difference = to - Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop),
             perTick = difference / duration * 10;
+
         setTimeout(function () {
             var scroll = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + perTick;
             window.pageYOffset = scroll;
@@ -37718,6 +37795,7 @@ module.exports = function () {
     }
 
     return {
+        scrollElementToTop: scrollElementToTop,
         scrollElement: scrollElement,
         scrollBody: scrollBody,
         addClass: addClass,

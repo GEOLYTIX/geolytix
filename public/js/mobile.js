@@ -12,11 +12,14 @@ window.addEventListener('orientationchange', function() {
 
 function orientation() {
     document.getElementById('intro__text').innerHTML =
-    locale === 'jp' ? 'より良い決断は、立地の意義するところにある' :
-        locale === 'cn' ? '优化选址决策' :
-            (window.innerWidth || screen.height < window.innerWidth || screen.width) ?
-                'better decisions<br>where location matters' :
-                'better<br>decisions<br>where<br>location<br>matters';
+        locale === 'jp' ? 'より良い決断は、立地の意義するところにある' :
+            locale === 'cn' ? '优化选址决策' :
+                locale === 'de' ? (window.innerWidth || screen.height < window.innerWidth || screen.width) ?
+                    'Bessere Entscheidungen<br>am richtigen Ort.' :
+                    'Bessere<br>Entscheidungen<br>am richtigen<br>location<br>Ort.' :
+                    (window.innerWidth || screen.height < window.innerWidth || screen.width) ?
+                        'better decisions<br>where location matters' :
+                        'better<br>decisions<br>where<br>location<br>matters';
 }
 
 orientation();
@@ -190,6 +193,19 @@ const locales = [
             'Shibuya-ku',
             'Tokyo',
             '150-8512'
+        ]
+    },
+    {
+        title: 'Dortmund',
+        ll: [51.5078, 7.33],
+        add: [
+            '+44 (0)20 72 39 49 77',
+            'info@geolytix.co.uk',
+            ' ',
+            'Phoenix Yard',
+            '65 Kings Cross Road',
+            'London',
+            'WC1X 9LW'
         ]
     }
 ];

@@ -1,4 +1,26 @@
 module.exports = (function () {
+
+    function scrollElementToTop(element, offset, duration) {
+
+        if (duration <= 0) return;
+
+        let
+            difference = element.getBoundingClientRect().top + offset,
+            perTick = difference / duration * 10;
+
+        setTimeout(function () {
+
+            window.pageYOffset = window.pageYOffset + perTick;
+            document.documentElement.scrollTop = document.documentElement.scrollTop + perTick;
+            document.body.scrollTop = document.body.scrollTop + perTick;
+
+            if (element.getBoundingClientRect().top === offset) return;
+
+            scrollElementToTop(element, offset, duration - 10);
+
+        }, 10);
+    }
+
     function scrollElement(element, to, duration) {
         if (duration <= 0) return;
         let difference = to - element.scrollTop,
@@ -11,9 +33,13 @@ module.exports = (function () {
     }
 
     function scrollBody(to, duration) {
+
         if (duration <= 0) return;
-        let difference = to - Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop),
+
+        let
+            difference = to - Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop),
             perTick = difference / duration * 10;
+
         setTimeout(function () {
             let scroll = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + perTick;
             window.pageYOffset = scroll;
@@ -21,6 +47,7 @@ module.exports = (function () {
             document.body.scrollTop = scroll;
             if (scroll === to) return;
             scrollBody(to, duration - 10);
+
         }, 10);
     }
 
@@ -122,6 +149,7 @@ module.exports = (function () {
     }
 
     return {
+        scrollElementToTop:scrollElementToTop,
         scrollElement:scrollElement,
         scrollBody: scrollBody,
         addClass:addClass,

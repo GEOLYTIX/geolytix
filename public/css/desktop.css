@@ -759,7 +759,7 @@
   #section_services > p:nth-of-type(3) {
     font-size: 200%;
     text-align: center;
-    color: #079e00;
+    color: #090;
     margin-bottom: 30px; }
   #section_services .li_card__img {
     width: calc(100% - 20px);
@@ -778,7 +778,7 @@
     height: 300px; }
 
 #section_case_studies {
-  background-color: #079e00;
+  background-color: #090;
   color: white;
   padding: 0 50px 30px 50px;
   width: 100%;
@@ -856,7 +856,7 @@
   max-width: 1600px;
   padding-left: 50px;
   box-sizing: border-box;
-  height: 750px;
+  height: 950px;
   width: 100%; }
   #section_geodata > p:nth-of-type(1) {
     font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
@@ -864,7 +864,7 @@
     font-size: 300%;
     margin-bottom: 10px; }
   #section_geodata > p:nth-of-type(2) {
-    color: #079e00;
+    color: #090;
     font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
     font-weight: 700;
     font-size: 200%;
@@ -877,7 +877,7 @@
 .geodata__info,
 .geodata__content {
   position: relative;
-  height: 619px; }
+  height: 642px; }
 
 .geodata__select {
   width: 200px;
@@ -913,7 +913,7 @@
     .geodata__info .scrollbar_container > .scrollbar {
       position: absolute;
       width: 2px;
-      background: #079e00; }
+      background: #090; }
       .geodata__info .scrollbar_container > .scrollbar:hover {
         cursor: ns-resize; }
 
@@ -922,10 +922,10 @@
   float: right;
   background-color: white;
   padding-left: 100px;
-  height: 619px;
+  height: 642px;
   width: calc(100% - 300px);
   margin-left: 200px;
-  margin-top: -619px;
+  margin-top: -642px;
   z-index: 999;
   position: relative; }
   .geodata__faq > table td {
@@ -942,9 +942,9 @@
   display: none;
   float: right;
   background-color: #fff;
-  height: 619px;
+  height: 642px;
   width: calc(100% - 450px);
-  margin-top: -619px;
+  margin-top: -642px;
   padding: 0 30px;
   z-index: 999;
   position: relative; }
@@ -956,7 +956,7 @@
   .infobox > p:nth-of-type(1) {
     margin-bottom: 20px; }
   .infobox a {
-    color: #079e00; }
+    color: #090; }
   .infobox .docu_link {
     line-height: 3;
     margin-left: -4px; }
@@ -1006,7 +1006,7 @@
     margin: 0 5px 5px 0;
     z-index: 999; }
     #map_geodata .mapbox-attribution-container a {
-      color: #079e00;
+      color: #090;
       text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white; }
   #map_geodata .mapbox-wordmark {
     position: absolute;
@@ -1076,7 +1076,7 @@
   #section_team .ul_grid > li {
     width: 24%; }
   #section_team .ul_grid > li > .li_card {
-    height: 330px; }
+    height: 350px; }
 
 #section_contact {
   width: 100%;

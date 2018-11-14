@@ -52,9 +52,10 @@
   .header__menu .flag_link {
     display: block;
     float: right;
-    margin: 5px 0 0 20px;
-    width: 28px;
-    height: 21px;
+    margin: 0 0 0 20px;
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
     background-repeat: no-repeat;
     background-size: contain;
     -webkit-box-shadow: 1px 1px 3px #000;
@@ -68,10 +69,12 @@
     background-size: contain;
     background-color: white;
     z-index: 999;
-    border-radius: 50%;
-    height: 25px;
-    width: 25px;
-    box-shadow: 2px 3px 3px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 100%;
+    height: 38px;
+    width: 38px;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    -moz-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
     text-align: center; }
 
 .header__main > .header__menu > div:hover {
@@ -80,7 +83,7 @@
 .header__text {
   position: absolute;
   top: 250px;
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", Õ¥«Þ¢»ÚøàÚ╗æ, Õ«ïõ¢ô, SimSun, STXihei, ÕìÄµûçþ╗åÚ╗æ, sans-serif;
+  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   font-size: 250%; }
 

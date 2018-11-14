@@ -23,7 +23,7 @@ for (let i = 0; i < imgLoadArray.length; i++) {
 
 //window control
 function setHeader() {
-    let distanceY = window.pageYOffset || document.documentElement.scrollTop;
+    let distanceY = document.documentElement.scrollTop || document.body.scrollTop;
     distanceY > 300 ? helper.addClass('.header','header__smaller') : helper.removeClass('.header','header__smaller');
     distanceY > document.getElementById('header__image').clientHeight - 80 ? helper.addClass('.header','header__main') : helper.removeClass('.header','header__main');
 }
@@ -45,7 +45,8 @@ window.onresize = function () {
 document.getElementById('home').addEventListener('click',
     function (e) {
         e.preventDefault();
-        helper.scrollBody(0, 400);
+        //helper.scrollBody(0, 400);
+        helper.scrollElementToTop(document.getElementById('header__image'), 0, 400);
         history.pushState({so: 'glx'}, this.id, '?');
     }
 );
@@ -84,7 +85,8 @@ const team_cards = section_team.querySelectorAll('.ul_grid .li_card');
 for (let i = 0; i < team_cards.length; i++) {
     team_cards[i].addEventListener('click', function() {
         expandCard(section_team, this);
-        helper.scrollBody(this.getBoundingClientRect().top + window.pageYOffset - 80, 400)
+
+        helper.scrollElementToTop(this, -80, 400);
     });
 }
 expandCard(section_team, section_team.querySelector('.li_card'));
@@ -126,6 +128,7 @@ const geodata = require('./geodata')(false);
 
 geodata.pricing = function() {
     document.querySelector('.geodata__pricing').style.display = 'block';
+
     let selectedPacks = 4,
         priceTable = ['£ null', '£ 3,000', '£ 5,500', '£ 8,000', '£ 10,000', '£ 12,000', '£ 14,000', '£ 16,000', '£ 18,000', '£ 20,000', '£ 22,000', '£ 24,000', '£ 25,000'],
         pricetags = document.querySelectorAll('.pricetag');
@@ -134,6 +137,9 @@ geodata.pricing = function() {
         pricetags[i].addEventListener('click', function () {
             helper.toggleClass(this, 'active');
             let n = this.innerHTML === '£ 5500 (2 Packs)' ? 2 : 1;
+
+            if (this.innerHTML === 'Free') n = 0;
+
             selectedPacks += helper.hasClass(this, 'active') ? +n : -n;
             document.querySelector('.p_pricing__all').style.display = selectedPacks < 12 ? 'block' : 'none';
             document.querySelector('.p_pricing__first').style.display = selectedPacks < 12 ? 'block' : 'none';
@@ -163,11 +169,15 @@ document.querySelector('.geodata__select').addEventListener('click', function(ev
 });
 
 const jsr = require('jsrender')();
+
 function selectGeodata(_this) {
+
     document.querySelector('.geodata__pricing').style.display = 'none';
+
     document.querySelector('.geodata__faq').style.display = 'none';
 
     helper.removeClass(document.querySelector('.geodata__select .selected'), 'selected');
+
     helper.addClass(_this, 'selected');
 
     document.getElementById('btnFullScreen').href = '/map?' + _this.id;
@@ -192,7 +202,6 @@ function selectGeodata(_this) {
         selectGeodata(document.querySelector('.geodata__select > div'));
     }
 })(window.location.search.substring(1));
-
 
 
 
@@ -274,6 +283,19 @@ const locales = [
             'Shibuya-ku',
             'Tokyo',
             '150-8512'
+        ]
+    },
+    {
+        title: 'Dortmund',
+        ll: [51.5078, 7.33],
+        add: [
+            '+44 (0)20 72 39 49 77',
+            'info@geolytix.co.uk',
+            ' ',
+            'Phoenix Yard',
+            '65 Kings Cross Road',
+            'London',
+            'WC1X 9LW'
         ]
     }
 ];
