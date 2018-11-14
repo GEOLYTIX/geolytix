@@ -88,7 +88,7 @@ module.exports = fastify => {
             de: {
                 locale: 'de',
                 office: 4,
-                meta: 'Experten',
+                meta: 'Experten für Standortplanung, die Daten aus dem Einzelhandel und demografische Daten weltweit bereitstellen. Wir finden die richtige Netzwerkstrategie für unsere Kunden.',
                 header: './public/tmpl/' + o.platform + '/de_header.html',
                 header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
                 services: './public/tmpl/' + o.platform + '/de_services.html',
