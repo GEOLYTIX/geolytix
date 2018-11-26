@@ -90,17 +90,30 @@ module.exports = fastify => {
                 office: 4,
                 meta: 'Experten für Standortplanung, die Daten aus dem Einzelhandel und demografische Daten weltweit bereitstellen. Wir finden die richtige Netzwerkstrategie für unsere Kunden.',
                 header: './public/tmpl/' + o.platform + '/de_header.html',
-                header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_black.css"/>',
+                header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_white.css"/>',
                 services: './public/tmpl/' + o.platform + '/de_services.html',
                 case_studies: './public/tmpl/' + o.platform + '/de_case_studies.html',
                 team: './public/tmpl/' + o.platform + '/de_team.html',
                 geodata: './public/tmpl/' + o.platform + '/de_geodata.html',
                 photo: './public/tmpl/' + o.platform + '/uk_team_photo.html',
                 footer: './public/tmpl/' + o.platform + '/uk_footer.html'
+            },
+            pl: {
+                locale: 'pl',
+                office: 5,
+                meta: 'Eksperci ds. analiz przestrzennych i lokalizacyjnych świadczący uslugi doradcze dla klientów na całym świecie. Dane, które posiadamy z zakresu demografii oraz handlu detalicznego wraz z naszą wiedzą ekspercką służą nam do zaplanowania sieci detalicznych dla naszych klentów.',
+                header: './public/tmpl/' + o.platform + '/pl_header.html',
+                header_css: '<link rel="stylesheet" type="text/css" href="/css/' + o.platform + '_header_white.css"/>',
+                services: './public/tmpl/' + o.platform + '/pl_services.html',
+                case_studies: './public/tmpl/' + o.platform + '/pl_case_studies.html',
+                team: './public/tmpl/' + o.platform + '/pl_team.html',
+                photo: './public/tmpl/' + o.platform + '/uk_team_photo.html',
+                footer: './public/tmpl/' + o.platform + '/uk_footer.html'
             }
         };
 
-        
+        if (req.headers['x-forwarded-host'] && req.headers['x-forwarded-host'].includes('.pl'))
+            return res.type('text/html').send(o.tmpl.render(locales.pl));
 
         if (req.headers['x-forwarded-host'] && req.headers['x-forwarded-host'].includes('.de'))
             return res.type('text/html').send(o.tmpl.render(locales.de));

@@ -290,12 +290,26 @@ const locales = [
         ll: [51.5078, 7.33],
         add: [
             '+44 (0)20 72 39 49 77',
-            'info@geolytix.co.uk',
+            'info@geolytix.com',
             ' ',
             'Phoenix Yard',
             '65 Kings Cross Road',
             'London',
             'WC1X 9LW'
+        ]
+    },
+    {
+        title: 'Warsaw',
+        ll: [52.2544, 20.984],
+        add: [
+            '+48 506 001 805',
+            'info@geolytix.com',
+            ' ',
+            'Aleja Jana Pawła II 80',
+            '00-175 Warszawa',
+            'Babka Tower',
+            'wejście H',
+            'piętro 5'
         ]
     }
 ];

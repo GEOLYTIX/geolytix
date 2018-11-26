@@ -14,6 +14,7 @@ function orientation() {
     document.getElementById('intro__text').innerHTML =
         locale === 'jp' ? 'より良い決断は、立地の意義するところにある' :
             locale === 'cn' ? '优化选址决策' :
+                locale === 'pl' ? 'Lepsze decyzje tam gdzie lokalizacja ma znaczenie' :
                 locale === 'de' ? (window.innerWidth || screen.height < window.innerWidth || screen.width) ?
                     'Bessere Entscheidungen<br>am richtigen Ort.' :
                     'Bessere<br>Entscheidungen<br>am richtigen<br>location<br>Ort.' :
@@ -206,6 +207,20 @@ const locales = [
             '65 Kings Cross Road',
             'London',
             'WC1X 9LW'
+        ]
+    },
+    {
+        title: 'Warsaw',
+        ll: [52.2544, 20.984],
+        add: [
+            '+48 506 001 805',
+            'info@geolytix.com',
+            ' ',
+            'Aleja Jana Pawła II 80',
+            '00-175 Warszawa',
+            'Babka Tower',
+            'wejście H',
+            'piętro 5'
         ]
     }
 ];
