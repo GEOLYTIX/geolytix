@@ -10,10 +10,10 @@ parallax_team_photo.style.height = parallax_team_photo.offsetWidth * 0.47 + 'px'
 const imgLoadArray = document.querySelectorAll('.img__load');
 for (let i = 0; i < imgLoadArray.length; i++) {
     let img = new Image();
-    img.onload = function(){
-        imgLoadArray[i].style['background-image'] = 'url(/images/' + imgLoadArray[i].dataset.src +')';
+    img.onload = function () {
+        imgLoadArray[i].style['background-image'] = 'url(/images/' + imgLoadArray[i].dataset.src + ')';
         if (imgLoadArray[i].id === 'header__image') {
-            helper.removeClass(document.querySelectorAll('.black'),'black');
+            helper.removeClass(document.querySelectorAll('.black'), 'black');
         }
     };
     img.src = '/images/' + imgLoadArray[i].dataset.src;
@@ -24,8 +24,8 @@ for (let i = 0; i < imgLoadArray.length; i++) {
 //window control
 function setHeader() {
     let distanceY = document.documentElement.scrollTop || document.body.scrollTop;
-    distanceY > 300 ? helper.addClass('.header','header__smaller') : helper.removeClass('.header','header__smaller');
-    distanceY > document.getElementById('header__image').clientHeight - 80 ? helper.addClass('.header','header__main') : helper.removeClass('.header','header__main');
+    distanceY > 300 ? helper.addClass('.header', 'header__smaller') : helper.removeClass('.header', 'header__smaller');
+    distanceY > document.getElementById('header__image').clientHeight - 80 ? helper.addClass('.header', 'header__main') : helper.removeClass('.header', 'header__main');
 }
 setHeader();
 
@@ -47,12 +47,12 @@ document.getElementById('home').addEventListener('click',
         e.preventDefault();
         //helper.scrollBody(0, 400);
         helper.scrollElementToTop(document.getElementById('header__image'), 0, 400);
-        history.pushState({so: 'glx'}, this.id, '?');
+        history.pushState({ so: 'glx' }, this.id, '?');
     }
 );
 
-document.querySelector('.header__menu').addEventListener('click', function(event){
-    history.pushState({so: 'glx'}, event.target.id, '?' + event.target.id);
+document.querySelector('.header__menu').addEventListener('click', function (event) {
+    history.pushState({ so: 'glx' }, event.target.id, '?' + event.target.id);
     scrollTo(event.target.id);
 });
 
@@ -74,7 +74,7 @@ function scrollTo(section) {
 const section_services = document.getElementById('section_services');
 const service_cards = section_services.querySelectorAll('.ul_grid .li_card');
 for (let i = 0; i < service_cards.length; i++) {
-    service_cards[i].addEventListener('click', function() {
+    service_cards[i].addEventListener('click', function () {
         expandCard(section_services, this)
     });
 }
@@ -83,7 +83,7 @@ expandCard(section_services, section_services.querySelector('.li_card'));
 const section_team = document.getElementById('section_team');
 const team_cards = section_team.querySelectorAll('.ul_grid .li_card');
 for (let i = 0; i < team_cards.length; i++) {
-    team_cards[i].addEventListener('click', function() {
+    team_cards[i].addEventListener('click', function () {
         expandCard(section_team, this);
 
         helper.scrollElementToTop(this, -80, 400);
@@ -103,17 +103,17 @@ function expandCard(section, _this) {
 
 
 // case studies
-if (document.getElementById('section_case_studies')){
+if (document.getElementById('section_case_studies')) {
     const section_case_studies = document.getElementById('section_case_studies');
     const case_studies_strip = section_case_studies.querySelector('#case_studies_strip > table');
-    case_studies_strip.addEventListener('click', function(event){
+    case_studies_strip.addEventListener('click', function (event) {
         helper.removeClass(section_case_studies.querySelectorAll('.active'), 'active');
         helper.addClass(event.target, 'active');
         let index = helper.indexInParent(event.target) - 1;
         case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
         if (index > 9) index -= 9;
         if (index < 0) index += 9;
-        helper.addClass(section_case_studies.querySelectorAll('.logo')[index+1], 'active');
+        helper.addClass(section_case_studies.querySelectorAll('.logo')[index + 1], 'active');
         case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
         index++;
         if (index >= 9) index -= 9;
@@ -124,85 +124,90 @@ if (document.getElementById('section_case_studies')){
 
 
 // geodata
-const geodata = require('./geodata')(false);
+const section_geodata = document.getElementById('section_geodata');
 
-geodata.pricing = function() {
-    document.querySelector('.geodata__pricing').style.display = 'block';
+if (section_geodata) {
 
-    let selectedPacks = 4,
-        priceTable = ['£ null', '£ 3,000', '£ 5,500', '£ 8,000', '£ 10,000', '£ 12,000', '£ 14,000', '£ 16,000', '£ 18,000', '£ 20,000', '£ 22,000', '£ 24,000', '£ 25,000'],
-        pricetags = document.querySelectorAll('.pricetag');
+    const geodata = require('./geodata')(false);
 
-    for (let i = 0; i < pricetags.length; i++) {
-        pricetags[i].addEventListener('click', function () {
-            helper.toggleClass(this, 'active');
-            let n = this.innerHTML === '£ 5500 (2 Packs)' ? 2 : 1;
+    geodata.pricing = function () {
+        document.querySelector('.geodata__pricing').style.display = 'block';
 
-            if (this.innerHTML === 'Free') n = 0;
+        let selectedPacks = 4,
+            priceTable = ['£ null', '£ 3,000', '£ 5,500', '£ 8,000', '£ 10,000', '£ 12,000', '£ 14,000', '£ 16,000', '£ 18,000', '£ 20,000', '£ 22,000', '£ 24,000', '£ 25,000'],
+            pricetags = document.querySelectorAll('.pricetag');
 
-            selectedPacks += helper.hasClass(this, 'active') ? +n : -n;
-            document.querySelector('.p_pricing__all').style.display = selectedPacks < 12 ? 'block' : 'none';
-            document.querySelector('.p_pricing__first').style.display = selectedPacks < 12 ? 'block' : 'none';
-            document.querySelector('.p_pricing__first_all').style.display = selectedPacks >= 12 ? 'block' : 'none';
-            document.querySelector('.p_pricing__first_select').style.display = selectedPacks === 0 ? 'block' : 'none';
-            document.querySelector('.p_pricing__three').style.display = selectedPacks < 3 && selectedPacks >= 1 ? 'block' : 'none';
-            document.querySelector('.p_pricing__six').style.display = selectedPacks < 6 && selectedPacks >= 3 ? 'block' : 'none';
-            document.querySelector('.p_pricing__nine').style.display = selectedPacks < 9 && selectedPacks >= 6 ? 'block' : 'none';
-            document.querySelector('.p_pricing__current').style.display = selectedPacks > 0 ? 'block' : 'none';
-            document.getElementById('p_pricing__current').innerHTML = priceTable[selectedPacks] || '£ 25,000';
-        });
-    }
-};
+        for (let i = 0; i < pricetags.length; i++) {
+            pricetags[i].addEventListener('click', function () {
+                helper.toggleClass(this, 'active');
+                let n = this.innerHTML === '£ 5500 (2 Packs)' ? 2 : 1;
 
-geodata.faq = function() {
-    document.querySelector('.geodata__faq').style.display = 'block';
-};
+                if (this.innerHTML === 'Free') n = 0;
 
-require('./lscrolly')(document.querySelector('.geodata__info'));
-
-document.querySelector('.geodata__select').addEventListener('click', function(event){
-    let id = event.target.id;
-    if (id) {
-        history.pushState({so: 'glx'}, id, '?' + id);
-        selectGeodata(event.target);
-    }
-});
-
-const jsr = require('jsrender')();
-
-function selectGeodata(_this) {
-
-    document.querySelector('.geodata__pricing').style.display = 'none';
-
-    document.querySelector('.geodata__faq').style.display = 'none';
-
-    helper.removeClass(document.querySelector('.geodata__select .selected'), 'selected');
-
-    helper.addClass(_this, 'selected');
-
-    document.getElementById('btnFullScreen').href = '/map?' + _this.id;
-
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', '/tmpl/gd_' + _this.id + '.html');
-    xhr.setRequestHeader('Content-Type', 'text/html');
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            document.querySelector('.geodata__info > .content').innerHTML = jsr.templates(xhr.responseText).render();
-            geodata[_this.id]();
+                selectedPacks += helper.hasClass(this, 'active') ? +n : -n;
+                document.querySelector('.p_pricing__all').style.display = selectedPacks < 12 ? 'block' : 'none';
+                document.querySelector('.p_pricing__first').style.display = selectedPacks < 12 ? 'block' : 'none';
+                document.querySelector('.p_pricing__first_all').style.display = selectedPacks >= 12 ? 'block' : 'none';
+                document.querySelector('.p_pricing__first_select').style.display = selectedPacks === 0 ? 'block' : 'none';
+                document.querySelector('.p_pricing__three').style.display = selectedPacks < 3 && selectedPacks >= 1 ? 'block' : 'none';
+                document.querySelector('.p_pricing__six').style.display = selectedPacks < 6 && selectedPacks >= 3 ? 'block' : 'none';
+                document.querySelector('.p_pricing__nine').style.display = selectedPacks < 9 && selectedPacks >= 6 ? 'block' : 'none';
+                document.querySelector('.p_pricing__current').style.display = selectedPacks > 0 ? 'block' : 'none';
+                document.getElementById('p_pricing__current').innerHTML = priceTable[selectedPacks] || '£ 25,000';
+            });
         }
     };
-    xhr.send();
-}
 
-(function(dataset){
-    if (geodata[dataset]) {
-        selectGeodata(document.getElementById(dataset));
-        helper.scrollBody(document.getElementById('section_geodata').getBoundingClientRect().top + window.pageYOffset - 80, 400);
-    } else {
-        selectGeodata(document.querySelector('.geodata__select > div'));
+    geodata.faq = function () {
+        document.querySelector('.geodata__faq').style.display = 'block';
+    };
+
+    require('./lscrolly')(document.querySelector('.geodata__info'));
+
+    document.querySelector('.geodata__select').addEventListener('click', function (event) {
+        let id = event.target.id;
+        if (id) {
+            history.pushState({ so: 'glx' }, id, '?' + id);
+            selectGeodata(event.target);
+        }
+    });
+
+    const jsr = require('jsrender')();
+
+    function selectGeodata(_this) {
+
+        document.querySelector('.geodata__pricing').style.display = 'none';
+
+        document.querySelector('.geodata__faq').style.display = 'none';
+
+        helper.removeClass(document.querySelector('.geodata__select .selected'), 'selected');
+
+        helper.addClass(_this, 'selected');
+
+        document.getElementById('btnFullScreen').href = '/map?' + _this.id;
+
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', '/tmpl/gd_' + _this.id + '.html');
+        xhr.setRequestHeader('Content-Type', 'text/html');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                document.querySelector('.geodata__info > .content').innerHTML = jsr.templates(xhr.responseText).render();
+                geodata[_this.id]();
+            }
+        };
+        xhr.send();
     }
-})(window.location.search.substring(1));
 
+    (function (dataset) {
+        if (geodata[dataset]) {
+            selectGeodata(document.getElementById(dataset));
+            helper.scrollBody(document.getElementById('section_geodata').getBoundingClientRect().top + window.pageYOffset - 80, 400);
+        } else {
+            selectGeodata(document.querySelector('.geodata__select > div'));
+        }
+    })(window.location.search.substring(1));
+
+}
 
 
 // contact map
@@ -210,8 +215,8 @@ const map_contact = L.map('map_contact', {
     scrollWheelZoom: false,
     zoomControl: false
 })
-.setView([0,0],2)
-.addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
+    .setView([0, 0], 2)
+    .addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
 
 const marker = L.icon({
     iconUrl: '/images/leaflet/marker.svg',
@@ -323,7 +328,7 @@ for (let i = 0; i < locales.length; i++) {
             icon: marker_alt,
             title: locales[i].title
         })
-        .on('click', function(e){
+        .on('click', function (e) {
             map_contact.setView(locales[i].ll);
             contact__text.innerHTML = '';
             for (let ii = 0; ii < locales.length; ii++) {
@@ -345,7 +350,7 @@ document.getElementById('btnZoomIn_contact').addEventListener('click', function 
     map_contact.setZoom(map_contact.getZoom() + 1);
 });
 
-document.getElementById('btnZoomOut_contact').addEventListener('click', function(){
+document.getElementById('btnZoomOut_contact').addEventListener('click', function () {
     map_contact.setZoom(map_contact.getZoom() - 1);
 });
 

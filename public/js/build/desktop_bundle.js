@@ -36388,84 +36388,88 @@ if (document.getElementById('section_case_studies')) {
 }
 
 // geodata
-var geodata = __webpack_require__(/*! ./geodata */ "./public/js/geodata.js")(false);
+var section_geodata = document.getElementById('section_geodata');
 
-geodata.pricing = function () {
-    document.querySelector('.geodata__pricing').style.display = 'block';
+if (section_geodata) {
+    var selectGeodata = function selectGeodata(_this) {
 
-    var selectedPacks = 4,
-        priceTable = ['£ null', '£ 3,000', '£ 5,500', '£ 8,000', '£ 10,000', '£ 12,000', '£ 14,000', '£ 16,000', '£ 18,000', '£ 20,000', '£ 22,000', '£ 24,000', '£ 25,000'],
-        pricetags = document.querySelectorAll('.pricetag');
+        document.querySelector('.geodata__pricing').style.display = 'none';
 
-    for (var _i2 = 0; _i2 < pricetags.length; _i2++) {
-        pricetags[_i2].addEventListener('click', function () {
-            helper.toggleClass(this, 'active');
-            var n = this.innerHTML === '£ 5500 (2 Packs)' ? 2 : 1;
+        document.querySelector('.geodata__faq').style.display = 'none';
 
-            if (this.innerHTML === 'Free') n = 0;
+        helper.removeClass(document.querySelector('.geodata__select .selected'), 'selected');
 
-            selectedPacks += helper.hasClass(this, 'active') ? +n : -n;
-            document.querySelector('.p_pricing__all').style.display = selectedPacks < 12 ? 'block' : 'none';
-            document.querySelector('.p_pricing__first').style.display = selectedPacks < 12 ? 'block' : 'none';
-            document.querySelector('.p_pricing__first_all').style.display = selectedPacks >= 12 ? 'block' : 'none';
-            document.querySelector('.p_pricing__first_select').style.display = selectedPacks === 0 ? 'block' : 'none';
-            document.querySelector('.p_pricing__three').style.display = selectedPacks < 3 && selectedPacks >= 1 ? 'block' : 'none';
-            document.querySelector('.p_pricing__six').style.display = selectedPacks < 6 && selectedPacks >= 3 ? 'block' : 'none';
-            document.querySelector('.p_pricing__nine').style.display = selectedPacks < 9 && selectedPacks >= 6 ? 'block' : 'none';
-            document.querySelector('.p_pricing__current').style.display = selectedPacks > 0 ? 'block' : 'none';
-            document.getElementById('p_pricing__current').innerHTML = priceTable[selectedPacks] || '£ 25,000';
-        });
-    }
-};
+        helper.addClass(_this, 'selected');
 
-geodata.faq = function () {
-    document.querySelector('.geodata__faq').style.display = 'block';
-};
+        document.getElementById('btnFullScreen').href = '/map?' + _this.id;
 
-__webpack_require__(/*! ./lscrolly */ "./public/js/lscrolly.js")(document.querySelector('.geodata__info'));
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/tmpl/gd_' + _this.id + '.html');
+        xhr.setRequestHeader('Content-Type', 'text/html');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                document.querySelector('.geodata__info > .content').innerHTML = jsr.templates(xhr.responseText).render();
+                geodata[_this.id]();
+            }
+        };
+        xhr.send();
+    };
 
-document.querySelector('.geodata__select').addEventListener('click', function (event) {
-    var id = event.target.id;
-    if (id) {
-        history.pushState({ so: 'glx' }, id, '?' + id);
-        selectGeodata(event.target);
-    }
-});
+    var geodata = __webpack_require__(/*! ./geodata */ "./public/js/geodata.js")(false);
 
-var jsr = __webpack_require__(/*! jsrender */ "./node_modules/jsrender/jsrender.js")();
+    geodata.pricing = function () {
+        document.querySelector('.geodata__pricing').style.display = 'block';
 
-function selectGeodata(_this) {
+        var selectedPacks = 4,
+            priceTable = ['£ null', '£ 3,000', '£ 5,500', '£ 8,000', '£ 10,000', '£ 12,000', '£ 14,000', '£ 16,000', '£ 18,000', '£ 20,000', '£ 22,000', '£ 24,000', '£ 25,000'],
+            pricetags = document.querySelectorAll('.pricetag');
 
-    document.querySelector('.geodata__pricing').style.display = 'none';
+        for (var _i2 = 0; _i2 < pricetags.length; _i2++) {
+            pricetags[_i2].addEventListener('click', function () {
+                helper.toggleClass(this, 'active');
+                var n = this.innerHTML === '£ 5500 (2 Packs)' ? 2 : 1;
 
-    document.querySelector('.geodata__faq').style.display = 'none';
+                if (this.innerHTML === 'Free') n = 0;
 
-    helper.removeClass(document.querySelector('.geodata__select .selected'), 'selected');
-
-    helper.addClass(_this, 'selected');
-
-    document.getElementById('btnFullScreen').href = '/map?' + _this.id;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/tmpl/gd_' + _this.id + '.html');
-    xhr.setRequestHeader('Content-Type', 'text/html');
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            document.querySelector('.geodata__info > .content').innerHTML = jsr.templates(xhr.responseText).render();
-            geodata[_this.id]();
+                selectedPacks += helper.hasClass(this, 'active') ? +n : -n;
+                document.querySelector('.p_pricing__all').style.display = selectedPacks < 12 ? 'block' : 'none';
+                document.querySelector('.p_pricing__first').style.display = selectedPacks < 12 ? 'block' : 'none';
+                document.querySelector('.p_pricing__first_all').style.display = selectedPacks >= 12 ? 'block' : 'none';
+                document.querySelector('.p_pricing__first_select').style.display = selectedPacks === 0 ? 'block' : 'none';
+                document.querySelector('.p_pricing__three').style.display = selectedPacks < 3 && selectedPacks >= 1 ? 'block' : 'none';
+                document.querySelector('.p_pricing__six').style.display = selectedPacks < 6 && selectedPacks >= 3 ? 'block' : 'none';
+                document.querySelector('.p_pricing__nine').style.display = selectedPacks < 9 && selectedPacks >= 6 ? 'block' : 'none';
+                document.querySelector('.p_pricing__current').style.display = selectedPacks > 0 ? 'block' : 'none';
+                document.getElementById('p_pricing__current').innerHTML = priceTable[selectedPacks] || '£ 25,000';
+            });
         }
     };
-    xhr.send();
-}
 
-(function (dataset) {
-    if (geodata[dataset]) {
-        selectGeodata(document.getElementById(dataset));
-        helper.scrollBody(document.getElementById('section_geodata').getBoundingClientRect().top + window.pageYOffset - 80, 400);
-    } else {
-        selectGeodata(document.querySelector('.geodata__select > div'));
-    }
-})(window.location.search.substring(1));
+    geodata.faq = function () {
+        document.querySelector('.geodata__faq').style.display = 'block';
+    };
+
+    __webpack_require__(/*! ./lscrolly */ "./public/js/lscrolly.js")(document.querySelector('.geodata__info'));
+
+    document.querySelector('.geodata__select').addEventListener('click', function (event) {
+        var id = event.target.id;
+        if (id) {
+            history.pushState({ so: 'glx' }, id, '?' + id);
+            selectGeodata(event.target);
+        }
+    });
+
+    var jsr = __webpack_require__(/*! jsrender */ "./node_modules/jsrender/jsrender.js")();
+
+    (function (dataset) {
+        if (geodata[dataset]) {
+            selectGeodata(document.getElementById(dataset));
+            helper.scrollBody(document.getElementById('section_geodata').getBoundingClientRect().top + window.pageYOffset - 80, 400);
+        } else {
+            selectGeodata(document.querySelector('.geodata__select > div'));
+        }
+    })(window.location.search.substring(1));
+}
 
 // contact map
 var map_contact = L.map('map_contact', {
