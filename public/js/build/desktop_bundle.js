@@ -36306,7 +36306,7 @@ setHeader();
 window.onscroll = function () {
     setHeader();
     var shift = 100 - (parallax_team_photo.offsetTop - window.pageYOffset) / window.innerHeight * 100;
-    if (shift > 0 && shift < 100) parallax_team_photo.style.backgroundPosition = "50% " + shift + "%";
+    if (shift > 0 && shift < 100) parallax_team_photo.style.backgroundPosition = '50% ' + shift + '%';
 };
 
 window.onresize = function () {
