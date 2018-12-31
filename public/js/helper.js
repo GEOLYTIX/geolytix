@@ -148,6 +148,25 @@ module.exports = (function () {
         };
     }
 
+    function createElement(param) {
+
+        let el = document.createElement(param.tag);
+      
+        if (param.options) Object.keys(param.options).forEach(function(key) {
+          if (param.options[key]) el[key] = param.options[key];
+        });
+      
+        if (param.style) Object.keys(param.style).forEach(function(key) {
+            el.style[key] = param.style[key]
+        });
+      
+        if (param.appendTo) param.appendTo.appendChild(el);
+      
+        if (param.eventListener) el.addEventListener(param.eventListener.event, param.eventListener.funct);
+      
+        return el;
+    }
+
     return {
         scrollElementToTop:scrollElementToTop,
         scrollElement:scrollElement,
@@ -157,6 +176,7 @@ module.exports = (function () {
         toggleClass:toggleClass,
         hasClass:hasClass,
         indexInParent:indexInParent,
-        debounce: debounce
+        debounce: debounce,
+        createElement: createElement
     };
 })();

@@ -1,5 +1,4 @@
 const helper = require('./helper');
-const L = require('leaflet');
 
 //intro text orientation
 window.addEventListener('resize', function () {
@@ -116,7 +115,7 @@ if (document.getElementById('case_studies__logos')){
 
 
 // contact
-let mapZoom_contact = 14;
+/* let mapZoom_contact = 14;
 const map_contact = L.map('map_contact', {
     scrollWheelZoom: false,
     zoomControl: false
@@ -224,6 +223,7 @@ const locales = [
         ]
     }
 ];
+*/
 
 const contact__text = document.getElementById('contact__text');
 

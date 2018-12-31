@@ -132,53 +132,5 @@ module.exports = fastify => {
 
         res.type('text/html').send(o.tmpl.render(locales.uk));
     }
-
-    fastify.register(require('fastify-postgres'), {
-        connectionString: process.env.POSTGRES_GEOSERVER,
-        name: 'gs'
-    });
-
-    fastify.register(require('fastify-postgres'), {
-        connectionString: process.env.POSTGRES_GHS,
-        name: 'ghs'
-    });
     
-    fastify.get('/map', (req, res) => {
-        let md = new Md(req.headers['user-agent']),
-            dataset = req.raw.originalUrl.substring(req.raw.originalUrl.indexOf('?') + 1),
-            tmpl = (md.mobile() === null || md.tablet() !== null) ?
-                jsr.templates('./views/gd_map_d.html') :
-                jsr.templates('./views/gd_map_m.html');
-
-        res.type('text/html').send(tmpl.render({ gd_tmpl: './public/tmpl/gd_' + dataset + '.html' }));
-    });
-
-    fastify.get('/grid_query', async (req, res) => {
-        let q = `
-        SELECT
-            lon,
-            lat,
-            ${req.query.c} c,
-            ${req.query.v} v
-        FROM ${req.query.layer}
-        WHERE
-            ST_Intersects(
-                ST_MakeEnvelope(
-                    ${req.query.west},
-                    ${req.query.south},
-                    ${req.query.east},
-                    ${req.query.north},
-                    4326
-                ), ${req.query.geom}
-            )
-        LIMIT 10000;`;
-
-        var db_connection = await fastify.pg[req.query.database].connect();
-        var result = await db_connection.query(q);
-        db_connection.release();
-
-        if (result.rows.length === 0) return res.code(204).send();
-
-        res.code(200).send(result.rows);
-    });
 }

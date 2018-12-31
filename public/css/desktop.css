@@ -1098,6 +1098,8 @@
         font-family: ffmark_bold, sans-serif;
         font-size: 20px;
         line-height: 1.5; }
+  #section_contact .attribution {
+    display: none; }
 
 #map_contact {
   width: calc(100% - 300px);

@@ -26,11 +26,12 @@
     </script>-->
 
     <link rel="stylesheet" href="/css/desktop.css"/>
+    <link rel="stylesheet" href="https://geolytix.xyz/dev/css/views/leaflet.css"/>
     {{:header_css}}
 
 </head>
 
-<body>
+<body data-viewmode="desktop" data-locale="{{:locale}}" data-office="{{:office}}">
 
 {{include tmpl=header /}}
 
@@ -76,11 +77,8 @@
 
 </body>
 
-<script>
-const view_mode = 'desktop';
-const locale = '{{:locale}}';
-const office = '{{:office}}';
-</script>
+<script src="/js/geodata.js"></script>
+<script src="https://geolytix.xyz/dev/js/build/lib_leaflet_bundle.js"></script>
 <script src="/js/build/desktop_bundle.js"></script>
 
 </html>

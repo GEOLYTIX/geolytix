@@ -1,7 +1,8 @@
 const helper = require('./helper');
-const L = require('leaflet');
 
-//images
+//document.body.dataset.viewmode
+
+// LAZY LOAD IMAGES
 const parallax_team_photo = document.getElementById('team_photo');
 parallax_team_photo.style.height = parallax_team_photo.offsetWidth * 0.47 + 'px';
 
@@ -19,7 +20,7 @@ for (let i = 0; i < imgLoadArray.length; i++) {
 
 
 
-//window control
+// HEADER and WINDOW SCROLL
 function setHeader() {
     let distanceY = document.documentElement.scrollTop || document.body.scrollTop;
     distanceY > 300 ? helper.addClass('.header', 'header__smaller') : helper.removeClass('.header', 'header__smaller');
@@ -43,7 +44,6 @@ window.onresize = function () {
 document.getElementById('home').addEventListener('click',
     function (e) {
         e.preventDefault();
-        //helper.scrollBody(0, 400);
         helper.scrollElementToTop(document.getElementById('header__image'), 0, 400);
         history.pushState({ so: 'glx' }, this.id, '?');
     }
@@ -63,30 +63,41 @@ const sections = {
 };
 
 function scrollTo(section) {
-    if (sections[section]) helper.scrollBody(document.getElementById('section_' + section).getBoundingClientRect().top + window.pageYOffset - sections[section], 400);
+    if (sections[section]) helper.scrollBody(
+        document.getElementById('section_' + section).getBoundingClientRect().top
+        + window.pageYOffset
+        - sections[section]
+        , 400);
 }
 
 
 
-// card controls
+// SERVICES
 const section_services = document.getElementById('section_services');
+
 const service_cards = section_services.querySelectorAll('.ul_grid .li_card');
+
 for (let i = 0; i < service_cards.length; i++) {
     service_cards[i].addEventListener('click', function () {
         expandCard(section_services, this)
     });
 }
+
 expandCard(section_services, section_services.querySelector('.li_card'));
 
+
+// TEAM
 const section_team = document.getElementById('section_team');
+
 const team_cards = section_team.querySelectorAll('.ul_grid .li_card');
+
 for (let i = 0; i < team_cards.length; i++) {
     team_cards[i].addEventListener('click', function () {
         expandCard(section_team, this);
-
         helper.scrollElementToTop(this, -80, 400);
     });
 }
+
 expandCard(section_team, section_team.querySelector('.li_card'));
 
 function expandCard(section, _this) {
@@ -126,9 +137,24 @@ const section_geodata = document.getElementById('section_geodata');
 
 if (section_geodata) {
 
-    const geodata = require('./geodata')(false);
+    //const geodata = require('./geodata')(false);
 
-    geodata.pricing = function () {
+    const geodata_select = document.getElementById('geodata__select');
+
+    geodata.forEach(function(set){
+        helper.createElement({
+            tag: 'div',
+            options: {
+                id: set.id,
+                textContent: set.name
+            },
+            appendTo: geodata_select
+        })
+    })
+
+    console.log(geodata);
+
+    const pricing = function () {
         document.querySelector('.geodata__pricing').style.display = 'block';
 
         let selectedPacks = 4,
@@ -156,7 +182,7 @@ if (section_geodata) {
         }
     };
 
-    geodata.faq = function () {
+    const faq = function () {
         document.querySelector('.geodata__faq').style.display = 'block';
     };
 
@@ -170,8 +196,6 @@ if (section_geodata) {
         }
     });
 
-    const jsr = require('jsrender')();
-
     function selectGeodata(_this) {
 
         document.querySelector('.geodata__pricing').style.display = 'none';
@@ -182,33 +206,34 @@ if (section_geodata) {
 
         helper.addClass(_this, 'selected');
 
-        document.getElementById('btnFullScreen').href = '/map?' + _this.id;
+        if (_this.id === 'faq') return faq();
 
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', '/tmpl/gd_' + _this.id + '.html');
-        xhr.setRequestHeader('Content-Type', 'text/html');
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                document.querySelector('.geodata__info > .content').innerHTML = jsr.templates(xhr.responseText).render();
-                geodata[_this.id]();
-            }
-        };
-        xhr.send();
+        if (_this.id === 'pricing') return pricing();
+
+        document.getElementById('btnFullScreen').href = 'https://geolytix.xyz/dev?locale=' + _this.id;
+
+        _xyz.init({
+            host: 'https://geolytix.xyz/dev',
+            map_id: 'map_geodata',
+            locale: _this.id
+        });
+
     }
 
-    (function (dataset) {
-        if (geodata[dataset]) {
-            selectGeodata(document.getElementById(dataset));
-            helper.scrollBody(document.getElementById('section_geodata').getBoundingClientRect().top + window.pageYOffset - 80, 400);
-        } else {
-            selectGeodata(document.querySelector('.geodata__select > div'));
-        }
-    })(window.location.search.substring(1));
+    // (function (dataset) {
+    //     if (geodata[dataset]) {
+    //         selectGeodata(document.getElementById(dataset));
+    //         helper.scrollBody(document.getElementById('section_geodata').getBoundingClientRect().top + window.pageYOffset - 80, 400);
+    //     } else {
+    //         selectGeodata(document.querySelector('.geodata__select > div'));
+    //     }
+    // })(window.location.search.substring(1));
 
 }
 
 
 // contact map
+/*
 const map_contact = L.map('map_contact', {
     scrollWheelZoom: false,
     zoomControl: false
@@ -316,9 +341,19 @@ const locales = [
         ]
     }
 ];
+*/
+
+_xyz.init({
+    host: 'https://geolytix.xyz/dev',
+    map_id: 'map_contact',
+    locale: 'Offices'
+});
 
 const contact__text = document.getElementById('contact__text');
 
+contact__text.innerHTML = "+48 506 001 805 <br> info@geolytix.com <br><br> Aleja Jana Pawła II 80 <br> 00-175 Warszawa <br> Babka Tower <br> wejście H <br> piętro 5";
+
+/*
 for (let i = 0; i < locales.length; i++) {
     locales[i].marker = new L.Marker(
         locales[i].ll,
@@ -351,6 +386,8 @@ document.getElementById('btnZoomIn_contact').addEventListener('click', function 
 document.getElementById('btnZoomOut_contact').addEventListener('click', function () {
     map_contact.setZoom(map_contact.getZoom() - 1);
 });
+
+*/
 
 
 //url hook scroll
