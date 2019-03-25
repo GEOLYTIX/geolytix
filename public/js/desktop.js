@@ -137,22 +137,18 @@ const section_geodata = document.getElementById('section_geodata');
 
 if (section_geodata) {
 
-    //const geodata = require('./geodata')(false);
-
     const geodata_select = document.getElementById('geodata__select');
 
-    geodata.forEach(function(set){
-        helper.createElement({
-            tag: 'div',
-            options: {
-                id: set.id,
-                textContent: set.name
-            },
-            appendTo: geodata_select
-        })
-    })
-
-    console.log(geodata);
+    Object.keys(geodata).forEach(
+        function (set) {
+            helper.createElement({
+                tag: 'div',
+                options: {
+                    textContent: set
+                },
+                appendTo: geodata_select
+            })
+        });
 
     const pricing = function () {
         document.querySelector('.geodata__pricing').style.display = 'block';
@@ -189,36 +185,79 @@ if (section_geodata) {
     require('./lscrolly')(document.querySelector('.geodata__info'));
 
     document.querySelector('.geodata__select').addEventListener('click', function (event) {
-        let id = event.target.id;
-        if (id) {
-            history.pushState({ so: 'glx' }, id, '?' + id);
-            selectGeodata(event.target);
+        console.log(event.target);
+        let geodataSet = geodata[event.target.innerText];
+
+
+        geodataMap(geodataSet);
+        // let id = event.target.id;
+        // if (id) {
+        //     history.pushState({ so: 'glx' }, id, '?' + id);
+        //     selectGeodata(event.target);
+        // }
+    });
+
+    let container = document.querySelector('.geodata__info > .content');
+
+    let geodataXYZ;
+    
+    _xyz({
+        host: 'https://geolytix.xyz/geodata',
+        callback: _xyz => {
+
+            geodataXYZ = _xyz;
+
+            geodataMap({
+                locale: 'London',
+                meta: 'census',
+                layers: ['base', 'label', 'census']
+            })
         }
     });
 
-    function selectGeodata(_this) {
+    function geodataMap(dataset) {
 
-        document.querySelector('.geodata__pricing').style.display = 'none';
-
-        document.querySelector('.geodata__faq').style.display = 'none';
-
-        helper.removeClass(document.querySelector('.geodata__select .selected'), 'selected');
-
-        helper.addClass(_this, 'selected');
-
-        if (_this.id === 'faq') return faq();
-
-        if (_this.id === 'pricing') return pricing();
-
-        document.getElementById('btnFullScreen').href = 'https://geolytix.xyz/dev?locale=' + _this.id;
-
-        _xyz.init({
-            host: 'https://geolytix.xyz/dev',
-            map_id: 'map_geodata',
-            locale: _this.id
+        geodataXYZ.mapview.create({
+            target: document.getElementById('map_geodata'),
+            locale: dataset.locale,
+            btn: {
+                ZoomIn: document.getElementById('btnZoomIn'),
+                ZoomOut: document.getElementById('btnZoomOut'),
+            }
         });
+  
+        container.innerHTML = geodataXYZ.layers.list[dataset.meta].meta;
+
+        Object.keys(geodataXYZ.layers.list).forEach(function(layer){
+            geodataXYZ.layers.list[layer].remove();
+        })
+
+        dataset.layers.forEach(function(layer){
+            geodataXYZ.layers.list[layer].show();
+        })
+
+        // geodataMap.locations.select_popup = location => {
+
+        //     container.appendChild(location.info_table);
+
+        // }
 
     }
+
+        // document.querySelector('.geodata__pricing').style.display = 'none';
+
+        // document.querySelector('.geodata__faq').style.display = 'none';
+
+        // helper.removeClass(document.querySelector('.geodata__select .selected'), 'selected');
+
+        // helper.addClass(_this, 'selected');
+
+        // if (_this.id === 'faq') return faq();
+
+        // if (_this.id === 'pricing') return pricing();
+
+        // document.getElementById('btnFullScreen').href = 'https://geolytix.xyz/dev?locale=' + _this.id;
+
 
     // (function (dataset) {
     //     if (geodata[dataset]) {
@@ -233,162 +272,61 @@ if (section_geodata) {
 
 
 // contact map
-/*
-const map_contact = L.map('map_contact', {
-    scrollWheelZoom: false,
-    zoomControl: false
-})
-    .setView([0, 0], 2)
-    .addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
 
-const marker = L.icon({
-    iconUrl: '/images/leaflet/marker.svg',
-    iconSize: [80, 40],
-    iconAnchor: [40, 40]
-});
-
-const marker_alt = L.icon({
-    iconUrl: '/images/leaflet/marker_alt.svg',
-    iconSize: [80, 40],
-    iconAnchor: [40, 40]
-});
-
-const locales = [
-    {
-        title: 'London',
-        ll: [51.52733, -0.11525],
-        add: [
-            '+44 (0)20 72 39 49 77',
-            'info@geolytix.co.uk',
-            ' ',
-            'Phoenix Yard',
-            '65 Kings Cross Road',
-            'London',
-            'WC1X 9LW'
-        ]
-    },
-    {
-        title: 'Leeds',
-        ll: [53.79664, -1.53385],
-        add: [
-            '+44 (0)20 72 39 49 77',
-            'info@geolytix.co.uk',
-            ' ',
-            'ODI Leeds',
-            '3rd Floor',
-            'Munro House',
-            'Duke Street',
-            'Leeds',
-            'LS9 8AG'
-        ]
-    },
-    {
-        title: 'Shanghai',
-        ll: [31.22839, 121.45984],
-        add: [
-            '+86 21 6237 8013',
-            '上海市静安区泰兴路89号3楼',
-            ' ',
-            '3F',
-            '#89 Taixing Road',
-            'Jing’an District',
-            'Shanghai'
-        ]
-    },
-    {
-        title: 'Tokyo',
-        ll: [35.65652, 139.6974],
-        add: [
-            '+81 (0) 3 5456 7954',
-            'info@geolytix.com',
-            ' ',
-            '150-8512 東',
-            '京都渋谷区桜ヶ丘町26-1',
-            'セルリアンタワー15階',
-            ' ',
-            '15F Cerulean Tower',
-            '26-1 Sakuragaoka cho',
-            'Shibuya-ku',
-            'Tokyo',
-            '150-8512'
-        ]
-    },
-    {
-        title: 'Dortmund',
-        ll: [51.5078, 7.33],
-        add: [
-            '+44 (0)20 72 39 49 77',
-            'info@geolytix.com',
-            ' ',
-            'Phoenix Yard',
-            '65 Kings Cross Road',
-            'London',
-            'WC1X 9LW'
-        ]
-    },
-    {
-        title: 'Warsaw',
-        ll: [52.2544, 20.984],
-        add: [
-            '+48 506 001 805',
-            'info@geolytix.com',
-            ' ',
-            'Aleja Jana Pawła II 80',
-            '00-175 Warszawa',
-            'Babka Tower',
-            'wejście H',
-            'piętro 5'
-        ]
-    }
-];
-*/
-
-_xyz.init({
+_xyz({
     host: 'https://geolytix.xyz/dev',
-    map_id: 'map_contact',
-    locale: 'Offices'
-});
+    callback: _xyz => {
 
-const contact__text = document.getElementById('contact__text');
-
-contact__text.innerHTML = "+48 506 001 805 <br> info@geolytix.com <br><br> Aleja Jana Pawła II 80 <br> 00-175 Warszawa <br> Babka Tower <br> wejście H <br> piętro 5";
-
-/*
-for (let i = 0; i < locales.length; i++) {
-    locales[i].marker = new L.Marker(
-        locales[i].ll,
-        {
-            icon: marker_alt,
-            title: locales[i].title
-        })
-        .on('click', function (e) {
-            map_contact.setView(locales[i].ll);
-            contact__text.innerHTML = '';
-            for (let ii = 0; ii < locales.length; ii++) {
-                locales[ii].marker.setIcon(marker_alt);
+        _xyz.mapview.create({
+            target: document.getElementById('map_contact'),
+            locale: 'Offices',
+            view: {
+                lat: 45,
+                lng: 60,
+                z: 3
+            },
+            btn: {
+                ZoomIn: document.getElementById('btnZoomIn_contact'),
+                ZoomOut: document.getElementById('btnZoomOut_contact'),
             }
-            e.target.setIcon(marker);
-            for (let iii = 0; iii < locales[i].add.length; iii++) {
-                let el = document.createElement('div');
-                el.textContent = locales[i].add[iii];
-                contact__text.appendChild(el);
-            }
-        })
-        .addTo(map_contact);
-}
+        });
+    
+        _xyz.layers.list.offices.show();
+    
+        _xyz.locations.select = location => {
+    
+            if (_xyz.locations.current) _xyz.locations.current.remove();
+      
+            Object.assign(location, _xyz.locations.location());
+      
+            _xyz.locations.current = location;
+      
+            location.get(() => {
+    
+                location.draw({
+                    icon: {
+                        url: _xyz.utils.svg_symbols({type: 'markerColor', style: {colorMarker: '#64dd17', colorDot: '#33691e'}}),
+                        size: 40,
+                        anchor: [20,40]
+                      }
+                });
+      
+                document.getElementById('contact__text').innerHTML = location.infoj[0].value;
+      
+            });
+      
+          };
+    
+        _xyz.locations.select({
+            locale: "offices",
+            layer: "offices",
+            dbs: "XYZ",
+            table: "glx_offices",
+            id: 2
+        });
 
-locales[parseInt(office)].marker.fireEvent('click');
-
-document.getElementById('btnZoomIn_contact').addEventListener('click', function () {
-    map_contact.setZoom(map_contact.getZoom() + 1);
+    }
 });
-
-document.getElementById('btnZoomOut_contact').addEventListener('click', function () {
-    map_contact.setZoom(map_contact.getZoom() - 1);
-});
-
-*/
-
 
 //url hook scroll
 scrollTo(window.location.search.substring(1));

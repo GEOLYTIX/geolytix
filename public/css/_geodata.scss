@@ -63,9 +63,13 @@
   float: left;
   overflow: hidden;
 
+  a {
+    color: #090;
+  }
+
   .content {
     height: 100%;
-    width: calc(100% + 30px);
+    // width: calc(100% + 30px);
     overflow-y: scroll;
     padding-left: 5px;
   }

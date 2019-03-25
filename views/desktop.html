@@ -26,8 +26,12 @@
     </script>-->
 
     <link rel="stylesheet" href="/css/desktop.css"/>
-    <link rel="stylesheet" href="https://geolytix.xyz/dev/css/views/leaflet.css"/>
+    <link rel="stylesheet" href="https://geolytix.xyz/geodata/css/control.css"/>
     {{:header_css}}
+
+    <script src="/js/geodata.js" defer></script>
+    <script src="https://geolytix.xyz/geodata/js/build/xyz_control_bundle.js" defer></script>
+    <script src="/js/build/desktop_bundle.js" defer></script>
 
 </head>
 
@@ -76,9 +80,5 @@
 {{include tmpl=footer /}}
 
 </body>
-
-<script src="/js/geodata.js"></script>
-<script src="https://geolytix.xyz/dev/js/build/lib_leaflet_bundle.js"></script>
-<script src="/js/build/desktop_bundle.js"></script>
 
 </html>
