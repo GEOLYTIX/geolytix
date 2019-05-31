@@ -1,82 +1,84 @@
 const geodata = {
+    "Retail Points": {
+        "locale": "London",
+        "meta": "Retail Points",
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Retail Points"],
+        "legends": ["Retail Points"]
+    },
     "Census": {
         "locale": "London",
-        "meta": "census",
-        "layers": ["base","label","census"]
+        "meta": "Census",
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Census"],
+        "legends": ["Census"]
     },
     "Admin Boundaries": {
         "locale": "London",
-        "meta": "admin_lad",
-        "layers": ["base","label","admin_lad","admin_oa"]
+        "meta": "LAD",
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "LAD", "OA"]
     },
     "Education": {
         "locale": "London",
         "meta": "Education",
-        "layers": ["base","label","Education"]
-    },
-    "University Building": {
-        "locale": "London",
-        "meta": "education_uni_building",
-        "layers": ["base","label","education_uni_building"]
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Education", "University building"],
+        "legends": ["Education", "University building"]
     },
     "Grocery Demand": {
         "locale": "London",
-        "meta": "grocery_demand",
-        "layers": ["base","label","grocery_demand"]
+        "meta": "Grocery Demand",
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Grocery Demand"],
+        "legends": ["Grocery Demand"]
     },
     "Points of Interest": {
         "locale": "London",
-        "meta": "poi",
-        "layers": ["base","label","poi"]
+        "meta": "Points of Interest",
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Points of Interest"],
+        "legends": ["Points of Interest"]
     },
     "Postal": {
         "locale": "London",
-        "meta": "postal_areas",
-        "layers": ["base","label","postal_areas","postal_district","postal_sector"]
+        "meta": "Postal Sector",
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Postal Sector", "Postal District", "Postal Areas"]
     },
     "Public Transport": {
         "locale": "London",
-        "meta": "Transport_lines",
-        "layers": ["base","label","Transport_lines","transport_stations","transport_locations"]
+        "meta": "Rail Lines",
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Rail Lines", "Rail Stations"],
+        "legends": ["Rail Lines", "Rail Stations"]
     },
     "Residential": {
         "locale": "London",
-        "meta": "residential",
-        "layers": ["base","label","residential"]
-    },
-    "Road Network": {
-        "locale": "London",
-        "meta": "Roads",
-        "layers": ["base","label","Roads"]
+        "meta": "Residential",
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Residential"],
+        "legends": ["Residential"]
     },
     "Retail Places": {
         "locale": "London",
         "meta": "Retail Places",
-        "layers": ["base","label","Retail Places"]
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Retail Places"],
+        "legends": ["Retail Places"]
     },
-    "Retail Place Pitch": {
+    "Road Network": {
         "locale": "London",
-        "meta": "retail_pitch",
-        "layers": ["base","label","retail_pitch"]
-    },
-    "Seamless towns and suburbs": {
-        "locale": "London",
-        "meta": "seamless_town",
-        "layers": ["base","label","seamless_town"]
+        "meta": "Road Network",
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Road Network"],
+        "legends": ["Road Network"]
     },
     "Town and suburb": {
         "locale": "London",
-        "meta": "town_sub",
-        "layers": ["base","label","town_sub"]
+        "meta": "Town and suburb",
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Town and suburb"],
+        "legends": ["Town and suburb"]
     },
     "Urbanity": {
         "locale": "London",
         "meta": "Urbanity",
-        "layers": ["base","label","Urbanity"]
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Urbanity"],
+        "legends": ["Urbanity"]
     },
     "Workers": {
         "locale": "London",
-        "meta": "work_place_hybrid_zone",
-        "layers": ["base","label","work_place_hybrid_zone"]
+        "meta": "Workers",
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Workers"],
+        "legends": ["Workers"]
     }
 };

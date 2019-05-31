@@ -69,7 +69,9 @@
 
   .content {
     height: 100%;
-    // width: calc(100% + 30px);
+    width: 380px;
+    padding-right: 50px;
+    background-color: ghostwhite;
     overflow-y: scroll;
     padding-left: 5px;
   }

@@ -11030,12 +11030,12 @@ module.exports = g;
 
 var helper = __webpack_require__(/*! ./helper */ "./public/js/helper.js");
 
-//document.body.dataset.viewmode
-
-// LAZY LOAD IMAGES
+// PARALLAX TEAM PHOTO
 var parallax_team_photo = document.getElementById('team_photo');
+
 parallax_team_photo.style.height = parallax_team_photo.offsetWidth * 0.47 + 'px';
 
+// LAZY LOAD IMAGES
 var imgLoadArray = document.querySelectorAll('.img__load');
 
 var _loop = function _loop(i) {
@@ -11071,7 +11071,7 @@ window.onresize = function () {
     parallax_team_photo.style.height = parallax_team_photo.offsetWidth * 0.47 + 'px';
 };
 
-//menu control
+//MENU
 document.getElementById('home').addEventListener('click', function (e) {
     e.preventDefault();
     helper.scrollElementToTop(document.getElementById('header__image'), 0, 400);
@@ -11131,7 +11131,7 @@ function expandCard(section, _this) {
     helper.addClass(_this.nextElementSibling, 'visible');
 }
 
-// case studies
+// CASE STUDIES
 if (document.getElementById('section_case_studies')) {
     var section_case_studies = document.getElementById('section_case_studies');
     var case_studies_strip = section_case_studies.querySelector('#case_studies_strip > table');
@@ -11150,7 +11150,7 @@ if (document.getElementById('section_case_studies')) {
     });
 }
 
-// geodata
+// GEODATA
 var section_geodata = document.getElementById('section_geodata');
 
 if (section_geodata) {
@@ -11165,10 +11165,17 @@ if (section_geodata) {
             }
         });
 
-        container.innerHTML = geodataXYZ.layers.list[dataset.meta].meta;
+        container.innerHTML = geodataXYZ.layers.list[dataset.meta].groupmeta;
 
         Object.keys(geodataXYZ.layers.list).forEach(function (layer) {
             geodataXYZ.layers.list[layer].remove();
+        });
+
+        if (dataset.legends) dataset.legends.forEach(function (legend) {
+
+            geodataXYZ.layers.list[legend].view();
+
+            container.appendChild(geodataXYZ.layers.list[legend].style.legend);
         });
 
         dataset.layers.forEach(function (layer) {
@@ -11218,38 +11225,6 @@ if (section_geodata) {
         });
     });
 
-    var pricing = function pricing() {
-        document.querySelector('.geodata__pricing').style.display = 'block';
-
-        var selectedPacks = 4,
-            priceTable = ['£ null', '£ 3,000', '£ 5,500', '£ 8,000', '£ 10,000', '£ 12,000', '£ 14,000', '£ 16,000', '£ 18,000', '£ 20,000', '£ 22,000', '£ 24,000', '£ 25,000'],
-            pricetags = document.querySelectorAll('.pricetag');
-
-        for (var _i2 = 0; _i2 < pricetags.length; _i2++) {
-            pricetags[_i2].addEventListener('click', function () {
-                helper.toggleClass(this, 'active');
-                var n = this.innerHTML === '£ 5500 (2 Packs)' ? 2 : 1;
-
-                if (this.innerHTML === 'Free') n = 0;
-
-                selectedPacks += helper.hasClass(this, 'active') ? +n : -n;
-                document.querySelector('.p_pricing__all').style.display = selectedPacks < 12 ? 'block' : 'none';
-                document.querySelector('.p_pricing__first').style.display = selectedPacks < 12 ? 'block' : 'none';
-                document.querySelector('.p_pricing__first_all').style.display = selectedPacks >= 12 ? 'block' : 'none';
-                document.querySelector('.p_pricing__first_select').style.display = selectedPacks === 0 ? 'block' : 'none';
-                document.querySelector('.p_pricing__three').style.display = selectedPacks < 3 && selectedPacks >= 1 ? 'block' : 'none';
-                document.querySelector('.p_pricing__six').style.display = selectedPacks < 6 && selectedPacks >= 3 ? 'block' : 'none';
-                document.querySelector('.p_pricing__nine').style.display = selectedPacks < 9 && selectedPacks >= 6 ? 'block' : 'none';
-                document.querySelector('.p_pricing__current').style.display = selectedPacks > 0 ? 'block' : 'none';
-                document.getElementById('p_pricing__current').innerHTML = priceTable[selectedPacks] || '£ 25,000';
-            });
-        }
-    };
-
-    var faq = function faq() {
-        document.querySelector('.geodata__faq').style.display = 'block';
-    };
-
     __webpack_require__(/*! ./lscrolly */ "./public/js/lscrolly.js")(document.querySelector('.geodata__info'));
 
     document.querySelector('.geodata__select').addEventListener('click', function (event) {
@@ -11276,17 +11251,17 @@ if (section_geodata) {
 
             geodataMap({
                 locale: 'London',
-                meta: 'census',
-                layers: ['base', 'label', 'census']
+                meta: 'Retail Points',
+                layers: ["Mapbox Baselayer", "Mapbox Labels", "Retail Points"],
+                legends: ["Retail Points"]
             });
         }
     });
 }
 
-// contact map
-
+// CONTACT
 _xyz({
-    host: 'https://geolytix.xyz/dev',
+    host: 'https://geolytix.xyz/geodata',
     callback: function callback(_xyz) {
 
         _xyz.mapview.create({
@@ -11303,17 +11278,39 @@ _xyz({
             }
         });
 
-        _xyz.layers.list.offices.show();
+        _xyz.layers.list.Offices.show();
 
         _xyz.locations.select = function (location) {
 
+            // Remove current location if it exists.
             if (_xyz.locations.current) _xyz.locations.current.remove();
-
-            Object.assign(location, _xyz.locations.location());
 
             _xyz.locations.current = location;
 
-            location.get(function () {
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', _xyz.host + '/api/location/select/id?' + _xyz.utils.paramString({
+                locale: _xyz.workspace.locale.key,
+                layer: location.layer,
+                table: location.table,
+                id: location.id,
+                token: _xyz.token
+            }));
+
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.responseType = 'json';
+
+            xhr.onload = function (e) {
+
+                if (e.target.status !== 200) return;
+
+                location.infoj = e.target.response.infoj;
+
+                location.geometry = e.target.response.geomj;
+
+                location.marker = _xyz.utils.turf.pointOnFeature(location.geometry).geometry.coordinates;
+
+                location = _xyz.locations.location(location);
 
                 location.draw({
                     icon: {
@@ -11323,16 +11320,17 @@ _xyz({
                     }
                 });
 
-                document.getElementById('contact__text').innerHTML = location.infoj[0].value;
-            });
+                document.getElementById('contact__text').innerHTML = location.infoj[1].value;
+            };
+
+            xhr.send();
         };
 
         _xyz.locations.select({
-            locale: "offices",
-            layer: "offices",
-            dbs: "XYZ",
-            table: "glx_offices",
-            id: 2
+            locale: "Offices",
+            layer: "Offices",
+            table: "website.glx_offices",
+            id: document.body.dataset.office
         });
     }
 });

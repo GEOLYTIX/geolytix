@@ -1,11 +1,15 @@
 const helper = require('./helper');
 
-//document.body.dataset.viewmode
 
-// LAZY LOAD IMAGES
+
+// PARALLAX TEAM PHOTO
 const parallax_team_photo = document.getElementById('team_photo');
+
 parallax_team_photo.style.height = parallax_team_photo.offsetWidth * 0.47 + 'px';
 
+
+
+// LAZY LOAD IMAGES
 const imgLoadArray = document.querySelectorAll('.img__load');
 for (let i = 0; i < imgLoadArray.length; i++) {
     let img = new Image();
@@ -40,7 +44,7 @@ window.onresize = function () {
 
 
 
-//menu control
+//MENU
 document.getElementById('home').addEventListener('click',
     function (e) {
         e.preventDefault();
@@ -86,6 +90,7 @@ for (let i = 0; i < service_cards.length; i++) {
 expandCard(section_services, section_services.querySelector('.li_card'));
 
 
+
 // TEAM
 const section_team = document.getElementById('section_team');
 
@@ -111,7 +116,7 @@ function expandCard(section, _this) {
 
 
 
-// case studies
+// CASE STUDIES
 if (document.getElementById('section_case_studies')) {
     const section_case_studies = document.getElementById('section_case_studies');
     const case_studies_strip = section_case_studies.querySelector('#case_studies_strip > table');
@@ -132,7 +137,7 @@ if (document.getElementById('section_case_studies')) {
 
 
 
-// geodata
+// GEODATA
 const section_geodata = document.getElementById('section_geodata');
 
 if (section_geodata) {
@@ -149,38 +154,6 @@ if (section_geodata) {
                 appendTo: geodata_select
             })
         });
-
-    const pricing = function () {
-        document.querySelector('.geodata__pricing').style.display = 'block';
-
-        let selectedPacks = 4,
-            priceTable = ['£ null', '£ 3,000', '£ 5,500', '£ 8,000', '£ 10,000', '£ 12,000', '£ 14,000', '£ 16,000', '£ 18,000', '£ 20,000', '£ 22,000', '£ 24,000', '£ 25,000'],
-            pricetags = document.querySelectorAll('.pricetag');
-
-        for (let i = 0; i < pricetags.length; i++) {
-            pricetags[i].addEventListener('click', function () {
-                helper.toggleClass(this, 'active');
-                let n = this.innerHTML === '£ 5500 (2 Packs)' ? 2 : 1;
-
-                if (this.innerHTML === 'Free') n = 0;
-
-                selectedPacks += helper.hasClass(this, 'active') ? +n : -n;
-                document.querySelector('.p_pricing__all').style.display = selectedPacks < 12 ? 'block' : 'none';
-                document.querySelector('.p_pricing__first').style.display = selectedPacks < 12 ? 'block' : 'none';
-                document.querySelector('.p_pricing__first_all').style.display = selectedPacks >= 12 ? 'block' : 'none';
-                document.querySelector('.p_pricing__first_select').style.display = selectedPacks === 0 ? 'block' : 'none';
-                document.querySelector('.p_pricing__three').style.display = selectedPacks < 3 && selectedPacks >= 1 ? 'block' : 'none';
-                document.querySelector('.p_pricing__six').style.display = selectedPacks < 6 && selectedPacks >= 3 ? 'block' : 'none';
-                document.querySelector('.p_pricing__nine').style.display = selectedPacks < 9 && selectedPacks >= 6 ? 'block' : 'none';
-                document.querySelector('.p_pricing__current').style.display = selectedPacks > 0 ? 'block' : 'none';
-                document.getElementById('p_pricing__current').innerHTML = priceTable[selectedPacks] || '£ 25,000';
-            });
-        }
-    };
-
-    const faq = function () {
-        document.querySelector('.geodata__faq').style.display = 'block';
-    };
 
     require('./lscrolly')(document.querySelector('.geodata__info'));
 
@@ -209,8 +182,9 @@ if (section_geodata) {
 
             geodataMap({
                 locale: 'London',
-                meta: 'census',
-                layers: ['base', 'label', 'census']
+                meta: 'Retail Points',
+                layers: ["Mapbox Baselayer", "Mapbox Labels", "Retail Points"],
+                legends: ["Retail Points"]
             })
         }
     });
@@ -226,11 +200,20 @@ if (section_geodata) {
             }
         });
   
-        container.innerHTML = geodataXYZ.layers.list[dataset.meta].meta;
+        container.innerHTML = geodataXYZ.layers.list[dataset.meta].groupmeta;
 
         Object.keys(geodataXYZ.layers.list).forEach(function(layer){
             geodataXYZ.layers.list[layer].remove();
         })
+
+        if (dataset.legends) dataset.legends.forEach(legend => {
+
+            geodataXYZ.layers.list[legend].view();
+
+            container.appendChild(geodataXYZ.layers.list[legend].style.legend);
+
+
+        });
 
         dataset.layers.forEach(function(layer){
             geodataXYZ.layers.list[layer].show();
@@ -271,10 +254,9 @@ if (section_geodata) {
 }
 
 
-// contact map
-
+// CONTACT
 _xyz({
-    host: 'https://geolytix.xyz/dev',
+    host: 'https://geolytix.xyz/geodata',
     callback: _xyz => {
 
         _xyz.mapview.create({
@@ -291,38 +273,64 @@ _xyz({
             }
         });
     
-        _xyz.layers.list.offices.show();
+        _xyz.layers.list.Offices.show();
+
     
-        _xyz.locations.select = location => {
-    
-            if (_xyz.locations.current) _xyz.locations.current.remove();
+        _xyz.locations.select = location => { 
+
+          // Remove current location if it exists.
+          if (_xyz.locations.current) _xyz.locations.current.remove();
+
+          _xyz.locations.current = location;
+           
+          const xhr = new XMLHttpRequest();
       
-            Object.assign(location, _xyz.locations.location());
+          xhr.open('GET',
+            _xyz.host + '/api/location/select/id?' +
+            _xyz.utils.paramString({
+              locale: _xyz.workspace.locale.key,
+              layer: location.layer,
+              table: location.table,
+              id: location.id,
+              token: _xyz.token
+            }));
+        
+          xhr.setRequestHeader('Content-Type', 'application/json');
+          xhr.responseType = 'json';
+        
+          xhr.onload = e => {
+        
+            if (e.target.status !== 200) return;    
       
-            _xyz.locations.current = location;
+            location.infoj = e.target.response.infoj;
+        
+            location.geometry = e.target.response.geomj;
+
+            location.marker = _xyz.utils.turf.pointOnFeature(location.geometry).geometry.coordinates;
       
-            location.get(() => {
-    
-                location.draw({
-                    icon: {
-                        url: _xyz.utils.svg_symbols({type: 'markerColor', style: {colorMarker: '#64dd17', colorDot: '#33691e'}}),
-                        size: 40,
-                        anchor: [20,40]
-                      }
-                });
-      
-                document.getElementById('contact__text').innerHTML = location.infoj[0].value;
-      
+            location = _xyz.locations.location(location);
+
+            location.draw({
+                icon: {
+                    url: _xyz.utils.svg_symbols({type: 'markerColor', style: {colorMarker: '#64dd17', colorDot: '#33691e'}}),
+                    size: 40,
+                    anchor: [20,40]
+                  }
             });
-      
+  
+            document.getElementById('contact__text').innerHTML = location.infoj[1].value;
+           
           };
-    
+        
+          xhr.send();
+      
+        };
+
         _xyz.locations.select({
-            locale: "offices",
-            layer: "offices",
-            dbs: "XYZ",
-            table: "glx_offices",
-            id: 2
+            locale: "Offices",
+            layer: "Offices",
+            table: "website.glx_offices",
+            id: document.body.dataset.office
         });
 
     }
