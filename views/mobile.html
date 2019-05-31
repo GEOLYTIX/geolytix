@@ -27,9 +27,11 @@
 
     <link rel="stylesheet" href="/css/mobile.css"/>
 
+    <script src="/js/build/mobile_bundle.js" defer></script>
+
 </head>
 
-<body>
+<body data-viewmode="mobile" data-locale="{{:locale}}" data-office="{{:office}}">
 
 <div id="inner">
 
@@ -69,12 +71,5 @@
 </div>
 
 </body>
-
-<script>
-const view_mode = 'mobile';
-const locale = '{{:locale}}';
-const office = '{{:office}}';
-</script>
-<script src="/js/build/mobile_bundle.js"></script>
 
 </html>

@@ -39,7 +39,7 @@ module.exports = fastify => {
 
         const md = new Md(req.headers['user-agent']);
 
-        const platform = (md.mobile() === null || md.tablet() !== null) ? 'desktop' : 'mobiles';
+        const platform = (md.mobile() === null || md.tablet() !== null) ? 'desktop' : 'mobile';
 
         res.type('text/html').send(jsr.templates('./views/' + platform + '.html').render({
             locale: 'uk',
@@ -59,7 +59,7 @@ module.exports = fastify => {
 
         const md = new Md(req.headers['user-agent']);
 
-        const platform = (md.mobile() === null || md.tablet() !== null) ? 'desktop' : 'mobiles';
+        const platform = (md.mobile() === null || md.tablet() !== null) ? 'desktop' : 'mobile';
 
         res.type('text/html').send(jsr.templates('./views/' + platform + '.html').render({
             locale: 'cn',
@@ -77,7 +77,7 @@ module.exports = fastify => {
 
         const md = new Md(req.headers['user-agent']);
 
-        const platform = (md.mobile() === null || md.tablet() !== null) ? 'desktop' : 'mobiles';
+        const platform = (md.mobile() === null || md.tablet() !== null) ? 'desktop' : 'mobile';
 
         res.type('text/html').send(jsr.templates('./views/' + platform + '.html').render({
             locale: 'jp',
@@ -95,7 +95,7 @@ module.exports = fastify => {
 
         const md = new Md(req.headers['user-agent']);
 
-        const platform = (md.mobile() === null || md.tablet() !== null) ? 'desktop' : 'mobiles';
+        const platform = (md.mobile() === null || md.tablet() !== null) ? 'desktop' : 'mobile';
 
         res.type('text/html').send(jsr.templates('./views/' + platform + '.html').render({
             locale: 'de',
@@ -114,7 +114,7 @@ module.exports = fastify => {
 
         const md = new Md(req.headers['user-agent']);
 
-        const platform = (md.mobile() === null || md.tablet() !== null) ? 'desktop' : 'mobiles';
+        const platform = (md.mobile() === null || md.tablet() !== null) ? 'desktop' : 'mobile';
 
         res.type('text/html').send(jsr.templates('./views/' + platform + '.html').render({
             locale: 'pl',

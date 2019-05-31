@@ -11231,8 +11231,10 @@ window.addEventListener('orientationchange', function () {
     orientation();
 });
 
+var _locale = document.body.dataset.locale;
+
 function orientation() {
-    document.getElementById('intro__text').innerHTML = locale === 'jp' ? 'より良い決断は、立地の意義するところにある' : locale === 'cn' ? '优化选址决策' : locale === 'pl' ? 'Lepsze decyzje tam gdzie lokalizacja ma znaczenie' : locale === 'de' ? window.innerWidth || screen.height < window.innerWidth || screen.width ? 'Bessere Entscheidungen<br>am richtigen Ort.' : 'Bessere<br>Entscheidungen<br>am richtigen<br>location<br>Ort.' : window.innerWidth || screen.height < window.innerWidth || screen.width ? 'better decisions<br>where location matters' : 'better<br>decisions<br>where<br>location<br>matters';
+    document.getElementById('intro__text').innerHTML = _locale === 'jp' ? 'より良い決断は、立地の意義するところにある' : _locale === 'cn' ? '优化选址决策' : _locale === 'pl' ? 'Lepsze decyzje tam gdzie lokalizacja ma znaczenie' : _locale === 'de' ? window.innerWidth || screen.height < window.innerWidth || screen.width ? 'Bessere Entscheidungen<br>am richtigen Ort.' : 'Bessere<br>Entscheidungen<br>am richtigen<br>location<br>Ort.' : window.innerWidth || screen.height < window.innerWidth || screen.width ? 'better decisions<br>where location matters' : 'better<br>decisions<br>where<br>location<br>matters';
 }
 
 orientation();
