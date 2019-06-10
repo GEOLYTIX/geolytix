@@ -1,7 +1,5 @@
 const helper = require('./helper');
 
-
-
 // PARALLAX TEAM PHOTO
 const parallax_team_photo = document.getElementById('team_photo');
 
@@ -146,50 +144,46 @@ if (section_geodata) {
 
     Object.keys(geodata).forEach(
         function (set) {
-            helper.createElement({
-                tag: 'div',
-                options: {
-                    textContent: set
-                },
-                appendTo: geodata_select
-            })
+
+            const div = document.createElement('div');
+            div.className = 'geodataSet';
+            div.textContent = set;
+
+            div.onclick = function() {
+
+                document.getElementById('geodata__faq').style.display = 'none';
+
+                document.querySelectorAll('.geodataSet').forEach(function(d){
+                    d.classList.remove('selected');
+                });
+
+                div.classList.add('selected');
+
+                let geodataSet = geodata[div.innerText];
+
+                geodataMap(geodataSet);
+
+                document.getElementById('btnFullScreen').href = "https://geolytix.xyz/geodata?layers=" + geodataSet.layers.join(',') + "&locale=London";
+            }
+
+            geodata_select.appendChild(div);
         });
-
-    require('./lscrolly')(document.querySelector('.geodata__info'));
-
-    document.querySelector('.geodata__select').addEventListener('click', function (event) {
-        console.log(event.target);
-        let geodataSet = geodata[event.target.innerText];
-
-
-        geodataMap(geodataSet);
-        // let id = event.target.id;
-        // if (id) {
-        //     history.pushState({ so: 'glx' }, id, '?' + id);
-        //     selectGeodata(event.target);
-        // }
-    });
-
-    let container = document.querySelector('.geodata__info > .content');
 
     let geodataXYZ;
     
     _xyz({
         host: 'https://geolytix.xyz/geodata',
-        callback: _xyz => {
+        callback: function(_xyz) {
 
             geodataXYZ = _xyz;
 
-            geodataMap({
-                locale: 'London',
-                meta: 'Retail Points',
-                layers: ["Mapbox Baselayer", "Mapbox Labels", "Retail Points"],
-                legends: ["Retail Points"]
-            })
+            document.querySelectorAll('.geodataSet')[0].click();
         }
     });
 
     function geodataMap(dataset) {
+
+        const container = document.querySelector('.geodata__info > .content');
 
         geodataXYZ.mapview.create({
             target: document.getElementById('map_geodata'),
@@ -211,45 +205,32 @@ if (section_geodata) {
             geodataXYZ.layers.list[legend].view();
 
             container.appendChild(geodataXYZ.layers.list[legend].style.legend);
-
-
         });
 
         dataset.layers.forEach(function(layer){
             geodataXYZ.layers.list[layer].show();
-        })
+        });
 
-        // geodataMap.locations.select_popup = location => {
-
-        //     container.appendChild(location.info_table);
-
-        // }
+        helper.scrolly(document.querySelector('.geodata__info'));
 
     }
 
-        // document.querySelector('.geodata__pricing').style.display = 'none';
+    const faq = document.createElement('div');
+    faq.className = 'geodataSet';
+    faq.textContent = 'FAQ';
 
-        // document.querySelector('.geodata__faq').style.display = 'none';
+    faq.onclick = function() {
 
-        // helper.removeClass(document.querySelector('.geodata__select .selected'), 'selected');
+        document.querySelectorAll('.geodataSet').forEach(function(d){
+            d.classList.remove('selected');
+        });
 
-        // helper.addClass(_this, 'selected');
+        faq.classList.add('selected');
 
-        // if (_this.id === 'faq') return faq();
+        document.getElementById('geodata__faq').style.display = 'block';
+    }
 
-        // if (_this.id === 'pricing') return pricing();
-
-        // document.getElementById('btnFullScreen').href = 'https://geolytix.xyz/dev?locale=' + _this.id;
-
-
-    // (function (dataset) {
-    //     if (geodata[dataset]) {
-    //         selectGeodata(document.getElementById(dataset));
-    //         helper.scrollBody(document.getElementById('section_geodata').getBoundingClientRect().top + window.pageYOffset - 80, 400);
-    //     } else {
-    //         selectGeodata(document.querySelector('.geodata__select > div'));
-    //     }
-    // })(window.location.search.substring(1));
+    geodata_select.appendChild(faq);
 
 }
 
@@ -257,7 +238,7 @@ if (section_geodata) {
 // CONTACT
 _xyz({
     host: 'https://geolytix.xyz/geodata',
-    callback: _xyz => {
+    callback: function(_xyz) {
 
         _xyz.mapview.create({
             target: document.getElementById('map_contact'),
@@ -276,7 +257,7 @@ _xyz({
         _xyz.layers.list.Offices.show();
 
     
-        _xyz.locations.select = location => { 
+        _xyz.locations.select = function(location) { 
 
           // Remove current location if it exists.
           if (_xyz.locations.current) _xyz.locations.current.remove();
@@ -298,7 +279,7 @@ _xyz({
           xhr.setRequestHeader('Content-Type', 'application/json');
           xhr.responseType = 'json';
         
-          xhr.onload = e => {
+          xhr.onload = function(e) {
         
             if (e.target.status !== 200) return;    
       

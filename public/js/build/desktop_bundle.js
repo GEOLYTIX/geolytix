@@ -11156,6 +11156,8 @@ var section_geodata = document.getElementById('section_geodata');
 if (section_geodata) {
     var geodataMap = function geodataMap(dataset) {
 
+        var container = document.querySelector('.geodata__info > .content');
+
         geodataXYZ.mapview.create({
             target: document.getElementById('map_geodata'),
             locale: dataset.locale,
@@ -11182,64 +11184,36 @@ if (section_geodata) {
             geodataXYZ.layers.list[layer].show();
         });
 
-        // geodataMap.locations.select_popup = location => {
-
-        //     container.appendChild(location.info_table);
-
-        // }
+        helper.scrolly(document.querySelector('.geodata__info'));
     };
-
-    // document.querySelector('.geodata__pricing').style.display = 'none';
-
-    // document.querySelector('.geodata__faq').style.display = 'none';
-
-    // helper.removeClass(document.querySelector('.geodata__select .selected'), 'selected');
-
-    // helper.addClass(_this, 'selected');
-
-    // if (_this.id === 'faq') return faq();
-
-    // if (_this.id === 'pricing') return pricing();
-
-    // document.getElementById('btnFullScreen').href = 'https://geolytix.xyz/dev?locale=' + _this.id;
-
-
-    // (function (dataset) {
-    //     if (geodata[dataset]) {
-    //         selectGeodata(document.getElementById(dataset));
-    //         helper.scrollBody(document.getElementById('section_geodata').getBoundingClientRect().top + window.pageYOffset - 80, 400);
-    //     } else {
-    //         selectGeodata(document.querySelector('.geodata__select > div'));
-    //     }
-    // })(window.location.search.substring(1));
 
     var geodata_select = document.getElementById('geodata__select');
 
     Object.keys(geodata).forEach(function (set) {
-        helper.createElement({
-            tag: 'div',
-            options: {
-                textContent: set
-            },
-            appendTo: geodata_select
-        });
+
+        var div = document.createElement('div');
+        div.className = 'geodataSet';
+        div.textContent = set;
+
+        div.onclick = function () {
+
+            document.getElementById('geodata__faq').style.display = 'none';
+
+            document.querySelectorAll('.geodataSet').forEach(function (d) {
+                d.classList.remove('selected');
+            });
+
+            div.classList.add('selected');
+
+            var geodataSet = geodata[div.innerText];
+
+            geodataMap(geodataSet);
+
+            document.getElementById('btnFullScreen').href = "https://geolytix.xyz/geodata?layers=" + geodataSet.layers.join(',') + "&locale=London";
+        };
+
+        geodata_select.appendChild(div);
     });
-
-    __webpack_require__(/*! ./lscrolly */ "./public/js/lscrolly.js")(document.querySelector('.geodata__info'));
-
-    document.querySelector('.geodata__select').addEventListener('click', function (event) {
-        console.log(event.target);
-        var geodataSet = geodata[event.target.innerText];
-
-        geodataMap(geodataSet);
-        // let id = event.target.id;
-        // if (id) {
-        //     history.pushState({ so: 'glx' }, id, '?' + id);
-        //     selectGeodata(event.target);
-        // }
-    });
-
-    var container = document.querySelector('.geodata__info > .content');
 
     var geodataXYZ = void 0;
 
@@ -11249,14 +11223,26 @@ if (section_geodata) {
 
             geodataXYZ = _xyz;
 
-            geodataMap({
-                locale: 'London',
-                meta: 'Retail Points',
-                layers: ["Mapbox Baselayer", "Mapbox Labels", "Retail Points"],
-                legends: ["Retail Points"]
-            });
+            document.querySelectorAll('.geodataSet')[0].click();
         }
     });
+
+    var faq = document.createElement('div');
+    faq.className = 'geodataSet';
+    faq.textContent = 'FAQ';
+
+    faq.onclick = function () {
+
+        document.querySelectorAll('.geodataSet').forEach(function (d) {
+            d.classList.remove('selected');
+        });
+
+        faq.classList.add('selected');
+
+        document.getElementById('geodata__faq').style.display = 'block';
+    };
+
+    geodata_select.appendChild(faq);
 }
 
 // CONTACT
@@ -11497,26 +11483,38 @@ module.exports = function () {
         };
     }
 
-    function createElement(param) {
+    function scrolly(el) {
 
-        var el = document.createElement(param.tag);
+        var content = el.querySelector('.content'),
+            path = el.querySelector('.scrollbar_container'),
+            scrollBar = el.querySelector('.scrollbar'),
+            scrollEvent = new Event('scroll');
 
-        if (param.options) Object.keys(param.options).forEach(function (key) {
-            if (param.options[key]) el[key] = param.options[key];
+        content.addEventListener('scroll', function () {
+            scrollBar.style.height = path.clientHeight * content.clientHeight / content.scrollHeight + 'px';
+            scrollBar.style.top = path.clientHeight * content.scrollTop / content.scrollHeight + 'px';
         });
 
-        if (param.style) Object.keys(param.style).forEach(function (key) {
-            el.style[key] = param.style[key];
+        window.addEventListener('resize', content.dispatchEvent.bind(content, scrollEvent));
+        content.dispatchEvent(scrollEvent);
+
+        scrollBar.addEventListener('mousedown', function (eDown) {
+            eDown.preventDefault();
+            var scrollBar_offsetTop = scrollBar.offsetTop,
+                eDown_pageY = eDown.pageY,
+                onMove = function onMove(eMove) {
+                scrollBar.style.top = Math.min(path.clientHeight - scrollBar.clientHeight, Math.max(0, scrollBar_offsetTop + eMove.pageY - eDown_pageY)) + 'px';
+                content.scrollTop = content.scrollHeight * scrollBar.offsetTop / path.clientHeight;
+            };
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('mouseup', function () {
+                document.removeEventListener('mousemove', onMove);
+            });
         });
-
-        if (param.appendTo) param.appendTo.appendChild(el);
-
-        if (param.eventListener) el.addEventListener(param.eventListener.event, param.eventListener.funct);
-
-        return el;
-    }
+    };
 
     return {
+        scrolly: scrolly,
         scrollElementToTop: scrollElementToTop,
         scrollElement: scrollElement,
         scrollBody: scrollBody,
@@ -11525,53 +11523,9 @@ module.exports = function () {
         toggleClass: toggleClass,
         hasClass: hasClass,
         indexInParent: indexInParent,
-        debounce: debounce,
-        createElement: createElement
+        debounce: debounce
     };
 }();
-
-/***/ }),
-
-/***/ "./public/js/lscrolly.js":
-/*!*******************************!*\
-  !*** ./public/js/lscrolly.js ***!
-  \*******************************/
-/*! no static exports found */
-/*! ModuleConcatenation bailout: Module is not an ECMAScript module */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (scrolly) {
-
-    var content = scrolly.querySelector('.content'),
-        path = scrolly.querySelector('.scrollbar_container'),
-        scrollBar = scrolly.querySelector('.scrollbar'),
-        scrollEvent = new Event('scroll');
-
-    content.addEventListener('scroll', function () {
-        scrollBar.style.height = path.clientHeight * content.clientHeight / content.scrollHeight + 'px';
-        scrollBar.style.top = path.clientHeight * content.scrollTop / content.scrollHeight + 'px';
-    });
-
-    window.addEventListener('resize', content.dispatchEvent.bind(content, scrollEvent));
-    content.dispatchEvent(scrollEvent);
-
-    scrollBar.addEventListener('mousedown', function (eDown) {
-        eDown.preventDefault();
-        var scrollBar_offsetTop = scrollBar.offsetTop,
-            eDown_pageY = eDown.pageY,
-            onMove = function onMove(eMove) {
-            scrollBar.style.top = Math.min(path.clientHeight - scrollBar.clientHeight, Math.max(0, scrollBar_offsetTop + eMove.pageY - eDown_pageY)) + 'px';
-            content.scrollTop = content.scrollHeight * scrollBar.offsetTop / path.clientHeight;
-        };
-        document.addEventListener('mousemove', onMove);
-        document.addEventListener('mouseup', function () {
-            document.removeEventListener('mousemove', onMove);
-        });
-    });
-};
 
 /***/ }),
 

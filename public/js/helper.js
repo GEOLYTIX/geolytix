@@ -148,35 +148,55 @@ module.exports = (function () {
         };
     }
 
-    function createElement(param) {
+    function scrolly (el) {
 
-        let el = document.createElement(param.tag);
-      
-        if (param.options) Object.keys(param.options).forEach(function(key) {
-          if (param.options[key]) el[key] = param.options[key];
+        let
+            content = el.querySelector('.content'),
+            path = el.querySelector('.scrollbar_container'),
+            scrollBar = el.querySelector('.scrollbar'),
+            scrollEvent = new Event('scroll');
+    
+        content.addEventListener('scroll', function () {
+            scrollBar.style.height = path.clientHeight * content.clientHeight / content.scrollHeight + 'px';
+            scrollBar.style.top = path.clientHeight * content.scrollTop / content.scrollHeight + 'px';
         });
-      
-        if (param.style) Object.keys(param.style).forEach(function(key) {
-            el.style[key] = param.style[key]
+    
+        window.addEventListener('resize', content.dispatchEvent.bind(content, scrollEvent));
+        content.dispatchEvent(scrollEvent);
+    
+        scrollBar.addEventListener('mousedown', function (eDown) {
+            eDown.preventDefault();
+            let scrollBar_offsetTop = scrollBar.offsetTop,
+                eDown_pageY = eDown.pageY,
+                onMove = function (eMove) {
+                    scrollBar.style.top = Math.min(
+                        path.clientHeight - scrollBar.clientHeight,
+                        Math.max(
+                            0,
+                            scrollBar_offsetTop + eMove.pageY - eDown_pageY
+                        )
+                    ) + 'px';
+                    content.scrollTop = (content.scrollHeight * scrollBar.offsetTop / path.clientHeight);
+                };
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('mouseup', function () {
+                document.removeEventListener('mousemove', onMove);
+            });
         });
-      
-        if (param.appendTo) param.appendTo.appendChild(el);
-      
-        if (param.eventListener) el.addEventListener(param.eventListener.event, param.eventListener.funct);
-      
-        return el;
-    }
+    
+    };
 
     return {
-        scrollElementToTop:scrollElementToTop,
-        scrollElement:scrollElement,
+        scrolly: scrolly,
+        scrollElementToTop: scrollElementToTop,
+        scrollElement: scrollElement,
         scrollBody: scrollBody,
-        addClass:addClass,
-        removeClass:removeClass,
-        toggleClass:toggleClass,
-        hasClass:hasClass,
-        indexInParent:indexInParent,
-        debounce: debounce,
-        createElement: createElement
+        addClass: addClass,
+        removeClass: removeClass,
+        toggleClass: toggleClass,
+        hasClass: hasClass,
+        indexInParent: indexInParent,
+        debounce: debounce
     };
+
 })();

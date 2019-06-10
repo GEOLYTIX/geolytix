@@ -11174,26 +11174,38 @@ module.exports = function () {
         };
     }
 
-    function createElement(param) {
+    function scrolly(el) {
 
-        var el = document.createElement(param.tag);
+        var content = el.querySelector('.content'),
+            path = el.querySelector('.scrollbar_container'),
+            scrollBar = el.querySelector('.scrollbar'),
+            scrollEvent = new Event('scroll');
 
-        if (param.options) Object.keys(param.options).forEach(function (key) {
-            if (param.options[key]) el[key] = param.options[key];
+        content.addEventListener('scroll', function () {
+            scrollBar.style.height = path.clientHeight * content.clientHeight / content.scrollHeight + 'px';
+            scrollBar.style.top = path.clientHeight * content.scrollTop / content.scrollHeight + 'px';
         });
 
-        if (param.style) Object.keys(param.style).forEach(function (key) {
-            el.style[key] = param.style[key];
+        window.addEventListener('resize', content.dispatchEvent.bind(content, scrollEvent));
+        content.dispatchEvent(scrollEvent);
+
+        scrollBar.addEventListener('mousedown', function (eDown) {
+            eDown.preventDefault();
+            var scrollBar_offsetTop = scrollBar.offsetTop,
+                eDown_pageY = eDown.pageY,
+                onMove = function onMove(eMove) {
+                scrollBar.style.top = Math.min(path.clientHeight - scrollBar.clientHeight, Math.max(0, scrollBar_offsetTop + eMove.pageY - eDown_pageY)) + 'px';
+                content.scrollTop = content.scrollHeight * scrollBar.offsetTop / path.clientHeight;
+            };
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('mouseup', function () {
+                document.removeEventListener('mousemove', onMove);
+            });
         });
-
-        if (param.appendTo) param.appendTo.appendChild(el);
-
-        if (param.eventListener) el.addEventListener(param.eventListener.event, param.eventListener.funct);
-
-        return el;
-    }
+    };
 
     return {
+        scrolly: scrolly,
         scrollElementToTop: scrollElementToTop,
         scrollElement: scrollElement,
         scrollBody: scrollBody,
@@ -11202,8 +11214,7 @@ module.exports = function () {
         toggleClass: toggleClass,
         hasClass: hasClass,
         indexInParent: indexInParent,
-        debounce: debounce,
-        createElement: createElement
+        debounce: debounce
     };
 }();
 
@@ -11250,34 +11261,12 @@ document.getElementById('intro__menu').addEventListener('click', function (event
     scrollTo(event.target.id);
 });
 
-var map_links = document.querySelectorAll('.map_link');
-for (var i = 0; i < map_links.length; i++) {
-    map_links[i].addEventListener('click', function () {
-        history.pushState({ so: 'glx' }, 'geodata', '?geodata');
-    });
-}
-
 var sections = {
     services: 'services__section',
     case_studies: 'case_studies__section',
     geodata: 'geodata__section',
     team: 'team__section',
-    contact: 'footer',
-    seamless_locales: 'geodata__section',
-    retail_points: 'geodata__section',
-    retail_places: 'geodata__section',
-    public_transport: 'geodata__section',
-    postal_geom: 'geodata__section',
-    town_suburb: 'geodata__section',
-    education: 'geodata__section',
-    workplace: 'geodata__section',
-    poi: 'geodata__section',
-    residential: 'geodata__section',
-    uk_admin: 'geodata__section',
-    property: 'geodata__section',
-    road_network: 'geodata__section',
-    media_com: 'geodata__section',
-    physical: 'geodata__section'
+    contact: 'footer'
 };
 function scrollTo(section) {
     if (sections[section]) helper.scrollElement(document.getElementById('inner'), document.getElementById(sections[section]).getBoundingClientRect().top + document.getElementById('inner').scrollTop, 400);
@@ -11287,20 +11276,20 @@ scrollTo(window.location.search.substring(1));
 //load images
 var imgLoadArray = document.querySelectorAll('.img__load');
 
-var _loop = function _loop(_i) {
+var _loop = function _loop(i) {
     var img = new Image();
     img.onload = function () {
-        imgLoadArray[_i].style['background-image'] = 'url(/images/' + imgLoadArray[_i].dataset.src + ')';
-        if (imgLoadArray[_i].id === 'intro__section') {
+        imgLoadArray[i].style['background-image'] = 'url(/images/' + imgLoadArray[i].dataset.src + ')';
+        if (imgLoadArray[i].id === 'intro__section') {
             document.getElementById('intro__logo').setAttribute('style', 'color: #fff');
             document.getElementById('intro__text').setAttribute('style', 'color: #fff');
         }
     };
-    img.src = '/images/' + imgLoadArray[_i].dataset.src;
+    img.src = '/images/' + imgLoadArray[i].dataset.src;
 };
 
-for (var _i = 0; _i < imgLoadArray.length; _i++) {
-    _loop(_i);
+for (var i = 0; i < imgLoadArray.length; i++) {
+    _loop(i);
 }
 
 //case studies
@@ -11316,144 +11305,6 @@ if (document.getElementById('case_studies__logos')) {
         document.getElementById('case_studies__info').scrollLeft = 0;
     }, 300));
 }
-
-// contact
-/* let mapZoom_contact = 14;
-const map_contact = L.map('map_contact', {
-    scrollWheelZoom: false,
-    zoomControl: false
-})
-.setView([0,0],2)
-.addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
-
-const marker = L.icon({
-    iconUrl: '/images/leaflet/marker.svg',
-    iconSize: [80, 40],
-    iconAnchor: [40, 40]
-});
-
-const marker_alt = L.icon({
-    iconUrl: '/images/leaflet/marker_alt.svg',
-    iconSize: [80, 40],
-    iconAnchor: [40, 40]
-});
-
-const locales = [
-    {
-        title: 'London',
-        ll: [51.52733, -0.11525],
-        add: [
-            '+44 (0)20 72 39 49 77',
-            'info@geolytix.co.uk',
-            ' ',
-            'Phoenix Yard',
-            '65 Kings Cross Road',
-            'London',
-            'WC1X 9LW'
-        ]
-    },
-    {
-        title: 'Leeds',
-        ll: [53.79664, -1.53385],
-        add: [
-            '+44 (0)20 72 39 49 77',
-            'info@geolytix.co.uk',
-            ' ',
-            'ODI Leeds',
-            '3rd Floor',
-            'Munro House',
-            'Duke Street',
-            'Leeds',
-            'LS9 8AG'
-        ]
-    },
-    {
-        title: 'Shanghai',
-        ll: [31.22839, 121.45984],
-        add: [
-            '+86 21 6237 8013',
-            '上海市静安区泰兴路89号3楼',
-            ' ',
-            '3F',
-            '#89 Taixing Road',
-            'Jing’an District',
-            'Shanghai'
-        ]
-    },
-    {
-        title: 'Tokyo',
-        ll: [35.65652, 139.6974],
-        add: [
-            '+81 (0) 3 5456 7954',
-            'info@geolytix.com',
-            ' ',
-            '150-8512 東',
-            '京都渋谷区桜ヶ丘町26-1',
-            'セルリアンタワー15階',
-            ' ',
-            '15F Cerulean Tower',
-            '26-1 Sakuragaoka cho',
-            'Shibuya-ku',
-            'Tokyo',
-            '150-8512'
-        ]
-    },
-    {
-        title: 'Dortmund',
-        ll: [51.5078, 7.33],
-        add: [
-            '+44 (0)20 72 39 49 77',
-            'info@geolytix.co.uk',
-            ' ',
-            'Phoenix Yard',
-            '65 Kings Cross Road',
-            'London',
-            'WC1X 9LW'
-        ]
-    },
-    {
-        title: 'Warsaw',
-        ll: [52.2544, 20.984],
-        add: [
-            '+48 506 001 805',
-            'info@geolytix.com',
-            ' ',
-            'Aleja Jana Pawła II 80',
-            '00-175 Warszawa',
-            'Babka Tower',
-            'wejście H',
-            'piętro 5'
-        ]
-    }
-];
-*/
-
-var contact__text = document.getElementById('contact__text');
-
-var _loop2 = function _loop2(_i2) {
-    locales[_i2].marker = new L.Marker(locales[_i2].ll, {
-        icon: marker_alt,
-        title: locales[_i2].title
-    }).on('click', function (e) {
-        map_contact.setView(locales[_i2].ll);
-        contact__text.innerHTML = '';
-        for (var ii = 0; ii < locales.length; ii++) {
-            locales[ii].marker.setIcon(marker_alt);
-        }
-        e.target.setIcon(marker);
-        for (var iii = 0; iii < locales[_i2].add.length; iii++) {
-            var el = document.createElement('div');
-            el.textContent = locales[_i2].add[iii];
-            contact__text.appendChild(el);
-        }
-    }).addTo(map_contact);
-};
-
-for (var _i2 = 0; _i2 < locales.length; _i2++) {
-    _loop2(_i2);
-}
-
-locales[parseInt(office)].marker.fireEvent('click');
 
 /***/ }),
 

@@ -63,9 +63,14 @@ const geodata = {
         "layers": ["Mapbox Baselayer", "Mapbox Labels", "Road Network"],
         "legends": ["Road Network"]
     },
-    "Town and suburb": {
+    "Seamless towns and suburbs": {
         "locale": "London",
         "meta": "Town and suburb",
+        "layers": ["Mapbox Baselayer", "Mapbox Labels", "Seamless towns and suburbs"]
+    },
+    "Town and suburb": {
+        "locale": "London",
+        "meta": "Seamless towns and suburbs",
         "layers": ["Mapbox Baselayer", "Mapbox Labels", "Town and suburb"],
         "legends": ["Town and suburb"]
     },

@@ -40,34 +40,13 @@ document.getElementById('intro__menu').addEventListener('click', function(event)
     scrollTo(event.target.id);
 });
 
-const map_links = document.querySelectorAll('.map_link');
-for (let i = 0; i < map_links.length; i++) {
-    map_links[i].addEventListener('click', function() {
-        history.pushState({so: 'glx'}, 'geodata', '?geodata');
-    });
-}
 
 const sections = {
     services: 'services__section',
     case_studies: 'case_studies__section',
     geodata: 'geodata__section',
     team: 'team__section',
-    contact: 'footer',
-    seamless_locales: 'geodata__section',
-    retail_points: 'geodata__section',
-    retail_places: 'geodata__section',
-    public_transport: 'geodata__section',
-    postal_geom: 'geodata__section',
-    town_suburb: 'geodata__section',
-    education: 'geodata__section',
-    workplace: 'geodata__section',
-    poi: 'geodata__section',
-    residential: 'geodata__section',
-    uk_admin: 'geodata__section',
-    property: 'geodata__section',
-    road_network: 'geodata__section',
-    media_com: 'geodata__section',
-    physical: 'geodata__section'
+    contact: 'footer'
 };
 function scrollTo(section){
     if (sections[section]) helper.scrollElement(document.getElementById('inner'), document.getElementById(sections[section]).getBoundingClientRect().top + document.getElementById('inner').scrollTop, 400);
@@ -113,143 +92,3 @@ if (document.getElementById('case_studies__logos')){
         document.getElementById('case_studies__info').scrollLeft = 0;
     },300));
 }
-
-
-
-// contact
-/* let mapZoom_contact = 14;
-const map_contact = L.map('map_contact', {
-    scrollWheelZoom: false,
-    zoomControl: false
-})
-.setView([0,0],2)
-.addLayer(L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'));
-
-const marker = L.icon({
-    iconUrl: '/images/leaflet/marker.svg',
-    iconSize: [80, 40],
-    iconAnchor: [40, 40]
-});
-
-const marker_alt = L.icon({
-    iconUrl: '/images/leaflet/marker_alt.svg',
-    iconSize: [80, 40],
-    iconAnchor: [40, 40]
-});
-
-const locales = [
-    {
-        title: 'London',
-        ll: [51.52733, -0.11525],
-        add: [
-            '+44 (0)20 72 39 49 77',
-            'info@geolytix.co.uk',
-            ' ',
-            'Phoenix Yard',
-            '65 Kings Cross Road',
-            'London',
-            'WC1X 9LW'
-        ]
-    },
-    {
-        title: 'Leeds',
-        ll: [53.79664, -1.53385],
-        add: [
-            '+44 (0)20 72 39 49 77',
-            'info@geolytix.co.uk',
-            ' ',
-            'ODI Leeds',
-            '3rd Floor',
-            'Munro House',
-            'Duke Street',
-            'Leeds',
-            'LS9 8AG'
-        ]
-    },
-    {
-        title: 'Shanghai',
-        ll: [31.22839, 121.45984],
-        add: [
-            '+86 21 6237 8013',
-            '上海市静安区泰兴路89号3楼',
-            ' ',
-            '3F',
-            '#89 Taixing Road',
-            'Jing’an District',
-            'Shanghai'
-        ]
-    },
-    {
-        title: 'Tokyo',
-        ll: [35.65652, 139.6974],
-        add: [
-            '+81 (0) 3 5456 7954',
-            'info@geolytix.com',
-            ' ',
-            '150-8512 東',
-            '京都渋谷区桜ヶ丘町26-1',
-            'セルリアンタワー15階',
-            ' ',
-            '15F Cerulean Tower',
-            '26-1 Sakuragaoka cho',
-            'Shibuya-ku',
-            'Tokyo',
-            '150-8512'
-        ]
-    },
-    {
-        title: 'Dortmund',
-        ll: [51.5078, 7.33],
-        add: [
-            '+44 (0)20 72 39 49 77',
-            'info@geolytix.co.uk',
-            ' ',
-            'Phoenix Yard',
-            '65 Kings Cross Road',
-            'London',
-            'WC1X 9LW'
-        ]
-    },
-    {
-        title: 'Warsaw',
-        ll: [52.2544, 20.984],
-        add: [
-            '+48 506 001 805',
-            'info@geolytix.com',
-            ' ',
-            'Aleja Jana Pawła II 80',
-            '00-175 Warszawa',
-            'Babka Tower',
-            'wejście H',
-            'piętro 5'
-        ]
-    }
-];
-*/
-
-const contact__text = document.getElementById('contact__text');
-
-for (let i = 0; i < locales.length; i++) {
-    locales[i].marker = new L.Marker(
-        locales[i].ll,
-        {
-            icon: marker_alt,
-            title: locales[i].title
-        })
-        .on('click', function(e){
-            map_contact.setView(locales[i].ll);
-            contact__text.innerHTML = '';
-            for (let ii = 0; ii < locales.length; ii++) {
-                locales[ii].marker.setIcon(marker_alt);
-            }
-            e.target.setIcon(marker);
-            for (let iii = 0; iii < locales[i].add.length; iii++) {
-                let el = document.createElement('div');
-                el.textContent = locales[i].add[iii];
-                contact__text.appendChild(el);
-            }
-        })
-        .addTo(map_contact);
-}
-
-locales[parseInt(office)].marker.fireEvent('click');

@@ -1,6 +1,7 @@
-module.exports = function(scrolly) {
+module.exports = function (scrolly) {
 
-    let content = scrolly.querySelector('.content'),
+    let
+        content = scrolly.querySelector('.content'),
         path = scrolly.querySelector('.scrollbar_container'),
         scrollBar = scrolly.querySelector('.scrollbar'),
         scrollEvent = new Event('scroll');
@@ -19,12 +20,12 @@ module.exports = function(scrolly) {
             eDown_pageY = eDown.pageY,
             onMove = function (eMove) {
                 scrollBar.style.top = Math.min(
-                        path.clientHeight - scrollBar.clientHeight,
-                        Math.max(
-                            0,
-                            scrollBar_offsetTop + eMove.pageY - eDown_pageY
-                        )
-                    ) + 'px';
+                    path.clientHeight - scrollBar.clientHeight,
+                    Math.max(
+                        0,
+                        scrollBar_offsetTop + eMove.pageY - eDown_pageY
+                    )
+                ) + 'px';
                 content.scrollTop = (content.scrollHeight * scrollBar.offsetTop / path.clientHeight);
             };
         document.addEventListener('mousemove', onMove);
