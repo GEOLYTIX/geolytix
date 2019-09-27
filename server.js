@@ -11,17 +11,17 @@ fastify
     .register(require('fastify-helmet'), {
         contentSecurityPolicy: {
           directives: {
-            defaultSrc: ['\'self\''],
+            defaultSrc: ['\'self\'', '*.logrocket.io'],
             connectSrc: ['\'self\'', 'geolytix.xyz'],
             baseURI: ['\'self\''],
             objectSrc: ['\'self\''],
             workerSrc: ['\'self\'', 'blob:'],
             frameSrc: ['\'self\'', 'www.google.com', 'www.gstatic.com'],
             formAction: ['\'self\''],
-            styleSrc: ['\'self\'', '\'unsafe-inline\'', 'fonts.googleapis.com', 'geolytix.xyz'],
+            styleSrc: ['\'self\'', '\'unsafe-inline\'', 'fonts.googleapis.com', 'cdn.rawgit.com', 'code.getmdl.io', 'geolytix.xyz'],
             fontSrc: ['\'self\'', 'fonts.gstatic.com', 'geolytix.xyz', 'data:'],
-            scriptSrc: ['\'self\'', 'www.google.com', 'www.gstatic.com', 'geolytix.xyz'],
-            imgSrc: ['\'self\'', '*.tile.openstreetmap.org', 'api.mapbox.com', 'res.cloudinary.com', 'geolytix.xyz', 'data:']
+            scriptSrc: ['\'self\'', 'geolytix.xyz', 'cdn.rawgit.com', 'gitcdn.xyz', 'www.google.com', 'www.gstatic.com', '*.logrocket.io', 'cdn.logrocket.com', 'code.getmdl.io'],
+            imgSrc: ['\'self\'', 'geolytix.xyz', 'api.ordnancesurvey.co.uk', '*.tile.openstreetmap.org', 'api.mapbox.com', 'res.cloudinary.com', 'raw.githubusercontent.com', '*.global.ssl.fastly.net', 'data:']
           },
           setAllHeaders: true
         },
