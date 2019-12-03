@@ -1,8 +1,9 @@
+require("@babel/polyfill");
 const path = require('path');
 module.exports = {
   entry: {
-    desktop: ['babel-polyfill', './public/js/desktop.js'],
-    mobile: ['babel-polyfill', './public/js/mobile.js']
+    desktop: ['@babel/polyfill', './public/js/desktop.js'],
+    mobile: ['@babel/polyfill', './public/js/mobile.js']
   },
   output: {
     path: path.resolve(__dirname, 'public/js/build'),
@@ -20,7 +21,7 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ['es2015']
+            presets: ['@babel/preset-env']
           }
         }
       }

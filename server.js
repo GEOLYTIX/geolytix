@@ -18,10 +18,10 @@ fastify
             workerSrc: ['\'self\'', 'blob:'],
             frameSrc: ['\'self\'', 'www.google.com', 'www.gstatic.com'],
             formAction: ['\'self\''],
-            styleSrc: ['\'self\'', '\'unsafe-inline\'', 'fonts.googleapis.com', 'cdn.rawgit.com', 'code.getmdl.io', 'geolytix.xyz'],
+            styleSrc: ['\'self\'', '\'unsafe-inline\'', 'fonts.googleapis.com', 'geolytix.xyz'],
             fontSrc: ['\'self\'', 'fonts.gstatic.com', 'geolytix.xyz', 'data:'],
-            scriptSrc: ['\'self\'', 'geolytix.xyz', 'cdn.rawgit.com', 'gitcdn.xyz', 'www.google.com', 'www.gstatic.com', '*.logrocket.io', 'cdn.logrocket.com', 'code.getmdl.io'],
-            imgSrc: ['\'self\'', 'geolytix.xyz', 'api.ordnancesurvey.co.uk', '*.tile.openstreetmap.org', 'api.mapbox.com', 'res.cloudinary.com', 'raw.githubusercontent.com', '*.global.ssl.fastly.net', 'data:']
+            scriptSrc: ['\'self\'', 'geolytix.xyz', 'www.google.com', 'www.gstatic.com'],
+            imgSrc: ['\'self\'', 'geolytix.xyz', 'api.ordnancesurvey.co.uk', '*.tile.openstreetmap.org', 'api.mapbox.com', 'res.cloudinary.com', '*.global.ssl.fastly.net', 'data:']
           },
           setAllHeaders: true
         },
@@ -29,9 +29,11 @@ fastify
       })
     .register(require('fastify-formbody'))
     .register(require('fastify-static'), { root: require('path').join(__dirname, 'public') })
-    .setNotFoundHandler((req, res) => res.sendFile('error.html'));
+    .setNotFoundHandler((req, res) => res.send('I am not here. This was not supposed to happen to us.'));
 
-require('./routes')(fastify);
+const handler = require('./handler');
+
+fastify.get('/', (req, res) => handler(req, res = res.type('text/html')));
 
 fastify.listen(process.env.PORT || 3000, '0.0.0.0', err => {
     if (err) {

@@ -4,10 +4,10 @@
 <head>
     <title>GEOLYTIX</title>
 
-    <meta name="description" content="{{:meta}}"/>
+    <meta name="description" content="${meta}"/>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="icon" type="image/x-icon" href="glx.ico" />
+    <link rel="icon" type="image/x-icon" href="/glx.ico" />
 
     <!--<script type="application/javascript">
         //google analytics
@@ -27,25 +27,28 @@
 
     <link rel="stylesheet" href="/css/desktop.css"/>
     <link rel="stylesheet" href="https://geolytix.xyz/geodata/css/control.css"/>
-    {{:header_css}}
+
+    ${header_css}
 
     <script src="/js/geodata.js" defer></script>
+
     <script src="https://geolytix.xyz/geodata/js/build/xyz_control_bundle.js" defer></script>
+    
     <script src="/js/build/desktop_bundle.js" defer></script>
 
 </head>
 
-<body data-viewmode="desktop" data-locale="{{:locale}}" data-office="{{:office}}">
+<body data-viewmode="desktop" data-locale="${locale}" data-office="${office}">
 
-{{include tmpl=header /}}
+${header}
 
-{{include tmpl=services /}}
+${services}
 
-{{include tmpl=case_studies /}}
+${case_studies}
 
-{{include tmpl=geodata /}}
+${geodata}
 
-{{include tmpl=team /}}
+${team}
 
 <div id="section_contact">
     <div>
@@ -75,7 +78,7 @@
     </div>
 </div>
 
-{{include tmpl=footer /}}
+${footer}
 
 </body>
 

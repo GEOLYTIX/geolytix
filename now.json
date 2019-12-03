@@ -1,4 +1,28 @@
 {
-  "version": 1,
-  "regions": ["bru1"]
+  "version": 2,
+  "regions": ["bru1"],
+  "builds": [
+    {
+      "src": "/public/*",
+      "use": "@now/static"
+    },
+    {
+      "src": "/public/*/**",
+      "use": "@now/static"
+    },
+    {
+      "src": "/handler.js",
+      "use": "@now/node",
+      "config": {
+        "includeFiles": "/public/*/**"
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/", "dest": "/handler.js" },
+    { "src": "/public/(.*)", "dest": "/public/$1" },
+    { "src": "/public/*/(.*)", "dest": "/public/$1/$2" },
+    { "src": "/(css|fonts|html|images|js)/(.*)", "dest": "/public/$1/$2" },
+    { "src": "/(.*)", "dest": "/public/$1" }
+  ]
 }
