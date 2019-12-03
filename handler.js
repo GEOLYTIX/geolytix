@@ -25,7 +25,7 @@ module.exports = (req, res) => {
     const html = template(
         fs.readFileSync(path.join(process.cwd(), `public/html/${platform}.html`), 'utf8'),
         {
-            meta: 'foo',
+            meta: 'Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers.',
             header_css: `<link rel="stylesheet" type="text/css" href="/css/${platform}_header_white.css"/>`,
             locale: 'uk',
             office: 1,
