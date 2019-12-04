@@ -1,6 +1,8 @@
 {
   "version": 2,
-  "regions": ["bru1"],
+  "name": "geolytix.co.uk",
+  "alias": ["geolytix.co.uk", "geolytix.com"],
+  "regions": ["lhr1", "sfo1"],
   "builds": [
     {
       "src": "/public/*",
