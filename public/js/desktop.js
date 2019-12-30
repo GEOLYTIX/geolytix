@@ -1,5 +1,3 @@
-const helper = require('./helper');
-
 // PARALLAX TEAM PHOTO
 const parallax_team_photo = document.getElementById('team_photo');
 
@@ -14,7 +12,7 @@ for (let i = 0; i < imgLoadArray.length; i++) {
     img.onload = function () {
         imgLoadArray[i].style['background-image'] = 'url(/images/' + imgLoadArray[i].dataset.src + ')';
         if (imgLoadArray[i].id === 'header__image') {
-            helper.removeClass(document.querySelectorAll('.black'), 'black');
+            removeClass(document.querySelectorAll('.black'), 'black');
         }
     };
     img.src = '/images/' + imgLoadArray[i].dataset.src;
@@ -25,8 +23,8 @@ for (let i = 0; i < imgLoadArray.length; i++) {
 // HEADER and WINDOW SCROLL
 function setHeader() {
     let distanceY = document.documentElement.scrollTop || document.body.scrollTop;
-    distanceY > 300 ? helper.addClass('.header', 'header__smaller') : helper.removeClass('.header', 'header__smaller');
-    distanceY > document.getElementById('header__image').clientHeight - 80 ? helper.addClass('.header', 'header__main') : helper.removeClass('.header', 'header__main');
+    distanceY > 300 ? addClass('.header', 'header__smaller') : removeClass('.header', 'header__smaller');
+    distanceY > document.getElementById('header__image').clientHeight - 80 ? addClass('.header', 'header__main') : removeClass('.header', 'header__main');
 }
 setHeader();
 
@@ -46,7 +44,7 @@ window.onresize = function () {
 document.getElementById('home').addEventListener('click',
     function (e) {
         e.preventDefault();
-        helper.scrollElementToTop(document.getElementById('header__image'), 0, 400);
+        scrollElementToTop(document.getElementById('header__image'), 0, 400);
         history.pushState({ so: 'glx' }, this.id, '?');
     }
 );
@@ -65,7 +63,7 @@ const sections = {
 };
 
 function scrollTo(section) {
-    if (sections[section]) helper.scrollBody(
+    if (sections[section]) scrollBody(
         document.getElementById('section_' + section).getBoundingClientRect().top
         + window.pageYOffset
         - sections[section]
@@ -97,19 +95,19 @@ const team_cards = section_team.querySelectorAll('.ul_grid .li_card');
 for (let i = 0; i < team_cards.length; i++) {
     team_cards[i].addEventListener('click', function () {
         expandCard(section_team, this);
-        helper.scrollElementToTop(this, -80, 400);
+        scrollElementToTop(this, -80, 400);
     });
 }
 
 expandCard(section_team, section_team.querySelector('.li_card'));
 
 function expandCard(section, _this) {
-    helper.removeClass(section.querySelector('.visible'), 'visible');
+    removeClass(section.querySelector('.visible'), 'visible');
     if (section.querySelector('.expanded')) section.querySelector('.expanded').parentNode.removeAttribute('style');
-    helper.removeClass(section.querySelector('.expanded'), 'expanded');
-    helper.addClass(_this, 'expanded');
+    removeClass(section.querySelector('.expanded'), 'expanded');
+    addClass(_this, 'expanded');
     _this.parentNode.style.height = (_this.parentNode.querySelector('.li_card').offsetHeight + _this.parentNode.querySelector('.li_expander').offsetHeight + 50) + 'px';
-    helper.addClass(_this.nextElementSibling, 'visible');
+    addClass(_this.nextElementSibling, 'visible');
 }
 
 
@@ -119,13 +117,13 @@ if (document.getElementById('section_case_studies')) {
     const section_case_studies = document.getElementById('section_case_studies');
     const case_studies_strip = section_case_studies.querySelector('#case_studies_strip > table');
     case_studies_strip.addEventListener('click', function (event) {
-        helper.removeClass(section_case_studies.querySelectorAll('.active'), 'active');
-        helper.addClass(event.target, 'active');
-        let index = helper.indexInParent(event.target) - 1;
+        removeClass(section_case_studies.querySelectorAll('.active'), 'active');
+        addClass(event.target, 'active');
+        let index = indexInParent(event.target) - 1;
         case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
         if (index > 9) index -= 9;
         if (index < 0) index += 9;
-        helper.addClass(section_case_studies.querySelectorAll('.logo')[index + 1], 'active');
+        addClass(section_case_studies.querySelectorAll('.logo')[index + 1], 'active');
         case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
         index++;
         if (index >= 9) index -= 9;
@@ -211,7 +209,7 @@ if (section_geodata) {
             geodataXYZ.layers.list[layer].show();
         });
 
-        helper.scrolly(document.querySelector('.geodata__info'));
+        scrolly(document.querySelector('.geodata__info'));
 
     }
 
@@ -319,3 +317,192 @@ _xyz({
 
 //url hook scroll
 scrollTo(window.location.search.substring(1));
+
+
+
+
+function scrollElementToTop(element, offset, duration) {
+
+    if (duration <= 0) return;
+
+    let
+        difference = element.getBoundingClientRect().top + offset,
+        perTick = difference / duration * 10;
+
+    setTimeout(function () {
+
+        window.pageYOffset = window.pageYOffset + perTick;
+        document.documentElement.scrollTop = document.documentElement.scrollTop + perTick;
+        document.body.scrollTop = document.body.scrollTop + perTick;
+
+        if (element.getBoundingClientRect().top === offset) return;
+
+        scrollElementToTop(element, offset, duration - 10);
+
+    }, 10);
+}
+
+function scrollElement(element, to, duration) {
+    if (duration <= 0) return;
+    let difference = to - element.scrollTop,
+        perTick = difference / duration * 10;
+    setTimeout(function () {
+        element.scrollTop = element.scrollTop + perTick;
+        if (element.scrollTop === to) return;
+        scrollElement(element, to, duration - 10);
+    }, 10);
+}
+
+function scrollBody(to, duration) {
+
+    if (duration <= 0) return;
+
+    let
+        difference = to - Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop),
+        perTick = difference / duration * 10;
+
+    setTimeout(function () {
+        let scroll = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + perTick;
+        window.pageYOffset = scroll;
+        document.documentElement.scrollTop = scroll;
+        document.body.scrollTop = scroll;
+        if (scroll === to) return;
+        scrollBody(to, duration - 10);
+
+    }, 10);
+}
+
+function addClass(elements, myClass) {
+    if (!elements) return;
+
+    // if we have a selector, get the chosen elements
+    if (typeof(elements) === 'string') {
+        elements = document.querySelectorAll(elements);
+    } else if (elements.tagName) {
+        elements = [elements];
+    }
+
+    // add class to all chosen elements
+    for (let i = 0; i < elements.length; i++) {
+        if ((' ' + elements[i].className + ' ').indexOf(' ' + myClass + ' ') < 0) elements[i].className += ' ' + myClass;
+    }
+}
+
+function removeClass(elements, myClass) {
+    if (!elements) return;
+
+    // if we have a selector, get the chosen elements
+    if (typeof(elements) === 'string') {
+        elements = document.querySelectorAll(elements);
+    } else if (elements.tagName) {
+        elements = [elements];
+    }
+
+    // create pattern to find class name
+    let reg = new RegExp('(^| )' + myClass + '($| )', 'g');
+
+    // remove class from all chosen elements
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].className = elements[i].className.replace(reg, ' ');
+    }
+}
+
+function toggleClass(elements, myClass) {
+    if (!elements) return;
+
+    // if we have a selector, get the chosen elements
+    if (typeof(elements) === 'string') {
+        elements = document.querySelectorAll(elements);
+    } else if (elements.tagName) {
+        elements = [elements];
+    }
+
+    // create pattern to find class name
+    let reg = new RegExp('(^| )' + myClass + '($| )', 'g');
+
+    for (let i = 0; i < elements.length; i++) {
+        if ((' ' + elements[i].className + ' ').indexOf(' ' + myClass + ' ') > 0) {
+            elements[i].className = elements[i].className.replace(reg, ' ');
+        } else {
+            elements[i].className += ' ' + myClass;
+        }
+    }
+}
+
+function hasClass(elements, myClass) {
+    if (!elements) return;
+
+    // if we have a selector, get the chosen elements
+    if (typeof(elements) === 'string') {
+        elements = document.querySelectorAll(elements);
+    } else if (elements.tagName) {
+        elements = [elements];
+    }
+
+    // add class to all chosen elements
+    let n = 0;
+    for (let i = 0; i < elements.length; i++) {
+        if ((' ' + elements[i].className + ' ').indexOf(' ' + myClass + ' ') > 0) n++;
+    }
+
+    return n === elements.length;
+}
+
+function indexInParent(node) {
+    let children = node.parentNode.childNodes,
+        num = 0;
+    for (let i = 0; i < children.length; i++) {
+        if (children[i] === node) return num;
+        if (children[i].nodeType === 1) num++;
+    }
+    return -1;
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function () {
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            timeout = null;
+            func.apply(this, arguments);
+        }, wait);
+    };
+}
+
+function scrolly (el) {
+
+    let
+        content = el.querySelector('.content'),
+        path = el.querySelector('.scrollbar_container'),
+        scrollBar = el.querySelector('.scrollbar'),
+        scrollEvent = new Event('scroll');
+
+    content.addEventListener('scroll', function () {
+        scrollBar.style.height = path.clientHeight * content.clientHeight / content.scrollHeight + 'px';
+        scrollBar.style.top = path.clientHeight * content.scrollTop / content.scrollHeight + 'px';
+    });
+
+    window.addEventListener('resize', content.dispatchEvent.bind(content, scrollEvent));
+    content.dispatchEvent(scrollEvent);
+
+    scrollBar.addEventListener('mousedown', function (eDown) {
+        eDown.preventDefault();
+        let scrollBar_offsetTop = scrollBar.offsetTop,
+            eDown_pageY = eDown.pageY,
+            onMove = function (eMove) {
+                scrollBar.style.top = Math.min(
+                    path.clientHeight - scrollBar.clientHeight,
+                    Math.max(
+                        0,
+                        scrollBar_offsetTop + eMove.pageY - eDown_pageY
+                    )
+                ) + 'px';
+                content.scrollTop = (content.scrollHeight * scrollBar.offsetTop / path.clientHeight);
+            };
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', function () {
+            document.removeEventListener('mousemove', onMove);
+        });
+    });
+
+};
