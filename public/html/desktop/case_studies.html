@@ -1,3 +1,112 @@
+<style>
+#section_case_studies {
+  background-color: #090;
+  color: white;
+  padding: 0 50px 30px 50px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#section_case_studies table {
+  transition: all 0.5s;
+}
+
+#section_case_studies>div {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+#section_case_studies>div>p:nth-of-type(1) {
+  font-size: 300%;
+  font-family: ffmark_bold, sans-serif;
+  padding: 30px 0;
+}
+
+#section_case_studies>div>p:nth-of-type(2) {
+  font-size: 150%;
+}
+
+#case_studies_strip {
+  width: 100%;
+  border-bottom: 1px solid #fff;
+}
+
+#case_studies_strip>table {
+  width: 360%;
+  height: 170px;
+  margin-left: -100%;
+}
+
+#case_studies_strip .logo {
+  position: relative;
+}
+
+#case_studies_strip .active:after,
+#case_studies_strip .active:before {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  height: 0;
+  width: 0;
+  border: solid transparent;
+  content: " ";
+  pointer-events: none;
+}
+
+#case_studies_strip .active:before {
+  border-bottom-color: #fff;
+  border-width: 17px;
+  margin-left: -17px;
+}
+
+#case_studies_strip .active:after {
+  border-bottom-color: #079e00;
+  border-width: 15px;
+  margin-left: -15px;
+  z-index: 999;
+}
+
+#case_studies_container {
+  margin-top: 30px;
+  width: 100%;
+  overflow: hidden;
+}
+
+#case_studies_container>table {
+  width: 900%;
+  table-layout: fixed;
+  margin-left: -800%;
+}
+
+#case_studies_container>table td {
+  padding-right: 15px;
+  padding-left: 10px;
+  vertical-align: top;
+  line-height: 1.5em;
+}
+
+#case_studies_container>table ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+#case_studies_container>table ul>li {
+  padding-bottom: 10px;
+}
+
+#case_studies_container>table tr:first-of-type td {
+  padding-bottom: 20px;
+  text-align: center;
+  font-family: ffmark_bold, sans-serif;
+  font-size: 150%;
+}
+
+#case_studies_container>table .quote {
+  font-family: ffmark_italic, sans-serif;
+  margin-bottom: 16px;
+}
+</style>
+
 <div id="section_case_studies">
     <div class="case_studies__limiter">
         <p>Case Studies</p>

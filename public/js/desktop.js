@@ -4,28 +4,31 @@ const parallax_team_photo = document.getElementById('team_photo');
 parallax_team_photo.style.height = parallax_team_photo.offsetWidth * 0.47 + 'px';
 
 
-
 // LAZY LOAD IMAGES
 const imgLoadArray = document.querySelectorAll('.img__load');
+
 for (let i = 0; i < imgLoadArray.length; i++) {
     let img = new Image();
     img.onload = function () {
         imgLoadArray[i].style['background-image'] = 'url(/images/' + imgLoadArray[i].dataset.src + ')';
-        if (imgLoadArray[i].id === 'header__image') {
-            removeClass(document.querySelectorAll('.black'), 'black');
-        }
+        if (imgLoadArray[i].id === 'header__image') document.querySelectorAll('.black').forEach(el => el.classList.remove('black'))
     };
     img.src = '/images/' + imgLoadArray[i].dataset.src;
 }
 
 
-
 // HEADER and WINDOW SCROLL
 function setHeader() {
     let distanceY = document.documentElement.scrollTop || document.body.scrollTop;
-    distanceY > 300 ? addClass('.header', 'header__smaller') : removeClass('.header', 'header__smaller');
-    distanceY > document.getElementById('header__image').clientHeight - 80 ? addClass('.header', 'header__main') : removeClass('.header', 'header__main');
+    distanceY > 300 ?
+        document.querySelector('.header').classList.add('header__smaller') :
+        document.querySelector('.header').classList.remove('header__smaller');
+
+    distanceY > document.getElementById('header__image').clientHeight - 80 ?
+        document.querySelector('.header').classList.add('header__main') :
+        document.querySelector('.header').classList.remove('header__main');
 }
+
 setHeader();
 
 window.onscroll = function () {
@@ -39,15 +42,12 @@ window.onresize = function () {
 };
 
 
-
 //MENU
-document.getElementById('home').addEventListener('click',
-    function (e) {
-        e.preventDefault();
-        scrollElementToTop(document.getElementById('header__image'), 0, 400);
-        history.pushState({ so: 'glx' }, this.id, '?');
-    }
-);
+document.getElementById('home').addEventListener('click', function (e) {
+    e.preventDefault();
+    scrollElementToTop(document.getElementById('header__image'), 0, 400);
+    history.pushState({ so: 'glx' }, this.id, '?');
+});
 
 document.querySelector('.header__menu').addEventListener('click', function (event) {
     history.pushState({ so: 'glx' }, event.target.id, '?' + event.target.id);
@@ -71,7 +71,6 @@ function scrollTo(section) {
 }
 
 
-
 // SERVICES
 const section_services = document.getElementById('section_services');
 
@@ -84,7 +83,6 @@ for (let i = 0; i < service_cards.length; i++) {
 }
 
 expandCard(section_services, section_services.querySelector('.li_card'));
-
 
 
 // TEAM
@@ -102,14 +100,19 @@ for (let i = 0; i < team_cards.length; i++) {
 expandCard(section_team, section_team.querySelector('.li_card'));
 
 function expandCard(section, _this) {
-    removeClass(section.querySelector('.visible'), 'visible');
-    if (section.querySelector('.expanded')) section.querySelector('.expanded').parentNode.removeAttribute('style');
-    removeClass(section.querySelector('.expanded'), 'expanded');
-    addClass(_this, 'expanded');
-    _this.parentNode.style.height = (_this.parentNode.querySelector('.li_card').offsetHeight + _this.parentNode.querySelector('.li_expander').offsetHeight + 50) + 'px';
-    addClass(_this.nextElementSibling, 'visible');
-}
 
+    section.querySelector('.visible') && section.querySelector('.visible').classList.remove('visible');
+
+    if (section.querySelector('.expanded')) section.querySelector('.expanded').parentNode.removeAttribute('style');
+
+    section.querySelector('.expanded') && section.querySelector('.expanded').classList.remove('expanded');
+
+    _this.classList.add('expanded');
+
+    _this.parentNode.style.height = (_this.parentNode.querySelector('.li_card').offsetHeight + _this.parentNode.querySelector('.li_expander').offsetHeight + 50) + 'px';
+
+    _this.nextElementSibling.classList.add('visible');
+}
 
 
 // CASE STUDIES
@@ -117,209 +120,246 @@ if (document.getElementById('section_case_studies')) {
     const section_case_studies = document.getElementById('section_case_studies');
     const case_studies_strip = section_case_studies.querySelector('#case_studies_strip > table');
     case_studies_strip.addEventListener('click', function (event) {
-        removeClass(section_case_studies.querySelectorAll('.active'), 'active');
-        addClass(event.target, 'active');
+
+        section_case_studies.querySelectorAll('.active').forEach(el => el.classList.remove('active'))
+
+        event.target.classList.add('active');
+
         let index = indexInParent(event.target) - 1;
         case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
         if (index > 9) index -= 9;
         if (index < 0) index += 9;
-        addClass(section_case_studies.querySelectorAll('.logo')[index + 1], 'active');
+
+        section_case_studies.querySelectorAll('.logo')[index + 1].classList.add('active');
+
         case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
         index++;
         if (index >= 9) index -= 9;
         section_case_studies.querySelector('#case_studies_container > table').style['marginLeft'] = '-' + index * 100 + '%';
     });
+
+    function indexInParent(node) {
+        let children = node.parentNode.childNodes,
+            num = 0;
+        for (let i = 0; i < children.length; i++) {
+            if (children[i] === node) return num;
+            if (children[i].nodeType === 1) num++;
+        }
+        return -1;
+    }
 }
 
 
-
 // GEODATA
-const section_geodata = document.getElementById('section_geodata');
-
-if (section_geodata) {
+if (document.getElementById('section_geodata')) {
 
     const geodata_select = document.getElementById('geodata__select');
 
-    Object.keys(geodata).forEach(
-        function (set) {
+    document.querySelectorAll('.geodataSet').forEach(function(el){
 
-            const div = document.createElement('div');
-            div.className = 'geodataSet';
-            div.textContent = set;
+        el.onclick = function() {
 
-            div.onclick = function() {
-
-                document.getElementById('geodata__faq').style.display = 'none';
-
-                document.querySelectorAll('.geodataSet').forEach(function(d){
-                    d.classList.remove('selected');
-                });
-
-                div.classList.add('selected');
-
-                let geodataSet = geodata[div.innerText];
-
-                geodataMap(geodataSet);
-
-                document.getElementById('btnFullScreen').href = "https://geolytix.xyz/geodata?layers=" + geodataSet.layers.join(',') + "&locale=London";
-            }
-
-            geodata_select.appendChild(div);
-        });
-
-    let geodataXYZ;
+            document.querySelectorAll('.geodataSet').forEach(function (el) {
+                el.classList.remove('selected');
+            });
     
-    _xyz({
-        host: 'https://geolytix.xyz/geodata',
-        callback: function(_xyz) {
+            el.classList.add('selected');
 
-            geodataXYZ = _xyz;
+            document.getElementById('map_geodata').innerHTML = '';
+    
+            _xyz({
+                host: 'https://xyz-geodata-v2.now.sh/geodata',
+                locale: el.dataset.locale,
+                callback: function(_xyz) {
+           
+                    _xyz.mapview.create({
+                        target: document.getElementById('map_geodata'),
+                    });
+                          
+                    el.dataset.layers.split(',').forEach(function(layer){
+                        _xyz.layers.list[layer].show();
+                    });
+            
+                }
+            });
 
-            document.querySelectorAll('.geodataSet')[0].click();
         }
-    });
 
+    })
+
+
+
+    // Object.keys(geodata).forEach(function (set) {
+
+    //     const div = document.createElement('div');
+    //     div.className = 'geodataSet';
+    //     div.textContent = set;
+
+    //     div.onclick = function () {
+
+    //         document.getElementById('geodata__faq').style.display = 'none';
+
+    //         document.querySelectorAll('.geodataSet').forEach(function (el) {
+    //             el.classList.remove('selected');
+    //         });
+
+    //         div.classList.add('selected');
+
+    //         let geodataSet = geodata[div.innerText];
+
+    //         geodataMap(geodataSet);
+
+    //         document.getElementById('btnFullScreen').href = "https://xyz-geodata-v2.now.sh/geodata?layers=" + geodataSet.layers.join(',') + "&locale=London";
+    //     }
+
+    //     geodata_select.appendChild(div);
+    // });
+
+    document.querySelectorAll('.geodataSet')[0].click();
+   
     function geodataMap(dataset) {
+
+        document.getElementById('map_geodata').innerHTML = '';
 
         const container = document.querySelector('.geodata__info > .content');
 
-        geodataXYZ.mapview.create({
-            target: document.getElementById('map_geodata'),
+        _xyz({
+            host: 'https://xyz-geodata-v2.now.sh/geodata',
             locale: dataset.locale,
-            btn: {
-                ZoomIn: document.getElementById('btnZoomIn'),
-                ZoomOut: document.getElementById('btnZoomOut'),
+            callback: function(_xyz) {
+       
+                _xyz.mapview.create({
+                    target: document.getElementById('map_geodata'),
+                });
+          
+                //container.innerHTML = geodataXYZ.layers.list[dataset.meta].groupmeta;
+        
+                // Object.keys(geodataXYZ.layers.list).forEach(function(layer){
+                //     geodataXYZ.layers.list[layer].remove();
+                // })
+        
+                // if (dataset.legends) dataset.legends.forEach(legend => {
+        
+                //     geodataXYZ.layers.list[legend].view();
+        
+                //     container.appendChild(geodataXYZ.layers.list[legend].style.legend);
+                // });
+        
+                dataset.layers.forEach(function(layer){
+                    _xyz.layers.list[layer].show();
+                });
+        
+                scrolly(document.querySelector('.geodata__info'));
             }
         });
-  
-        container.innerHTML = geodataXYZ.layers.list[dataset.meta].groupmeta;
-
-        Object.keys(geodataXYZ.layers.list).forEach(function(layer){
-            geodataXYZ.layers.list[layer].remove();
-        })
-
-        if (dataset.legends) dataset.legends.forEach(legend => {
-
-            geodataXYZ.layers.list[legend].view();
-
-            container.appendChild(geodataXYZ.layers.list[legend].style.legend);
-        });
-
-        dataset.layers.forEach(function(layer){
-            geodataXYZ.layers.list[layer].show();
-        });
-
-        scrolly(document.querySelector('.geodata__info'));
 
     }
 
-    const faq = document.createElement('div');
-    faq.className = 'geodataSet';
-    faq.textContent = 'FAQ';
+    // const faq = document.createElement('div');
+    // faq.className = 'geodataSet';
+    // faq.textContent = 'FAQ';
 
-    faq.onclick = function() {
+    // faq.onclick = function() {
 
-        document.querySelectorAll('.geodataSet').forEach(function(d){
-            d.classList.remove('selected');
-        });
+    //     document.querySelectorAll('.geodataSet').forEach(function(d){
+    //         d.classList.remove('selected');
+    //     });
 
-        faq.classList.add('selected');
+    //     faq.classList.add('selected');
 
-        document.getElementById('geodata__faq').style.display = 'block';
-    }
+    //     document.getElementById('geodata__faq').style.display = 'block';
+    // }
 
-    geodata_select.appendChild(faq);
+    // geodata_select.appendChild(faq);
 
 }
 
 
 // CONTACT
-_xyz({
-    host: 'https://geolytix.xyz/geodata',
-    callback: function(_xyz) {
+// _xyz({
+//     host: 'https://geolytix.xyz/geodata',
+//     callback: function(_xyz) {
 
-        _xyz.mapview.create({
-            target: document.getElementById('map_contact'),
-            locale: 'Offices',
-            view: {
-                lat: 45,
-                lng: 60,
-                z: 3
-            },
-            btn: {
-                ZoomIn: document.getElementById('btnZoomIn_contact'),
-                ZoomOut: document.getElementById('btnZoomOut_contact'),
-            }
-        });
+//         _xyz.mapview.create({
+//             target: document.getElementById('map_contact'),
+//             locale: 'Offices',
+//             view: {
+//                 lat: 45,
+//                 lng: 60,
+//                 z: 3
+//             },
+//             btn: {
+//                 ZoomIn: document.getElementById('btnZoomIn_contact'),
+//                 ZoomOut: document.getElementById('btnZoomOut_contact'),
+//             }
+//         });
     
-        _xyz.layers.list.Offices.show();
+//         _xyz.layers.list.Offices.show();
 
     
-        _xyz.locations.select = function(location) { 
+//         _xyz.locations.select = function(location) { 
 
-          // Remove current location if it exists.
-          if (_xyz.locations.current) _xyz.locations.current.remove();
+//           // Remove current location if it exists.
+//           if (_xyz.locations.current) _xyz.locations.current.remove();
 
-          _xyz.locations.current = location;
+//           _xyz.locations.current = location;
            
-          const xhr = new XMLHttpRequest();
+//           const xhr = new XMLHttpRequest();
       
-          xhr.open('GET',
-            _xyz.host + '/api/location/select/id?' +
-            _xyz.utils.paramString({
-              locale: _xyz.workspace.locale.key,
-              layer: location.layer,
-              table: location.table,
-              id: location.id,
-              token: _xyz.token
-            }));
+//           xhr.open('GET',
+//             _xyz.host + '/api/location/select/id?' +
+//             _xyz.utils.paramString({
+//               locale: _xyz.workspace.locale.key,
+//               layer: location.layer,
+//               table: location.table,
+//               id: location.id,
+//               token: _xyz.token
+//             }));
         
-          xhr.setRequestHeader('Content-Type', 'application/json');
-          xhr.responseType = 'json';
+//           xhr.setRequestHeader('Content-Type', 'application/json');
+//           xhr.responseType = 'json';
         
-          xhr.onload = function(e) {
+//           xhr.onload = function(e) {
         
-            if (e.target.status !== 200) return;    
+//             if (e.target.status !== 200) return;    
       
-            location.infoj = e.target.response.infoj;
+//             location.infoj = e.target.response.infoj;
         
-            location.geometry = e.target.response.geomj;
+//             location.geometry = e.target.response.geomj;
 
-            location.marker = _xyz.utils.turf.pointOnFeature(location.geometry).geometry.coordinates;
+//             location.marker = _xyz.utils.turf.pointOnFeature(location.geometry).geometry.coordinates;
       
-            location = _xyz.locations.location(location);
+//             location = _xyz.locations.location(location);
 
-            location.draw({
-                icon: {
-                    url: _xyz.utils.svg_symbols({type: 'markerColor', style: {colorMarker: '#64dd17', colorDot: '#33691e'}}),
-                    size: 40,
-                    anchor: [20,40]
-                  }
-            });
+//             location.draw({
+//                 icon: {
+//                     url: _xyz.utils.svg_symbols({type: 'markerColor', style: {colorMarker: '#64dd17', colorDot: '#33691e'}}),
+//                     size: 40,
+//                     anchor: [20,40]
+//                   }
+//             });
   
-            document.getElementById('contact__text').innerHTML = location.infoj[1].value;
+//             document.getElementById('contact__text').innerHTML = location.infoj[1].value;
            
-          };
+//           };
         
-          xhr.send();
+//           xhr.send();
       
-        };
+//         };
 
-        _xyz.locations.select({
-            locale: "Offices",
-            layer: "Offices",
-            table: "website.glx_offices",
-            id: document.body.dataset.office
-        });
+//         _xyz.locations.select({
+//             locale: "Offices",
+//             layer: "Offices",
+//             table: "website.glx_offices",
+//             id: document.body.dataset.office
+//         });
 
-    }
-});
+//     }
+// });
+
 
 //url hook scroll
 scrollTo(window.location.search.substring(1));
-
-
-
 
 function scrollElementToTop(element, offset, duration) {
 
@@ -372,104 +412,7 @@ function scrollBody(to, duration) {
     }, 10);
 }
 
-function addClass(elements, myClass) {
-    if (!elements) return;
-
-    // if we have a selector, get the chosen elements
-    if (typeof(elements) === 'string') {
-        elements = document.querySelectorAll(elements);
-    } else if (elements.tagName) {
-        elements = [elements];
-    }
-
-    // add class to all chosen elements
-    for (let i = 0; i < elements.length; i++) {
-        if ((' ' + elements[i].className + ' ').indexOf(' ' + myClass + ' ') < 0) elements[i].className += ' ' + myClass;
-    }
-}
-
-function removeClass(elements, myClass) {
-    if (!elements) return;
-
-    // if we have a selector, get the chosen elements
-    if (typeof(elements) === 'string') {
-        elements = document.querySelectorAll(elements);
-    } else if (elements.tagName) {
-        elements = [elements];
-    }
-
-    // create pattern to find class name
-    let reg = new RegExp('(^| )' + myClass + '($| )', 'g');
-
-    // remove class from all chosen elements
-    for (let i = 0; i < elements.length; i++) {
-        elements[i].className = elements[i].className.replace(reg, ' ');
-    }
-}
-
-function toggleClass(elements, myClass) {
-    if (!elements) return;
-
-    // if we have a selector, get the chosen elements
-    if (typeof(elements) === 'string') {
-        elements = document.querySelectorAll(elements);
-    } else if (elements.tagName) {
-        elements = [elements];
-    }
-
-    // create pattern to find class name
-    let reg = new RegExp('(^| )' + myClass + '($| )', 'g');
-
-    for (let i = 0; i < elements.length; i++) {
-        if ((' ' + elements[i].className + ' ').indexOf(' ' + myClass + ' ') > 0) {
-            elements[i].className = elements[i].className.replace(reg, ' ');
-        } else {
-            elements[i].className += ' ' + myClass;
-        }
-    }
-}
-
-function hasClass(elements, myClass) {
-    if (!elements) return;
-
-    // if we have a selector, get the chosen elements
-    if (typeof(elements) === 'string') {
-        elements = document.querySelectorAll(elements);
-    } else if (elements.tagName) {
-        elements = [elements];
-    }
-
-    // add class to all chosen elements
-    let n = 0;
-    for (let i = 0; i < elements.length; i++) {
-        if ((' ' + elements[i].className + ' ').indexOf(' ' + myClass + ' ') > 0) n++;
-    }
-
-    return n === elements.length;
-}
-
-function indexInParent(node) {
-    let children = node.parentNode.childNodes,
-        num = 0;
-    for (let i = 0; i < children.length; i++) {
-        if (children[i] === node) return num;
-        if (children[i].nodeType === 1) num++;
-    }
-    return -1;
-}
-
-function debounce(func, wait) {
-    let timeout;
-    return function () {
-        clearTimeout(timeout);
-        timeout = setTimeout(function () {
-            timeout = null;
-            func.apply(this, arguments);
-        }, wait);
-    };
-}
-
-function scrolly (el) {
+function scrolly(el) {
 
     let
         content = el.querySelector('.content'),
