@@ -7,7 +7,7 @@ window.addEventListener('orientationchange', function() {
     orientation();
 });
 
-const _locale = document.body.dataset.locale;
+const _locale = 'uk';
 
 function orientation() {
     document.getElementById('intro__text').innerHTML =

@@ -1,5 +1,5 @@
 <style>
-    .header {
+  .header {
     position: fixed;
     box-sizing: border-box;
     width: 100%;
@@ -7,26 +7,26 @@
     z-index: 9999;
     padding: 5px 50px 0 50px;
     min-width: 799px;
-    }
+  }
 
-    .header a {
+  .header a {
     color: #fff;
-    }
+  }
 
-    .header.header__main {
+  .header.header__main {
     color: #000;
     background-color: #fff;
     height: 75px;
     -webkit-box-shadow: 1px 1px 5px #777;
     -moz-box-shadow: 1px 1px 5px #777;
     box-shadow: 1px 1px 5px #777;
-    }
+  }
 
-    .header.header__main a {
+  .header.header__main a {
     color: #000;
-    }
+  }
 
-    #header__image {
+  #header__image {
     height: 100%;
     background-position: center center;
     -webkit-background-size: cover;
@@ -34,39 +34,39 @@
     -o-background-size: cover;
     background-size: cover;
     margin-bottom: 100px;
-    }
+  }
 
-    #home {
+  #home {
     float: left;
     font-family: ffmark_black, sans-serif;
     margin-top: 120px;
     font-size: 120px;
     transition: all 0.3s;
-    }
+  }
 
-    .header__smaller>#home {
+  .header__smaller>#home {
     margin-top: 10px;
     font-size: 60px;
-    }
+  }
 
-    .header__menu {
+  .header__menu {
     position: absolute;
     top: 10px;
     right: 50px;
     font-size: 120%;
-    }
+  }
 
-    .header__menu div {
+  .header__menu div {
     float: right;
     margin-left: 35px;
     padding: 7px 0 7px 0;
-    }
+  }
 
-    .header__menu div:hover {
+  .header__menu div:hover {
     border-bottom: 10px solid #fff;
-    }
+  }
 
-    .header__menu .flag_link {
+  .header__menu .flag_link {
     display: block;
     float: right;
     margin: 0 0 0 20px;
@@ -78,37 +78,37 @@
     -webkit-box-shadow: 1px 1px 3px #000;
     -moz-box-shadow: 1px 1px 3px #000;
     box-shadow: 1px 1px 3px #000;
-    }
+  }
 
-    .header__main>.header__menu>div:hover {
+  .header__main>.header__menu>div:hover {
     border-bottom: 10px solid #000;
-    }
+  }
 
-    .header__text {
+  .header__text {
     position: absolute;
     top: 250px;
     color: #fff;
-    font-family: ffmark_bold, sans-serif;
+    font-weight: 700;
     font-size: 250%;
-    }
+  }
 
-    .intro__text_left {
+  .intro__text_left {
     left: 50px;
-    }
+  }
 
-    .intro__text_right {
+  .intro__text_right {
     right: 10px;
-    }
+  }
 
-    .header__smaller>.header__text {
+  .header__smaller>.header__text {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0.3s, opacity 0.3s linear;
-    }
+  }
 
-    .black {
+  .black {
     color: black !important;
-    }
+  }
 </style>
 
 <div class="black header header__smaller header__main">
@@ -119,13 +119,76 @@
         <a class="flag_link img__load" data-src="pl.svg" title="GEOLYTIX Poland" href="https://geolytix.pl"></a>
         <a class="flag_link img__load" data-src="cn.svg" title="GEOLYTIX China" href="https://geolytix.cn"></a>
         <a class="flag_link img__load" data-src="jp.svg" title="GEOLYTIX Japan" href="https://geolytix.jp"></a>
-        <div id="contact" class="black cursor">Contact</div>
-        <div id="team" class="black cursor">Team</div>
-        <div id="blog" class="black cursor"><a class="black" href="https://blog.geolytix.net">Blog</a></div>
-        <div id="geodata" class="black cursor">GeoData</div>
-        <div id="case_studies" class="black cursor">Case Studies</div>
-        <div id="services" class="black cursor">Services</div>
+        <div data-id="contact" class="scroll_to black cursor">Contact</div>
+        <div data-id="team" class="scroll_to black cursor">Team</div>
+        <div class="black cursor"><a class="black" href="https://blog.geolytix.net">Blog</a></div>
+        <div data-id="geodata" class="scroll_to black cursor">GeoData</div>
+        <div data-id="case_studies" class="scroll_to black cursor">Case Studies</div>
+        <div data-id="services" class="scroll_to black cursor">Services</div>
     </div>
 </div>
 
 <div id="header__image" class="img__load" data-src="intro_geolytix.jpg"></div>
+
+<script>
+
+  window.addEventListener('DOMContentLoaded', function () {
+    function setHeader() {
+      let distanceY = document.documentElement.scrollTop || document.body.scrollTop;
+      distanceY > 300 ?
+        document.querySelector('.header').classList.add('header__smaller') :
+        document.querySelector('.header').classList.remove('header__smaller');
+
+      distanceY > document.getElementById('header__image').clientHeight - 80 ?
+        document.querySelector('.header').classList.add('header__main') :
+        document.querySelector('.header').classList.remove('header__main');
+    }
+
+    setHeader()
+
+    window.addEventListener('scroll', function () { setHeader() });
+
+
+    //MENU scroll
+    document.querySelectorAll('.scroll_to').forEach(function(el){
+
+      el.onclick = function(){
+        history.pushState({ so: 'glx' }, el.dataset.id, '?' + el.dataset.id);
+        scrollTo(document.getElementById(el.dataset.id))
+      }
+
+    });
+
+    
+    //url hook scroll
+    scrollTo(document.getElementById(window.location.search.substring(1)));
+
+    function scrollTo(el) {
+      if (el) scrollBody(el.getBoundingClientRect().top + window.pageYOffset - el.dataset.offset, 400);
+    }
+
+    function scrollBody(to, duration) {
+
+      if (duration <= 0) return;
+
+      let
+        difference = to - Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop),
+        perTick = difference / duration * 10;
+
+      setTimeout(function () {
+
+        let scroll = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop) + perTick;
+
+        window.pageYOffset = scroll;
+        document.documentElement.scrollTop = scroll;
+        document.body.scrollTop = scroll;
+
+        if (scroll === to) return;
+
+        scrollBody(to, duration - 10);
+
+      }, 10);
+    }
+  })
+
+</script>

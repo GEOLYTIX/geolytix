@@ -1,0 +1,50 @@
+<div id="contact" data-offset=70 style="height: 400px; background-color: #090;">
+  <div class="section" style="height: 100%; display: grid; grid-template-columns: 1fr 300px;">
+    <div id="map_contact" style="grid-column: 1;"></div>
+    <div id="contact_text" class="bold" style="grid-column: 2; color: #fff; text-align: center; padding-top: 20px; font-size: 20px; line-height: 1.5;"></div>
+  </div>
+</div>
+
+<script>
+
+  window.addEventListener('DOMContentLoaded', function(){
+    _xyz({
+      host: 'https://xyz-geodata-v2.now.sh/geodata',
+      locale: 'Offices',
+      callback: function (_xyz) {
+
+        _xyz.mapview.create({
+          target: document.getElementById('map_contact'),
+          scrollWheelZoom: true
+        });
+
+        _xyz.layers.list.Offices.show();
+
+        _xyz.locations.selectCallback = location => {
+
+          document.getElementById('contact_text').innerHTML = location.infoj[1].value;
+
+          location.Marker = _xyz.mapview.geoJSON({
+            geometry: {
+              type: 'Point',
+              coordinates: location.marker,
+            },
+            style: new _xyz.mapview.lib.style.Style({
+              image: _xyz.mapview.icon(_xyz.layers.list.Offices.style.highlight.marker)
+            })
+          });
+
+        }
+
+        _xyz.locations.select({
+          locale: "Offices",
+          layer: _xyz.layers.list.Offices,
+          table: "website.glx_offices",
+          id: 1
+        });
+
+      }
+    })
+  })
+
+</script>

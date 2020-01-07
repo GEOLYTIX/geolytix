@@ -12,10 +12,171 @@
   src: url("/fonts/MarkWebPro.woff") format("woff");
 }
 
-@font-face {
-  font-family: ffmark_bold;
-  src: url("/fonts/MarkWebPro-Bold.woff") format("woff");
+body {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  min-width: 799px;
+  overflow-x: hidden;
+  color: #3f3f3f;
+  font-weight: 400;
+  font-size: 13px;
 }
+
+.bold {
+  font-family: ffmark, "Open Sans", sans-serif;
+  font-weight: 700;
+}
+
+.primary-colour, a {
+  color: #090;
+}
+
+.section {
+  margin: 50px auto 0 auto;
+  max-width: 1600px;
+  padding-left: 50px;
+}
+
+h1 {
+  font-size: 300%;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 200%;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 150%;
+  margin-bottom: 20px;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+a:hover, .cursor {
+  cursor: pointer;
+}
+
+p {
+  margin: 0;
+}
+
+.img__contain {
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+button {
+  border: none;
+  outline: none;
+}
+
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+.icon-footer {
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-position: center;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: 5px;
+  box-shadow: 3px 3px #444;
+}
+
+.icon-team {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin: 5px 10px 0 0;
+}
+
+.icon-linkedin {
+  background-image: url("/images/icons/linkedin.svg");
+}
+
+.icon-twitter {
+  background-image: url("/images/icons/twitter.svg");
+}
+
+.icon-medium {
+  background-image: url("/images/icons/medium.svg");
+}
+
+.icon-github {
+  background-image: url("/images/icons/github.svg");
+}
+
+.icon-stackexchange {
+  background-image: url("/images/icons/stackexchange.svg");
+}
+
+
+
+
+/* RESIZE */
+@media screen and (max-width: 1275px) {
+  .header__smaller>#home {
+    font-size: 24px !important;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .header__menu>div {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  body {
+    font-size: 110%
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  body {
+    font-size: 120%
+  }
+}
+
+@media screen and (min-width: 1700px) {
+  body {
+    font-size: 130%
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  body {
+    font-size: 140%
+  }
+}
+
+
 
 .ul_grid {
   position: relative;
@@ -71,82 +232,4 @@
   border-width: 15px;
   margin-left: -15px;
   z-index: 999;
-}
-
-body {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
-  min-width: 799px;
-  overflow-x: hidden;
-}
-
-.cursor:hover {
-  cursor: pointer;
-}
-
-a {
-  color: #000;
-  text-decoration: none;
-  background-color: transparent;
-}
-
-p {
-  margin: 0;
-}
-
-.img__contain {
-  -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-size: contain;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-
-.leaflet-control-attribution {
-  display: none;
-}
-
-button {
-  border: none;
-  outline: none;
-}
-
-.mapButton {
-  position: absolute;
-  z-index: 999;
-  background: #fff;
-  color: #079e00;
-  border-radius: 50%;
-  height: 50px;
-  width: 50px;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-  text-align: center;
-  cursor: default;
-}
-
-.mapButton:disabled {
-  opacity: 0.3;
-}
-
-.mapButton:hover:enabled {
-  background: #079e00;
-  color: #fff;
-  cursor: pointer;
-}
-
-.mapButton>i {
-  font-size: 30px;
-  line-height: 1.7;
-}
-
-.noselect {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }

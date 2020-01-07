@@ -12,11 +12,6 @@
   src: url("/fonts/MarkWebPro.woff") format("woff");
 }
 
-@font-face {
-  font-family: ffmark_bold;
-  src: url("/fonts/MarkWebPro-Bold.woff") format("woff");
-}
-
 /* GLOBAL */
 html {
   overflow: hidden;
@@ -173,7 +168,7 @@ p {
 
 #intro__text {
   position: absolute;
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   bottom: 10px;
   font-size: 40px;
@@ -219,7 +214,7 @@ p {
 }
 
 #services__section>p:nth-of-type(2) {
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   font-size: 30px;
 }
@@ -250,7 +245,7 @@ p {
 }
 
 #services__section .services__table tr:nth-of-type(2) {
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
 }
 
@@ -276,7 +271,7 @@ p {
 
 #case_studies__section>p:nth-of-type(1) {
   font-size: 35px;
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   padding: 30px 10px 0 10px;
 }
@@ -318,7 +313,7 @@ p {
 
 #case_studies__info tr:nth-of-type(1) {
   height: 50px;
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   font-size: 25px;
 }
@@ -348,7 +343,7 @@ p {
 }
 
 #geodata__section>p:nth-of-type(1) {
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   font-size: 35px;
   padding: 50px 10px 0 10px;
@@ -356,7 +351,7 @@ p {
 
 #geodata__section>p:nth-of-type(2) {
   color: #079e00;
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   font-size: 25px;
   padding: 20px 10px 10px 10px;
@@ -384,7 +379,7 @@ p {
 }
 
 .geodata__table tr:nth-of-type(1) {
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   font-size: 25px;
 }
@@ -411,7 +406,7 @@ p {
 }
 
 #blog__link {
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   margin: 30px 0 120px 100px;
   border-top: 10px solid #079e00;
@@ -426,14 +421,14 @@ p {
 
 #team__section>p:nth-of-type(1) {
   color: #079e00;
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   font-size: 35px;
   padding: 30px 10px 0 10px;
 }
 
 #team__section>p:nth-of-type(2) {
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   font-size: 25px;
   padding: 20px 10px 40px 10px;
@@ -458,7 +453,7 @@ p {
 }
 
 #team__section .team__table tr:nth-of-type(2) td {
-  font-family: ffmark_bold, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+  font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
   font-weight: 700;
   padding-top: 10px;
 }

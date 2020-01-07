@@ -19,15 +19,15 @@ module.exports = (req, res) => {
         case_studies: fs.readFileSync(path.join(process.cwd(), `public/html/${platform}/case_studies.html`), 'utf8'),
         team: fs.readFileSync(path.join(process.cwd(), `public/html/${platform}/team.html`), 'utf8'),
         geodata: fs.readFileSync(path.join(process.cwd(), `public/html/${platform}/geodata.html`), 'utf8'),
+        solutions: fs.readFileSync(path.join(process.cwd(), `public/html/${platform}/solutions.html`), 'utf8'),
+        contact: fs.readFileSync(path.join(process.cwd(), `public/html/${platform}/contact.html`), 'utf8'),
+        awards: fs.readFileSync(path.join(process.cwd(), `public/html/${platform}/awards.html`), 'utf8'),
         footer: fs.readFileSync(path.join(process.cwd(), `public/html/${platform}/footer.html`), 'utf8'),
     }
 
     const html = template(
         fs.readFileSync(path.join(process.cwd(), `public/html/${platform}.html`), 'utf8'),
         {
-            meta: 'Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers.',
-            locale: 'uk',
-            office: 1,
             ...partials
         });
 

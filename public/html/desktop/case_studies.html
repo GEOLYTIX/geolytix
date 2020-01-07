@@ -1,29 +1,12 @@
 <style>
-#section_case_studies {
+#case_studies {
   background-color: #090;
   color: white;
-  padding: 0 50px 30px 50px;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 30px 50px 30px 50px;
 }
 
-#section_case_studies table {
+#case_studies table {
   transition: all 0.5s;
-}
-
-#section_case_studies>div {
-  max-width: 1500px;
-  margin: 0 auto;
-}
-
-#section_case_studies>div>p:nth-of-type(1) {
-  font-size: 300%;
-  font-family: ffmark_bold, sans-serif;
-  padding: 30px 0;
-}
-
-#section_case_studies>div>p:nth-of-type(2) {
-  font-size: 150%;
 }
 
 #case_studies_strip {
@@ -60,7 +43,7 @@
 }
 
 #case_studies_strip .active:after {
-  border-bottom-color: #079e00;
+  border-bottom-color: #090;
   border-width: 15px;
   margin-left: -15px;
   z-index: 999;
@@ -97,20 +80,21 @@
 #case_studies_container>table tr:first-of-type td {
   padding-bottom: 20px;
   text-align: center;
-  font-family: ffmark_bold, sans-serif;
+  font-weight: 700;
   font-size: 150%;
 }
 
 #case_studies_container>table .quote {
-  font-family: ffmark_italic, sans-serif;
+    font-style: italic;
   margin-bottom: 16px;
 }
+
 </style>
 
-<div id="section_case_studies">
-    <div class="case_studies__limiter">
-        <p>Case Studies</p>
-        <p>We build close, on-going relationships with our customers and will become your trusted advisers.</p>
+<div id="case_studies" data-offset=50>
+    <div class="case_studies__limiter" style="max-width: 1500px; margin: 0 auto;">
+        <h1 class="bold">Case Studies</h1>
+        <h3 class="bold">We build close, on-going relationships with our customers and will become your trusted advisers.</h3>
 
         <div id="case_studies_strip">
             <table cellpadding="0" cellspacing="0">
@@ -314,3 +298,46 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    window.addEventListener('DOMContentLoaded', function () {
+
+        const case_studies = document.getElementById('case_studies');
+
+        const case_studies_strip = case_studies.querySelector('#case_studies_strip > table');
+
+        case_studies_strip.addEventListener('click', function (event) {
+
+            case_studies.querySelectorAll('.active').forEach(el => el.classList.remove('active'))
+
+            event.target.classList.add('active');
+
+            const children = event.target.parentNode.childNodes;
+
+            let index = -1;
+
+            for (let i = 0; i < children.length; i++) {
+                if (children[i] === event.target) break;
+                children[i].nodeType === 1 && index++;
+            }
+
+            case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
+
+            if (index > 9) index -= 9;
+            if (index < 0) index += 9;
+
+            case_studies.querySelectorAll('.logo')[index + 1].classList.add('active');
+
+            case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
+
+            index++;
+
+            if (index >= 9) index -= 9;
+            
+            case_studies.querySelector('#case_studies_container > table').style['marginLeft'] = '-' + index * 100 + '%';
+        });
+
+    })
+
+</script>
