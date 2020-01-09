@@ -1,61 +1,70 @@
 <style>
     #footer {
-    background-color: #222;
-    padding-top: 30px;
+        background-color: #222;
+        padding-top: 30px;
     }
 
     #footer .logo {
-    height: 100px;
-    display: inline-block;
-    width: 45%;
+        height: 100px;
+        display: inline-block;
+        width: 45%;
     }
 
     #footer .privacy_policy,
     #footer .terms_conditions {
-    display: block;
+        display: block;
     }
 
     #footer i {
-    margin: -10px;
+        margin: -10px;
     }
 
     #footer>.ul_grid>li {
-    width: 32%;
-    padding-bottom: 20px;
-    text-align: center;
-    }
-
-    #footer .social_media__icons>a {
-    margin: -30px 5px 10px 5px;
-    font-size: 50px;
+        width: 32%;
+        padding-bottom: 20px;
+        text-align: center;
     }
 
     #footer .social_media__icons>a:hover {
-    cursor: pointer;
-    color: #ccff90;
+        cursor: pointer;
+        color: #ccff90;
     }
 
     #footer p,
     #footer a {
-    margin: 0;
-    line-height: 1.5em;
-    color: white;
-    text-shadow: 2px 2px 2px black;
+        margin: 0;
+        line-height: 1.5em;
+        color: white;
+        text-shadow: 2px 2px 2px black;
+    }
+
+    #footer .icon {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        background-repeat: no-repeat;
+        background-size: 70%;
+        background-position: center;
+        background-color: #fff;
+        border-radius: 10px;
+        margin: 5px;
+        box-shadow: 3px 3px #444;
     }
 </style>
+
 
 <div id="footer">
     <ul class="ul_grid">
         <li>
-            <a class="logo img__contain img__load" data-src="logo_odi_supporter.png" href="http://theodi.org/" target="_blank"></a>
+            <a class="logo img__contain img__load" data-src="icons/logo_odi_supporter.png" href="http://theodi.org/" target="_blank"></a>
         </li>
 
         <li>
             <div>
                 <p class="social_media__icons">
-                    <a class="icon-footer icon-linkedin" href="https://www.linkedin.com/company/geolytix" target="_blank"></a>
-                    <a class="icon-footer icon-twitter" href="http://twitter.com/geolytix" target="_blank"></a>
-                    <a class="icon-footer icon-medium" href="https://medium.com/geolytix" target="_blank"></a>
+                    <a class="icon icon-linkedin" href="https://www.linkedin.com/company/geolytix" target="_blank"></a>
+                    <a class="icon icon-twitter" href="http://twitter.com/geolytix" target="_blank"></a>
+                    <a class="icon icon-medium" href="https://medium.com/geolytix" target="_blank"></a>
                 </p>
                 <a class="privacy_policy" target="_blank" href="https://docs.google.com/document/d/1ZyhEzxi0MCsMK3HnR6fGpBhNm725916AxmElkOsHFIY">Privacy Policy</a>
                 <a class="terms_conditions" target="_blank" href="https://docs.google.com/document/d/1MteGDtrZx2TWXcuKqTzEMPRGmtlvEzF0g9Vy9r5H_vs">Terms & Conditions</a>

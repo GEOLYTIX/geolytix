@@ -34,7 +34,7 @@ document.getElementById('intro__burger').addEventListener('click', function(){
 
 document.getElementById('intro__menu').addEventListener('click', function(event){
     document.getElementById('intro__menu').classList.toggle('show');
-    history.pushState({so: 'glx'}, event.target.id, '?' + event.target.id);
+    window.location.hash = event.target.id;
     scrollTo(event.target.id);
 });
 

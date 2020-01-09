@@ -126,19 +126,6 @@ p {
   margin: 0 5px;
 }
 
-#intro__menu .translate_link {
-  display: inline-block;
-  margin-left: 10px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-color: white;
-  height: 40px;
-  width: 40px;
-  border-radius: 100%;
-  box-shadow: 1px 1px 3px #777;
-  text-align: center;
-}
-
 #intro__menu.show {
   display: block !important;
 }
@@ -172,16 +159,6 @@ p {
   font-weight: 700;
   bottom: 10px;
   font-size: 40px;
-}
-
-.intro__text_left {
-  left: 10px;
-  text-align: left;
-}
-
-.intro__text_right {
-  right: 10px;
-  text-align: right;
 }
 
 .text__shadow {

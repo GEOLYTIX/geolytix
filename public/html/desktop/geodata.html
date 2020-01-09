@@ -1,31 +1,36 @@
 <style>
 
-  .legend > svg {
+  @import url("https://fonts.googleapis.com/css?family=PT+Mono");
+
+  .location-view {
+    font-family: "PT Mono";
+  }
+
+  .legend>svg {
     width: 100%;
   }
-                  
+
   .geodata__select {
     font-size: 18px;
   }
-  
+
   .geodata__select>div {
     margin-bottom: 5px;
     border-bottom: 10px solid white;
   }
-  
+
   .geodata__select>div:hover {
     border-bottom: 10px solid black;
     cursor: pointer;
   }
 
   @media screen and (max-width: 1100px) {
-  #geodata {
-    display: none;
+    #geodata {
+      display: none;
+    }
   }
-}
-
-
 </style>
+
 
 <div id="geodata" data-offset=80 class="section">
   <h1 class="bold">GeoData</h1>
@@ -105,6 +110,7 @@
 
 </div>
 
+
 <script>
 
   window.addEventListener('DOMContentLoaded', function(){
@@ -124,7 +130,7 @@
 
         document.getElementById('geodata__faq').style.display = 'none';
 
-        _xyz({
+        if (_xyz) _xyz({
           host: 'https://xyz-geodata-v2.now.sh/geodata',
           locale: el.dataset.locale,
           callback: function (_xyz) {
