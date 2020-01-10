@@ -1,41 +1,18 @@
 <style>
     #footer {
         background-color: #222;
-        padding-top: 30px;
-    }
-
-    #footer .logo {
-        height: 100px;
-        display: inline-block;
-        width: 45%;
-    }
-
-    #footer .privacy_policy,
-    #footer .terms_conditions {
-        display: block;
-    }
-
-    #footer i {
-        margin: -10px;
-    }
-
-    #footer>.ul_grid>li {
-        width: 32%;
-        padding-bottom: 20px;
-        text-align: center;
-    }
-
-    #footer .social_media__icons>a:hover {
-        cursor: pointer;
-        color: #ccff90;
+        padding: 30px;
     }
 
     #footer p,
     #footer a {
-        margin: 0;
         line-height: 1.5em;
         color: white;
         text-shadow: 2px 2px 2px black;
+    }
+
+    #footer > div {
+        text-align: center;
     }
 
     #footer .icon {
@@ -53,29 +30,21 @@
 </style>
 
 
-<div id="footer">
-    <ul class="ul_grid">
-        <li>
-            <a class="logo img__contain img__load" data-src="icons/logo_odi_supporter.png" href="http://theodi.org/" target="_blank"></a>
-        </li>
+<div id="footer" style="display: grid; grid-template-columns: 1fr 1fr 1fr;">
+    <div style="grid-column: 1;">
+        <a style="display: block; height: 100%" class="logo img__contain img__load" data-src="icons/logo_odi_supporter.png" href="http://theodi.org/" target="_blank"></a>
+    </div>
 
-        <li>
-            <div>
-                <p class="social_media__icons">
-                    <a class="icon icon-linkedin" href="https://www.linkedin.com/company/geolytix" target="_blank"></a>
-                    <a class="icon icon-twitter" href="http://twitter.com/geolytix" target="_blank"></a>
-                    <a class="icon icon-medium" href="https://medium.com/geolytix" target="_blank"></a>
-                </p>
-                <a class="privacy_policy" target="_blank" href="https://docs.google.com/document/d/1ZyhEzxi0MCsMK3HnR6fGpBhNm725916AxmElkOsHFIY">Privacy Policy</a>
-                <a class="terms_conditions" target="_blank" href="https://docs.google.com/document/d/1MteGDtrZx2TWXcuKqTzEMPRGmtlvEzF0g9Vy9r5H_vs">Terms & Conditions</a>
-            </div>
-        </li>
+    <div style="grid-column: 2;">
+        <a class="icon icon-linkedin" href="https://www.linkedin.com/company/geolytix" target="_blank"></a>
+        <a class="icon icon-twitter" href="http://twitter.com/geolytix" target="_blank"></a>
+        <a class="icon icon-medium" href="https://medium.com/geolytix" target="_blank"></a>
+    </div>
 
-        <li>
-            <div>
-                <p>© GEOLYTIX Ltd.</p>
-                <p>All rights reserved</p>
-            </div>
-        </li>
-    </ul>
+    <div style="grid-column: 3;">
+        <a style="display: block;" target="_blank" href="https://docs.google.com/document/d/1ZyhEzxi0MCsMK3HnR6fGpBhNm725916AxmElkOsHFIY">Privacy Policy</a>
+        <a style="display: block;" target="_blank" href="https://docs.google.com/document/d/1MteGDtrZx2TWXcuKqTzEMPRGmtlvEzF0g9Vy9r5H_vs">Terms & Conditions</a>
+        <p>© GEOLYTIX Ltd.</p>
+        <p>All rights reserved</p>
+    </div>
 </div>

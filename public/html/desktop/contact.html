@@ -16,7 +16,12 @@
 
         _xyz.mapview.create({
           target: document.getElementById('map_contact'),
-          scrollWheelZoom: true
+          scrollWheelZoom: true,
+          view: {
+            lat: 51,
+            lng: 0.5,
+            z: 4
+          }
         });
 
         _xyz.layers.list.Offices.show();
