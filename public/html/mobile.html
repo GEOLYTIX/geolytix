@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>GEOLYTIX</title>
 
-    <meta name="description" content="${meta}" />
+    <meta name="description" content="Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers." />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/glx.ico" />
@@ -25,61 +24,193 @@
         ga('send', 'pageview');
     </script>-->
 
-    <link rel="stylesheet" href="/css/mobile.css"/>
+    <link rel="stylesheet" href="https://xyz-geodata-v2.now.sh/geodata/css/control.css" />
 
-    <script src="/js/mobile.js" defer></script>
+    <script src="https://xyz-geodata-v2.now.sh/geodata/js/build/xyz_openlayers.js" defer></script>
 
     <style>
+        @charset "UTF-8";
+    
+        @font-face {
+            font-family: ffmark_black;
+            src: url("/fonts/MarkWeb-Black.woff") format("woff");
+        }
+    
+        @font-face {
+            font-family: ffmark;
+            src: url("/fonts/MarkWebPro.woff") format("woff");
+        }
+    
+        body {
+            font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+            font-size: 16px;
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+    
+        @media screen and (min-width: 400px) {
+            body {
+                font-size: 17px;
+            }
+        }
+    
+        @media screen and (min-width: 600px) {
+            body {
+                font-size: 18px;
+            }
+        }
+    
+        @media screen and (min-width: 800px) {
+            body {
+                font-size: 19px;
+            }
+        }
+    
+        @media screen and (min-width: 1000px) {
+            body {
+                font-size: 20px;
+            }
+        }
 
-    .icon-footer {
-        display: inline-block;
-        width: 60px;
-        height: 60px;
-        background-repeat: no-repeat;
-        background-size: 70%;
-        background-position: center;
-        background-color: #fff;
-        border-radius: 10px;
-        margin: 5px;
-        box-shadow: 3px 3px #444;
-    }
+        h1 {
+            font-size: 200%;
+            padding: 20px 20px 30px 20px;
+        }
+    
+        h2 {
+            font-size: 150%;
+            padding: 0 20px 30px 20px;
+        }
+    
+        .font-150 {
+            font-size: 150%;
+        }
+    
+        .font-200 {
+            font-size: 200%;
+        }
+    
+        .bold {
+            font-family: ffmark, "Open Sans", sans-serif;
+            font-weight: 700;
+        }
 
-    .icon-team {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-        background-repeat: no-repeat;
-        background-size: 70%;
-        background-position: center;
-    }
+        .italic {
+            font-style: italic;
+        }
+    
+        .text-align-centre {
+            text-align: center;
+        }
+    
+        .primary-colour {
+            color: #090;
+        }
+    
+        a {
+            text-decoration: none;
+            color: black;
+        }
+    
+        p {
+            margin: 0;
+            line-height: 1.5;
+        }
+    
+        .img__cover {
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    
+        .img__contain {
+            -webkit-background-size: contain;
+            -moz-background-size: contain;
+            -o-background-size: contain;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    
+        .scroll__x {
+            padding-left: 10px;
+            overflow-y: hidden;
+            overflow-x: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+    
+        .icon-linkedin {
+            background-image: url("./images/icons/linkedin.svg");
+        }
+    
+        .icon-twitter {
+            background-image: url("./images/icons/twitter.svg");
+        }
+    
+        .icon-medium {
+            background-image: url("./images/icons/medium.svg");
+        }
+    
+        .icon-github {
+            background-image: url("./images/icons/github.svg");
+        }
+    
+        .icon-stackexchange {
+            background-image: url("./images/icons/stackexchange.svg");
+        }
 
-    .icon-linkedin {
-        background-image: url("./images/icons/linkedin.svg");
-    }
-
-    .icon-twitter {
-        background-image: url("./images/icons/twitter.svg");
-    }
-
-    .icon-medium {
-        background-image: url("./images/icons/medium.svg");
-    }
-
-    .icon-github {
-        background-image: url("./images/icons/github.svg");
-    }
-
-    .icon-stackexchange {
-        background-image: url("./images/icons/stackexchange.svg");
-    }
-        
     </style>
+
+    <script>
+
+        window.addEventListener('DOMContentLoaded', function () {
+
+            window.onhashchange = setTimeout(function () {
+                document.documentElement.scrollTop -= 50;
+                if (!document.documentElement.scrollTop) window.scrollY -= 50;
+            },500)
+
+            // Location Hash
+            window.location.hash = window.location.hash.replace(/\!/, '');
+
+            // LAZY LOAD IMAGES
+            const imgLoadArray = document.querySelectorAll('.img__load');
+
+            for (let i = 0; i < imgLoadArray.length; i++) {
+                let img = new Image();
+                img.onload = function () {
+                    imgLoadArray[i].style['background-image'] = 'url(/images/' + imgLoadArray[i].dataset.src + ')';
+                    if (imgLoadArray[i].id === 'header') document.querySelectorAll('#header .black').forEach(el => el.classList.remove('black'))
+                };
+                img.src = '/images/' + imgLoadArray[i].dataset.src;
+            }
+        })
+
+
+        // Scroll helper
+        function scrollElementToTop(element, offset = 0, duration = 400) {
+
+            if (duration <= 0) return;
+
+            let tick = (element.getBoundingClientRect().top + offset) / duration * 10;
+
+            setTimeout(function () {
+
+                document.documentElement.scrollTop += tick;
+
+                if (!document.documentElement.scrollTop) window.scrollY += tick;
+
+                scrollElementToTop(element, offset, duration - 10);
+
+            }, 10);
+        }
+
+    </script>
 
 </head>
 
-<body data-locale="${locale}" data-office="${office}">
-
-<div id="inner">
+<body>
 
     ${header}
 
@@ -89,30 +220,15 @@
     
     ${geodata}
 
-    <div id="blog__link"><a href="http://blog.geolytix.net">Please visit our blog.</a></div>
+    <a style="display: block; margin: 30px 0 120px 100px; border-top: 10px solid #090; padding-top: 10px; font-size: 150%; font-weight: 700;" href="http://blog.geolytix.net">Please visit our blog.</a>
 
     ${team}
 
-    <div id="awards__section">
-        <div class="container scroll__x">
-            <div class="scroll__container">
-                <div class="strip">
-                    <div class="award img__contain img__load" data-src="awards/award_qa.jpg"></div>
-                    <div class="award img__contain img__load" data-src="awards/award_odi.jpg"></div>
-                    <div class="award img__contain img__load" data-src="awards/award_fsb.jpg"></div>
-                </div>
-                <div class="strip">
-                    <div class="award img__contain img__load" data-src="awards/award_nba.jpg"></div>
-                    <div class="award img__contain img__load" data-src="awards/award_sla.jpg"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    ${awards}
+
+    ${contact}
 
     ${footer}
-
-<!-- inner -->
-</div>
 
 </body>
 

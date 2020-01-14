@@ -1,30 +1,47 @@
-<div id="footer">
+<style>
+    #footer {
+        background-color: #222;
+        text-align: center;
+        color: white;
+        text-shadow: 2px 2px 2px black;
+    }
 
-    <div class="footer__top">
-        <p class="social_media__icons">
-            <a class="icon-footer icon-linkedin" href="https://www.linkedin.com/company/geolytix" target="_blank"></a>
-            <a class="icon-footer icon-twitter" href="http://twitter.com/geolytix" target="_blank"></a>
-            <a class="icon-footer icon-medium" href="https://medium.com/geolytix" target="_blank"></a>
-        </p>
+    #footer a {
+        display: block;
+        color: white;
+        line-height: 1.5;
+    }
+
+    #footer .icon {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background-repeat: no-repeat;
+        background-size: 70%;
+        background-position: center;
+        background-color: #fff;
+        border-radius: 10px;
+        margin: 5px;
+        box-shadow: 3px 3px #444;
+    }
+</style>
+
+
+<div id="footer" style="display: grid;">
+
+    <div style="grid-row: 1; grid-column: 1/3; margin-bottom: 10px;">
+            <a class="icon icon-linkedin" href="https://www.linkedin.com/company/geolytix" target="_blank"></a>
+            <a class="icon icon-twitter" href="http://twitter.com/geolytix" target="_blank"></a>
+            <a class="icon icon-medium" href="https://medium.com/geolytix" target="_blank"></a>
     </div>
 
-    <div class="footer__half">
-        <a class="logo img__contain img__load" data-src="logo_odi_supporter.png" href="http://theodi.org/" target="_blank"></a>
-    </div>
-
-    <div class="footer__half">
-        <p>+44 (0)20 72 39 49 77</p>
-        <p>info@geolytix.co.uk</p>
-        <p>Phoenix Yard</p>
-        <p>65 Kings Cross Road</p>
-        <p>London</p>
-        <p>WC1X 9LW</p>
-    </div>
-
-    <div class="footer__bottom">
-        <p><a class="privacy_policy" target="_blank" href="https://docs.google.com/document/d/1ZyhEzxi0MCsMK3HnR6fGpBhNm725916AxmElkOsHFIY">Privacy Policy</a></p>
-        <p><a class="terms_conditions" target="_blank" href="https://docs.google.com/document/d/1MteGDtrZx2TWXcuKqTzEMPRGmtlvEzF0g9Vy9r5H_vs">Terms & Conditions</a></p>
+    <div style="grid-row: 2; grid-column: 1;">
+        <a class="img__contain img__load" data-src="icons/logo_odi_supporter.png" href="http://theodi.org/" target="_blank" style="height: 100px; margin: 10px; background-position: center;"></a>
+        <a class="privacy_policy" target="_blank" href="https://docs.google.com/document/d/1ZyhEzxi0MCsMK3HnR6fGpBhNm725916AxmElkOsHFIY">Privacy Policy</a></p>
+        <a class="terms_conditions" target="_blank" href="https://docs.google.com/document/d/1MteGDtrZx2TWXcuKqTzEMPRGmtlvEzF0g9Vy9r5H_vs">Terms & Conditions</a></p>
         <p>© GEOLYTIX Ltd.</p>
     </div>
+
+    <div id="contact_text" style="grid-row: 2; grid-column: 2; line-height: 1.5;"></div>
 
 </div>

@@ -1,18 +1,166 @@
-<div id="intro__section" class="intro__section img__cover img__load" data-src="intro_geolytix_m.jpg">
-    <div id="intro__menu">
-        <div id="services">SERVICES</div>
-        <div id="case_studies">CASE STUDIES</div>
-        <div id="geodata">GEODATA</div>
-        <div id="blog"><a href="https://blog.geolytix.net">BLOG</a></div>
-        <div id="team">TEAM</div>
-        <div id="contact">CONTACT</div>
-        <div>
-            <a class="flag_link img__load" data-src="de.svg" title="GEOLYTIX Deutschland" href="https://geolytix.de"></a>
-            <a class="flag_link img__load" data-src="pl.svg" title="GEOLYTIX Poland" href="https://geolytix.pl"></a>
-            <a class="flag_link img__load" data-src="cn.svg" title="GEOLYTIX China" href="https://geolytix.cn"></a>
-            <a class="flag_link img__load" data-src="jp.svg" title="GEOLYTIX Japan" href="https://geolytix.jp"></a>
+<style>
+
+    #header {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-position: center center;
+    }
+
+    .black {
+        color: black !important
+    }
+
+    #header > .menu {
+        position: fixed;
+        z-index: 999;
+        width: 100%;
+        height: 0;
+        background-color: white;
+        overflow-x: hidden;
+        transition: all 0.5s linear;
+    }
+
+    #header > .menu > .logo {
+        font-family: ffmark_black, sans-serif;
+        position: fixed;
+        left: 20px;
+        top: 20px;
+        font-size: 70px;
+        transition: all 0.5s linear;
+        color: white;
+    }
+
+    #header > .menu.header__smaller {
+        height: 40px;
+        box-shadow: 0 1px 3px #555;
+    }
+
+    #header > .menu.show {
+        height: 100%;
+        box-shadow: 0 1px 3px #555;
+    }
+
+    #header > .menu.header__smaller > .logo {
+        left: 10px;
+        top: 6px;
+        font-size: 30px;
+        color: black !important;
+    }
+
+    #header > .menu > .burger {
+        position: absolute;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        background-color: white;
+        background-image: url(/images/icons/menu.svg);
+    }
+
+    #header > .menu.show > .burger {
+        background-image: url(/images/icons/close.svg);
+    }
+
+    .flag_link {
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-size: contain;
+        border-radius: 100%;
+        box-shadow: 1px 1px 3px #999;
+        margin: 10px;
+    }
+
+    .icon_de {
+        background-image: url("/images/icons/de.svg");
+    }
+
+    .icon_pl {
+        background-image: url("/images/icons/pl.svg");
+    }
+
+    .icon_cn {
+        background-image: url("/images/icons/cn.svg");
+    }
+
+    .icon_jp {
+        background-image: url("/images/icons/jp.svg");
+    }
+
+    #intro__text {
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+        width: 50%;
+        font-size: 50px;
+        font-weight: 700;
+        text-shadow: 2px 1px #aaa;
+        color: white;
+    }
+
+</style>
+
+
+<div id="header" class="img__cover img__load" data-src="intro_geolytix_m.jpg">
+    
+    <div class="menu">
+        <div class="logo black">GEOLYTIX</div>
+        <div class="burger img__contain"></div>
+        <div style="margin-top: 70px; text-align: center; line-height: 2;">
+            <div class="scroll_to" data-id="services">SERVICES</div>
+            <div class="scroll_to" data-id="case_studies">CASE STUDIES</div class="scroll_to">
+            <div class="scroll_to" data-id="geodata">GEODATA</div>
+            <a href="https://blog.geolytix.net" target="_blank">BLOG</a>
+            <div class="scroll_to" data-id="team">TEAM</div class="scroll_to">
+            <div class="scroll_to" data-id="contact">CONTACT</div class="scroll_to">
+            <div>
+                <a class="flag_link icon_de" title="GEOLYTIX Deutschland" href="https://geolytix.de"></a>
+                <a class="flag_link icon_pl" title="GEOLYTIX Poland" href="https://geolytix.pl"></a>
+                <a class="flag_link icon_cn" title="GEOLYTIX China" href="https://geolytix.cn"></a>
+                <a class="flag_link icon_jp" title="GEOLYTIX Japan" href="https://geolytix.jp"></a>
+            </div>
         </div>
     </div>
-    <span id="intro__logo">GEOLYTIX</span><i id="intro__burger" class="material-icons">menu</i>
-    <span id="intro__text"></span>
+    
+    <div id="intro__text" class="black">Better decisions where location matters</div>
 </div>
+
+
+<script>
+
+        window.addEventListener('DOMContentLoaded', function () {
+
+            function setHeader() {
+                let distanceY = document.documentElement.scrollTop || document.body.scrollTop;
+                distanceY > 300 ?
+                    document.querySelector('#header > .menu').classList.add('header__smaller') :
+                    document.querySelector('#header > .menu').classList.remove('header__smaller');
+
+            }
+
+            setHeader()
+
+            window.addEventListener('scroll', function () { setHeader() });
+
+            window.addEventListener('touchmove', function () { setHeader() });
+
+            document.querySelector('#header > .menu > .burger').addEventListener('click', function (e) {
+                e.target.parentElement.classList.toggle('show');
+            });
+
+            //MENU scroll
+            document.querySelectorAll('.scroll_to').forEach(function (el) {
+
+                el.onclick = function () {
+                    document.querySelector('#header > .menu').classList.remove('show');
+                    window.location.hash = '!' + el.dataset.id;
+                    const section = document.getElementById(el.dataset.id);
+                    section && scrollElementToTop(section, -section.dataset.offset || 0, 400);
+                }
+
+            });
+
+        })
+
+</script>
