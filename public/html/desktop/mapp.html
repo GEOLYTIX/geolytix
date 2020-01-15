@@ -1,0 +1,98 @@
+<style>
+    #mapp .ul_grid>li {
+        width: 24%;
+    }
+
+    #mapp .li_card {
+        height: 250px;
+    }
+
+    #mapp .li_card__img {
+        height: 180px;
+        background-size: 50%;
+    }
+</style>
+
+<section id="mapp" data-offset=100 style="margin: 100px auto 50px auto; padding: 0 50px; max-width: 1500px;">
+    <h1 class="bold">Mapp</h1>
+    <h2 class="bold primary-colour">Our knowledge and data directly into your hands.</h2>
+    <h3 class="bold">Secure and available whenever and wherever you are, MAPP allows spatial intelligence to be available for every decision.</h3>
+    <ul class="ul_grid">
+        <li>
+            <div class="li_card cursor">
+                <div class="li_card__img img__contain img__load" data-src="mapp/seamless.svg"></div>
+                <div class="font-150 bold text-align-centre">Seamless</div>
+            </div>
+            <div class="li_expander">
+                <p class="font-150">Our consultancy services allow us to optimise the way you access spatial intelligence from our latest geodata packages and your own business metrics. Out in the field or at your desk the application is seamless. Key data attributes, locations, and imagery may be captured wherever internet access is available.</p>
+            </div>
+        </li>
+        <li>
+            <div class="li_card cursor">
+                <div class="li_card__img img__contain img__load" data-src="mapp/_customisable.svg"></div>
+                <div class="font-150 bold text-align-centre">Customisable</div>
+            </div>
+            <div class="li_expander">
+                <p class="font-150">Build on top of an <a href="https://geolytix.github.io/xyz" target="_blank">open source API</a>, the MAPP interface provides customisable dashboards. These can be <a href="https://drive.google.com/open?id=1ds_zuWafPlV-plEOShpvGMxdw2fOnJWJ" target="_blank">reports for export to PDF</a> or functional widgets to be integrated in your website. Workspace configurations allow for the integration of models to be evaluated live and displayed within MAPP.</p>
+            </div>
+        </li>
+        <li>
+            <div class="li_card cursor">
+                <div class="li_card__img img__contain img__load" data-src="mapp/_secure.svg"></div>
+                <div class="font-150 bold text-align-centre">Secure</div>
+            </div>
+            <div class="li_expander">
+                <p class="font-150">Tiered security allows for the publication of open data as well as role based access. Applications can be accessible to the public with sensitive information being stored on different server accessible only via secure access. Roles can be assigned to registered user granting administrative rights to individual datasets or part thereof and the application itself.</p>
+            </div>
+        </li>
+        <li>
+            <div class="li_card cursor">
+                <div class="li_card__img img__contain img__load" data-src="mapp/scalable.svg"></div>
+                <div class="font-150 bold text-align-centre">Scalable</div>
+            </div>
+            <div class="li_expander">
+                <p class="font-150">Data and API hosted either on your premises or with a cloud services partner. Being able to deploy data and API as a service the application is scalable to run analytics processes synchronous. Maintained either by yourself or our expert systems engineers.</p>
+            </div>
+        </li>
+    </ul>  
+    
+    <p class="bold font-150">Please take a look at our hosted <span data-id="geodata" class="scroll_to primary-colour cursor">GEODATA</span> powered by MAPP or contact <a href="mailto:info@geolytix.co.uk">info@geolytix.co.uk</a> to talk about your requirements.</p>
+
+    <!-- <iframe style="margin-to>p: 30px;" width="100%" height="600px" src="https://www.youtube.com/embed/gESbH8y_Ft0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+</section>
+
+
+<script>
+
+    window.addEventListener('DOMContentLoaded', function () {
+
+        const section = document.getElementById('mapp');
+
+        section.querySelectorAll('.ul_grid .li_card').forEach(function (card) {
+
+            card.onclick = function () {
+                expandCard(card);
+            }
+        });
+
+        expandCard(section.querySelector('.ul_grid .li_card'));
+
+        function expandCard(card) {
+
+            const grid = card.closest('.ul_grid');
+
+            grid.querySelector('.visible') && grid.querySelector('.visible').classList.remove('visible');
+
+            const expanded = grid.querySelector('.expanded');
+            expanded && expanded.parentNode.removeAttribute('style');
+            expanded && expanded.classList.remove('expanded');
+
+            card.classList.add('expanded');
+
+            card.nextElementSibling.classList.add('visible');
+            card.parentNode.style.height = (card.offsetHeight + card.nextElementSibling.offsetHeight + 50) + 'px';
+        }
+
+    })
+
+</script>
