@@ -18,11 +18,24 @@
       }
     }
   ],
-  "routes": [
-    { "src": "/", "dest": "/handler.js" },
-    { "src": "/public/(.*)", "dest": "/public/$1" },
-    { "src": "/public/*/(.*)", "dest": "/public/$1/$2" },
-    { "src": "/(css|fonts|html|images|js)/(.*)", "dest": "/public/$1/$2" },
-    { "src": "/(.*)", "dest": "/public/$1" }
+  "trailingSlash": false,
+  "rewrites": [
+      {
+          "source": "/",
+          "destination": "/handler.js"
+      },
+      {
+          "source": "/public/(.*)",
+          "destination": "/public/$1"
+      },
+
+      {
+          "source": "/(css|fonts|html|images|js)/(.*)",
+          "destination": "/public/$1/$2"
+      },
+      {
+          "source": "/(.*)",
+          "destination": "/public/$1"
+      }
   ]
 }
