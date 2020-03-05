@@ -270,4 +270,29 @@
             </tr>
         </table>
     </div>
+
+    <div id="team_photo" class="img__load" data-src="team/glx_team.jpg" style="background-position: 50% 100%; background-size: cover;"></div>
+
 </section>
+
+<script>
+
+    window.addEventListener('DOMContentLoaded', function () {
+
+        // PARALLAX TEAM PHOTO
+        const team_photo = document.getElementById('team_photo');
+
+        team_photo.style.height = team_photo.offsetWidth * 0.5 + 'px';
+
+        window.addEventListener('resize', function () {
+            team_photo.style.height = team_photo.offsetWidth * 0.47 + 'px';
+        });
+
+        window.addEventListener('scroll', function () {
+            let shift = 100 - ((team_photo.offsetTop - window.pageYOffset) / window.innerHeight * 100);
+            if (shift > 0 && shift < 100) team_photo.style.backgroundPosition = '50% ' + shift + '%';
+        });
+
+    });
+
+</script>
