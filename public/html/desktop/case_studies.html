@@ -1,344 +1,404 @@
 <style>
-#case_studies {
-  background-color: #090;
-  color: white;
-  padding: 50px 50px 30px 50px;
-}
+  #case_studies {
+    background-color: #090;
+    color: white;
+    padding: 50px 50px 30px 50px;
+  }
 
-#case_studies table {
-  transition: all 0.5s;
-}
+  #case_studies table {
+    transition: all 0.5s;
+  }
 
-#case_studies_strip {
-  width: 100%;
-  border-bottom: 1px solid #fff;
-}
+  #case_studies_strip {
+    width: 100%;
+    border-bottom: 1px solid #fff;
+  }
 
-#case_studies_strip>table {
-  width: 360%;
-  height: 150px;
-  margin-left: -100%;
-}
+  #case_studies_strip>table {
+    width: 360%;
+    height: 150px;
+    margin-left: -100%;
+  }
 
-#case_studies_strip .logo {
-  position: relative;
-  background-size: 80%;
-}
+  #case_studies_strip .logo {
+    position: relative;
+    background-size: 80%;
+  }
 
-#case_studies_strip .active:after,
-#case_studies_strip .active:before {
-  position: absolute;
-  bottom: -1px;
-  left: 50%;
-  height: 0;
-  width: 0;
-  border: solid transparent;
-  content: " ";
-  pointer-events: none;
-}
+  #case_studies_strip .active:after,
+  #case_studies_strip .active:before {
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    height: 0;
+    width: 0;
+    border: solid transparent;
+    content: " ";
+    pointer-events: none;
+  }
 
-#case_studies_strip .active:before {
-  border-bottom-color: #fff;
-  border-width: 17px;
-  margin-left: -17px;
-}
+  #case_studies_strip .active:before {
+    border-bottom-color: #fff;
+    border-width: 17px;
+    margin-left: -17px;
+  }
 
-#case_studies_strip .active:after {
-  border-bottom-color: #090;
-  border-width: 15px;
-  margin-left: -15px;
-  z-index: 999;
-}
+  #case_studies_strip .active:after {
+    border-bottom-color: #090;
+    border-width: 15px;
+    margin-left: -15px;
+    z-index: 999;
+  }
 
-#case_studies_container {
-  margin-top: 30px;
-  width: 100%;
-  overflow: hidden;
-}
+  #case_studies_container {
+    margin-top: 30px;
+    width: 100%;
+    overflow: hidden;
+  }
 
-#case_studies_container>table {
-  width: 900%;
-  table-layout: fixed;
-  margin-left: -800%;
-}
+  #case_studies_container>table {
+    width: 900%;
+    table-layout: fixed;
+    margin-left: -800%;
+  }
 
-#case_studies_container>table td {
-  padding-right: 15px;
-  padding-left: 10px;
-  vertical-align: top;
-  line-height: 1.5em;
-}
+  #case_studies_container>table td {
+    padding-right: 15px;
+    padding-left: 10px;
+    vertical-align: top;
+    line-height: 1.5em;
+  }
 
-#case_studies_container>table ul {
-  padding-left: 20px;
-  margin: 0;
-}
+  #case_studies_container>table ul {
+    padding-left: 20px;
+    margin: 0;
+  }
 
-#case_studies_container>table ul>li {
-  padding-bottom: 10px;
-}
+  #case_studies_container>table ul>li {
+    padding-bottom: 10px;
+  }
 
-#case_studies_container>table tr:first-of-type td {
-  padding-bottom: 20px;
-  text-align: center;
-  font-weight: 700;
-  font-size: 150%;
-}
+  #case_studies_container>table tr:first-of-type td {
+    padding-bottom: 20px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 150%;
+  }
 
-#case_studies_container>table .quote {
+  #case_studies_container>table .quote {
     font-style: italic;
     margin-bottom: 16px;
-}
-
+  }
 </style>
 
 <section id="case_studies" data-offset=50>
-    <div style="max-width: 1500px; margin: 0 auto;">
-        <h1 class="bold">Case Studies</h1>
-        <h3 class="bold">We build close, on-going relationships with our customers and will become your trusted advisers.</h3>
+  <div style="max-width: 1500px; margin: 0 auto;">
+    <h1 class="bold">Nasi Klienci</h1>
+    <h3 class="bold">Budujemy bliskie i stabilne relacje z naszymi klientami - również dla Waszej firmy staniemy się
+      zaufanymi doradcami.</h3>
 
-        <div id="case_studies_strip">
-            <table cellpadding="0" cellspacing="0">
-                <td class="cursor img__contain logo camelot img__load" data-src="clients/camelot_logo_white.png"></td>
-                <td class="cursor img__contain logo johnlewis img__load" data-src="clients/johnlewis_logo_white.png"></td>
-                <td class="cursor img__contain logo onthemarket img__load" data-src="clients/onthemarket_logo_white.png"></td>
-                <td class="cursor img__contain logo arco img__load" data-src="clients/arco_logo_white.png"></td>
-                <td class="cursor img__contain logo totalfitness img__load" data-src="clients/totalfitness_logo_white.png"></td>
-                <td class="cursor img__contain logo asda img__load" data-src="clients/walmart_logo_white.png"></td>
-                <td class="cursor img__contain logo swinton img__load" data-src="clients/swinton_logo_white.png"></td>
-                <td class="cursor img__contain logo marks_and_spencer img__load" data-src="clients/marks_and_spencer_logo_white.png"></td>
-                <td class="cursor img__contain logo dominos img__load active" data-src="clients/dominos_logo_white.png"></td>
-                <td class="cursor img__contain logo camelot img__load" data-src="clients/camelot_logo_white.png"></td>
-                <td class="cursor img__contain logo johnlewis img__load" data-src="clients/johnlewis_logo_white.png"></td>
-                <td class="cursor img__contain logo onthemarket img__load" data-src="clients/onthemarket_logo_white.png"></td>
-                <td class="cursor img__contain logo arco img__load" data-src="clients/arco_logo_white.png"></td>
-                <td class="cursor img__contain logo totalfitness img__load" data-src="clients/totalfitness_logo_white.png"></td>
-                <td class="cursor img__contain logo asda img__load" data-src="clients/walmart_logo_white.png"></td>
-                <td class="cursor img__contain logo swinton img__load" data-src="clients/swinton_logo_white.png"></td>
-                <td class="cursor img__contain logo marks_and_spencer img__load" data-src="clients/marks_and_spencer_logo_white.png"></td>
-                <td class="cursor img__contain logo dominos img__load" data-src="clients/dominos_logo_white.png"></td>
-            </table>
-        </div>
-
-        <div id="case_studies_container">
-            <table>
-                <tr>
-                    <td>Camelot</td>
-                    <td>Strategy</td>
-                    <td>Results</td>
-                    <td>John Lewis</td>
-                    <td>Strategy</td>
-                    <td>Results</td>
-                    <td>On The Market</td>
-                    <td>Strategy</td>
-                    <td>Results</td>
-                    <td>Arco</td>
-                    <td>Strategy</td>
-                    <td>Results</td>
-                    <td>Total Fitness</td>
-                    <td>Strategy</td>
-                    <td>Results</td>
-                    <td>ASDA</td>
-                    <td>Strategy</td>
-                    <td>Results</td>
-                    <td>Swinton</td>
-                    <td>Strategy</td>
-                    <td>Results</td>
-                    <td>Marks and Spencer</td>
-                    <td>Strategy</td>
-                    <td>Results</td>
-                    <td>Dominos</td>
-                    <td>Strategy</td>
-                    <td>Results</td>
-                </tr>
-                <tr>
-
-                    <td>
-                        <p>Predicting future revenue potential from new lottery terminals, marketing activity and product innovations.</p>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Understanding the behaviour of existing customers to build a model to predict the future.</li>
-                            <li>Understand the effect of demographics and channel at a detailed level.</li>
-                            <li>Develop on a platform that will provide in field analytics and mobile data capture, in order to futureproof processes and accuracy.</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <p class="quote">"GEOLYTIX have transformed our location planning capability and have been fundamental in supporting our goal of unlocking opportunities for growth, optimising our ever changing retail network and further influencing channel strategies. They have absolutely enabled us to make better decisions where location matters."</p>
-                        <p>Paul Clarke, Retail Planning Manager</p>
-                    </td>
-
-                    <td>
-                        <p>Improving the efficiency of the Catchment Strategy Review Process.</p>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Our job was to focus on the process, rather than the modelling which John Lewis carry out in-house.</li>
-                            <li>Automate all steps in the process – as few clicks as possible.</li>
-                            <li>Include geodata to improve the system.</li>
-                            <li>Allow multiple strategic scenarios to be carried out more quickly, including the addition of click and collect locations.</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <p class="quote">"The GEOLYTIX team were able to provide a bespoke solution that worked for us, rather than an off-the-shelf product. Simon went the extra mile and worked closely with us resulting in a significant improvement in efficiency, allowing multiple multi-channel strategy scenarios to be reviewed."</p>
-                        <p>Michael Flood, Strategic Customer Analysis Manager</p>
-                    </td>
-
-                    <td>
-                        <p>Supporting On The Market to deliver a web search tool that provides the right properties to view.</p>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Provide town and suburb boundaries that reflect where people want to live.</li>
-                            <li>Support in creating a search hierarchy that covers all options for users.</li>
-                            <li>Provide an accurate Point of Interest dataset to describe the provision in an area e.g. schools, public transport, supermarkets.</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <p class="quote">"The GEOLYTIX team worked with us to understand our needs and provide accurate data that successfully reflects the areas where people want to search for property. Furthermore they supported our technical team with valuable advice, supporting us in delivering to tight timescales."</p>
-                        <p>Morgan Ross, IT Director</p>
-                    </td>
-
-                    <td>
-                        <p>Understanding the drivers of store performance, and to use this to develop a blueprint for expansion of the stores network across the UK.</p>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>In depth analysis of store data to build understanding of branch catchment areas.</li>
-                            <li>Identification of the key factors which drive branch performance – both at the macro (market) level and at the micro (location specific) level.</li>
-                            <li>Development of a unique, bespoke database of all trade parks in the UK, each ranked according to it’s suitability for a new Arco store.</li>
-                            <li>Identification of the best opportunities for new branch openings, in terms of both the markets to enter and the trade parks on which to locate.</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <p class="quote">"The GEOLYTIX team worked closely with us to help us to understand our trade customers and stores. Their insight has identified the growth potential for our retail business, and a detailed blueprint to guide our strategic investments as we develop our branch portfolio."</p>
-                        <p>Paul Frewin, Divisional Director - Retail</p>
-                    </td>
-
-                    <td>
-                        <p>Understanding the size of the opportunity for new gym locations.</p>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Determining the best locations for the next Total Fitness gyms.</li>
-                            <li>Understand the true customer profiles and catchments for specific location types.</li>
-                            <li>Understand the size of the opportunity and how this affects market share and access to potential customers.</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <p class="quote">"The work by GEOLYTIX quickly allowed us to understand the potential for increasing our market share and how we could best achieve this. They have given us the insight to support our strategic decision making in order to push our business forward."</p>
-                        <p>Richard Millman, CEO</p>
-                    </td>
-
-                    <td>
-                        <p>A complete overhaul of new store forecasting processes and new space strategy.</p>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Business Requirements & IT Systems Design Review.</li>
-                            <li>Forecasting Models Development– User front end to drive efficiency.</li>
-                            <li>Team coaching and mentoring.</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <p class="quote">"The data & modelling will drive an increase in our forecasting accuracy, bespoke software development makes us more efficient. Just as importantly, GEOLYTIX have mentored and up-skilled the team. The work we have done with GEOLYTIX has shaped our strategy and enabled us to reach a space growth plan we are confident about. GEOLYTIX are helping us to invest wisely."</p>
-                        <p>David Dodd, Market Strategy Manager</p>
-                    </td>
-
-                    <td>
-                        <p>Understanding the optimum number of branches and the right locations.</p>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Understanding Demand, Success and Channel Drivers.</li>
-                            <li>Learn from the previous branch merger programme.</li>
-                            <li>Understanding the effect of a physical Store.</li>
-                            <li>Determine the micro factors that drive more customers into branch.</li>
-                            <li>Create the optimum network of stores and strategy for the existing estate.</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <p class="quote">"GEOLYTIX helped us overlay a scientific approach onto a robust location planning framework, working with our finance and regional teams to advise on an optimum network.  Understanding the effect of any individual merger on the existing estate was essential for our decision making processes. GEOLYTIX was able to provide both the big picture thinking alongside the detailed evidence."</p>
-                        <p>Philip Calcutt, Senior Marketing Manager</p>
-                    </td>
-
-                    <td>
-                        <p>Support a step change in the roll-out of the Food estate. Understand the drivers of performance for the Clothing & Home estate and recommend the optimum network blueprint.</p>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Create an efficient selection & sales forecasting process, based on a rigorous, objective fact base and a consistent approach.</li>
-                            <li>Understand the drivers and catchments of the Clothing & Home estate, in order to build optimal networks.</li>
-                            <li>Integrate custom models with existing data and software to create the M&S modelling toolkit.</li>
-                            <li>Bulk run multiple national and regional scenarios to guide network strategy and create future blueprints.</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <p class="quote">"GEOLYTIX have worked with us to create a bespoke toolset enabling us to proactively set our strategy and quickly answer any What if scenarios. Their analysis and recommendations have provided us with a consistent evidence base from which to make our network decisions."</p>
-                        <p>Robert Morray, Head of Location Planning</p>
-                    </td>
-
-                    <td>
-                        <p>Support the Dominos strategy to be the number one pizza company in each neighbourhood with a focus on franchisee profitability.</p>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Understand the true drivers of store performance & the impact on nearby stores of opening new sites.</li>
-                            <li>Predict new store sales and cannibalisation using a consistent, transparent fact base and model.</li>
-                            <li>Improve the efficiency of the store forecasting process to allow more time for the value-add.</li>
-                            <li>Deliver the ideal network blueprint and optimum network strategy.</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <p class="quote">"Our work with GEOLYTIX has enabled us to form a consistent approach to new site forecasting, step changing our understanding of customers catchments and improving our ability to understand regional and store performance. The collaborative approach has resulted in us being able to make decisions around our future location strategy and form ideal network blueprints with significantly increased confidence.”</p>
-                        <p>Craig Donnellan, Head of Location Planning</p>
-                    </td>
-
-                </tr>
-            </table>
-        </div>
+    <div id="case_studies_strip">
+      <table cellpadding="0" cellspacing="0">
+        <td class="cursor img__contain logo camelot img__load" data-src="clients/camelot_logo_white.png"></td>
+        <td class="cursor img__contain logo johnlewis img__load" data-src="clients/johnlewis_logo_white.png"></td>
+        <td class="cursor img__contain logo onthemarket img__load" data-src="clients/onthemarket_logo_white.png"></td>
+        <td class="cursor img__contain logo arco img__load" data-src="clients/arco_logo_white.png"></td>
+        <td class="cursor img__contain logo totalfitness img__load" data-src="clients/totalfitness_logo_white.png"></td>
+        <td class="cursor img__contain logo asda img__load" data-src="clients/walmart_logo_white.png"></td>
+        <td class="cursor img__contain logo swinton img__load" data-src="clients/swinton_logo_white.png"></td>
+        <td class="cursor img__contain logo marks_and_spencer img__load"
+          data-src="clients/marks_and_spencer_logo_white.png"></td>
+        <td class="cursor img__contain logo dominos img__load active" data-src="clients/dominos_logo_white.png"></td>
+        <td class="cursor img__contain logo camelot img__load" data-src="clients/camelot_logo_white.png"></td>
+        <td class="cursor img__contain logo johnlewis img__load" data-src="clients/johnlewis_logo_white.png"></td>
+        <td class="cursor img__contain logo onthemarket img__load" data-src="clients/onthemarket_logo_white.png"></td>
+        <td class="cursor img__contain logo arco img__load" data-src="clients/arco_logo_white.png"></td>
+        <td class="cursor img__contain logo totalfitness img__load" data-src="clients/totalfitness_logo_white.png"></td>
+        <td class="cursor img__contain logo asda img__load" data-src="clients/walmart_logo_white.png"></td>
+        <td class="cursor img__contain logo swinton img__load" data-src="clients/swinton_logo_white.png"></td>
+        <td class="cursor img__contain logo marks_and_spencer img__load"
+          data-src="clients/marks_and_spencer_logo_white.png"></td>
+        <td class="cursor img__contain logo dominos img__load" data-src="clients/dominos_logo_white.png"></td>
+      </table>
     </div>
+
+    <div id="case_studies_container">
+      <table>
+        <tr>
+          <td>Camelot</td>
+          <td>Strategia</td>
+          <td>Rezultat</td>
+          <td>John Lewis</td>
+          <td>Strategia</td>
+          <td>Rezultat</td>
+          <td>On The Market</td>
+          <td>Strategia</td>
+          <td>Rezultat</td>
+          <td>Arco</td>
+          <td>Strategia</td>
+          <td>Rezultat</td>
+          <td>Total Fitness</td>
+          <td>Strategia</td>
+          <td>Rezultat</td>
+          <td>ASDA</td>
+          <td>Strategia</td>
+          <td>Rezultat</td>
+          <td>Swinton</td>
+          <td>Strategia</td>
+          <td>Rezultat</td>
+          <td>Marks and Spencer</td>
+          <td>Strategia</td>
+          <td>Rezultat</td>
+          <td>Dominos</td>
+          <td>Strategia</td>
+          <td>Rezultat</td>
+        </tr>
+        <tr>
+
+          <td>
+            <p>Prognozowanie przyszłych przychodów z nowych terminali loteryjnych, działań marketingowych oraz innowacji
+              produktowych.</p>
+          </td>
+          <td>
+            <ul>
+              <li>Zrozumienie zachowań obecnych klientów, w celu stworzenia modelu prognostycznego.</li>
+              <li>Zrozumienie wpływu danych demograficznych na obroty poszczególnych oddziałów.</li>
+              <li>Stworzenie platformy, która zapewni funkcje analityki terenowej i mobilnego rejestrowania danych w
+                celu
+                poprawy efektywności oraz dokładności procesu prognozowania.</li>
+            </ul>
+          </td>
+          <td>
+            <p class="italic">"GEOLYTIX zmienił nasz proces planowania nowych lokalizacji co miało fundamentalne
+              znaczenie
+              dla osiągnięcia strategicznego celu jakim jest maksymalizacja rozwoju naszej sieci - naprawdę nauczyli nas
+              podejmować lepsze decyzje tam, gdzie lokalizacja ma znaczenie."</p>
+            <p>Paul Clarke, Manager ds. Planowania Sieci Detalicznej</p>
+          </td>
+
+          <td>
+            <p>Poprawa efektywności procesu przeglądu catchmentów.</p>
+          </td>
+          <td>
+            <ul>
+              <li>Naszym zadaniem było skoncentrowanie się na procesie, a nie na samym modelowaniu - jest ono w firmie
+                John Lewis tworzone przez ich własny zespół.</li>
+              <li>Automatyzacja wszystkich etapów procesu - jak najmniej kliknięć.</li>
+              <li>Włączenie danych geograficznych, w celu poprawy systemu.</li>
+              <li>Stworzenie możliwości multiplikowania scenariuszy w bardziej efektywny sposób w tym dodanie
+                lokalizacji
+                "przyjedź i odbierz" (click & collect).</li>
+            </ul>
+          </td>
+          <td>
+            <p class="italic">"Zespół GEOLYTIX był w stanie dostarczyć rozwiązanie na miarę dostosowane do naszych
+              potrzeb.
+              Simon nawet poszedł o krok dalej i blisko z nami współpracując przyczynił się do dużej poprawy wydajności,
+              która pozwoliła na tworzenie scenariuszy dla strategii wielokanałowych."</p>
+            <p>Michael Flood, Strategic Customer Analysis Manager</p>
+          </td>
+
+          <td>
+            <p>Stworzyć narzędzie, które pozwoli znajdywać i przeglądać odpowiednie nieruchomości mieszkaniowe w
+              Internecie.</p>
+          </td>
+          <td>
+            <ul>
+              <li>Dostarczenie granic obszarów mieszkalnych w których klienci poszukują domów lub mieszkań.</li>
+              <li>Wsparcie w tworzeniu hierarchii wyszukiwania, która obejmuje wszystkie opcje dla użytkowników.</li>
+              <li>Stworzenie dokładnej bazy danych POI która doda charakterystykę danego obszaru np. szkoły, transport
+                publiczny, sklepy.</li>
+            </ul>
+          </td>
+          <td>
+            <p class="italic">"Zespół GEOLYTIX współpracował z nami, aby najpierw zrozumieć nasze potrzeby a następnie
+              zapewnić nam właściwe dane odzwierciedlające obszary, w których ludzie chcą znaleźć dom lub mieszkanie.
+              Ponadto przekazali wiele cennych porad naszemu zespołowi technicznemu i dotrzymali bardzo napiętych
+              terminów."</p>
+            <p>Morgan Ross, Dyrektor IT</p>
+          </td>
+
+          <td>
+            <p>Zrozumienie czynników wpływających na obroty sklepów i późniejsze ich wykorzystanie do stworzenia matrycy
+              do strategii rozwoju na terenie Wielkiej Brytanii.</p>
+          </td>
+          <td>
+            <ul>
+              <li>Pogłębiona analiza danych sklepów w celu zrozumienia obszarów odziaływania dla każdej lokalizacji.
+              </li>
+              <li>Identyfikacja kluczowych czynników wpływających na sprzedaż każdego oddziału - zarówno w skali makro
+                jak
+                i na poziomie mikro (dla każdej lokalizacji).</li>
+              <li>Opracowanie unikatowej, dostosowanej do potrzeb klienta bazy wszystkich parków handlowych w Wielkiej
+                Brytanii, z których każda jest uszeregowana zgodnie z jej przydatnością dla nowego sklepu Arco.</li>
+              <li>Zidentyfikowanie możliwości otwarcia nowych oddziałów, biorąc pod uwagę nie tylko potencjał rynkowy
+                ale
+                również konkretne lokalizacje parków handlowych w których można otworzyć nowy punkt Arco.</li>
+            </ul>
+          </td>
+          <td>
+            <p class="italic">"Zespół GEOLYTIX ściśle z nami współpracował, tak abyśmy mogli zrozumieć nasz biznes,
+              naszych
+              klientów oraz nasze sklepy. Ich analiza przyczyniła się do zidentyfikowania potencjału wzrostu dla naszego
+              biznesu i opracowania szczegółowego planu rozwoju naszej sieci."</p>
+            <p>Paul Frewin, Dyrektor Operacyjny</p>
+          </td>
+
+          <td>
+            <p>Zrozumienie potencjału otwarć nowych siłowni.</p>
+          </td>
+          <td>
+            <ul>
+              <li>Wyznaczenie najlepszych lokalizacji dla przyszłych siłowni Total Fitness.</li>
+              <li>Zrozumienie profilów klienckich oraz obszarów, w których mieszkają dla poszczególnych typów
+                lokalizacji.
+              </li>
+              <li>Zrozumienie potencjału rynku, jego wpływu na udziały rynkowe oraz dotarcie do nowych klientów.</li>
+            </ul>
+          </td>
+          <td>
+            <p class="italic">"GEOLYTIX w szybki sposób pozwolił nam zrozumieć o ile możemy zwiększyć nasze udziały
+              rynkowe
+              i jak to mamy osiągnąć. Dostarczyli odpowiednie analizy, które pomogły nam podjąć właściwe decyzje
+              strategiczne w kwestii rozwoju naszego biznesu."</p>
+            <p>Richard Millman, CEO</p>
+          </td>
+
+          <td>
+            <p>Kompleksowa rewizja dotychczasowych sposobów przewidywania obrotów dla nowych sklepów oraz budowa
+              strategii
+              nowych otwarć.</p>
+          </td>
+          <td>
+            <ul>
+              <li>Przegląd wymagań biznesowych i systemów IT.</li>
+              <li>Budowa modeli statystycznych przewidujących obroty dla nowych sklepów.</li>
+              <li>Szkolenie dla zespólu.</li>
+            </ul>
+          </td>
+          <td>
+            <p class="italic">"Nowe dane oraz modele statystyczne znacznie poprawią dokładność naszych prognoz sprzedaży
+              a
+              nowe oprogramowanie usprawni naszą produktywność. Co najważniejsze, GEOLYTIX zapewnił właściwe szkolenie
+              podnosząc kwalifikacje naszego zespołu. Projekt, który wykonaliśmy razem z firmą GEOLYTIX ukształtował
+              naszą
+              strategię i umożliwił nam osiągnięcie planu otwarć nowych sklepów. GEOLYTIX naprawdę wywiązuje się ze
+              swojego sloganu reklamowego i rzeczywiście 'pomaga mądrze wydawać pieniądze'."</p>
+            <p>David Dodd, Menedżer ds. Strategii Rynkowej</p>
+          </td>
+
+          <td>
+            <p>Ustalić optymalną liczbę oddziałów wraz z ich poszczególnymi lokalizacjami.</p>
+          </td>
+          <td>
+            <ul>
+              <li>Zrozumienie potrzeb klientów oraz czynników pozwalających na osiągnięcie sukcesu firmy.</li>
+              <li>Wyciągnięcie wniosków z poprzednich projektów.</li>
+              <li>Zdefiniowanie czynników powodujących zwiększenie ilości klientów w poszczególnym oddziale.</li>
+              <li>Zoptymalizowanie istniejącej sieci oddziałów.</li>
+            </ul>
+          </td>
+          <td>
+            <p class="italic">"Poprzez współpracę z działami finansów oraz operacji GEOLYTIX pomógł zmienić nasze
+              dotychczasowe podejście do oceny lokalizacji na bardziej analityczne i kompleksowe docelowo tworząc system
+              oceny i zatwierdzania nowych otwarć. GEOLYTIX był w stanie przedstawić szerszy punkt widzenia jednocześnie
+              nie tracąc szczegółowego podejścia do każdej indywidualnej lokalizacji."</p>
+            <p>Philip Calcutt, Senior Marketing Manager</p>
+          </td>
+
+          <td>
+            <p>Wsparcie procesu wprowadzenia istotnych zmian w planowaniu nowych otwarć ze szczególnym naciskiem na nowe
+              sklepy spożywcze. Dogłębne zrozumienie czynników odpowiedzialnych za generowanie obrotów w dziale
+              odzieżowym
+              oraz dziale wyposażenia wnętrz.</p>
+          </td>
+          <td>
+            <ul>
+              <li>Stworzenie skutecznego procesu selekcji nowych lokalizacji i prognozowania obrotów dla nowych punktów
+                sprzedaży w oparciu o kompleksowe dane i spójny system.</li>
+              <li>Zrozumienie czynników determinujących obroty w dziale odzieżowym oraz dziale wyposażenia wnętrz a
+                także
+                ich stref zasięgu w celu budowy modeli przyszłych otwarć nowych punktów sprzedaży.</li>
+              <li>Stworzenie modeli statystycznych w oparciu o istniejące wewnętrzne dane firmy wraz z odpowiednim
+                oprogramowaniem.</li>
+              <li>Wykonanie szeregu prób w celu przetestowania skuteczności i dokładności stworzonych modeli.</li>
+            </ul>
+          </td>
+          <td>
+            <p class="italic">"GEOLYTIX współpracował z nami w celu stworzenia zestawu narzędzi, który umożliwi nam
+              proaktywne ustalanie naszej strategii i szybkie reagowanie na wszelkie warianty lokalizacyjne. Ich analizy
+              i
+              zalecenia zapewniły nam spójną bazę danych i odpowiednie know how dzięki którym możemy dzisiaj podejmować
+              skuteczne decyzje dotyczące naszego rozwoju."</p>
+            <p>Robert Morray, Szef Działu Planowania Nowych Lokalizacji</p>
+          </td>
+
+          <td>
+            <p>Współtworzenie strategii Dominos Pizza, aby stała się liderem na każdym ze swoich mikrorynków - ze
+              szczególnym naciskiem na osiągnięcie rentowności przez franczyzobiorców.</p>
+          </td>
+          <td>
+            <ul>
+              <li>Zrozumienie faktycznych czynników determinujących obroty nowo otwieranych restauracji oraz
+                kanibalizacji sprzedaży istniejących punktów.</li>
+              <li>Budowa modelu statystycznego przewidującego obroty nowych restauracji a także pozwalającego
+                przewidzieć wielkość kanibalizacji w istniejących punktach.</li>
+              <li>Poprawa istniejącego procesu oceny nowych lokalizacji.</li>
+              <li>Stworzenie ram dla wyznaczania optymalnych lokalizacji dla docelowej sieci restauracji.</li>
+            </ul>
+          </td>
+          <td>
+            <p class="italic">"Współpraca z GEOLYTIX pozwoliła nam stworzyć spójne podejście do procesu oceny nowych
+              lokalizacji, zrozumieć i poznać obszary, w których mieszkają nasi klienci, zrozumieć sprzedaż zarówno na
+              poziomie pojedynczych restauracji jak i poszczególnych regionów."</p>
+            <p>Craig Donnellan, Szef Działu Planowania Nowych Lokalizacji</p>
+          </td>
+
+        </tr>
+      </table>
+    </div>
+  </div>
 </section>
 
 <script>
 
-    window.addEventListener('DOMContentLoaded', function () {
+  window.addEventListener('DOMContentLoaded', function () {
 
-        const case_studies = document.getElementById('case_studies');
+    const case_studies = document.getElementById('case_studies');
 
-        const case_studies_strip = case_studies.querySelector('#case_studies_strip > table');
+    const case_studies_strip = case_studies.querySelector('#case_studies_strip > table');
 
-        case_studies_strip.addEventListener('click', function (event) {
+    case_studies_strip.addEventListener('click', function (event) {
 
-            case_studies.querySelectorAll('.active').forEach(el => el.classList.remove('active'))
+      case_studies.querySelectorAll('.active').forEach(el => el.classList.remove('active'))
 
-            event.target.classList.add('active');
+      event.target.classList.add('active');
 
-            const children = event.target.parentNode.childNodes;
+      const children = event.target.parentNode.childNodes;
 
-            let index = -1;
+      let index = -1;
 
-            for (let i = 0; i < children.length; i++) {
-                if (children[i] === event.target) break;
-                children[i].nodeType === 1 && index++;
-            }
+      for (let i = 0; i < children.length; i++) {
+        if (children[i] === event.target) break;
+        children[i].nodeType === 1 && index++;
+      }
 
-            case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
+      case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
 
-            if (index > 9) index -= 9;
-            if (index < 0) index += 9;
+      if (index > 9) index -= 9;
+      if (index < 0) index += 9;
 
-            case_studies.querySelectorAll('.logo')[index + 1].classList.add('active');
+      case_studies.querySelectorAll('.logo')[index + 1].classList.add('active');
 
-            case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
+      case_studies_strip.style['marginLeft'] = '-' + index * 20 + '%';
 
-            index++;
+      index++;
 
-            if (index >= 9) index -= 9;
-            
-            case_studies.querySelector('#case_studies_container > table').style['marginLeft'] = '-' + index * 100 + '%';
-        });
+      if (index >= 9) index -= 9;
 
-    })
+      case_studies.querySelector('#case_studies_container > table').style['marginLeft'] = '-' + index * 100 + '%';
+    });
+
+  })
 
 </script>
