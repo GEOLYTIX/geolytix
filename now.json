@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "regions": ["lhr1", "sfo1"],
+  "regions": ["sin1", "icn1"],
   "builds": [
     {
       "src": "/public/*",
@@ -18,6 +18,11 @@
       }
     }
   ],
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },  
   "trailingSlash": false,
   "rewrites": [
       {
