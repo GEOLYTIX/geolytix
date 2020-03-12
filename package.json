@@ -8,6 +8,11 @@
   "engines": {
     "node": "12.x"
   },
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
+  },
   "dependencies": {
     "mobile-detect": "^1.4.4",
     "node-fetch": "^2.6.0"
