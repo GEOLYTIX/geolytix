@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "regions": ["lhr1", "sfo1"],
+  "regions": ["lhr1"],
   "builds": [
     {
       "src": "/public/*",
