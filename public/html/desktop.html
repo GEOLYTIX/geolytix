@@ -24,9 +24,9 @@
         ga('send', 'pageview');
     </script>-->
 
-    <link rel="stylesheet" href="https://xyz-geodata-dev.now.sh/geodata/css/control.css" />
+    <link rel="stylesheet" href="https://xyz-geodata.now.sh/geodata/css/control.css" />
 
-    <script src="https://xyz-geodata-dev.now.sh/geodata/js/xyz_openlayers.js" defer></script>
+    <script src="https://xyz-geodata.now.sh/geodata/js/xyz_openlayers.js" defer></script>
 
     <style>
         @charset "UTF-8";
@@ -42,10 +42,6 @@
         }
     
         body {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            margin: 0;
             font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
             min-width: 799px;
             overflow-x: hidden;
@@ -129,14 +125,12 @@
         .text-align-centre {
             text-align: center;
         }
-    
-        .img__contain {
-            -webkit-background-size: contain;
-            -moz-background-size: contain;
-            -o-background-size: contain;
-            background-size: contain;
-            background-position: center center;
-            background-repeat: no-repeat;
+  
+        .img_fit {
+          object-fit: contain;
+          object-position: center;
+          height: 100%;
+          width: 100%;
         }
     
         button {
@@ -235,20 +229,16 @@
 
         window.addEventListener('DOMContentLoaded', function () {
 
-            // Location Hash
-            window.location.hash = window.location.hash.replace(/\!/, '');
+          // Location Hash
+          window.location.hash = window.location.hash.replace(/\!/, '');
 
-            // LAZY LOAD IMAGES
-            const imgLoadArray = document.querySelectorAll('.img__load');
+          let img = new Image();
+          img.onload = function () {
+            document.getElementById('header__image').style['background-image'] = 'url(' + img.src + ')';
+            document.querySelectorAll('.black').forEach(el => el.classList.remove('black'))
+          };
+          img.src = '/images/intro_geolytix.jpg';
 
-            for (let i = 0; i < imgLoadArray.length; i++) {
-                let img = new Image();
-                img.onload = function () {
-                    imgLoadArray[i].style['background-image'] = 'url(/images/' + imgLoadArray[i].dataset.src + ')';
-                    if (imgLoadArray[i].id === 'header__image') document.querySelectorAll('.black').forEach(el => el.classList.remove('black'))
-                };
-                img.src = '/images/' + imgLoadArray[i].dataset.src;
-            }
         })
 
         // Scroll helper

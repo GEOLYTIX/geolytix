@@ -4,12 +4,13 @@
     }
 
     #team .li_card {
-        height: 350px;
+        height: 270px;
+        padding: 10px;
     }
 
-    #team .li_card .img {
-        height: 250px;
-        margin: 10px;
+    #team .li_card > img {
+      height: auto;
+      object-position: top;
     }
 
     #team .icon {
@@ -21,10 +22,17 @@
         background-position: center;
         margin: 5px 10px 0 0;
     }
+
+    #team_photo {
+      background-image: url('/images/team/glx_team.jpg');
+      margin-top: 100px;
+      background-size: cover;
+      background-position: 50% 100%;
+    }
 </style>
 
 
-<div id="team_photo" class="img__load" data-src="team/glx_team.jpg" style="background-position: 50% 100%; margin-top: 100px; background-size: cover;"></div>
+<div id="team_photo"></div>
 
 <section id="team" style="margin: 50px auto 0 auto; max-width: 1600px; padding-left: 50px;" data-offset=80>
     <h1 class="bold">Meet the team</h1>
@@ -33,7 +41,7 @@
     <ul class="ul_grid">
         <li>
             <div class="li_card blair cursor">
-                <div class="img img__contain img__load" data-src="team/blair_.jpg"></div>
+                 class="img_fit" src="/images/team/blair_.jpg" loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Blair Freebairn</p>
                     <p>Chief Executive</p>
@@ -46,7 +54,7 @@
         </li>
         <li>
             <div class="li_card sarah cursor">
-                <div class="img img__contain img__load" data-src="team/sarah_.jpg"></div>
+                <img class="img_fit" src="/images/team/sarah_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Sarah Hitchcock</p class="bold">
                     <p>Chief Operating Officer</p>
@@ -59,7 +67,7 @@
         </li>
         <li>
             <div class="li_card neil cursor">
-                <div class="img img__contain img__load" data-src="team/neil_.jpg"></div>
+                <img class="img_fit" src="/images/team/neil_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Neil Farricker</p>
                     <p>Director of Data Science</p>
@@ -72,7 +80,7 @@
         </li>
         <li>
             <div class="li_card samantha cursor">
-                <div class="img img__contain img__load" data-src="team/samantha_.jpg"></div>
+                <img class="img_fit" src="/images/team/samantha_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Samantha Colebatch</p>
                     <p>Commercial Director</p>
@@ -85,7 +93,7 @@
         </li>
         <li>
             <div class="li_card simon cursor">
-                <div class="img img__contain img__load" data-src="team/simon_.jpg"></div>
+                <img class="img_fit" src="/images/team/simon_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Simon Dixon</p>
                     <p>Technical Director</p>
@@ -98,7 +106,7 @@
         </li>
         <li>
             <div class="li_card ben cursor">
-                <div class="img img__contain img__load" data-src="team/ben_.jpg"></div>
+                <img class="img_fit" src="/images/team/ben_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Ben Purple</p>
                     <p>Director</p>
@@ -110,7 +118,7 @@
         </li>
         <li>
                 <div class="li_card luke cursor">
-                    <div class="img img__contain img__load" data-src="team/luke_.jpg"></div>
+                    <img class="img_fit" src="/images/team/luke_.jpg"  loading="lazy"/>
                     <div class="text-align-centre">
                         <p class="bold">Luke Whittam</p>
                         <p>Business Development Director</p>
@@ -123,7 +131,7 @@
         </li>
         <li>
                 <div class="li_card lisa cursor">
-                    <div class="img img__contain img__load" data-src="team/lisa_.jpg"></div>
+                    <img class="img_fit" src="/images/team/lisa_.jpg"  loading="lazy"/>
                     <div class="text-align-centre">
                         <p class="bold">Lisa Taylor</p>
                         <p>Director of Product</p>
@@ -136,7 +144,7 @@
         </li>        
         <li>
             <div class="li_card louise cursor">
-                <div class="img img__contain img__load" data-src="team/louise_.jpg"></div>
+                <img class="img_fit" src="/images/team/louise_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Louise Cross</p>
                     <p>Data Scientist</p>
@@ -150,7 +158,7 @@
         </li>
         <li>
             <div class="li_card christoph cursor">
-                <div class="img img__contain img__load" data-src="team/christoph_.jpg"></div>
+                <img class="img_fit" src="/images/team/christoph_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Christoph Mülligann</p>
                     <p>Chief Innovator</p>
@@ -163,7 +171,7 @@
         </li>
         <li>
             <div class="li_card jasmin cursor">
-                <div class="img img__contain img__load" data-src="team/jasmin_.jpg"></div>
+                <img class="img_fit" src="/images/team/jasmin_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Jasmin Fitzpatrick</p>
                     <p>Associate</p>
@@ -176,7 +184,7 @@
         </li>
         <li>
             <div class="li_card dennis cursor">
-                <div class="img img__contain img__load" data-src="team/dennis_.jpg"></div>
+                <img class="img_fit" src="/images/team/dennis_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Dennis Bauszus</p>
                     <p>Web Solutions Engineer</p>
@@ -193,7 +201,7 @@
         </li>
         <li>
             <div class="li_card martin cursor">
-                <div class="img img__contain img__load" data-src="team/martin_.jpg"></div>
+                <img class="img_fit" src="/images/team/martin_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Martin Bregazzi</p>
                     <p>Associate</p>
@@ -206,7 +214,7 @@
         </li>
         <li>
             <div class="li_card donna cursor">
-                <div class="img img__contain img__load" data-src="team/donna_.jpg"></div>
+                <img class="img_fit" src="/images/team/donna_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Donna Kirton</p>
                     <p>Office Support</p>
@@ -220,7 +228,7 @@
         </li>
         <li>
             <div class="li_card dan cursor">
-                <div class="img img__contain img__load" data-src="team/dan_.jpg"></div>
+                <img class="img_fit" src="/images/team/dan_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Dan Dungate</p>
                     <p>Data Scientist</p>
@@ -233,7 +241,7 @@
         </li>
         <li>
             <div class="li_card agata cursor">
-                <div class="img img__contain img__load" data-src="team/agata_.jpg"></div>
+                <img class="img_fit" src="/images/team/agata_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Agata Brok</p>
                     <p>Developer</p>
@@ -245,7 +253,7 @@
         </li>
         <li>
             <div class="li_card danny cursor">
-                <div class="img img__contain img__load" data-src="team/danny_.jpg"></div>
+                <img class="img_fit" src="/images/team/danny_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Danny Hart</p>
                     <p>Data Scientist</p>
@@ -258,7 +266,7 @@
         </li>
         <li>
             <div class="li_card matt cursor">
-                <div class="img img__contain img__load" data-src="team/matt_.jpg"></div>
+                <img class="img_fit" src="/images/team/matt_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Matt Martin</p>
                     <p>Associate</p>
@@ -271,7 +279,7 @@
         </li>
         <li>
             <div class="li_card sam cursor">
-                <div class="img img__contain img__load" data-src="team/sam_.jpg"></div>
+                <img class="img_fit" src="/images/team/sam_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Sam Hong</p>
                     <p>China Business Development Director</p>
@@ -284,7 +292,7 @@
         </li>
         <li>
             <div class="li_card coco cursor">
-                <div class="img img__contain img__load" data-src="team/coco_.jpg"></div>
+                <img class="img_fit" src="/images/team/coco_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Coco Lin</p>
                     <p>Project Director</p>
@@ -297,7 +305,7 @@
         </li>
         <li>
             <div class="li_card lifan cursor">
-                <div class="img img__contain img__load" data-src="team/lifan_.jpg"></div>
+                <img class="img_fit" src="/images/team/lifan_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Lifan Zhang</p>
                     <p>Location Analyst</p>
@@ -310,7 +318,7 @@
         </li>
         <li>
             <div class="li_card alessandro cursor">
-                <div class="img img__contain img__load" data-src="team/alessandro_.jpg"></div>
+                <img class="img_fit" src="/images/team/alessandro_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Alessandro De Martino</p>
                     <p>Data Engineer</p>
@@ -323,7 +331,7 @@
         </li>
         <li>
             <div class="li_card georgina cursor">
-                <div class="img img__contain img__load" data-src="team/georgina_.jpg"></div>
+                <img class="img_fit" src="/images/team/georgina_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Georgina Aucutt</p>
                     <p>Data Scientist</p>
@@ -335,7 +343,7 @@
         </li>
         <li>
             <div class="li_card wensi cursor">
-                <div class="img img__contain img__load" data-src="team/wensi_.jpg"></div>
+                <img class="img_fit" src="/images/team/wensi_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Wensi Kirkham</p>
                     <p>Data Scientist</p>
@@ -348,7 +356,7 @@
         </li>
         <li>
             <div class="li_card jacek cursor">
-                <div class="img img__contain img__load" data-src="team/jacek_.jpg"></div>
+                <img class="img_fit" src="/images/team/jacek_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Jacek Biel</p>
                     <p>Director, Central Europe</p>
@@ -361,7 +369,7 @@
         </li>
         <li>
             <div class="li_card rob cursor">
-                <div class="img img__contain img__load" data-src="team/rob_.jpg"></div>
+                <img class="img_fit" src="/images/team/rob_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Robert Hurst</p>
                     <p>Developer</p>
@@ -374,7 +382,7 @@
         </li>
         <li>
             <div class="li_card chris cursor">
-                <div class="img img__contain img__load" data-src="team/chris_.jpg"></div>
+                <img class="img_fit" src="/images/team/chris_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Chris Storey</p>
                     <p>Data Scientist</p>
@@ -387,7 +395,7 @@
         </li>
         <li>
             <div class="li_card alison cursor">
-                <div class="img img__contain img__load" data-src="team/alison_.jpg"></div>
+                <img class="img_fit" src="/images/team/alison_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Alison Moriarty</p>
                     <p>Associate</p>
@@ -400,7 +408,7 @@
         </li>
         <li>
             <div class="li_card josh cursor">
-                <div class="img img__contain img__load" data-src="team/josh_.jpg"></div>
+                <img class="img_fit" src="/images/team/josh_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Josh Reynolds</p>
                     <p>Data Scientist</p>
@@ -413,7 +421,7 @@
         </li>
         <li>
             <div class="li_card clive cursor">
-                <div class="img img__contain img__load" data-src="team/clive_.jpg"></div>
+                <img class="img_fit" src="/images/team/clive_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Clive Drowley</p>
                     <p>Data Scientist</p>
@@ -426,7 +434,7 @@
         </li>
         <li>
             <div class="li_card rebecca cursor">
-                <div class="img img__contain img__load" data-src="team/rebecca_.jpg"></div>
+                <img class="img_fit" src="/images/team/rebecca_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Rebecca Mellor</p>
                     <p>Apprentice Data Analyst</p>
@@ -439,7 +447,7 @@
         </li>
         <li>
             <div class="li_card daniel cursor">
-                <div class="img img__contain img__load" data-src="team/daniel_.jpg"></div>
+                <img class="img_fit" src="/images/team/daniel_.jpg"  loading="lazy"/>
                 <div class="text-align-centre">
                     <p class="bold">Daniel Sawyers</p>
                     <p>Developer</p>
