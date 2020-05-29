@@ -131,7 +131,7 @@
         document.getElementById('geodata__faq').style.display = 'none';
 
         if (_xyz) _xyz({
-          host: 'https://xyz-geodata-v2.now.sh/geodata',
+          host: 'https://xyz-geodata-dev-v2.now.sh/geodata',
           locale: el.dataset.locale,
           callback: function (_xyz) {
 
@@ -175,7 +175,7 @@
               btnZoomOut.disabled = z <= _xyz.workspace.locale.minZoom;
             });
 
-            document.querySelector('.geodata__content > .btn-column > .btn-fullscreen').href = "https://xyz-geodata-v2.now.sh/geodata?layers=Mapbox Baselayer,Mapbox Labels," + el.dataset.layers + "&locale=London";
+            document.querySelector('.geodata__content > .btn-column > .btn-fullscreen').href = "https://xyz-geodata-dev-v2.now.sh/geodata?layers=Mapbox Baselayer,Mapbox Labels," + el.dataset.layers + "&locale=London";
 
             _xyz.locations.selectCallback = location => {
 
