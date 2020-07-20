@@ -5,7 +5,7 @@
     window.addEventListener('DOMContentLoaded', function(){
   
       if (_xyz) _xyz({
-        host: 'https://xyz-geodata.now.sh/geodata',
+        host: 'https://geolytix.xyz/geodata',
         locale: 'Offices',
         callback: function (_xyz) {
   
@@ -30,7 +30,7 @@
                 type: 'Point',
                 coordinates: location.marker,
               },
-              style: new _xyz.mapview.lib.style.Style({
+              style: new ol.style.Style({
                 image: _xyz.mapview.icon(_xyz.layers.list.Offices.style.highlight.marker)
               })
             });

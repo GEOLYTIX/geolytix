@@ -22,12 +22,6 @@
     border-bottom: 10px solid black;
     cursor: pointer;
   }
-
-  @media screen and (max-width: 1100px) {
-    #geodata {
-      display: none;
-    }
-  }
 </style>
 
 
@@ -141,7 +135,7 @@
   window.addEventListener('DOMContentLoaded', function () {
 
     const xyz = _xyz({
-      host: 'https://geolytix.dev/geodata'
+      host: 'https://geolytix.xyz/geodata'
     })
 
     xyz.workspace.get.locale({
@@ -249,7 +243,7 @@
 
         })
 
-        document.querySelector('.geodata__content > .btn-column > .btn-fullscreen').href = "https://geolytix.dev/geodata?layers=" + el.dataset.layers + "&locale=London";
+        document.querySelector('.geodata__content > .btn-column > .btn-fullscreen').href = "https://geolytix.xyz/geodata?layers=" + el.dataset.layers + "&locale=London";
 
       }
     });
