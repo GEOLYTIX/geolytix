@@ -23,7 +23,7 @@
 
         _xyz.locations.selectCallback = location => {
 
-          document.getElementById('contact_text').innerHTML = location.infoj[1].value;
+          document.getElementById('contact_text').innerHTML = location.infoj[0].value;
 
           location.Marker = _xyz.mapview.geoJSON({
             geometry: {
@@ -31,7 +31,7 @@
               coordinates: location.marker,
             },
             style: new ol.style.Style({
-              image: _xyz.mapview.icon(_xyz.layers.list.Offices.style.highlight.marker)
+              image: _xyz.mapview.icon(_xyz.layers.list.Offices.style.selected.marker)
             })
           });
 
@@ -40,8 +40,8 @@
         _xyz.locations.select({
           locale: "Offices",
           layer: _xyz.layers.list.Offices,
-          table: "website.glx_offices",
-          id: 7
+          table: xyz.layers.list.Offices.table,
+          id: 8
         });
 
       }
