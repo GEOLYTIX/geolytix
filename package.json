@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "mobile-detect": "^1.4.4",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "express": "^4.17.1"
