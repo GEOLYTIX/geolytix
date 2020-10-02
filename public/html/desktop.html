@@ -2,14 +2,15 @@
 <html lang="en">
 
 <head>
-    <title>GEOLYTIX</title>
+  <title>GEOLYTIX</title>
 
-    <meta name="description" content="Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers." />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="/glx.ico" />
+  <meta name="description"
+    content="Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="/glx.ico" />
 
-    <!--<script type="application/javascript">
+  <!--<script type="application/javascript">
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function () {(i[r].q = i[r].q || []).push(arguments)}
@@ -24,274 +25,280 @@
         ga('send', 'pageview');
     </script>-->
 
-    <link rel="stylesheet" href="https://geolytix.xyz/geodata/css/control.css" />
-    <link rel="stylesheet" href="https://geolytix.xyz/geodata/css/openlayers.css" />
+  <link rel="stylesheet" href="https://geolytix.xyz/geodata/css/control.css" />
+  <link rel="stylesheet" href="https://geolytix.xyz/geodata/css/openlayers.css" />
 
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js" defer></script>
-    <script src="https://geolytix.xyz/geodata/js/xyz_openlayers.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js" defer></script>
+  <script src="https://geolytix.xyz/geodata/js/xyz_openlayers.js" defer></script>
 
-    <style>
-        @charset "UTF-8";
-    
-        @font-face {
-            font-family: ffmark_black;
-            src: url("/fonts/MarkWeb-Black.woff") format("woff");
-        }
-    
-        @font-face {
-            font-family: ffmark;
-            src: url("/fonts/MarkWebPro.woff") format("woff");
-        }
-    
-        body {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
-            min-width: 799px;
-            overflow-x: hidden;
-            color: #3f3f3f;
-            font-weight: 400;
-            font-size: 13px;
-        }
-    
-        @media screen and (min-width: 1000px) {
-            body {
-                font-size: 14px;
-            }
-        }
-    
-        @media screen and (min-width: 1200px) {
-            body {
-                font-size: 15px;
-            }
-        }
-    
-        @media screen and (min-width: 1400px) {
-            body {
-                font-size: 16px;
-            }
-        }
-    
-        @media screen and (min-width: 1600px) {
-            body {
-                font-size: 17px;
-            }
-        }
+  <style>
+    @charset "UTF-8";
 
-        .font-150 {
-            font-size: 150%;
-        }
+    @font-face {
+      font-family: ffmark_black;
+      src: url("/fonts/MarkWeb-Black.woff") format("woff");
+    }
 
-        .font-200 {
-            font-size: 200%;
-        }        
-    
-        .primary-colour {
-            color: #090;
-        }
-    
-        a {
-            color: #090;
-            text-decoration: none;
-            background-color: transparent;
-        }
-    
-        a:hover,
-        .cursor {
-            cursor: pointer;
-        }
-       
-        h1 {
-            font-size: 300%;
-            margin-bottom: 30px;
-        }
-    
-        h2 {
-            font-size: 200%;
-            margin-bottom: 30px;
-        }
-    
-        h3 {
-            font-size: 150%;
-            margin-bottom: 30px;
-        }
-    
-        p {
-            margin: 0;
-            line-height: 1.5;
-        }
-    
-        .bold {
-            font-family: ffmark, "Open Sans", sans-serif;
-            font-weight: 700;
-        }
-    
-        .text-align-centre {
-            text-align: center;
-        }
-    
-        .img__contain {
-            -webkit-background-size: contain;
-            -moz-background-size: contain;
-            -o-background-size: contain;
-            background-size: contain;
-            background-position: center center;
-            background-repeat: no-repeat;
-        }
-    
-        button {
-            border: none;
-            outline: none;
-        }
-    
-        .noselect {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-    
-        .icon-linkedin {
-            background-image: url("/images/icons/linkedin.svg");
-        }
-    
-        .icon-twitter {
-            background-image: url("/images/icons/twitter.svg");
-        }
-    
-        .icon-medium {
-            background-image: url("/images/icons/medium.svg");
-        }
-    
-        .icon-github {
-            background-image: url("/images/icons/github.svg");
-        }
-    
-        .icon-stackexchange {
-            background-image: url("/images/icons/stackexchange.svg");
-        }
-    
-    
-        /* UL-GRID */
-        .ul_grid {
-            position: relative;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    
-        .ul_grid li {
-            display: inline-block;
-            vertical-align: top;
-        }
-    
-        .ul_grid li .li_expander {
-            position: absolute;
-            top: auto;
-            left: 0;
-            width: 100%;
-            margin: 0 0 0 0;
-            visibility: hidden;
-        }
-    
-        .ul_grid li .li_expander.visible {
-            visibility: visible;
-            border-top: 1px solid #000;
-            padding: 15px 0;
-        }
-    
-        .ul_grid li .li_card {
-            position: relative;
-        }
-    
-        .ul_grid li .li_card.expanded:after,
-        .ul_grid li .li_card.expanded:before {
-            position: absolute;
-            bottom: -1px;
-            left: 50%;
-            height: 0;
-            width: 0;
-            border: solid transparent;
-            content: " ";
-            pointer-events: none;
-        }
-    
-        .ul_grid li .li_card.expanded:before {
-            border-bottom-color: #000;
-            border-width: 16px;
-            margin-left: -16px;
-        }
-    
-        .ul_grid li .li_card.expanded:after {
-            border-bottom-color: #fff;
-            border-width: 15px;
-            margin-left: -15px;
-            z-index: 999;
-        }
-    </style>
+    @font-face {
+      font-family: ffmark;
+      src: url("/fonts/MarkWebPro.woff") format("woff");
+    }
 
-    <script>
+    body {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+      min-width: 799px;
+      overflow-x: hidden;
+      color: #3f3f3f;
+      font-weight: 400;
+      font-size: 13px;
+    }
 
-        window.addEventListener('DOMContentLoaded', function () {
+    @media screen and (min-width: 1000px) {
+      body {
+        font-size: 14px;
+      }
+    }
 
-            // Location Hash
-            window.location.hash = window.location.hash.replace(/\!/, '');
+    @media screen and (min-width: 1200px) {
+      body {
+        font-size: 15px;
+      }
+    }
 
-            // LAZY LOAD IMAGES
-            const imgLoadArray = document.querySelectorAll('.img__load');
+    @media screen and (min-width: 1400px) {
+      body {
+        font-size: 16px;
+      }
+    }
 
-            for (let i = 0; i < imgLoadArray.length; i++) {
-                let img = new Image();
-                img.onload = function () {
-                    imgLoadArray[i].style['background-image'] = 'url(/images/' + imgLoadArray[i].dataset.src + ')';
-                    if (imgLoadArray[i].id === 'header__image') document.querySelectorAll('.black').forEach(el => el.classList.remove('black'))
-                };
-                img.src = '/images/' + imgLoadArray[i].dataset.src;
-            }
-        })
+    @media screen and (min-width: 1600px) {
+      body {
+        font-size: 17px;
+      }
+    }
 
-        // Scroll helper
-        function scrollElementToTop(element, offset, duration = 400) {
+    .font-150 {
+      font-size: 150%;
+    }
 
-            if (duration <= 0) return;
+    .font-200 {
+      font-size: 200%;
+    }
 
-            let tick = (element.getBoundingClientRect().top + offset) / duration * 10;
+    .primary-colour {
+      color: #090;
+    }
 
-            setTimeout(function () {
+    a {
+      color: #090;
+      text-decoration: none;
+      background-color: transparent;
+    }
 
-                document.documentElement.scrollTop += tick;
+    a:hover,
+    .cursor {
+      cursor: pointer;
+    }
 
-                if (!document.documentElement.scrollTop) window.scrollY += tick;
+    h1 {
+      font-size: 300%;
+      margin-bottom: 30px;
+    }
 
-                scrollElementToTop(element, offset, duration - 10);
+    h2 {
+      font-size: 200%;
+      margin-bottom: 30px;
+    }
 
-            }, 10);
-        }
+    h3 {
+      font-size: 150%;
+      margin-bottom: 30px;
+    }
 
-    </script>
+    p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .bold {
+      font-family: ffmark, "Open Sans", sans-serif;
+      font-weight: 700;
+    }
+
+    .text-align-centre {
+      text-align: center;
+    }
+
+    .img__contain {
+      -webkit-background-size: contain;
+      -moz-background-size: contain;
+      -o-background-size: contain;
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+
+    button {
+      border: none;
+      outline: none;
+    }
+
+    .noselect {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .icon-linkedin {
+      background-image: url("/images/icons/linkedin.svg");
+    }
+
+    .icon-twitter {
+      background-image: url("/images/icons/twitter.svg");
+    }
+
+    .icon-medium {
+      background-image: url("/images/icons/medium.svg");
+    }
+
+    .icon-github {
+      background-image: url("/images/icons/github.svg");
+    }
+
+    .icon-stackexchange {
+      background-image: url("/images/icons/stackexchange.svg");
+    }
+
+
+    /* UL-GRID */
+    .ul_grid {
+      position: relative;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .ul_grid li {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .ul_grid li .li_expander {
+      position: absolute;
+      top: auto;
+      left: 0;
+      width: 100%;
+      margin: 0 0 0 0;
+      visibility: hidden;
+    }
+
+    .ul_grid li .li_expander.visible {
+      visibility: visible;
+      border-top: 1px solid #000;
+      padding: 15px 0;
+    }
+
+    .ul_grid li .li_card {
+      position: relative;
+    }
+
+    .ul_grid li .li_card.expanded:after,
+    .ul_grid li .li_card.expanded:before {
+      position: absolute;
+      bottom: -1px;
+      left: 50%;
+      height: 0;
+      width: 0;
+      border: solid transparent;
+      content: " ";
+      pointer-events: none;
+    }
+
+    .ul_grid li .li_card.expanded:before {
+      border-bottom-color: #000;
+      border-width: 16px;
+      margin-left: -16px;
+    }
+
+    .ul_grid li .li_card.expanded:after {
+      border-bottom-color: #fff;
+      border-width: 15px;
+      margin-left: -15px;
+      z-index: 999;
+    }
+
+    .img_fit {
+      object-fit: contain;
+      object-position: center;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+
+      // Location Hash
+      window.location.hash = window.location.hash.replace(/\!/, '');
+
+      // LAZY LOAD IMAGES
+      const imgLoadArray = document.querySelectorAll('.img__load');
+
+      for (let i = 0; i < imgLoadArray.length; i++) {
+        let img = new Image();
+        img.onload = function () {
+          imgLoadArray[i].style['background-image'] = 'url(/images/' + imgLoadArray[i].dataset.src + ')';
+          if (imgLoadArray[i].id === 'header__image') document.querySelectorAll('.black').forEach(el => el
+            .classList.remove('black'))
+        };
+        img.src = '/images/' + imgLoadArray[i].dataset.src;
+      }
+    })
+
+    // Scroll helper
+    function scrollElementToTop(element, offset, duration = 400) {
+
+      if (duration <= 0) return;
+
+      let tick = (element.getBoundingClientRect().top + offset) / duration * 10;
+
+      setTimeout(function () {
+
+        document.documentElement.scrollTop += tick;
+
+        if (!document.documentElement.scrollTop) window.scrollY += tick;
+
+        scrollElementToTop(element, offset, duration - 10);
+
+      }, 10);
+    }
+  </script>
 
 </head>
 
 <body>
 
-    ${header}
+  ${header}
 
-    ${services}
+  ${services}
 
-    ${case_studies}
+  ${case_studies}
 
-    ${mapp}
+  ${mapp}
 
-    ${team}
+  ${team}
 
-    ${contact}
+  ${contact}
 
-    ${awards}
+  ${awards}
 
-    ${footer}
+  ${footer}
 
 </body>
 
