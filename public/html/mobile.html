@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>GEOLYTIX</title>
+  <title>GEOLYTIX</title>
 
-    <meta name="description" content="Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers." />
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/glx.ico" />
+  <meta name="description"
+    content="Location Planning experts providing retail & demographic data worldwide. We find the right network strategy solution for our customers." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/glx.ico" />
 
-    <!--<script type="text/javascript">
+  <!--<script type="text/javascript">
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r;
             i[r] = i[r] || function () {
@@ -24,214 +26,218 @@
         ga('send', 'pageview');
     </script>-->
 
-    <link rel="stylesheet" href="https://geolytix.xyz/geodata/css/control.css" />
-    <link rel="stylesheet" href="https://geolytix.xyz/geodata/css/openlayers.css" />
-  
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js" defer></script>
-    <script src="https://geolytix.xyz/geodata/js/xyz_openlayers.js" defer></script>
+  <link rel="stylesheet" href="https://geolytix.xyz/geodata/css/control.css" />
+  <link rel="stylesheet" href="https://geolytix.xyz/geodata/css/openlayers.css" />
 
-    <style>
-        @charset "UTF-8";
-    
-        @font-face {
-            font-family: ffmark_black;
-            src: url("/fonts/MarkWeb-Black.woff") format("woff");
-        }
-    
-        @font-face {
-            font-family: ffmark;
-            src: url("/fonts/MarkWebPro.woff") format("woff");
-        }
-    
-        body {
-            font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
-            font-size: 16px;
-            overflow: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-    
-        @media screen and (min-width: 400px) {
-            body {
-                font-size: 17px;
-            }
-        }
-    
-        @media screen and (min-width: 600px) {
-            body {
-                font-size: 18px;
-            }
-        }
-    
-        @media screen and (min-width: 800px) {
-            body {
-                font-size: 19px;
-            }
-        }
-    
-        @media screen and (min-width: 1000px) {
-            body {
-                font-size: 20px;
-            }
-        }
+  <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js" defer></script>
+  <script src="https://geolytix.xyz/geodata/js/xyz_openlayers.js" defer></script>
 
-        h1 {
-            font-size: 200%;
-            padding: 20px 20px 30px 20px;
-        }
-    
-        h2 {
-            font-size: 150%;
-            padding: 0 20px 30px 20px;
-        }
-    
-        .font-150 {
-            font-size: 150%;
-        }
-    
-        .font-200 {
-            font-size: 200%;
-        }
-    
-        .bold {
-            font-family: ffmark, "Open Sans", sans-serif;
-            font-weight: 700;
-        }
+  <style>
+    @charset "UTF-8";
 
-        .italic {
-            font-style: italic;
-        }
-    
-        .text-align-centre {
-            text-align: center;
-        }
-    
-        .primary-colour {
-            color: #090;
-        }
-    
-        a {
-            text-decoration: none;
-            color: black;
-        }
-    
-        p {
-            margin: 0;
-            line-height: 1.5;
-        }
-    
-        .img__cover {
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-    
-        .img__contain {
-            -webkit-background-size: contain;
-            -moz-background-size: contain;
-            -o-background-size: contain;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center center;
-        }
-    
-        .scroll__x {
-            padding-left: 10px;
-            overflow-y: hidden;
-            overflow-x: scroll;
-            -webkit-overflow-scrolling: touch;
-        }
-    
-        .icon-linkedin {
-            background-image: url("./images/icons/linkedin.svg");
-        }
-    
-        .icon-twitter {
-            background-image: url("./images/icons/twitter.svg");
-        }
-    
-        .icon-medium {
-            background-image: url("./images/icons/medium.svg");
-        }
-    
-        .icon-github {
-            background-image: url("./images/icons/github.svg");
-        }
-    
-        .icon-stackexchange {
-            background-image: url("./images/icons/stackexchange.svg");
-        }
+    @font-face {
+      font-family: ffmark_black;
+      src: url("/fonts/MarkWeb-Black.woff") format("woff");
+    }
 
-    </style>
+    @font-face {
+      font-family: ffmark;
+      src: url("/fonts/MarkWebPro.woff") format("woff");
+    }
 
-    <script>
+    body {
+      font-family: ffmark, "Microsoft YaHei New", "Microsoft Yahei", 微软雅黑, 宋体, SimSun, STXihei, 华文细黑, sans-serif;
+      font-size: 16px;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
 
-        window.addEventListener('DOMContentLoaded', function () {
+    @media screen and (min-width: 400px) {
+      body {
+        font-size: 17px;
+      }
+    }
 
-            window.onhashchange = setTimeout(function () {
-                document.documentElement.scrollTop -= 50;
-                if (!document.documentElement.scrollTop) window.scrollY -= 50;
-            },500)
+    @media screen and (min-width: 600px) {
+      body {
+        font-size: 18px;
+      }
+    }
 
-            // Location Hash
-            window.location.hash = window.location.hash.replace(/\!/, '');
+    @media screen and (min-width: 800px) {
+      body {
+        font-size: 19px;
+      }
+    }
 
-            // LAZY LOAD IMAGES
-            const imgLoadArray = document.querySelectorAll('.img__load');
+    @media screen and (min-width: 1000px) {
+      body {
+        font-size: 20px;
+      }
+    }
 
-            for (let i = 0; i < imgLoadArray.length; i++) {
-                let img = new Image();
-                img.onload = function () {
-                    imgLoadArray[i].style['background-image'] = 'url(/images/' + imgLoadArray[i].dataset.src + ')';
-                    if (imgLoadArray[i].id === 'header') document.querySelectorAll('#header .black').forEach(el => el.classList.remove('black'))
-                };
-                img.src = '/images/' + imgLoadArray[i].dataset.src;
-            }
-        })
+    h1 {
+      font-size: 200%;
+      padding: 20px 20px 30px 20px;
+    }
+
+    h2 {
+      font-size: 150%;
+      padding: 0 20px 30px 20px;
+    }
+
+    .font-150 {
+      font-size: 150%;
+    }
+
+    .font-200 {
+      font-size: 200%;
+    }
+
+    .bold {
+      font-family: ffmark, "Open Sans", sans-serif;
+      font-weight: 700;
+    }
+
+    .italic {
+      font-style: italic;
+    }
+
+    .text-align-centre {
+      text-align: center;
+    }
+
+    .primary-colour {
+      color: #090;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    p {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .img__cover {
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .img__contain {
+      -webkit-background-size: contain;
+      -moz-background-size: contain;
+      -o-background-size: contain;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+
+    .scroll__x {
+      padding-left: 10px;
+      overflow-y: hidden;
+      overflow-x: scroll;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .icon-linkedin {
+      background-image: url("./images/icons/linkedin.svg");
+    }
+
+    .icon-twitter {
+      background-image: url("./images/icons/twitter.svg");
+    }
+
+    .icon-medium {
+      background-image: url("./images/icons/medium.svg");
+    }
+
+    .icon-github {
+      background-image: url("./images/icons/github.svg");
+    }
+
+    .icon-stackexchange {
+      background-image: url("./images/icons/stackexchange.svg");
+    }
+
+    .flex {
+      display: flex;
+      overflow-x: auto;
+    }
+  </style>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+
+      window.onhashchange = setTimeout(function () {
+        document.documentElement.scrollTop -= 50;
+        if (!document.documentElement.scrollTop) window.scrollY -= 50;
+      }, 500)
+
+      // Location Hash
+      window.location.hash = window.location.hash.replace(/\!/, '');
+
+      // LAZY LOAD IMAGES
+      const imgLoadArray = document.querySelectorAll('.img__load');
+
+      for (let i = 0; i < imgLoadArray.length; i++) {
+        let img = new Image();
+        img.onload = function () {
+          imgLoadArray[i].style['background-image'] = 'url(/images/' + imgLoadArray[i].dataset.src + ')';
+          if (imgLoadArray[i].id === 'header') document.querySelectorAll('#header .black').forEach(el => el
+            .classList.remove('black'))
+        };
+        img.src = '/images/' + imgLoadArray[i].dataset.src;
+      }
+    })
 
 
-        // Scroll helper
-        function scrollElementToTop(element, offset = 0, duration = 400) {
+    // Scroll helper
+    function scrollElementToTop(element, offset = 0, duration = 400) {
 
-            if (duration <= 0) return;
+      if (duration <= 0) return;
 
-            let tick = (element.getBoundingClientRect().top + offset) / duration * 10;
+      let tick = (element.getBoundingClientRect().top + offset) / duration * 10;
 
-            setTimeout(function () {
+      setTimeout(function () {
 
-                document.documentElement.scrollTop += tick;
+        document.documentElement.scrollTop += tick;
 
-                if (!document.documentElement.scrollTop) window.scrollY += tick;
+        if (!document.documentElement.scrollTop) window.scrollY += tick;
 
-                scrollElementToTop(element, offset, duration - 10);
+        scrollElementToTop(element, offset, duration - 10);
 
-            }, 10);
-        }
-
-    </script>
+      }, 10);
+    }
+  </script>
 
 </head>
 
 <body>
 
-    ${header}
+  ${header}
 
-    ${services}
-    
-    ${case_studies}
+  ${services}
 
-    <a style="display: block; margin: 30px 0 120px 100px; border-top: 10px solid #090; padding-top: 10px; font-size: 150%; font-weight: 700;" href="http://blog.geolytix.net">Please visit our blog.</a>
+  ${case_studies}
 
-    ${mapp}
+  <a style="display: block; margin: 30px 0 120px 100px; border-top: 10px solid #090; padding-top: 10px; font-size: 150%; font-weight: 700;"
+    href="http://blog.geolytix.net">Please visit our blog.</a>
 
-    ${team}
+  ${mapp}
 
-    ${awards}
+  ${team}
 
-    ${contact}
+  ${awards}
 
-    ${footer}
+  ${contact}
+
+  ${footer}
 
 </body>
 
