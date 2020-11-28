@@ -1,13 +1,14 @@
 <section id="contact" data-offset=70 style="height: 400px; background-color: #090;">
   <div class="section" style="height: 100%; display: grid; grid-template-columns: 1fr 300px;">
     <div id="map_contact" style="grid-column: 1;"></div>
-    <div id="contact_text" class="bold text-align-centre" style="grid-column: 2; color: #fff; padding: 20px; font-size: 20px; line-height: 1.5;"></div>
+    <div id="contact_text" class="bold text-align-centre"
+      style="grid-column: 2; color: #fff; padding: 20px; font-size: 20px; line-height: 1.5;"></div>
   </div>
 </section>
 
 <script>
 
-  window.addEventListener('DOMContentLoaded', function(){
+  window.addEventListener('DOMContentLoaded', function () {
 
     _xyz({
       host: 'https://geolytix.xyz/geodata',
@@ -28,7 +29,7 @@
 
         xyz.locations.selectCallback = location => {
 
-          document.getElementById('contact_text').innerHTML = location.infoj[1].value;
+          document.getElementById('contact_text').innerHTML = location.infoj[0].value;
 
           location.Marker = xyz.mapview.geoJSON({
             geometry: {
@@ -36,7 +37,7 @@
               coordinates: location.marker,
             },
             style: new ol.style.Style({
-              image: xyz.mapview.icon(xyz.layers.list.Offices.style.highlight.marker)
+              image: xyz.mapview.icon(xyz.layers.list.Offices.style.selected.marker)
             })
           });
 
@@ -45,7 +46,7 @@
         xyz.locations.select({
           locale: "Offices",
           layer: xyz.layers.list.Offices,
-          table: "website.glx_offices",
+          table: xyz.layers.list.Offices.table,
           id: 1
         });
 
